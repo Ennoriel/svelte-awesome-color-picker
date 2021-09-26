@@ -35,6 +35,7 @@
 		border: 1px solid black;
 		font-variant: small-caps;
 		font-weight: bolder;
+		cursor: pointer;
 
 		outline: 3px solid transparent;
 		outline-offset: 3px;
