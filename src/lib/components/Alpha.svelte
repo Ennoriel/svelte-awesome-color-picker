@@ -23,8 +23,8 @@
 	let pos: number;
 
 	function onClick(posY: number): void {
-		let boudedPosY = Math.max(0, Math.min(alpha.getBoundingClientRect().height, posY));
-		a = boudedPosY / alpha.getBoundingClientRect().height;
+		let boundedPosY = Math.max(0, Math.min(alpha.getBoundingClientRect().height, posY));
+		a = boundedPosY / alpha.getBoundingClientRect().height;
 	}
 
 	function mouseDown(e: MouseEvent) {
@@ -38,7 +38,7 @@
 		isMouseDown = false;
 	}
 
-	function mousemove(e: MouseEvent) {
+	function mouseMove(e: MouseEvent) {
 		if (isMouseDown) onClick(e.clientY - alpha.getBoundingClientRect().top);
 	}
 
@@ -75,12 +75,16 @@
 		}
 	}
 
+	function touch(e) {
+		onClick(e.changedTouches[0].clientY - alpha.getBoundingClientRect().top)
+	}
+
 	$: if (typeof a === 'number' && alpha) pos = 100 * a;
 </script>
 
 <svelte:window
 	on:mouseup={mouseUp}
-	on:mousemove={mousemove}
+	on:mousemove={mouseMove}
 	on:keyup={keyup}
 	on:keydown={keydown}
 	on:dbclick={(e) => e.preventDefault()}
@@ -93,6 +97,9 @@
 		style="--alpha-color: {hex.substring(0, 7)}"
 		bind:this={alpha}
 		on:mousedown={mouseDown}
+		on:touchstart={touch}
+		on:touchmove={touch}
+		on:touchend={touch}
 	>
 		<svelte:component this={components.alphaIndicator} {pos} color={_.hsv2rgb({ h, s, v, a })} />
 	</div>

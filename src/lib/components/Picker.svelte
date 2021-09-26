@@ -44,7 +44,7 @@
 		isMouseDown = false;
 	}
 
-	function mousemove(e: MouseEvent) {
+	function mouseMove(e: MouseEvent) {
 		if (isMouseDown)
 			onClick({
 				offsetX: Math.max(
@@ -106,6 +106,13 @@
 		}
 	}
 
+	function touch(e) {
+		onClick({
+			offsetX: e.changedTouches[0].clientX - picker.getBoundingClientRect().left,
+			offsetY: e.changedTouches[0].clientY - picker.getBoundingClientRect().top
+		})
+	}
+
 	$: if (typeof s === 'number' && typeof v === 'number' && picker)
 		pos = {
 			x: s * 100,
@@ -116,7 +123,7 @@
 <svelte:window
 	on:mouseup={mouseUp}
 	on:mousedown={mouseDown}
-	on:mousemove={mousemove}
+	on:mousemove={mouseMove}
 	on:keyup={keyup}
 	on:keydown={keydown}
 	on:dbclick={(e) => e.preventDefault()}
@@ -128,6 +135,9 @@
 		tabindex="0"
 		bind:this={picker}
 		on:mousedown={pickerMouseDown}
+		on:touchstart={touch}
+		on:touchmove={touch}
+		on:touchend={touch}
 		style="--color-bg: {colorBg.hex};"
 	>
 		<svelte:component

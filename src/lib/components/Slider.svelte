@@ -32,7 +32,7 @@
 		isMouseDown = false;
 	}
 
-	function mousemove(e: MouseEvent) {
+	function mouseMove(e: MouseEvent) {
 		if (isMouseDown) onClick(e.clientY - slider.getBoundingClientRect().top);
 	}
 
@@ -69,19 +69,31 @@
 		}
 	}
 
+	function touch(e) {
+		onClick(e.changedTouches[0].clientY - slider.getBoundingClientRect().top)
+	}
+
 	$: if (typeof h === 'number' && slider) pos = (100 * h) / 360;
 </script>
 
 <svelte:window
 	on:mouseup={mouseUp}
-	on:mousemove={mousemove}
+	on:mousemove={mouseMove}
 	on:keyup={keyup}
 	on:keydown={keydown}
 	on:dbclick={(e) => e.preventDefault()}
 />
 
 <svelte:component this={components.sliderWrapper} {focused}>
-	<div class="slider" tabindex="0" bind:this={slider} on:mousedown={mouseDown}>
+	<div
+		class="slider"
+		tabindex="0"
+		bind:this={slider}
+		on:mousedown={mouseDown}
+		on:touchstart={touch}
+		on:touchmove={touch}
+		on:touchend={touch}
+	>
 		<svelte:component this={components.sliderIndicator} {pos} />
 	</div>
 </svelte:component>
