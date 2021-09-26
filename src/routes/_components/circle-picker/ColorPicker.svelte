@@ -1,5 +1,6 @@
 <script lang="ts">
-	import ColorPicker from 'svelte-awesome-color-piecker/ColorPicker.svelte';
+	import ColorPicker from 'svelte-awesome-color-picker/ColorPicker.svelte';
+	import Input from './Input.svelte';
 	import SliderIndicator from './SliderIndicator.svelte';
 	import SliderWrapper from './SliderWrapper.svelte';
 	import PickerIndicator from './PickerIndicator.svelte';
@@ -9,6 +10,7 @@
 
 <ColorPicker
 	components={{
+		input: Input,
 		sliderIndicator: SliderIndicator,
 		sliderWrapper: SliderWrapper,
 		alphaIndicator: SliderIndicator,
