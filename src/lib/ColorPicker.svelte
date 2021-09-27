@@ -16,12 +16,13 @@
 	export let components: Partial<Components> = {};
 
 	/**
-	 * trololo
+	 * Customization properties
 	 */
 	export let isAlpha = true;
 	export let isInput = true;
 	export let isPopup = true;
 	export let isOpen = !isInput;
+	export let toRight = false;
 
 	/**
 	 * Not bindable
@@ -89,9 +90,9 @@
 	<svelte:component this={getComponents().input} {color} bind:button bind:isOpen />
 {/if}
 
-<svelte:component this={getComponents().wrapper} bind:wrapper {isOpen} {isPopup}>
-	<Picker components={getComponents()} h={color.h} bind:s={color.s} bind:v={color.v} bind:isOpen />
-	<Slider components={getComponents()} bind:h={color.h} />
+<svelte:component this={getComponents().wrapper} bind:wrapper {isOpen} {isPopup} {toRight}>
+	<Picker components={getComponents()} h={color.h} bind:s={color.s} bind:v={color.v} bind:isOpen {toRight} />
+	<Slider components={getComponents()} bind:h={color.h} {toRight} />
 	{#if isAlpha}
 		<Alpha
 			components={getComponents()}
@@ -101,6 +102,7 @@
 			bind:a={color.a}
 			hex={color.hex}
 			bind:isOpen
+			{toRight}
 		/>
 	{/if}
 </svelte:component>

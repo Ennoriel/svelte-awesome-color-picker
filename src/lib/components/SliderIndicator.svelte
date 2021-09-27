@@ -3,9 +3,13 @@
 
 	export let pos: number;
 	export let color: Color;
+    export let toRight: boolean;
 </script>
 
-<div style="top: {pos}%;" />
+<div
+    class:to-right={toRight}
+    style="{toRight ? 'left' : 'top'}: {pos}%;"
+/>
 
 <style>
 	div {
@@ -20,4 +24,8 @@
 		pointer-events: none;
 		z-index: 1;
 	}
+    div.to-right {
+        width: 10px;
+        height: 40px;
+    }
 </style>

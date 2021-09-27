@@ -1,17 +1,20 @@
 <script lang="ts">
 	export let focused: boolean;
+	export let toRight: boolean;
 </script>
 
-<div class:focused>
+<div class:focused class:to-right={toRight}>
 	<slot />
 </div>
 
 <style>
 	div {
+		--slider-width: 30px;
+		--picker-height: 300px;
 		display: inline-block;
 		margin: 0 5px;
-		width: var(--slider-width, 30px);
-		height: var(--picker-height, 300px);
+		width: var(--slider-width);
+		height: var(--picker-height);
 
 		outline: 3px solid transparent;
 		outline-offset: 3px;
@@ -20,5 +23,11 @@
 
 	div.focused {
 		outline: 3px solid var(--focus-color, red);
+	}
+
+	div.to-right {
+		--slider-width: 300px;
+		--picker-height: 30px;
+		margin: 5px 0;
 	}
 </style>

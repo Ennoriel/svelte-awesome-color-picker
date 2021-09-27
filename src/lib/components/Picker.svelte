@@ -10,7 +10,8 @@
 	export let s: number;
 	export let v: number;
 
-	export let isOpen;
+	export let isOpen: boolean;
+	export let toRight: boolean;
 
 	let picker: HTMLDivElement;
 	let isMouseDown = false;
@@ -129,7 +130,7 @@
 	on:dbclick={(e) => e.preventDefault()}
 />
 
-<svelte:component this={components.pickerWrapper} {focused}>
+<svelte:component this={components.pickerWrapper} {focused} {toRight}>
 	<div
 		class="picker"
 		tabindex="0"

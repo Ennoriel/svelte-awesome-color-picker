@@ -2,25 +2,22 @@
 	export let wrapper: HTMLElement;
 	export let isOpen: boolean;
 	export let isPopup: boolean;
-	export let toRight: boolean;
 </script>
 
-<div bind:this={wrapper} class:isOpen class:isPopup class:to-right={toRight}>
+<div bind:this={wrapper} class:isOpen class:isPopup>
 	<slot />
 </div>
 
 <style>
 	div {
-		padding: 10px;
 		background-color: white;
-		margin: 0 10px 10px;
+		margin: 0 10px 15px;
+		padding-bottom: 3px;
 		border: 1px solid black;
+		border-radius: 8px;
 		display: none;
 	}
 	.isOpen {
-		display: block;
-	}
-	.isOpen.to-right {
 		display: flex;
 		flex-direction: column;
 	}

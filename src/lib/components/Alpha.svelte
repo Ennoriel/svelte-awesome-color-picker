@@ -12,6 +12,7 @@
 	export let v: number;
 	export let a: number;
 	export let hex: string;
+	export let toRight: boolean;
 
 	let alpha: HTMLDivElement;
 	let isMouseDown = false;
@@ -22,15 +23,16 @@
 	let focusMovementCounter: number;
 	let pos: number;
 
-	function onClick(posY: number): void {
-		let boundedPosY = Math.max(0, Math.min(alpha.getBoundingClientRect().height, posY));
-		a = boundedPosY / alpha.getBoundingClientRect().height;
+	function onClick(pos: number): void {
+		const size = toRight ? alpha.getBoundingClientRect().width : alpha.getBoundingClientRect().height;
+		const boundedPos = Math.max(0, Math.min(size, pos));
+		a = boundedPos / size;
 	}
 
 	function mouseDown(e: MouseEvent) {
 		if (e.button === 0) {
 			isMouseDown = true;
-			onClick(e.offsetY);
+			onClick(toRight ? e.offsetX : e.offsetY);
 		}
 	}
 
@@ -39,7 +41,9 @@
 	}
 
 	function mouseMove(e: MouseEvent) {
-		if (isMouseDown) onClick(e.clientY - alpha.getBoundingClientRect().top);
+		if (isMouseDown) onClick(toRight ?
+			e.clientX - alpha.getBoundingClientRect().left :
+			e.clientY - alpha.getBoundingClientRect().top);
 	}
 
 	function keyup(e: KeyboardEvent) {
@@ -62,10 +66,11 @@
 			if (!focusMovementIntervalId) {
 				focusMovementCounter = 0;
 				focusMovementIntervalId = setInterval(() => {
-					let focusMovementFactor = easeInOutSin(++focusMovementCounter);
+					const focusMovementFactor = easeInOutSin(++focusMovementCounter);
+					const movement = toRight ? $keyPressed.ArrowRight - $keyPressed.ArrowLeft : $keyPressed.ArrowDown - $keyPressed.ArrowUp
 					a = Math.min(
 						1,
-						Math.max(0, a + ($keyPressed.ArrowDown - $keyPressed.ArrowUp) * focusMovementFactor)
+						Math.max(0, a + movement * focusMovementFactor)
 					);
 				}, 10) as number;
 			}
@@ -76,7 +81,9 @@
 	}
 
 	function touch(e) {
-		onClick(e.changedTouches[0].clientY - alpha.getBoundingClientRect().top)
+		onClick(toRight ?
+			e.changedTouches[0].clientX - alpha.getBoundingClientRect().left :
+			e.changedTouches[0].clientY - alpha.getBoundingClientRect().top)
 	}
 
 	$: if (typeof a === 'number' && alpha) pos = 100 * a;
@@ -90,10 +97,11 @@
 	on:dbclick={(e) => e.preventDefault()}
 />
 
-<svelte:component this={components.alphaWrapper} {focused}>
+<svelte:component this={components.alphaWrapper} {focused} {toRight}>
 	<div
-		class="alpha"
 		tabindex="0"
+		class="alpha"
+		class:to-right={toRight}
 		style="--alpha-color: {hex.substring(0, 7)}"
 		bind:this={alpha}
 		on:mousedown={mouseDown}
@@ -101,7 +109,7 @@
 		on:touchmove={touch}
 		on:touchend={touch}
 	>
-		<svelte:component this={components.alphaIndicator} {pos} color={_.hsv2rgb({ h, s, v, a })} />
+		<svelte:component this={components.alphaIndicator} {pos} {toRight} color={_.hsv2rgb({ h, s, v, a })} />
 	</div>
 </svelte:component>
 
@@ -112,6 +120,9 @@
 		inset: 0;
 		background: linear-gradient(#00000000, var(--alpha-color));
 		z-index: 0;
+	}
+	.to-right:after {
+		background: linear-gradient(0.25turn, #00000000, var(--alpha-color));
 	}
 	.alpha {
 		position: relative;

@@ -1,8 +1,9 @@
 <script lang="ts">
 	export let focused: boolean;
+	export let toRight: boolean;
 </script>
 
-<div class:focused>
+<div class:focused class:to-right={toRight}>
 	<slot />
 </div>
 
@@ -16,6 +17,10 @@
 		outline: 3px solid transparent;
 		outline-offset: 3px;
 		transition: outline 0.2s ease-in-out;
+	}
+	div.to-right {
+		margin-right: 0;
+		margin-bottom: 5px;
 	}
 
 	div.focused {
