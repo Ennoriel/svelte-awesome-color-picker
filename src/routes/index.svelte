@@ -15,9 +15,7 @@
 	The customization of the color picker can be done by redefining the components of the library.
 </p>
 
-<p>
-	The easiest is to copy the actual components and start tweaking them.
-</p>
+<p>The easiest is to copy the actual components and start tweaking them.</p>
 
 <h2>Circular picker</h2>
 
@@ -27,30 +25,30 @@
 
 <ChromePickerColorPicker />
 
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />

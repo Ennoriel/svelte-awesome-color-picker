@@ -24,7 +24,9 @@
 	let pos: number;
 
 	function onClick(pos: number): void {
-		const size = toRight ? alpha.getBoundingClientRect().width : alpha.getBoundingClientRect().height;
+		const size = toRight
+			? alpha.getBoundingClientRect().width
+			: alpha.getBoundingClientRect().height;
 		const boundedPos = Math.max(0, Math.min(size, pos));
 		a = boundedPos / size;
 	}
@@ -41,9 +43,12 @@
 	}
 
 	function mouseMove(e: MouseEvent) {
-		if (isMouseDown) onClick(toRight ?
-			e.clientX - alpha.getBoundingClientRect().left :
-			e.clientY - alpha.getBoundingClientRect().top);
+		if (isMouseDown)
+			onClick(
+				toRight
+					? e.clientX - alpha.getBoundingClientRect().left
+					: e.clientY - alpha.getBoundingClientRect().top
+			);
 	}
 
 	function keyup(e: KeyboardEvent) {
@@ -67,11 +72,10 @@
 				focusMovementCounter = 0;
 				focusMovementIntervalId = setInterval(() => {
 					const focusMovementFactor = easeInOutSin(++focusMovementCounter);
-					const movement = toRight ? $keyPressed.ArrowRight - $keyPressed.ArrowLeft : $keyPressed.ArrowDown - $keyPressed.ArrowUp
-					a = Math.min(
-						1,
-						Math.max(0, a + movement * focusMovementFactor)
-					);
+					const movement = toRight
+						? $keyPressed.ArrowRight - $keyPressed.ArrowLeft
+						: $keyPressed.ArrowDown - $keyPressed.ArrowUp;
+					a = Math.min(1, Math.max(0, a + movement * focusMovementFactor));
 				}, 10) as number;
 			}
 		} else if (focusMovementIntervalId) {
@@ -81,9 +85,11 @@
 	}
 
 	function touch(e) {
-		onClick(toRight ?
-			e.changedTouches[0].clientX - alpha.getBoundingClientRect().left :
-			e.changedTouches[0].clientY - alpha.getBoundingClientRect().top)
+		onClick(
+			toRight
+				? e.changedTouches[0].clientX - alpha.getBoundingClientRect().left
+				: e.changedTouches[0].clientY - alpha.getBoundingClientRect().top
+		);
 	}
 
 	$: if (typeof a === 'number' && alpha) pos = 100 * a;
@@ -109,7 +115,12 @@
 		on:touchmove={touch}
 		on:touchend={touch}
 	>
-		<svelte:component this={components.alphaIndicator} {pos} {toRight} color={_.hsv2rgb({ h, s, v, a })} />
+		<svelte:component
+			this={components.alphaIndicator}
+			{pos}
+			{toRight}
+			color={_.hsv2rgb({ h, s, v, a })}
+		/>
 	</div>
 </svelte:component>
 

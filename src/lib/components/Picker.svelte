@@ -111,7 +111,7 @@
 		onClick({
 			offsetX: e.changedTouches[0].clientX - picker.getBoundingClientRect().left,
 			offsetY: e.changedTouches[0].clientY - picker.getBoundingClientRect().top
-		})
+		});
 	}
 
 	$: if (typeof s === 'number' && typeof v === 'number' && picker)

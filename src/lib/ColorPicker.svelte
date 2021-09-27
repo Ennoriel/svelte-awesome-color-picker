@@ -38,7 +38,7 @@
 		b: 0
 	};
 
-	export const setColor = ({ hex, rgb, hsv }: {hex: string, rgb: Rgb, hsv: Hsv}): void => {
+	export const setColor = ({ hex, rgb, hsv }: { hex: string; rgb: Rgb; hsv: Hsv }): void => {
 		if (hex) {
 			color = _.rgb2hsv(_.hex2rgb(hex));
 		} else if (rgb) {
@@ -91,7 +91,14 @@
 {/if}
 
 <svelte:component this={getComponents().wrapper} bind:wrapper {isOpen} {isPopup} {toRight}>
-	<Picker components={getComponents()} h={color.h} bind:s={color.s} bind:v={color.v} bind:isOpen {toRight} />
+	<Picker
+		components={getComponents()}
+		h={color.h}
+		bind:s={color.s}
+		bind:v={color.v}
+		bind:isOpen
+		{toRight}
+	/>
 	<Slider components={getComponents()} bind:h={color.h} {toRight} />
 	{#if isAlpha}
 		<Alpha

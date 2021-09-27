@@ -18,7 +18,9 @@
 	let focusMovementCounter: number;
 
 	function onClick(pos: number) {
-		const size = toRight ? slider.getBoundingClientRect().width : slider.getBoundingClientRect().height;
+		const size = toRight
+			? slider.getBoundingClientRect().width
+			: slider.getBoundingClientRect().height;
 		const boundedPos = Math.max(0, Math.min(size, pos));
 		h = (boundedPos / size) * 360;
 	}
@@ -35,9 +37,12 @@
 	}
 
 	function mouseMove(e: MouseEvent) {
-		if (isMouseDown) onClick(toRight ?
-			e.clientX - slider.getBoundingClientRect().left :
-			e.clientY - slider.getBoundingClientRect().top);
+		if (isMouseDown)
+			onClick(
+				toRight
+					? e.clientX - slider.getBoundingClientRect().left
+					: e.clientY - slider.getBoundingClientRect().top
+			);
 	}
 
 	function keyup(e: KeyboardEvent) {
@@ -58,14 +63,10 @@
 				focusMovementCounter = 0;
 				focusMovementIntervalId = setInterval(() => {
 					const focusMovementFactor = easeInOutSin(++focusMovementCounter);
-					const movement = toRight ? $keyPressed.ArrowRight - $keyPressed.ArrowLeft : $keyPressed.ArrowDown - $keyPressed.ArrowUp
-					h = Math.min(
-						360,
-						Math.max(
-							0,
-							h + movement * 360 * focusMovementFactor
-						)
-					);
+					const movement = toRight
+						? $keyPressed.ArrowRight - $keyPressed.ArrowLeft
+						: $keyPressed.ArrowDown - $keyPressed.ArrowUp;
+					h = Math.min(360, Math.max(0, h + movement * 360 * focusMovementFactor));
 				}, 10) as number;
 			}
 		} else if (focusMovementIntervalId) {
@@ -75,9 +76,11 @@
 	}
 
 	function touch(e) {
-		onClick(toRight ?
-			e.changedTouches[0].clientX - slider.getBoundingClientRect().left :
-			e.changedTouches[0].clientY - slider.getBoundingClientRect().top)
+		onClick(
+			toRight
+				? e.changedTouches[0].clientX - slider.getBoundingClientRect().left
+				: e.changedTouches[0].clientY - slider.getBoundingClientRect().top
+		);
 	}
 
 	$: if (typeof h === 'number' && slider) pos = (100 * h) / 360;

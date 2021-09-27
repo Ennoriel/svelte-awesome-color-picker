@@ -12,9 +12,9 @@ npm i -D svelte-awesome-color-picker
 
 ```svelte
 <script>
-    import { ColorPicker } from 'svelte-awesome-color-picker/ColorPicker.svelte';
+	import { ColorPicker } from 'svelte-awesome-color-picker/ColorPicker.svelte';
 
-    let color;
+	let color;
 </script>
 
 <ColorPicker bind:color />
