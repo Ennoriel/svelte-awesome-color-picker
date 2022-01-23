@@ -7,9 +7,9 @@
     let color = { hex: "#f6f0dc" };
 
     $: beautifulColor = JSON.stringify(color, null, 2)
-        .replaceAll(/("#\w+")/g, '<span style="color: #e6d06c;">$1</span>')
-        .replaceAll(/:\s(\d+\.?\d*)/g, ': <span style="color: #ef3b7d;">$1</span>')
-        .replaceAll("\":", '"<span style="color: #a77afe;">:</span>')
+        .replace(/("#\w+")/g, '<span style="color: #e6d06c;">$1</span>')
+        .replace(/:\s(\d+\.?\d*)/g, ': <span style="color: #ef3b7d;">$1</span>')
+        .replace(/":/g, '"<span style="color: #a77afe;">:</span>')
 
     $: if(browser) document.documentElement.style
         .setProperty('--bg-color', color.hex);
