@@ -23,7 +23,7 @@ export type Hex = {
 	hex: string;
 };
 
-export type Color = Hsv & Rgb & Hex;
+export type Color = Hsv | Rgb | Hex;
 
 export type Components = {
 	pickerIndicator: PickerIndicator;
