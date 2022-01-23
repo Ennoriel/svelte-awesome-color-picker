@@ -4,9 +4,9 @@
 
 ## Links
 
-- [Github repository](https://github.com/Ennoriel/svelte-awesome-color-picker)
-- [Npm repository](https://www.npmjs.com/package/svelte-awesome-color-picker)
-- Documentation: coming soon
+- 🌟 [Github repository](https://github.com/Ennoriel/svelte-awesome-color-picker)
+- 🌴 [Npm repository](https://www.npmjs.com/package/svelte-awesome-color-picker)
+- 🛫 [Documentation](https://svelte-awesome-color-picker.vercel.app/)
 
 ## install
 
