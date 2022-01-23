@@ -1,6 +1,6 @@
 # svelte-awesome-color-picker
 
-_svelte-awesome-color-picker_ is a color picker component library with built in keyboard navigation. It is compatible with form libraries.
+> _svelte-awesome-color-picker_ is a highly customizable color picker component library with built in keyboard navigation. It is compatible with form libraries.
 
 ## install
 
@@ -8,11 +8,11 @@ _svelte-awesome-color-picker_ is a color picker component library with built in 
 npm i -D svelte-awesome-color-picker
 ```
 
-## How to use
+## Usage
 
 ```svelte
 <script>
-	import { ColorPicker } from 'svelte-awesome-color-picker/ColorPicker.svelte';
+	import ColorPicker from 'svelte-awesome-color-picker/ColorPicker.svelte';
 
 	let color;
 </script>
@@ -24,25 +24,27 @@ npm i -D svelte-awesome-color-picker
 
 ### props
 
-| props                             | Usage                                                                                                                     |
-| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| **isAlpha** <br /> boolean = true | The alpha slider is visible. If set to false <br /> the alpha value provided by the `setColor` method will not be changed |
-| **isInput** <br /> boolean = true | The input button is visible. If set to false <br /> the picker will be open by default                                    |
-| **isOpen** <br /> boolean = false | The picker is open by default and cannot be closed                                                                        |
-| **color** <br /> Color = red      | The color object that should be bound                                                                                     |
-| **setColor** <br /> function      | This method should be called to initialize or modify the color value                                                      |
-| **components** <br /> Components  | see below                                                                                                                 |
+| props                 | type       | Default Value | Usage                                                                                                                     |
+|-----------------------|------------|---------------|---------------------------------------------------------------------------------------------------------------------------|
+| **isAlpha** <br />    | boolean    | true          | The alpha slider is visible. If set to false <br /> the alpha value provided by the `setColor` method will not be changed |
+| **isInput** <br />    | boolean    | true          | The input button is visible. If set to false <br /> the picker will be open by default                                    |
+| **isOpen** <br />     | boolean    | false         | The picker is open by default and cannot be closed                                                                        |
+| **color** <br />      | Color      | red           | The color object that should be bound to                                                                                  |
+| **setColor** <br />   | function   |               | This method should be called to initialize or modify the color value                                                      |
+| **components** <br /> | Components |               | see below                                                                                                                 |
 
 ### css variables
 
-- --picker-height, 300px - picker & sliders height
-- --slider-width, 30px - sliders width
-- --picker-width, 300px - picker width
-- --focus-color, red - focus color
+| props           | Default Value | Usage                   |
+|-----------------|---------------|-------------------------|
+| --picker-height | 300px         | picker & sliders height |
+| --slider-width  | 30px          | sliders width           |
+| --picker-width  | 300px         | picker width            |
+| --focus-color   | red           | focus color             |
 
 ### components
 
-The color picker can be customized with components. The details and props are detailed below. It is recomanded to copy the library components and tweak it to your needs.
+The color picker can be customized with components. The details and props are detailed below. It is easier to copy the library components and tweak it to your needs.
 
 #### pickerIndicator
 

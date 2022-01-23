@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ColorPicker from '$lib/ColorPicker.svelte';
+	import ColorPicker from 'svelte-awesome-color-picker/ColorPicker.svelte';
 	import CirclePickerColorPicker from './_components/circle-picker/ColorPicker.svelte';
 	import ChromePickerColorPicker from './_components/chrome-picker/ColorPicker.svelte';
 </script>

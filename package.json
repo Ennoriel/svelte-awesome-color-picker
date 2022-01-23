@@ -1,11 +1,11 @@
 {
 	"name": "svelte-awesome-color-picker",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"description": "A Svelte component to crop images with easy interactions",
-	"homepage": "https://ennoriel.github.io/svelte-awesome-color-piecker",
+	"homepage": "https://ennoriel.github.io/svelte-awesome-color-picker",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Ennoriel/svelte-awesome-color-piecker"
+		"url": "https://github.com/Ennoriel/svelte-awesome-color-picker"
 	},
 	"author": "Maxime Dupont <m.dupont103@gmail.com>",
 	"license": "MIT",
@@ -22,21 +22,20 @@
 	},
 	"entry": "ColorPicker.svelte",
 	"devDependencies": {
-		"@sveltejs/kit": "next",
-		"@typescript-eslint/eslint-plugin": "^4.19.0",
-		"@typescript-eslint/parser": "^4.19.0",
-		"eslint": "^7.22.0",
-		"eslint-config-prettier": "^8.1.0",
-		"eslint-plugin-svelte3": "^3.2.0",
-		"prettier": "~2.2.1",
-		"prettier-plugin-svelte": "^2.2.0",
-		"svelte": "^3.34.0",
-		"svelte-awesome-color-picker": "file:./package",
-		"svelte-check": "^2.0.0",
-		"svelte-preprocess": "^4.0.0",
+		"@sveltejs/kit": "1.0.0-next.240",
+		"@typescript-eslint/eslint-plugin": "^4.31.1",
+		"@typescript-eslint/parser": "^4.31.1",
+		"eslint": "^7.32.0",
+		"eslint-config-prettier": "^8.3.0",
+		"eslint-plugin-svelte3": "^3.2.1",
+		"prettier": "^2.4.1",
+		"prettier-plugin-svelte": "^2.4.0",
+		"svelte": "^3.44.0",
+		"svelte-check": "^2.2.6",
+		"svelte-preprocess": "^4.9.4",
 		"svelte2tsx": "^0.4.5",
-		"tslib": "^2.0.0",
-		"typescript": "^4.0.0"
+		"tslib": "^2.3.1",
+		"typescript": "^4.4.3"
 	},
 	"type": "module",
 	"keywords": [
