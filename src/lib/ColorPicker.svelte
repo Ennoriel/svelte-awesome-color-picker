@@ -38,16 +38,6 @@
 		b: 0
 	};
 
-	export const setColor = ({ hex, rgb, hsv }: { hex: string; rgb: Rgb; hsv: Hsv }): void => {
-		if (hex) {
-			color = _.rgb2hsv(_.hex2rgb(hex));
-		} else if (rgb) {
-			color = _.rgb2hsv(rgb);
-		} else if (hsv) {
-			color = _.hsv2rgb(hsv);
-		}
-	};
-
 	const default_components = {
 		sliderIndicator: SliderIndicator,
 		pickerIndicator: PickerIndicator,
@@ -79,7 +69,15 @@
 		}
 	}
 
-	$: color = _.hsv2rgb(color);
+	$: {
+		if (color && color.h !== undefined && color.s !== undefined && color.v !== undefined) {
+			color = _.hsv2Color(color as Hsv);
+		} else if (color.hex) {
+			color = _.hex2Color({ hex: color.hex });
+		} else if (color && color.r !== undefined && color.g !== undefined && color.b !== undefined) {
+			color = _.rgb2Color(color as Rgb);
+		}
+	}
 </script>
 
 <ArrowKeyHandler />

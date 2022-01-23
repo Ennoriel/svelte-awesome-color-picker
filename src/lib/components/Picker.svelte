@@ -23,7 +23,7 @@
 	let colorBg: Color;
 	let pos = { x: 100, y: 0 };
 
-	$: if (typeof h === 'number') colorBg = _.hsv2rgb({ h, s: 1, v: 1, a: 1 });
+	$: if (typeof h === 'number') colorBg = _.hsv2Color({ h, s: 1, v: 1, a: 1 });
 
 	function onClick(e: { offsetX: number; offsetY: number }) {
 		let mouse = { x: e.offsetX, y: e.offsetY };
@@ -144,7 +144,7 @@
 		<svelte:component
 			this={components.pickerIndicator}
 			{pos}
-			color={_.hsv2rgb({ h, s, v, a: 1 })}
+			color={_.hsv2Color({ h, s, v, a: 1 })}
 		/>
 	</div>
 </svelte:component>

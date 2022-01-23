@@ -119,7 +119,7 @@
 			this={components.alphaIndicator}
 			{pos}
 			{toRight}
-			color={_.hsv2rgb({ h, s, v, a })}
+			color={_.hsv2Color({ h, s, v, a })}
 		/>
 	</div>
 </svelte:component>

@@ -6,9 +6,13 @@
 	import PickerIndicator from './PickerIndicator.svelte';
 	import PickerWrapper from './PickerWrapper.svelte';
 	import Wrapper from './Wrapper.svelte';
+	import type { Color } from '$lib/type/types';
+
+	export let color: Color;
 </script>
 
 <ColorPicker
+	bind:color
 	components={{
 		input: Input,
 		sliderIndicator: SliderIndicator,

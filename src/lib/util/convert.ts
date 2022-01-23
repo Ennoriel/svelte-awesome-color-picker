@@ -4,7 +4,7 @@ import type { Color, Hex, Hsv, Rgb } from '$lib/type/types';
  * Convert HSV representation to RGB HEX string.
  * Credits to http://www.raphaeljs.com
  */
-function hsv2rgb(hsv: Hsv): Color {
+function hsv2rgb(hsv: Hsv): Rgb {
 	let R, G, B;
 	let h = (hsv.h % 360) / 60;
 
@@ -21,11 +21,10 @@ function hsv2rgb(hsv: Hsv): Color {
 	const g = Math.floor(G * 255);
 	const b = Math.floor(B * 255);
 	return {
-		...hsv,
+		a: hsv.a,
 		r: r,
 		g: g,
-		b: b,
-		hex: rgb2hex({ r, g, b, a: hsv.a }).hex
+		b: b
 	};
 }
 
@@ -46,12 +45,13 @@ function rgb2hex(rgb: Rgb): Hex {
 /**
  * Converts HEX representation to RGB representation
  */
-function hex2rgb(hex: string): Rgb {
+function hex2rgb(hex: Hex): Rgb {
+	const h = hex.hex;
 	return {
-		r: parseInt(hex.substr(1, 2), 16),
-		g: parseInt(hex.substr(3, 2), 16),
-		b: parseInt(hex.substr(5, 2), 16),
-		a: hex.length <= 7 ? 1 : parseInt(hex.substr(7, 2), 16) / 255
+		r: parseInt(h.substr(1, 2), 16),
+		g: parseInt(h.substr(3, 2), 16),
+		b: parseInt(h.substr(5, 2), 16),
+		a: h.length <= 7 ? 1 : parseInt(h.substr(7, 2), 16) / 255
 	};
 }
 
@@ -59,7 +59,7 @@ function hex2rgb(hex: string): Rgb {
  * Convert RGB representation to HSV.
  * Credits to http://www.raphaeljs.com
  */
-function rgb2hsv(rgb: Rgb): Color {
+function rgb2hsv(rgb: Rgb): Hsv {
 	const r = rgb.r / 255;
 	const g = rgb.g / 255;
 	const b = rgb.b / 255;
@@ -77,12 +77,41 @@ function rgb2hsv(rgb: Rgb): Color {
 			: (r - g) / C + 4;
 	H = (H % 6) * 60;
 	return {
-		...rgb,
+		a: rgb.a,
 		h: H,
 		s: S,
-		v: V,
-		hex: rgb2hex(rgb).hex
+		v: V
 	};
 }
 
-export default { hsv2rgb, rgb2hsv, hex2rgb };
+function hsv2Color({ h, s, v, a }: Hsv): Color {
+	const rgb = hsv2rgb({ h, s, v, a });
+	return {
+		...rgb,
+		...rgb2hex(rgb),
+		h,
+		s,
+		v,
+		a
+	};
+}
+
+function rgb2Color({ r, g, b, a }: Rgb): Color {
+	const rgb = { r, g, b, a };
+	return {
+		...rgb2hsv(rgb),
+		...rgb2hex(rgb),
+		...rgb
+	};
+}
+
+function hex2Color({ hex }: Hex): Color {
+	const rgb = hex2rgb({ hex });
+	return {
+		...rgb,
+		...rgb2hsv(rgb),
+		hex
+	};
+}
+
+export default { hsv2Color, rgb2Color, hex2Color };
