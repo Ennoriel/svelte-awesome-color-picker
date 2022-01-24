@@ -76,6 +76,7 @@
 	}
 
 	function touch(e) {
+		e.preventDefault();
 		onClick(
 			toRight
 				? e.changedTouches[0].clientX - slider.getBoundingClientRect().left
