@@ -9,12 +9,10 @@
 
 <style>
 	div {
-		--slider-width: 30px;
-		--picker-height: 300px;
 		display: inline-block;
 		margin: 0 5px;
-		width: var(--slider-width);
-		height: var(--picker-height);
+		width: var(--slider-width, 30px);
+		height: var(--picker-height, 300px);
 
 		outline: 3px solid transparent;
 		outline-offset: 3px;
