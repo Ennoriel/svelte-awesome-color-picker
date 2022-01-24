@@ -1,6 +1,6 @@
 {
 	"name": "svelte-awesome-color-picker",
-	"version": "0.0.5",
+	"version": "0.0.6",
 	"description": "A Svelte component to crop images with easy interactions",
 	"homepage": "https://ennoriel.github.io/svelte-awesome-color-picker",
 	"repository": {
@@ -35,6 +35,8 @@
 		"mdsvex": "^0.9.8",
 		"prettier": "^2.4.1",
 		"prettier-plugin-svelte": "^2.4.0",
+		"rehype-autolink-headings": "^6.1.1",
+		"rehype-slug": "^5.0.1",
 		"svelte": "^3.44.0",
 		"svelte-check": "^2.2.6",
 		"svelte-preprocess": "^4.9.4",
@@ -49,9 +51,5 @@
 		"svelte",
 		"color picker"
 	],
-	"dependencies": {
-		"rehype-autolink-headings": "^6.1.1",
-		"rehype-slug": "^5.0.1"
-	},
 	"svelte": "./index.js"
 }
