@@ -11,7 +11,7 @@
 	import SliderWrapper from './components/SliderWrapper.svelte';
 	import Input from './components/Input.svelte';
 	import Wrapper from './components/Wrapper.svelte';
-	import type { Color, Components, Rgb, Hsv } from '$lib/type/types';
+	import type {Color, Components, Rgb, Hsv, Hex} from '$lib/type/types';
 
 	export let components: Partial<Components> = {};
 
@@ -24,9 +24,6 @@
 	export let isOpen = !isInput;
 	export let toRight = false;
 
-	/**
-	 * Not bindable
-	 */
 	export let color: Color = {
 		h: 0,
 		s: 1,
@@ -36,7 +33,7 @@
 		r: 255,
 		g: 0,
 		b: 0
-	};
+	} as Color;
 
 	const default_components = {
 		sliderIndicator: SliderIndicator,
@@ -69,12 +66,24 @@
 		}
 	}
 
+	function isHsv(color: Color): color is Hsv {
+		return (color as Hsv).h !== undefined && (color as Hsv).s !== undefined && (color as Hsv).v !== undefined
+	}
+
+	function isHex(color: Color): color is Hex {
+		return (color as Hex).hex !== undefined
+	}
+
+	function isRgb(color: Color): color is Rgb {
+		return (color as Rgb).r !== undefined && (color as Rgb).g !== undefined && (color as Rgb).b !== undefined
+	}
+
 	$: {
-		if (color && color.h !== undefined && color.s !== undefined && color.v !== undefined) {
-			color = _.hsv2Color(color as Hsv);
-		} else if (color.hex) {
-			color = _.hex2Color({ hex: color.hex });
-		} else if (color && color.r !== undefined && color.g !== undefined && color.b !== undefined) {
+		if (color && isHsv(color)) {
+			color = _.hsv2Color(color);
+		} else if (color && isHex(color)) {
+			color = _.hex2Color(color as Hex);
+		} else if (color && isRgb(color)) {
 			color = _.rgb2Color(color as Rgb);
 		}
 	}
