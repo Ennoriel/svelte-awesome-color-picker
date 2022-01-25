@@ -85,6 +85,7 @@
 	}
 
 	function touch(e) {
+		e.preventDefault();
 		onClick(
 			toRight
 				? e.changedTouches[0].clientX - alpha.getBoundingClientRect().left

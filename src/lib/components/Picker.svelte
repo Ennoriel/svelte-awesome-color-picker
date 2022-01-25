@@ -108,6 +108,7 @@
 	}
 
 	function touch(e) {
+		e.preventDefault();
 		onClick({
 			offsetX: e.changedTouches[0].clientX - picker.getBoundingClientRect().left,
 			offsetY: e.changedTouches[0].clientY - picker.getBoundingClientRect().top
