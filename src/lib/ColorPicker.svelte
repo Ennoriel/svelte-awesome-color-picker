@@ -11,7 +11,7 @@
 	import SliderWrapper from './components/SliderWrapper.svelte';
 	import Input from './components/Input.svelte';
 	import Wrapper from './components/Wrapper.svelte';
-	import type {Color, Components, Rgb, Hsv, Hex} from '$lib/type/types';
+	import type { Color, Components, Rgb, Hsv, Hex } from '$lib/type/types';
 
 	export let components: Partial<Components> = {};
 
@@ -67,15 +67,23 @@
 	}
 
 	function isHsv(color: Color): color is Hsv {
-		return (color as Hsv).h !== undefined && (color as Hsv).s !== undefined && (color as Hsv).v !== undefined
+		return (
+			(color as Hsv).h !== undefined &&
+			(color as Hsv).s !== undefined &&
+			(color as Hsv).v !== undefined
+		);
 	}
 
 	function isHex(color: Color): color is Hex {
-		return (color as Hex).hex !== undefined
+		return (color as Hex).hex !== undefined;
 	}
 
 	function isRgb(color: Color): color is Rgb {
-		return (color as Rgb).r !== undefined && (color as Rgb).g !== undefined && (color as Rgb).b !== undefined
+		return (
+			(color as Rgb).r !== undefined &&
+			(color as Rgb).g !== undefined &&
+			(color as Rgb).b !== undefined
+		);
 	}
 
 	$: {
