@@ -178,9 +178,11 @@ Props:
 | isPopup | `boolean`        | whether the color picker is floating or not                    |
 
 <style>
-    .example-wrapper {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+    @media (min-width: 720px) {
+        .example-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
     }
     :global(body) {
         background-color: var(--bg-color);
