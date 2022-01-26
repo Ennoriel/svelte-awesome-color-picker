@@ -90,7 +90,7 @@
 		if ($keyPressedCustom.ArrowVH) {
 			if (!focusMovementIntervalId) {
 				focusMovementCounter = 0;
-				focusMovementIntervalId = setInterval(() => {
+				focusMovementIntervalId = window.setInterval(() => {
 					let focusMovementFactor = easeInOutSin(++focusMovementCounter);
 					s = Math.min(
 						1,
@@ -100,7 +100,7 @@
 						1,
 						Math.max(0, v + ($keyPressed.ArrowUp - $keyPressed.ArrowDown) * focusMovementFactor)
 					);
-				}, 10) as number;
+				}, 10);
 			}
 		} else if (focusMovementIntervalId) {
 			clearInterval(focusMovementIntervalId);
