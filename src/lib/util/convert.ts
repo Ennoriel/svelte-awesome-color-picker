@@ -4,7 +4,7 @@ import type { Color, Hex, Hsv, Rgb } from '$lib/type/types';
  * Convert HSV representation to RGB HEX string.
  * Credits to http://www.raphaeljs.com
  */
-function hsv2rgb({h, s, v, a = 1}: Hsv): Rgb {
+function hsv2rgb({ h, s, v, a = 1 }: Hsv): Rgb {
 	let R, G, B;
 	let _h = (h % 360) / 60;
 
@@ -20,13 +20,13 @@ function hsv2rgb({h, s, v, a = 1}: Hsv): Rgb {
 	const r = Math.floor(R * 255);
 	const g = Math.floor(G * 255);
 	const b = Math.floor(B * 255);
-	return {r, g, b, a};
+	return { r, g, b, a };
 }
 
 /**
  * Converts RGB representation to HEX representation
  */
-function rgb2hex({r, g, b, a = 1}: Rgb): Hex {
+function rgb2hex({ r, g, b, a = 1 }: Rgb): Hex {
 	return {
 		hex:
 			'#' +
@@ -54,7 +54,7 @@ function hex2rgb(hex: Hex): Rgb {
  * Convert RGB representation to HSV.
  * Credits to http://www.raphaeljs.com
  */
-function rgb2hsv({r, g, b, a = 1}: Rgb): Hsv {
+function rgb2hsv({ r, g, b, a = 1 }: Rgb): Hsv {
 	const R = r / 255;
 	const G = g / 255;
 	const B = b / 255;
@@ -95,7 +95,9 @@ function rgb2Color({ r, g, b, a }: Rgb): Color {
 	return {
 		...rgb2hsv(rgb),
 		...rgb2hex(rgb),
-		r, g, b
+		r,
+		g,
+		b
 	};
 }
 

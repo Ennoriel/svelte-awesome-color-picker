@@ -1,6 +1,6 @@
 {
 	"name": "svelte-awesome-color-picker",
-	"version": "0.0.6",
+	"version": "0.0.7",
 	"description": "A Svelte component to crop images with easy interactions",
 	"homepage": "https://ennoriel.github.io/svelte-awesome-color-picker",
 	"repository": {
@@ -10,7 +10,7 @@
 	"author": "Maxime Dupont <m.dupont103@gmail.com>",
 	"license": "MIT",
 	"scripts": {
-		"dev": "svelte-kit dev",
+		"dev": "svelte-kit dev --open --host",
 		"build": "svelte-kit build",
 		"preview": "svelte-kit preview",
 		"check": "svelte-check --tsconfig ./tsconfig.json",
