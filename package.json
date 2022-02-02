@@ -1,6 +1,6 @@
 {
 	"name": "svelte-awesome-color-picker",
-	"version": "0.0.7",
+	"version": "0.0.8",
 	"description": "A Svelte component to crop images with easy interactions",
 	"homepage": "https://ennoriel.github.io/svelte-awesome-color-picker",
 	"repository": {
