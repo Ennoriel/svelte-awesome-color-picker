@@ -3,6 +3,7 @@
 	import { keyPressed, keyPressedCustom } from '../util/store';
 	import { easeInOutSin } from '../util/transition';
 	import type { Components, Color } from '$lib/type/types';
+	import { clamp } from '$lib/util/clamp'
 
 	export let components: Components;
 
@@ -30,8 +31,8 @@
 		let width = picker.getBoundingClientRect().width;
 		let height = picker.getBoundingClientRect().height;
 
-		s = mouse.x / width;
-		v = (height - mouse.y) / height;
+		s = clamp(mouse.x / width, 0, 1);
+		v = clamp((height - mouse.y) / height, 0, 1);
 	}
 
 	function pickerMouseDown(e: MouseEvent) {
@@ -89,7 +90,7 @@
 		if ($keyPressedCustom.ArrowVH) {
 			if (!focusMovementIntervalId) {
 				focusMovementCounter = 0;
-				focusMovementIntervalId = setInterval(() => {
+				focusMovementIntervalId = window.setInterval(() => {
 					let focusMovementFactor = easeInOutSin(++focusMovementCounter);
 					s = Math.min(
 						1,
@@ -99,7 +100,7 @@
 						1,
 						Math.max(0, v + ($keyPressed.ArrowUp - $keyPressed.ArrowDown) * focusMovementFactor)
 					);
-				}, 10) as number;
+				}, 10);
 			}
 		} else if (focusMovementIntervalId) {
 			clearInterval(focusMovementIntervalId);
