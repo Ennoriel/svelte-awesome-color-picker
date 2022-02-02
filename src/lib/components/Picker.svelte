@@ -3,7 +3,7 @@
 	import { keyPressed, keyPressedCustom } from '../util/store';
 	import { easeInOutSin } from '../util/transition';
 	import type { Components, Color } from '$lib/type/types';
-	import { clamp } from '$lib/util/clamp'
+	import { clamp } from '$lib/util/clamp';
 
 	export let components: Components;
 

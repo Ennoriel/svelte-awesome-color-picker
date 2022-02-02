@@ -76,14 +76,13 @@ npm i -D svelte-awesome-color-picker
 
 ### props
 
-| props      | type         | Default Value | Usage                                                                                                                     |
-| ---------- | ------------ | ------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| isAlpha    | `boolean`    | true          | The alpha slider is visible. If set to false <br /> the alpha value provided by the `setColor` method will not be changed |
-| isInput    | `boolean`    | true          | The input button is visible. If set to false <br /> the picker will be open by default                                    |
-| isOpen     | `boolean`    | false         | The picker is open by default and cannot be closed                                                                        |
-| color      | `Color`      | red           | The color object that should be bound to                                                                                  |
-| setColor   | `function`   |               | This method should be called to initialize or modify the color value                                                      |
-| components | `Components` |               | see below                                                                                                                 |
+| props      | type         | Default Value | Usage                                              |
+| ---------- | ------------ | ------------- | -------------------------------------------------- |
+| isAlpha    | `boolean`    | true          | The alpha slider is visible                        |
+| isInput    | `boolean`    | true          | The input button is visible                        |
+| isOpen     | `boolean`    | false         | The picker is open by default and cannot be closed |
+| color      | `Color`      | red           | The color object that should be bound to           |
+| components | `Components` |               | see below                                          |
 
 ### css variables
 
