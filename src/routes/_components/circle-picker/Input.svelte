@@ -1,9 +1,11 @@
-<script>
-	export let button;
-	export let color;
-	export let isOpen;
+<script lang="ts">
+	import type { Color } from '$lib/type/types';
 
-	function keyup(e) {
+	export let button: HTMLButtonElement;
+	export let color: Color;
+	export let isOpen: boolean;
+
+	function keyup(e: KeyboardEvent) {
 		if (document.activeElement.isSameNode(button) && !e.shiftKey && e.key === 'Tab') isOpen = true;
 	}
 </script>

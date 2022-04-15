@@ -75,7 +75,7 @@
 		}
 	}
 
-	function touch(e) {
+	function touch(e: TouchEvent) {
 		e.preventDefault();
 		onClick(
 			toRight
@@ -92,7 +92,6 @@
 	on:mousemove={mouseMove}
 	on:keyup={keyup}
 	on:keydown={keydown}
-	on:dbclick={(e) => e.preventDefault()}
 />
 
 <svelte:component this={components.sliderWrapper} {focused} {toRight}>

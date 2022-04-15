@@ -11,7 +11,8 @@
 	import SliderWrapper from './components/SliderWrapper.svelte';
 	import Input from './components/Input.svelte';
 	import Wrapper from './components/Wrapper.svelte';
-	import type { Color, Components, Rgb, Hsv, Hex } from '$lib/type/types';
+	import type { Color, Components, Rgb, Hex } from '$lib/type/types';
+	import { isHex, isHsv, isRgb } from '$lib/type/guard';
 
 	export let components: Partial<Components> = {};
 
@@ -35,7 +36,7 @@
 		b: 0
 	} as Color;
 
-	const default_components = {
+	const default_components: Components = {
 		sliderIndicator: SliderIndicator,
 		pickerIndicator: PickerIndicator,
 		alphaIndicator: SliderIndicator,
@@ -53,8 +54,8 @@
 		};
 	}
 
-	let button;
-	let wrapper;
+	let button: HTMLButtonElement;
+	let wrapper: HTMLElement;
 
 	function mousedown({ target }) {
 		if (isInput) {
@@ -64,26 +65,6 @@
 				isOpen = false;
 			}
 		}
-	}
-
-	function isHsv(color: Color): color is Hsv {
-		return (
-			(color as Hsv).h !== undefined &&
-			(color as Hsv).s !== undefined &&
-			(color as Hsv).v !== undefined
-		);
-	}
-
-	function isHex(color: Color): color is Hex {
-		return (color as Hex).hex !== undefined;
-	}
-
-	function isRgb(color: Color): color is Rgb {
-		return (
-			(color as Rgb).r !== undefined &&
-			(color as Rgb).g !== undefined &&
-			(color as Rgb).b !== undefined
-		);
 	}
 
 	$: {

@@ -108,7 +108,7 @@
 		}
 	}
 
-	function touch(e) {
+	function touch(e: TouchEvent) {
 		e.preventDefault();
 		onClick({
 			offsetX: e.changedTouches[0].clientX - picker.getBoundingClientRect().left,
@@ -129,7 +129,6 @@
 	on:mousemove={mouseMove}
 	on:keyup={keyup}
 	on:keydown={keydown}
-	on:dbclick={(e) => e.preventDefault()}
 />
 
 <svelte:component this={components.pickerWrapper} {focused} {toRight}>

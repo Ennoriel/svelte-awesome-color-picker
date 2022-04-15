@@ -5,7 +5,7 @@ import type { Color, Hex, Hsv, Rgb } from '$lib/type/types';
  * Credits to http://www.raphaeljs.com
  */
 function hsv2rgb({ h, s, v, a = 1 }: Hsv): Rgb {
-	let R, G, B;
+	let R: number, G: number, B: number;
 	let _h = (h % 360) / 60;
 
 	const C = v * s;
@@ -43,10 +43,10 @@ function rgb2hex({ r, g, b, a = 1 }: Rgb): Hex {
 function hex2rgb(hex: Hex): Rgb {
 	const h = hex.hex;
 	return {
-		r: parseInt(h.substr(1, 2), 16),
-		g: parseInt(h.substr(3, 2), 16),
-		b: parseInt(h.substr(5, 2), 16),
-		a: h.length <= 7 ? 1 : parseInt(h.substr(7, 2), 16) / 255
+		r: parseInt(h.substring(1, 2), 16),
+		g: parseInt(h.substring(3, 2), 16),
+		b: parseInt(h.substring(5, 2), 16),
+		a: h.length <= 7 ? 1 : parseInt(h.substring(7, 2), 16) / 255
 	};
 }
 

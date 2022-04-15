@@ -26,12 +26,12 @@ export type Hex = {
 export type Color = Hsv | Rgb | Hex;
 
 export type Components = {
-	pickerIndicator: PickerIndicator;
-	sliderIndicator: SliderIndicator;
-	alphaIndicator: SliderIndicator;
-	pickerWrapper: PickerWrapper;
-	sliderWrapper: SliderWrapper;
-	alphaWrapper: SliderWrapper;
-	input: Input;
-	wrapper: Wrapper;
+	pickerIndicator: typeof PickerIndicator;
+	sliderIndicator: typeof SliderIndicator;
+	alphaIndicator: typeof SliderIndicator;
+	pickerWrapper: typeof PickerWrapper;
+	sliderWrapper: typeof SliderWrapper;
+	alphaWrapper: typeof SliderWrapper;
+	input: typeof Input;
+	wrapper: typeof Wrapper;
 };
