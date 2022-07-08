@@ -4,15 +4,19 @@
 	import ChromePickerColorPicker from './_components/chrome-picker/ColorPicker.svelte';
     import { browser } from '$app/env';
 
-    let color = { hex: "#f6f0dc" };
+    let hex = "#f6f0dc";
+    let rgb;
+    let hsv;
 
-    $: beautifulColor = JSON.stringify(color, null, 2)
+    function beautify(object, name) {
+        return `<span style="color: #ef3b7d;">let</span> ${name}<span style="color: #a77afe;"> = </span>` + JSON.stringify(object || {}, null, 2)
         .replace(/("#\w+")/g, '<span style="color: #e6d06c;">$1</span>')
         .replace(/:\s(\d+\.?\d*)/g, ': <span style="color: #ef3b7d;">$1</span>')
-        .replace(/":/g, '"<span style="color: #a77afe;">:</span>')
+        .replace(/":/g, '"<span style="color: #a77afe;">:</span>');
+    }
 
     $: if(browser) document.documentElement.style
-        .setProperty('--bg-color', color.hex);
+        .setProperty('--bg-color', hex);
 </script>
 
 # svelte-awesome-color-picker
@@ -32,23 +36,26 @@
 
 ### Default layout
 
-<ColorPicker bind:color />
+<ColorPicker bind:hex bind:rgb bind:hsv />
 
 ### Another horizontal layout
 
-<CirclePickerColorPicker bind:color />
+<CirclePickerColorPicker bind:hex bind:rgb bind:hsv />
 
 ### Chrome like layout
 
-<ChromePickerColorPicker bind:color />
+<ChromePickerColorPicker bind:hex bind:rgb bind:hsv />
 
 </div>
 <div class="example-col">
 
 ### Color props
 
-<pre class="language-javascript">
-    <span style="color: #ef3b7d;">let</span> color <span style="color: #a77afe;">=</span> {@html beautifulColor}
+<pre class="language-javascript">{@html beautify(hex, "hex")}
+
+{@html beautify(rgb, "rgb")}
+
+{@html beautify(hsv, "hsv")}
 </pre>
 
 </div>

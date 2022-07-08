@@ -11,7 +11,7 @@
 	export let s: number;
 	export let v: number;
 	export let a: number;
-	export let hex: string;
+	export let hex: string | undefined;
 	export let toRight: boolean;
 
 	let alpha: HTMLDivElement;
@@ -108,7 +108,7 @@
 		tabindex="0"
 		class="alpha"
 		class:to-right={toRight}
-		style="--alpha-color: {hex.substring(0, 7)}"
+		style="--alpha-color: {hex?.substring(0, 7)}"
 		bind:this={alpha}
 		on:mousedown={mouseDown}
 		on:touchstart={touch}

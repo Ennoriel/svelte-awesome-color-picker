@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Color } from '$lib/type/types';
+	import type { Color } from 'chyme';
 
 	export let button: HTMLButtonElement;
 	export let color: Color;

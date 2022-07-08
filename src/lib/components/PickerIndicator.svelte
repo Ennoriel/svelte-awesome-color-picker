@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Color } from '$lib/type/types';
+	import type { Color } from 'chyme';
 
 	export let pos: { x: string; y: string };
 	export let color: Color;

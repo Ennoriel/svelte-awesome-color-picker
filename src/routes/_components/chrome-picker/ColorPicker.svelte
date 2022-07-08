@@ -6,13 +6,17 @@
 	import PickerIndicator from './PickerIndicator.svelte';
 	import PickerWrapper from './PickerWrapper.svelte';
 	import Wrapper from './Wrapper.svelte';
-	import type { Color } from '$lib/type/types';
+	import type { Rgb, Hsv } from 'chyme';
 
-	export let color: Color;
+	export let rgb: Rgb | undefined = undefined;
+	export let hsv: Hsv | undefined = undefined;
+	export let hex: string | undefined = undefined;
 </script>
 
 <ColorPicker
-	bind:color
+	bind:rgb
+	bind:hsv
+	bind:hex
 	components={{
 		input: Input,
 		sliderIndicator: SliderIndicator,

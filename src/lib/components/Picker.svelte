@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { hsv2Color, clamp } from 'chyme';
+	import { hsv2Color, clamp, Color } from 'chyme';
 	import { keyPressed, keyPressedCustom } from '../util/store';
 	import { easeInOutSin } from '../util/transition';
-	import type { Components, Color } from '$lib/type/types';
+	import type { Components } from '$lib/type/types';
 
 	export let components: Components;
 
@@ -139,7 +139,7 @@
 		on:touchstart={touch}
 		on:touchmove={touch}
 		on:touchend={touch}
-		style="--color-bg: {colorBg.hex};"
+		style="--color-bg: {colorBg?.hex};"
 	>
 		<svelte:component
 			this={components.pickerIndicator}

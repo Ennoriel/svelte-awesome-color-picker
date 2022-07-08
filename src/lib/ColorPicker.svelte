@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { hsv2Color, hex2Color, rgb2Color } from 'chyme';
+	import { hsv2Color, hex2Color, rgb2Color, Color, Rgb, Hsv, Hex } from 'chyme';
 	import Picker from './components/Picker.svelte';
 	import Slider from './components/Slider.svelte';
 	import Alpha from './components/Alpha.svelte';
@@ -10,8 +10,7 @@
 	import SliderWrapper from './components/SliderWrapper.svelte';
 	import Input from './components/Input.svelte';
 	import Wrapper from './components/Wrapper.svelte';
-	import type { Color, Components } from '$lib/type/types';
-	import { isHex, isHsv, isRgb } from '$lib/type/guard';
+	import type { Components } from '$lib/type/types';
 
 	export let components: Partial<Components> = {};
 
@@ -24,7 +23,11 @@
 	export let isOpen = !isInput;
 	export let toRight = false;
 
-	export let color: Color = { h: 0, s: 1, v: 1, a: 1 };
+	export let rgb: Rgb | undefined = undefined;
+	export let hsv: Hsv | undefined = undefined;
+	export let hex: string | undefined = undefined;
+
+	// let color: Rgb & Hsv & Hex;
 
 	const default_components: Components = {
 		sliderIndicator: SliderIndicator,
@@ -58,13 +61,18 @@
 	}
 
 	$: {
-		if (color && isHsv(color)) {
-			color = hsv2Color(color);
-		} else if (color && isHex(color)) {
-			color = hex2Color(color);
-		} else if (color && isRgb(color)) {
-			color = rgb2Color(color);
+		let color: Color = {};
+		if (hsv) {
+			color = hsv2Color(hsv);
+		} else if (hex) {
+			color = hex2Color({hex});
+		} else if (rgb) {
+			color = rgb2Color(rgb);
 		}
+		const { r, g, b, h, s, v, a, hex: cHex } = color;
+		rgb = { r, g, b, a };
+		hsv = { h, s, v, a };
+		hex = cHex;
 	}
 </script>
 
@@ -73,27 +81,27 @@
 <svelte:window on:mousedown={mousedown} />
 
 {#if isInput}
-	<svelte:component this={getComponents().input} {color} bind:button bind:isOpen />
+	<svelte:component this={getComponents().input} color={{...hsv, ...rgb, hex}} bind:button bind:isOpen />
 {/if}
 
 <svelte:component this={getComponents().wrapper} bind:wrapper {isOpen} {isPopup} {toRight}>
 	<Picker
 		components={getComponents()}
-		h={color.h}
-		bind:s={color.s}
-		bind:v={color.v}
+		h={hsv.h}
+		bind:s={hsv.s}
+		bind:v={hsv.v}
 		bind:isOpen
 		{toRight}
 	/>
-	<Slider components={getComponents()} bind:h={color.h} {toRight} />
+	<Slider components={getComponents()} bind:h={hsv.h} {toRight} />
 	{#if isAlpha}
 		<Alpha
 			components={getComponents()}
-			h={color.h}
-			s={color.s}
-			v={color.v}
-			bind:a={color.a}
-			hex={color.hex}
+			h={hsv.h}
+			s={hsv.s}
+			v={hsv.v}
+			bind:a={hsv.a}
+			hex={hex}
 			bind:isOpen
 			{toRight}
 		/>
