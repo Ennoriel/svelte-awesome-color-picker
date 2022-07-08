@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { hsv2Color, hex2Color, rgb2Color, Color, Rgb, Hsv, Hex } from 'chyme';
+	import { hsv2Color, hex2Color, rgb2Color } from 'chyme';
+	import type { Color, Rgb, Hsv } from 'chyme';
 	import Picker from './components/Picker.svelte';
 	import Slider from './components/Slider.svelte';
 	import Alpha from './components/Alpha.svelte';
@@ -23,11 +24,9 @@
 	export let isOpen = !isInput;
 	export let toRight = false;
 
-	export let rgb: Rgb | undefined = undefined;
-	export let hsv: Hsv | undefined = undefined;
-	export let hex: string | undefined = undefined;
-
-	// let color: Rgb & Hsv & Hex;
+	export let rgb: Rgb = { r: 255, g: 0, b: 0 } as Rgb;
+	export let hsv: Hsv = {} as Hsv;
+	export let hex = '';
 
 	const default_components: Components = {
 		sliderIndicator: SliderIndicator,
@@ -50,22 +49,22 @@
 	let button: HTMLButtonElement;
 	let wrapper: HTMLElement;
 
-	function mousedown({ target }) {
+	function mousedown({ target }: MouseEvent) {
 		if (isInput) {
-			if (button.isSameNode(target)) {
+			if (button.isSameNode(target as Node)) {
 				isOpen = !isOpen;
-			} else if (isOpen && !wrapper.contains(target)) {
+			} else if (isOpen && !wrapper.contains(target as Node)) {
 				isOpen = false;
 			}
 		}
 	}
 
 	$: {
-		let color: Color = {};
+		let color: Color = {} as Color;
 		if (hsv) {
 			color = hsv2Color(hsv);
 		} else if (hex) {
-			color = hex2Color({hex});
+			color = hex2Color({ hex });
 		} else if (rgb) {
 			color = rgb2Color(rgb);
 		}
@@ -81,7 +80,12 @@
 <svelte:window on:mousedown={mousedown} />
 
 {#if isInput}
-	<svelte:component this={getComponents().input} color={{...hsv, ...rgb, hex}} bind:button bind:isOpen />
+	<svelte:component
+		this={getComponents().input}
+		color={{ ...hsv, ...rgb, hex }}
+		bind:button
+		bind:isOpen
+	/>
 {/if}
 
 <svelte:component this={getComponents().wrapper} bind:wrapper {isOpen} {isPopup} {toRight}>
@@ -101,7 +105,7 @@
 			s={hsv.s}
 			v={hsv.v}
 			bind:a={hsv.a}
-			hex={hex}
+			{hex}
 			bind:isOpen
 			{toRight}
 		/>

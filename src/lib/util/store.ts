@@ -1,5 +1,7 @@
 import { derived, writable } from 'svelte/store';
 
+export type SupportedKeys = 'ArrowLeft' | 'ArrowUp' | 'ArrowRight' | 'ArrowDown';
+
 /**
  * Store that keeps track of the keys pressed, updated by the ArrowKeyHandler component
  */

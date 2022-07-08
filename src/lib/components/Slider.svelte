@@ -14,7 +14,7 @@
 
 	let focused = false;
 
-	let focusMovementIntervalId: number;
+	let focusMovementIntervalId: number | undefined;
 	let focusMovementCounter: number;
 
 	function onClick(pos: number) {
@@ -46,7 +46,7 @@
 	}
 
 	function keyup(e: KeyboardEvent) {
-		if (e.key === 'Tab') focused = document.activeElement.isSameNode(slider);
+		if (e.key === 'Tab') focused = !!document.activeElement?.isSameNode(slider);
 		if (!e.repeat && focused) move();
 	}
 

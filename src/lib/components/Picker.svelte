@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { hsv2Color, clamp, Color } from 'chyme';
+	import { hsv2Color, clamp } from 'chyme';
+	import type { Color } from 'chyme';
 	import { keyPressed, keyPressedCustom } from '../util/store';
 	import { easeInOutSin } from '../util/transition';
 	import type { Components } from '$lib/type/types';
@@ -17,7 +18,7 @@
 	let isMouseDown = false;
 	let focused = false;
 
-	let focusMovementIntervalId: number;
+	let focusMovementIntervalId: number | undefined;
 	let focusMovementCounter: number;
 
 	let colorBg: Color;
@@ -70,7 +71,7 @@
 	}
 
 	function keyup(e: KeyboardEvent) {
-		if (e.key === 'Tab') focused = document.activeElement.isSameNode(picker);
+		if (e.key === 'Tab') focused = !!document.activeElement?.isSameNode(picker);
 
 		if (!e.repeat && focused) move();
 	}

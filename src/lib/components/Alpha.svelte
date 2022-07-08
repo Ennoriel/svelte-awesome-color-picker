@@ -10,7 +10,7 @@
 	export let h: number;
 	export let s: number;
 	export let v: number;
-	export let a: number;
+	export let a = 1;
 	export let hex: string | undefined;
 	export let toRight: boolean;
 
@@ -19,7 +19,7 @@
 
 	let focused = false;
 
-	let focusMovementIntervalId: number;
+	let focusMovementIntervalId: number | undefined;
 	let focusMovementCounter: number;
 	let pos: number;
 
@@ -52,7 +52,7 @@
 	}
 
 	function keyup(e: KeyboardEvent) {
-		if (e.key === 'Tab') focused = document.activeElement.isSameNode(alpha);
+		if (e.key === 'Tab') focused = !!document.activeElement?.isSameNode(alpha);
 		if (!e.repeat && focused) move();
 	}
 

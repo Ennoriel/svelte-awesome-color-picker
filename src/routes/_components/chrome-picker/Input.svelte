@@ -6,7 +6,7 @@
 	export let isOpen: boolean;
 
 	function keyup(e: KeyboardEvent) {
-		if (document.activeElement.isSameNode(button) && !e.shiftKey && e.key === 'Tab') isOpen = true;
+		if (document.activeElement?.isSameNode(button) && !e.shiftKey && e.key === 'Tab') isOpen = true;
 	}
 </script>
 

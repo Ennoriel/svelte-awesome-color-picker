@@ -1,6 +1,6 @@
 {
 	"name": "svelte-awesome-color-picker",
-	"version": "0.0.10",
+	"version": "1.0.0",
 	"description": "A Svelte component to crop images with easy interactions",
 	"homepage": "https://ennoriel.github.io/svelte-awesome-color-picker",
 	"repository": {
@@ -18,7 +18,7 @@
 		"lint": "prettier --check --plugin-search-dir=. . && eslint .",
 		"format": "prettier --write --plugin-search-dir=. .",
 		"package": "svelte-kit package",
-		"publish": "npm run package && npm publish ./package"
+		"publish": "npm publish ./package"
 	},
 	"entry": "ColorPicker.svelte",
 	"devDependencies": {
