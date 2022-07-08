@@ -1,4 +1,4 @@
-import type { Color, Hex, Hsv, Rgb } from './types';
+import type {Hex, Hsv, Color, Rgb} from './types';
 
 export function isHsv(color: Color): color is Hsv {
 	return (

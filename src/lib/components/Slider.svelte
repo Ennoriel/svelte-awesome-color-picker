@@ -61,7 +61,7 @@
 		if ($keyPressedCustom.ArrowVH) {
 			if (!focusMovementIntervalId) {
 				focusMovementCounter = 0;
-				focusMovementIntervalId = setInterval(() => {
+				focusMovementIntervalId = window.setInterval(() => {
 					const focusMovementFactor = easeInOutSin(++focusMovementCounter);
 					const movement = toRight
 						? $keyPressed.ArrowRight - $keyPressed.ArrowLeft

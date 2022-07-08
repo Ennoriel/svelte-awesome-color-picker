@@ -1,5 +1,5 @@
 <script lang="ts">
-	import _ from '../util/convert';
+	import { hsv2Color } from 'chyme';
 	import { keyPressed, keyPressedCustom } from '../util/store';
 	import { easeInOutSin } from '../util/transition';
 	import type { Components } from '$lib/type/types';
@@ -70,7 +70,7 @@
 		if ($keyPressedCustom.ArrowVH) {
 			if (!focusMovementIntervalId) {
 				focusMovementCounter = 0;
-				focusMovementIntervalId = setInterval(() => {
+				focusMovementIntervalId = window.setInterval(() => {
 					const focusMovementFactor = easeInOutSin(++focusMovementCounter);
 					const movement = toRight
 						? $keyPressed.ArrowRight - $keyPressed.ArrowLeft
@@ -119,7 +119,7 @@
 			this={components.alphaIndicator}
 			{pos}
 			{toRight}
-			color={_.hsv2Color({ h, s, v, a })}
+			color={hsv2Color({ h, s, v, a })}
 		/>
 	</div>
 </svelte:component>

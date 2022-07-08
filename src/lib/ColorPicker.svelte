@@ -1,6 +1,5 @@
 <script lang="ts">
-	import _ from './util/convert';
-
+	import { hsv2Color, hex2Color, rgb2Color } from 'chyme';
 	import Picker from './components/Picker.svelte';
 	import Slider from './components/Slider.svelte';
 	import Alpha from './components/Alpha.svelte';
@@ -11,7 +10,7 @@
 	import SliderWrapper from './components/SliderWrapper.svelte';
 	import Input from './components/Input.svelte';
 	import Wrapper from './components/Wrapper.svelte';
-	import type { Color, Components, Rgb, Hex } from '$lib/type/types';
+	import type { Color, Components } from '$lib/type/types';
 	import { isHex, isHsv, isRgb } from '$lib/type/guard';
 
 	export let components: Partial<Components> = {};
@@ -25,16 +24,7 @@
 	export let isOpen = !isInput;
 	export let toRight = false;
 
-	export let color: Color = {
-		h: 0,
-		s: 1,
-		v: 1,
-		a: 1,
-		hex: '#FF0000',
-		r: 255,
-		g: 0,
-		b: 0
-	} as Color;
+	export let color: Color = { h: 0, s: 1, v: 1, a: 1 };
 
 	const default_components: Components = {
 		sliderIndicator: SliderIndicator,
@@ -69,11 +59,11 @@
 
 	$: {
 		if (color && isHsv(color)) {
-			color = _.hsv2Color(color);
+			color = hsv2Color(color);
 		} else if (color && isHex(color)) {
-			color = _.hex2Color(color as Hex);
+			color = hex2Color(color);
 		} else if (color && isRgb(color)) {
-			color = _.rgb2Color(color as Rgb);
+			color = rgb2Color(color);
 		}
 	}
 </script>
