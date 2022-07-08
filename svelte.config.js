@@ -1,4 +1,3 @@
-import path from 'path';
 import preprocess from 'svelte-preprocess';
 import { mdsvex } from 'mdsvex';
 import rehypeSlug from 'rehype-slug';
@@ -17,17 +16,7 @@ const config = {
 	extensions: ['.svelte', '.md'],
 
 	kit: {
-		adapter: vercel(),
-
-		target: '#svelte',
-
-		vite: {
-			resolve: {
-				alias: {
-					'svelte-awesome-color-picker': path.resolve('src/lib')
-				}
-			}
-		}
+		adapter: vercel()
 	}
 };
 
