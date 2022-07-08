@@ -17,8 +17,7 @@
 		"check": "svelte-check --tsconfig ./tsconfig.json",
 		"lint": "prettier --check --plugin-search-dir=. . && eslint .",
 		"format": "prettier --write --plugin-search-dir=. .",
-		"package": "svelte-kit package",
-		"publish": "npm publish ./package"
+		"package": "svelte-kit package"
 	},
 	"entry": "ColorPicker.svelte",
 	"devDependencies": {
