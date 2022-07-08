@@ -73,10 +73,10 @@ npm i -D svelte-awesome-color-picker
 <script>
 	import ColorPicker from 'svelte-awesome-color-picker/ColorPicker.svelte';
 
-	let color;
+	let rgb; // or hsv or hex
 </script>
 
-<ColorPicker bind:color />
+<ColorPicker bind:rgb />
 ```
 
 ## Api
@@ -88,7 +88,9 @@ npm i -D svelte-awesome-color-picker
 | isAlpha    | `boolean`    | true          | The alpha slider is visible                        |
 | isInput    | `boolean`    | true          | The input button is visible                        |
 | isOpen     | `boolean`    | false         | The picker is open by default and cannot be closed |
-| color      | `Color`      | red           | The color object that should be bound to           |
+| rgb        | `Rgb`        | red           | The RGB color object that should be bound to       |
+| hex        | `string`     | red           | The hex color string that should be bound to       |
+| hsv        | `Hsv`        | red           | The HSV color object that should be bound to       |
 | components | `Components` |               | see below                                          |
 
 ### css variables
