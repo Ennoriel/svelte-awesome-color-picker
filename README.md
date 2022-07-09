@@ -1,6 +1,6 @@
 # svelte-awesome-color-picker
 
-> _svelte-awesome-color-picker_ is a highly customizable color picker component library with built in keyboard navigation. It is compatible with form libraries.
+> _svelte-awesome-color-picker_ is a highly customizable color picker component library with built-in keyboard navigation. It is compatible with form libraries.
 
 ## Links
 
@@ -18,7 +18,7 @@ npm i -D svelte-awesome-color-picker
 
 ```svelte
 <script>
-	import ColorPicker from 'svelte-awesome-color-picker/ColorPicker.svelte';
+	import ColorPicker from 'svelte-awesome-color-picker';
 
 	let rgb; // or hsv or hex
 </script>
@@ -30,15 +30,16 @@ npm i -D svelte-awesome-color-picker
 
 ### props
 
-| props      | type         | Default Value | Usage                                              |
-| ---------- | ------------ | ------------- | -------------------------------------------------- |
-| isAlpha    | `boolean`    | true          | The alpha slider is visible                        |
-| isInput    | `boolean`    | true          | The input button is visible                        |
-| isOpen     | `boolean`    | false         | The picker is open by default and cannot be closed |
-| rgb        | `Rgb`        | red           | The RGB color object that should be bound to       |
-| hex        | `string`     | red           | The hex color string that should be bound to       |
-| hsv        | `Hsv`        | red           | The HSV color object that should be bound to       |
-| components | `Components` |               | see below                                          |
+| props      | type         | Default Value | Usage                                                                            |
+| ---------- | ------------ | ------------- | -------------------------------------------------------------------------------- |
+| isAlpha    | `boolean`    | true          | The alpha slider is visible                                                      |
+| isInput    | `boolean`    | true          | The input button is visible                                                      |
+| isOpen     | `boolean`    | false         | The picker is open by default and cannot be closed                               |
+| toRight    | `boolean`    | false         | Sliders direction, if true, the direction is horizontal                          |
+| rgb        | `Rgb`        | red           | The RGB color object that should be bound to                                     |
+| hex        | `string`     | red           | The hex color string that should be bound to                                     |
+| hsv        | `Hsv`        | red           | The HSV color object that should be bound to                                     |
+| components | `Components` |               | By default a Circle and a Chrome variants are available. Can be fully customized |
 
 ### css variables
 
@@ -53,22 +54,18 @@ npm i -D svelte-awesome-color-picker
 
 The color picker can be customized with components. The details and props are detailed below. It is easier to copy the library components and tweak it to your needs.
 
+A **Circle** and a **Chrome** variants are available. **To use the Chrome variant you need to set the props** `toRight`. You can partially overwrite the components:
+
 ```svelte
 <script>
-	// imports
-	const components = {
-		input: Input,
-		sliderIndicator: SliderIndicator,
-		sliderWrapper: SliderWrapper,
-		alphaIndicator: SliderIndicator,
-		alphaWrapper: SliderWrapper,
-		pickerIndicator: PickerIndicator,
-		pickerWrapper: PickerWrapper,
-		wrapper: Wrapper
-	};
+	import ColorPicker, { CircleVariant } from 'svelte-awesome-color-picker';
+	import CustomInput from '$lib/path/to/my/awesome/variant/Input.svelte';
+
+	let color
 </script>
 
-<ColorPicker bind:color {components} />
+<!-- example with the CircleVariant and a custom Input component -->
+<ColorPicker bind:color components={{...CircleVariant: input: CustomInput}} />
 ```
 
 #### pickerIndicator

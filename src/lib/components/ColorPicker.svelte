@@ -1,17 +1,17 @@
 <script lang="ts">
 	import { hsv2Color, hex2Color, rgb2Color } from 'chyme';
 	import type { Color, Rgb, Hsv } from 'chyme';
-	import Picker from './components/Picker.svelte';
-	import Slider from './components/Slider.svelte';
-	import Alpha from './components/Alpha.svelte';
-	import SliderIndicator from './components/SliderIndicator.svelte';
-	import PickerIndicator from './components/PickerIndicator.svelte';
-	import ArrowKeyHandler from './components/ArrowKeyHandler.svelte';
-	import PickerWrapper from './components/PickerWrapper.svelte';
-	import SliderWrapper from './components/SliderWrapper.svelte';
-	import Input from './components/Input.svelte';
-	import Wrapper from './components/Wrapper.svelte';
-	import type { Components } from '$lib/type/types';
+	import Picker from './Picker.svelte';
+	import Slider from './Slider.svelte';
+	import Alpha from './Alpha.svelte';
+	import SliderIndicator from './variant/default/SliderIndicator.svelte';
+	import PickerIndicator from './variant/default/PickerIndicator.svelte';
+	import ArrowKeyHandler from './ArrowKeyHandler.svelte';
+	import PickerWrapper from './variant/default/PickerWrapper.svelte';
+	import SliderWrapper from './variant/default/SliderWrapper.svelte';
+	import Input from './variant/default/Input.svelte';
+	import Wrapper from './variant/default/Wrapper.svelte';
+	import type { Components } from '../type/types';
 
 	export let components: Partial<Components> = {};
 
@@ -61,11 +61,11 @@
 
 	$: {
 		let color: Color = {} as Color;
-		if (hsv && "h" in hsv) {
+		if (hsv && 'h' in hsv) {
 			color = hsv2Color(hsv);
 		} else if (hex && hex.length) {
 			color = hex2Color({ hex });
-		} else if (rgb && "r" in rgb) {
+		} else if (rgb && 'r' in rgb) {
 			color = rgb2Color(rgb);
 		}
 		const { r, g, b, h, s, v, a, hex: cHex } = color;

@@ -1,9 +1,9 @@
-import type SliderIndicator from '$lib/components/SliderIndicator.svelte';
-import type PickerIndicator from '$lib/components/PickerIndicator.svelte';
-import type PickerWrapper from '$lib/components/PickerWrapper.svelte';
-import type SliderWrapper from '$lib/components/SliderWrapper.svelte';
-import type Input from '$lib/components/Input.svelte';
-import type Wrapper from '$lib/components/Wrapper.svelte';
+import type SliderIndicator from '../components/variant/default/SliderIndicator.svelte';
+import type PickerIndicator from '../components/variant/default/PickerIndicator.svelte';
+import type PickerWrapper from '../components/variant/default/PickerWrapper.svelte';
+import type SliderWrapper from '../components/variant/default/SliderWrapper.svelte';
+import type Input from '../components/variant/default/Input.svelte';
+import type Wrapper from '../components/variant/default/Wrapper.svelte';
 
 export type Components = {
 	pickerIndicator: typeof PickerIndicator;
