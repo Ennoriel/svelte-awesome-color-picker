@@ -18,6 +18,7 @@
 	/**
 	 * Customization properties
 	 */
+	export let label = 'Choose a color';
 	export let isAlpha = true;
 	export let isInput = true;
 	export let isPopup = true;
@@ -83,6 +84,7 @@
 	<svelte:component
 		this={getComponents().input}
 		color={{ ...hsv, ...rgb, hex }}
+		{label}
 		bind:button
 		bind:isOpen
 	/>

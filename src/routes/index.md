@@ -83,20 +83,21 @@ npm i -D svelte-awesome-color-picker
 
 ### props
 
-| props      | type         | Default Value | Usage                                                                            |
-| ---------- | ------------ | ------------- | -------------------------------------------------------------------------------- |
-| isAlpha    | `boolean`    | true          | The alpha slider is visible                                                      |
-| isInput    | `boolean`    | true          | The input button is visible                                                      |
-| isOpen     | `boolean`    | false         | The picker is open by default and cannot be closed                               |
-| toRight    | `boolean`    | false         | Sliders direction, if true, the direction is horizontal                          |
-| rgb        | `Rgb`        | red           | The RGB color object that should be bound to                                     |
-| hex        | `string`     | red           | The hex color string that should be bound to                                     |
-| hsv        | `Hsv`        | red           | The HSV color object that should be bound to                                     |
-| components | `Components` |               | By default a Circle and a Chrome variants are available. Can be fully customized |
+| Props      | Type         | Default Value  | Usage                                                                            |
+| ---------- | ------------ | -------------- | -------------------------------------------------------------------------------- |
+| label      | `string`     | Choose a color | Label of the component                                                           |
+| isAlpha    | `boolean`    | true           | The alpha slider is visible                                                      |
+| isInput    | `boolean`    | true           | The input button is visible                                                      |
+| isOpen     | `boolean`    | false          | The picker is open by default and cannot be closed                               |
+| toRight    | `boolean`    | false          | Sliders direction, if true, the direction is horizontal                          |
+| rgb        | `Rgb`        | red            | The RGB color object that should be bound to                                     |
+| hex        | `string`     | red            | The hex color string that should be bound to                                     |
+| hsv        | `Hsv`        | red            | The HSV color object that should be bound to                                     |
+| components | `Components` |                | By default a Circle and a Chrome variants are available. Can be fully customized |
 
 ### css variables
 
-| props           | Default Value | Usage                   |
+| Props           | Default Value | Usage                   |
 | --------------- | ------------- | ----------------------- |
 | --picker-height | `300px`       | picker & sliders height |
 | --slider-width  | `30px`        | sliders width           |
@@ -130,7 +131,7 @@ Component representing the picker indicator.
 
 Props:
 
-| props | Default Value            | Usage            |
+| Props | Default Value            | Usage            |
 | ----- | ------------------------ | ---------------- |
 | pos   | `{x: number, y: number}` | expressed in %   |
 | color | `Color`                  | the actual color |
@@ -139,14 +140,14 @@ Props:
 
 Components representing the (hue) slider and alpha indicators.
 
-It should also have the css property `pointer-events: none;`.
+- It should have the css property `pointer-events: none;`.
 
 Props:
 
-| props | Default Value | Usage                                           |
-| ----- | ------------- | ----------------------------------------------- |
-| pos   | `number`      | expressed in %                                  |
-| color | `Color`       | respectively the Hue color and the actual color |
+| Props | Type     | Usage                                           |
+| ----- | -------- | ----------------------------------------------- |
+| pos   | `number` | expressed in %                                  |
+| color | `Color`  | respectively the Hue color and the actual color |
 
 #### Input
 
@@ -154,21 +155,24 @@ Component representing the button to open the color picker and a hidden input wi
 
 Props:
 
-| props  | Default Value | Usage                                                                          |
+| Props  | Type          | Usage                                                                          |
 | ------ | ------------- | ------------------------------------------------------------------------------ |
 | button | `HTMLElement` | this property should be exported from only focusable element of this component |
 | color  | `Color`       | the actual color                                                               |
+| label  | `string`      | Label of the component                                                         |
 | isOpen | `boolean`     | props that can be toggled on or off to open or close the color picker          |
 
 #### pickerWrapper & sliderWrapper & alphaWrapper
 
-Encapsulates the picker, hue slider and alpha slider. They should define the css properties `width` and `height`.
+Encapsulates the picker, hue slider and alpha slider.
+
+- They should define the css properties `width` and `height`.
 
 Props:
 
-| props   | Default Value | Usage                          |
-| ------- | ------------- | ------------------------------ |
-| focused | `boolean`     | whether the element is focused |
+| Props   | Type      | Usage                          |
+| ------- | --------- | ------------------------------ |
+| focused | `boolean` | whether the element is focused |
 
 #### wrapper
 
@@ -176,7 +180,7 @@ Encapsulates the whole color picker
 
 Props:
 
-| props   | Default Value    | Usage                                                          |
+| Props   | Type             | Usage                                                          |
 | ------- | ---------------- | -------------------------------------------------------------- |
 | wrapper | `HTMLDivElement` | this property should be exported with the top most DOM element |
 | isOpen  | `boolean`        | whether toe color picker is open or not                        |

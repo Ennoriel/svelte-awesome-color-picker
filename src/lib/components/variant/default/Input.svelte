@@ -3,6 +3,7 @@
 
 	export let button: HTMLElement;
 	export let color: Color;
+	export let label: string;
 	export let isOpen: boolean;
 
 	function keyup(e: KeyboardEvent) {
@@ -14,7 +15,7 @@
 
 <button bind:this={button}>
 	<div style="background-color: {color.hex};" />
-	Choose a color
+	{label}
 </button>
 <input type="hidden" value={color.hex} />
 
