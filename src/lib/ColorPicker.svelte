@@ -61,11 +61,11 @@
 
 	$: {
 		let color: Color = {} as Color;
-		if (hsv) {
+		if (hsv && "h" in hsv) {
 			color = hsv2Color(hsv);
-		} else if (hex) {
+		} else if (hex && hex.length) {
 			color = hex2Color({ hex });
-		} else if (rgb) {
+		} else if (rgb && "r" in rgb) {
 			color = rgb2Color(rgb);
 		}
 		const { r, g, b, h, s, v, a, hex: cHex } = color;
