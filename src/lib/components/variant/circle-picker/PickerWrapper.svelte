@@ -18,6 +18,7 @@
 		outline: 2px solid transparent;
 		outline-offset: 3px;
 		transition: outline 0.2s ease-in-out;
+		user-select: none;
 	}
 
 	div.focused {

@@ -158,5 +158,6 @@
 		background: linear-gradient(#ffffff00, #000000ff),
 			linear-gradient(0.25turn, #ffffffff, #00000000), var(--color-bg);
 		outline: none;
+		user-select: none;
 	}
 </style>

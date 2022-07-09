@@ -24,6 +24,7 @@
 		width: 40px;
 		height: 20px;
 		border-radius: 10px;
+		pointer-events: none;
 	}
 	button {
 		display: flex;

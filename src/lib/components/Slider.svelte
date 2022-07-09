@@ -126,6 +126,7 @@
 			#ff0000
 		);
 		outline: none;
+		user-select: none;
 	}
 	.to-right {
 		background: linear-gradient(

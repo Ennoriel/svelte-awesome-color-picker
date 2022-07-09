@@ -5,12 +5,12 @@
 	export let toRight: boolean;
 </script>
 
-<div bind:this={wrapper} class:isOpen class:isPopup class:to-right={toRight}>
+<div class="wrapper" bind:this={wrapper} class:isOpen class:isPopup class:to-right={toRight}>
 	<slot />
 </div>
 
 <style>
-	div {
+	.wrapper {
 		padding: 10px;
 		background-color: white;
 		margin: 0 10px 10px;

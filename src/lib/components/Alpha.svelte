@@ -144,5 +144,6 @@
 		background-size: 10px 10px;
 		background-position: 0 0, 5px 5px;
 		outline: none;
+		user-select: none;
 	}
 </style>

@@ -14,6 +14,7 @@
 		height: var(--picker-height, 200px);
 		border-radius: 7px;
 		overflow: hidden;
+		user-select: none;
 
 		outline: 2px solid transparent;
 		outline-offset: 3px;

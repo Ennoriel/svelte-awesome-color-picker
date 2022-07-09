@@ -4,12 +4,12 @@
 	export let isPopup: boolean;
 </script>
 
-<div bind:this={wrapper} class:isOpen class:isPopup>
+<div class="wrapper" bind:this={wrapper} class:isOpen class:isPopup>
 	<slot />
 </div>
 
 <style>
-	div {
+	.wrapper {
 		background-color: white;
 		margin: 0 10px 15px;
 		padding-bottom: 3px;
