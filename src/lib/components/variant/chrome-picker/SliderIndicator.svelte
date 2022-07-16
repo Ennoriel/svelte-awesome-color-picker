@@ -1,5 +1,9 @@
 <script lang="ts">
-	export let pos: number;
+    import type { Color } from 'chyme';
+
+    export let pos: number;
+    export let color: Color;
+    export let toRight: boolean;
 </script>
 
 <div style={`left: calc(${(pos / 200) * 190}% + 2px);`} />
