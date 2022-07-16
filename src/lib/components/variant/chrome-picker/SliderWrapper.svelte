@@ -1,5 +1,6 @@
 <script lang="ts">
 	export let focused: boolean;
+	export let toRight: boolean;
 </script>
 
 <div class:focused>

@@ -2,6 +2,7 @@
 	export let wrapper: HTMLElement;
 	export let isOpen: boolean;
 	export let isPopup: boolean;
+	export let toRight: boolean;
 </script>
 
 <div class="wrapper" bind:this={wrapper} class:isOpen class:isPopup>

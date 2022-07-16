@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Color } from 'chyme';
 
-	export let button: HTMLElement;
+	export let button: HTMLButtonElement;
 	export let color: Color;
 	export let label: string;
 	export let isOpen: boolean;
