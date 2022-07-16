@@ -1,5 +1,8 @@
 <script lang="ts">
-	export let pos: { x: number; y: number };
+	import type { Color } from 'chyme';
+
+	export let pos: { x: string; y: string };
+	export let color: Color;
 </script>
 
 <div
