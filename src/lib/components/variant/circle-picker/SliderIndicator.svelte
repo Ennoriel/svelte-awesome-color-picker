@@ -1,9 +1,9 @@
 <script lang="ts">
-    import type { Color } from 'chyme';
+	import type { Color } from 'chyme';
 
-    export let pos: number;
-    export let color: Color;
-    export let toRight: boolean;
+	export let pos: number;
+	export let color: Color;
+	export let toRight: boolean;
 </script>
 
 <div style={`top: calc(${(pos / 200) * 186}% + 2px);`} />
