@@ -10,9 +10,10 @@
 	const modes = ['HEX', 'RGB', 'HSV'];
 	let mode = 0;
 
-	$: h = Math.round(hsv.h * 100) / 100;
+	$: h = Math.round(hsv.h);
 	$: s = Math.round(hsv.s * 100) / 100;
 	$: v = Math.round(hsv.v * 100) / 100;
+	$: a = hsv.a === undefined ? 1 : Math.round(hsv.a * 100) / 100;
 
 	type InputEvent = Event & { currentTarget: EventTarget & HTMLInputElement };
 
@@ -40,21 +41,21 @@
 	{#if mode === 0}
 		<div class="input-container">
 			<input value={hex} on:input={updateHex} style:flex="3" />
-			<input value={rgb.a} type="number" min="0" max="1" step="0.01" on:input={updateRgb('a')} />
+			<input value={a} type="number" min="0" max="1" step="0.01" on:input={updateRgb('a')} />
 		</div>
 	{:else if mode === 1}
 		<div class="input-container">
 			<input value={rgb.r} type="number" min="0" max="255" on:input={updateRgb('r')} />
 			<input value={rgb.g} type="number" min="0" max="255" on:input={updateRgb('g')} />
 			<input value={rgb.b} type="number" min="0" max="255" on:input={updateRgb('b')} />
-			<input value={rgb.a} type="number" min="0" max="1" step="0.01" on:input={updateRgb('a')} />
+			<input value={a} type="number" min="0" max="1" step="0.01" on:input={updateRgb('a')} />
 		</div>
 	{:else}
 		<div class="input-container">
 			<input value={h} type="number" min="0" max="360" on:input={updateHsv('h')} />
 			<input value={s} type="number" min="0" max="1" step="0.01" on:input={updateHsv('s')} />
 			<input value={v} type="number" min="0" max="1" step="0.01" on:input={updateHsv('v')} />
-			<input value={hsv.a} type="number" min="0" max="1" step="0.01" on:input={updateHsv('a')} />
+			<input value={a} type="number" min="0" max="1" step="0.01" on:input={updateHsv('a')} />
 		</div>
 	{/if}
 	<button on:click={() => (mode = (mode + 1) % 3)}>{modes[mode]}</button>

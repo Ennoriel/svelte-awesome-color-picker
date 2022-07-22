@@ -4,10 +4,13 @@
 	export let pos: { x: number; y: number };
 	/* svelte-ignore unused-export-let */
 	export let color: Color;
+	export let isDark: boolean;
 </script>
 
 <div
-	style={`left: calc(${(pos.x / 200) * 186}% + 2px); top: calc(${(pos.y / 200) * 186}% + 2px);`}
+	style:left="calc({(pos.x / 200) * 186}% + 2px)"
+	style:top="calc({(pos.y / 200) * 186}% + 2px)"
+	style:box-shadow={`0 0 4px ${isDark ? 'white' : 'black'}`}
 />
 
 <style>
@@ -20,5 +23,6 @@
 
 		pointer-events: none;
 		z-index: 1;
+		transition: box-shadow 0.2s;
 	}
 </style>

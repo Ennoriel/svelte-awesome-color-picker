@@ -14,6 +14,7 @@
 	/* svelte-ignore unused-export-let */
 	export let isOpen: boolean;
 	export let toRight: boolean;
+	export let isDark: boolean;
 
 	let picker: HTMLDivElement;
 	let isMouseDown = false;
@@ -143,6 +144,7 @@
 		<svelte:component
 			this={components.pickerIndicator}
 			{pos}
+			{isDark}
 			color={hsv2Color({ h, s, v, a: 1 })}
 		/>
 	</div>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { hsv2Color, hex2Color, rgb2Color } from 'chyme';
+	import { hsv2Color, hex2Color, rgb2Color, isDark as checkIsDark } from 'chyme';
 	import type { Rgb, Hsv } from 'chyme';
 	import Picker from './Picker.svelte';
 	import Slider from './Slider.svelte';
@@ -26,6 +26,7 @@
 	export let isPopup = true;
 	export let isOpen = !isInput;
 	export let toRight = false;
+	export let isDark = false;
 
 	export let rgb: Rgb = { r: 255, g: 0, b: 0 } as Rgb;
 	export let hsv: Hsv = { h: 0, s: 1, v: 1 } as Hsv;
@@ -89,7 +90,7 @@
 		if (hex?.substring(7) === 'ff') hex = hex.substring(0, 7);
 
 		// check which color format changed and updates the others accordingly
-		if (hsv.h !== _hsv.h || hsv.s !== _hsv.s || hsv.v !== _hsv.v || hsv.a !== hsv.a) {
+		if (hsv.h !== _hsv.h || hsv.s !== _hsv.s || hsv.v !== _hsv.v || hsv.a !== _hsv.a) {
 			const color = hsv2Color(hsv);
 			const { r, g, b, a, hex: cHex } = color;
 			rgb = { r, g, b, a };
@@ -106,6 +107,8 @@
 			hsv = { h, s, v, a };
 		}
 
+		isDark = checkIsDark(rgb);
+
 		// update old colors
 		_hsv = Object.assign({}, hsv);
 		_rgb = Object.assign({}, rgb);
@@ -119,6 +122,8 @@
 	function keydown(e: KeyboardEvent) {
 		if (e.key === 'Tab') span.classList.add('has-been-tabbed');
 	}
+
+	$: console.log(isDark);
 </script>
 
 <ArrowKeyHandler />
@@ -144,6 +149,7 @@
 			bind:v={hsv.v}
 			bind:isOpen
 			{toRight}
+			{isDark}
 		/>
 		<Slider components={getComponents()} bind:h={hsv.h} {toRight} />
 		{#if isAlpha}

@@ -31,12 +31,13 @@ npm i -D svelte-awesome-color-picker
 ### props
 
 | Props       | Type         | Default Value  | Usage                                                                            |
-| ----------- | ------------ | -------------- | -------------------------------------------------------------------------------- |
+|-------------| ------------ | -------------- |----------------------------------------------------------------------------------|
 | label       | `string`     | Choose a color | Label of the component                                                           |
 | isAlpha     | `boolean`    | true           | The alpha slider is visible                                                      |
 | isTextInput | `boolean`    | true           | The textual hex / rgb / hsv input are visible                                    |
 | isInput     | `boolean`    | true           | The input button is visible                                                      |
 | isOpen      | `boolean`    | false          | The picker is open by default and cannot be closed                               |
+| isDark      | `boolean`    | false          | Indicates if the selected color is dark based on HSP representation              |
 | toRight     | `boolean`    | false          | Sliders direction, if true, the direction is horizontal                          |
 | rgb         | `Rgb`        | red            | The RGB color object that should be bound to                                     |
 | hex         | `string`     | red            | The hex color string that should be bound to                                     |
@@ -91,10 +92,11 @@ Component representing the picker indicator.
 
 Props:
 
-| Props | Default Value            | Usage            |
-| ----- | ------------------------ | ---------------- |
-| pos   | `{x: number, y: number}` | expressed in %   |
-| color | `Color`                  | the actual color |
+| Props   | Default Value            | Usage                                                               |
+|---------|--------------------------|---------------------------------------------------------------------|
+| pos     | `{x: number, y: number}` | expressed in %                                                      |
+| color   | `Color`                  | the actual color                                                    |
+| isDark  | `boolean`                | Indicates if the selected color is dark based on HSP representation |
 
 #### sliderIndicator & alphaIndicator
 

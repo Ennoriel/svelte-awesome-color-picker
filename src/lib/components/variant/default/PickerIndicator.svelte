@@ -3,9 +3,15 @@
 
 	export let pos: { x: number; y: number };
 	export let color: Color;
+	export let isDark: boolean;
 </script>
 
-<div style="left: {pos.x}%; top: {pos.y}%; background-color: {color.hex};" />
+<div
+	style:left="{pos.x}%"
+	style:top="{pos.y}%"
+	style:background-color={color.hex}
+	style:border-color={isDark ? 'white' : 'black'}
+/>
 
 <style>
 	div {
@@ -15,8 +21,9 @@
 		border-radius: 10px;
 		box-sizing: border-box;
 		border: 2px solid black;
-		box-shadow: 0 0 2px black;
+		box-shadow: 0 0 4px #777;
 		margin: -10px;
 		pointer-events: none;
+		transition: border-color 0.2s;
 	}
 </style>
