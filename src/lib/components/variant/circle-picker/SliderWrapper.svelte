@@ -1,5 +1,6 @@
 <script lang="ts">
 	export let focused: boolean;
+	/* svelte-ignore unused-export-let */
 	export let toRight: boolean;
 </script>
 

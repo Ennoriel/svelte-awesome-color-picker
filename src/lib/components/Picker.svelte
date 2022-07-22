@@ -11,6 +11,7 @@
 	export let s: number;
 	export let v: number;
 
+	/* svelte-ignore unused-export-let */
 	export let isOpen: boolean;
 	export let toRight: boolean;
 
@@ -80,9 +81,6 @@
 		if (focused && $keyPressedCustom.ArrowVH) {
 			e.preventDefault();
 			if (!e.repeat) move();
-		}
-		if (focused && e.shiftKey && e.key === 'Tab') {
-			isOpen = false;
 		}
 	}
 

@@ -10,6 +10,9 @@ import { default as ChromeSliderIndicator } from './components/variant/chrome-pi
 import { default as ChromeSliderWrapper } from './components/variant/chrome-picker/SliderWrapper.svelte';
 import { default as ChromeWrapper } from './components/variant/chrome-picker/Wrapper.svelte';
 
+// No custom TextInput for the Chrome variant but it doesn't prevent you from making one!
+import { default as TextInput } from './components/variant/default/TextInput.svelte';
+
 export const ChromeVariant = {
 	sliderIndicator: ChromeSliderIndicator,
 	pickerIndicator: ChromePickerIndicator,
@@ -17,6 +20,7 @@ export const ChromeVariant = {
 	pickerWrapper: ChromePickerWrapper,
 	sliderWrapper: ChromeSliderWrapper,
 	alphaWrapper: ChromeSliderWrapper,
+	textInput: TextInput,
 	input: ChromeInput,
 	wrapper: ChromeWrapper
 };
@@ -27,6 +31,7 @@ import { default as CirclePickerWrapper } from './components/variant/circle-pick
 import { default as CircleSliderIndicator } from './components/variant/circle-picker/SliderIndicator.svelte';
 import { default as CircleSliderWrapper } from './components/variant/circle-picker/SliderWrapper.svelte';
 import { default as CircleWrapper } from './components/variant/circle-picker/Wrapper.svelte';
+// No custom TextInput for the Circle variant but it doesn't prevent you from making one!
 
 export const CircleVariant = {
 	sliderIndicator: CircleSliderIndicator,
@@ -35,6 +40,7 @@ export const CircleVariant = {
 	pickerWrapper: CirclePickerWrapper,
 	sliderWrapper: CircleSliderWrapper,
 	alphaWrapper: CircleSliderWrapper,
+	textInput: TextInput,
 	input: CircleInput,
 	wrapper: CircleWrapper
 };

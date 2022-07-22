@@ -2,7 +2,9 @@
 	import type { Color } from 'chyme';
 
 	export let pos: number;
+	/* svelte-ignore unused-export-let */
 	export let color: Color;
+	/* svelte-ignore unused-export-let */
 	export let toRight: boolean;
 </script>
 

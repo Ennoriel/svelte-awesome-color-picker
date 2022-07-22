@@ -83,17 +83,18 @@ npm i -D svelte-awesome-color-picker
 
 ### props
 
-| Props      | Type         | Default Value  | Usage                                                                            |
-| ---------- | ------------ | -------------- | -------------------------------------------------------------------------------- |
-| label      | `string`     | Choose a color | Label of the component                                                           |
-| isAlpha    | `boolean`    | true           | The alpha slider is visible                                                      |
-| isInput    | `boolean`    | true           | The input button is visible                                                      |
-| isOpen     | `boolean`    | false          | The picker is open by default and cannot be closed                               |
-| toRight    | `boolean`    | false          | Sliders direction, if true, the direction is horizontal                          |
-| rgb        | `Rgb`        | red            | The RGB color object that should be bound to                                     |
-| hex        | `string`     | red            | The hex color string that should be bound to                                     |
-| hsv        | `Hsv`        | red            | The HSV color object that should be bound to                                     |
-| components | `Components` |                | By default a Circle and a Chrome variants are available. Can be fully customized |
+| Props       | Type         | Default Value  | Usage                                                                            |
+| ----------- | ------------ | -------------- | -------------------------------------------------------------------------------- |
+| label       | `string`     | Choose a color | Label of the component                                                           |
+| isAlpha     | `boolean`    | true           | The alpha slider is visible                                                      |
+| isTextInput | `boolean`    | true           | The textual hex / rgb / hsv input are visible                                    |
+| isInput     | `boolean`    | true           | The input button is visible                                                      |
+| isOpen      | `boolean`    | false          | The picker is open by default and cannot be closed                               |
+| toRight     | `boolean`    | false          | Sliders direction, if true, the direction is horizontal                          |
+| rgb         | `Rgb`        | red            | The RGB color object that should be bound to                                     |
+| hex         | `string`     | red            | The hex color string that should be bound to                                     |
+| hsv         | `Hsv`        | red            | The HSV color object that should be bound to                                     |
+| components  | `Components` |                | By default a Circle and a Chrome variants are available. Can be fully customized |
 
 ### css variables
 
@@ -115,12 +116,24 @@ A **Circle** and a **Chrome** variants are available. **To use the Chrome varian
 	import ColorPicker, { CircleVariant } from 'svelte-awesome-color-picker';
 	import CustomInput from '$lib/path/to/my/awesome/variant/Input.svelte';
 
-	let color
+	let rgb
 </script>
 
 <!-- example with the CircleVariant and a custom Input component -->
-<ColorPicker bind:color components={{...CircleVariant: input: CustomInput}} />
+<ColorPicker bind:rgb components={{...CircleVariant: input: CustomInput}} />
 ```
+
+The components that can be overridden are:
+
+- sliderIndicator
+- pickerIndicator
+- alphaIndicator
+- pickerWrapper
+- sliderWrapper
+- alphaWrapper
+- textInput
+- input
+- wrapper
 
 #### pickerIndicator
 
@@ -148,6 +161,18 @@ Props:
 | ----- | -------- | ----------------------------------------------- |
 | pos   | `number` | expressed in %                                  |
 | color | `Color`  | respectively the Hue color and the actual color |
+
+#### TextInput
+
+Component representing the rgb / hex / hsv textual input below the picker
+
+Props:
+
+| Props | Type     | Usage                                        |
+| ----- | -------- | -------------------------------------------- |
+| rgb   | `Rgb`    | The RGB color object that should be bound to |
+| hex   | `string` | The hex color string that should be bound to |
+| hsv   | `Hsv`    | The HSV color object that should be bound to |
 
 #### Input
 

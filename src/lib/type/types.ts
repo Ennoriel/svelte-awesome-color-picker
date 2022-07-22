@@ -2,6 +2,7 @@ import type SliderIndicator from '../components/variant/default/SliderIndicator.
 import type PickerIndicator from '../components/variant/default/PickerIndicator.svelte';
 import type PickerWrapper from '../components/variant/default/PickerWrapper.svelte';
 import type SliderWrapper from '../components/variant/default/SliderWrapper.svelte';
+import type TextInput from '../components/variant/default/TextInput.svelte';
 import type Input from '../components/variant/default/Input.svelte';
 import type Wrapper from '../components/variant/default/Wrapper.svelte';
 
@@ -12,6 +13,7 @@ export type Components = {
 	pickerWrapper: typeof PickerWrapper;
 	sliderWrapper: typeof SliderWrapper;
 	alphaWrapper: typeof SliderWrapper;
+	textInput: typeof TextInput;
 	input: typeof Input;
 	wrapper: typeof Wrapper;
 };

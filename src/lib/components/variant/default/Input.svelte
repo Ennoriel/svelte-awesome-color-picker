@@ -4,14 +4,9 @@
 	export let button: HTMLButtonElement;
 	export let color: Color;
 	export let label: string;
+	/* svelte-ignore unused-export-let */
 	export let isOpen: boolean;
-
-	function keyup(e: KeyboardEvent) {
-		if (document.activeElement?.isSameNode(button) && !e.shiftKey && e.key === 'Tab') isOpen = true;
-	}
 </script>
-
-<svelte:window on:keyup={keyup} />
 
 <button bind:this={button}>
 	<div style="background-color: {color.hex};" />

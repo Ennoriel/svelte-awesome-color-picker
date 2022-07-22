@@ -4,6 +4,7 @@
 	import Picker from './Picker.svelte';
 	import Slider from './Slider.svelte';
 	import Alpha from './Alpha.svelte';
+	import TextInput from './variant/default/TextInput.svelte';
 	import SliderIndicator from './variant/default/SliderIndicator.svelte';
 	import PickerIndicator from './variant/default/PickerIndicator.svelte';
 	import ArrowKeyHandler from './ArrowKeyHandler.svelte';
@@ -21,6 +22,7 @@
 	export let label = 'Choose a color';
 	export let isAlpha = true;
 	export let isInput = true;
+	export let isTextInput = true;
 	export let isPopup = true;
 	export let isOpen = !isInput;
 	export let toRight = false;
@@ -33,6 +35,8 @@
 	let _hsv: Hsv = { h: 0, s: 1, v: 1 } as Hsv;
 	let _hex = '#ff0000';
 
+	let span: HTMLSpanElement;
+
 	const default_components: Components = {
 		sliderIndicator: SliderIndicator,
 		pickerIndicator: PickerIndicator,
@@ -40,6 +44,7 @@
 		pickerWrapper: PickerWrapper,
 		sliderWrapper: SliderWrapper,
 		alphaWrapper: SliderWrapper,
+		textInput: TextInput,
 		input: Input,
 		wrapper: Wrapper
 	};
@@ -61,6 +66,12 @@
 			} else if (isOpen && !wrapper.contains(target as Node)) {
 				isOpen = false;
 			}
+		}
+	}
+
+	function keyup(e: KeyboardEvent) {
+		if (e.key === 'Tab') {
+			isOpen = span?.contains(document.activeElement);
 		}
 	}
 
@@ -108,38 +119,43 @@
 
 <ArrowKeyHandler />
 
-<svelte:window on:mousedown={mousedown} />
+<svelte:window on:mousedown={mousedown} on:keyup={keyup} />
 
-{#if isInput}
-	<svelte:component
-		this={getComponents().input}
-		color={{ ...hsv, ...rgb, hex }}
-		{label}
-		bind:button
-		bind:isOpen
-	/>
-{/if}
+<span bind:this={span}>
+	{#if isInput}
+		<svelte:component
+			this={getComponents().input}
+			color={{ ...hsv, ...rgb, hex }}
+			{label}
+			bind:button
+			bind:isOpen
+		/>
+	{/if}
 
-<svelte:component this={getComponents().wrapper} bind:wrapper {isOpen} {isPopup} {toRight}>
-	<Picker
-		components={getComponents()}
-		h={hsv.h}
-		bind:s={hsv.s}
-		bind:v={hsv.v}
-		bind:isOpen
-		{toRight}
-	/>
-	<Slider components={getComponents()} bind:h={hsv.h} {toRight} />
-	{#if isAlpha}
-		<Alpha
+	<svelte:component this={getComponents().wrapper} bind:wrapper {isOpen} {isPopup} {toRight}>
+		<Picker
 			components={getComponents()}
 			h={hsv.h}
-			s={hsv.s}
-			v={hsv.v}
-			bind:a={hsv.a}
-			{hex}
+			bind:s={hsv.s}
+			bind:v={hsv.v}
 			bind:isOpen
 			{toRight}
 		/>
-	{/if}
-</svelte:component>
+		<Slider components={getComponents()} bind:h={hsv.h} {toRight} />
+		{#if isAlpha}
+			<Alpha
+				components={getComponents()}
+				h={hsv.h}
+				s={hsv.s}
+				v={hsv.v}
+				bind:a={hsv.a}
+				{hex}
+				bind:isOpen
+				{toRight}
+			/>
+		{/if}
+		{#if isTextInput}
+			<svelte:component this={getComponents().textInput} bind:hex bind:rgb bind:hsv />
+		{/if}
+	</svelte:component>
+</span>

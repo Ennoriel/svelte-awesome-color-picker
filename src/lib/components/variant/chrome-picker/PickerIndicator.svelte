@@ -2,6 +2,7 @@
 	import type { Color } from 'chyme';
 
 	export let pos: { x: number; y: number };
+	/* svelte-ignore unused-export-let */
 	export let color: Color;
 </script>
 
