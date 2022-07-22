@@ -5,7 +5,7 @@ specifiers:
   '@sveltejs/kit': next
   '@typescript-eslint/eslint-plugin': ^5.27.0
   '@typescript-eslint/parser': ^5.30.7
-  chyme: ^1.2.0
+  chyme: ^1.2.1
   eslint: ^8.20.0
   eslint-config-prettier: ^8.3.0
   eslint-plugin-svelte3: ^4.0.0
@@ -24,10 +24,10 @@ specifiers:
 
 devDependencies:
   '@sveltejs/adapter-vercel': 1.0.0-next.65
-  '@sveltejs/kit': 1.0.0-next.385_svelte@3.49.0+vite@3.0.2
+  '@sveltejs/kit': 1.0.0-next.390_svelte@3.49.0+vite@3.0.2
   '@typescript-eslint/eslint-plugin': 5.30.7_6wltbjakwuqm7awqswigmiuhd4
   '@typescript-eslint/parser': 5.30.7_he2ccbldppg44uulnyq4rwocfa
-  chyme: 1.2.0
+  chyme: 1.2.1
   eslint: 8.20.0
   eslint-config-prettier: 8.5.0_eslint@8.20.0
   eslint-plugin-svelte3: 4.0.0_piwa6j2njmnknm35bh3wz5v52y
@@ -151,8 +151,8 @@ packages:
       - supports-color
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.385_svelte@3.49.0+vite@3.0.2:
-    resolution: {integrity: sha512-KPzzagH0EG7kceDDQC7w+U9OZdQ5rV4ZOKsobGNh8Rex59dkOXGdqvthGni+4WMppR9XEsM7T1Rtese6R4Y+YA==}
+  /@sveltejs/kit/1.0.0-next.390_svelte@3.49.0+vite@3.0.2:
+    resolution: {integrity: sha512-BlWjFL7v1y2vIYHMYMwH2Iy49eOkaunQ8jElQ9qMlC2kp/IdP3uLulS12ZX3oOURxoJICB4gQ82uEyjxen/kdQ==}
     engines: {node: '>=16.9'}
     hasBin: true
     peerDependencies:
@@ -512,8 +512,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /chyme/1.2.0:
-    resolution: {integrity: sha512-muaDq5yEuM0O/w/RFSTNiiSz8vRshutJRfqIXdi2wCCRdNYduCuAxv7IOrkyQ0HQKuhSlSALfgLJo3LaUgHAFw==}
+  /chyme/1.2.1:
+    resolution: {integrity: sha512-EZbcD+bzAIBFUpaRLVN6KVaIHtFsoNINJ0tjhK56wMEQKhR7UkgZL0BIloB6oXTMe9sW1CJTkma+6tOC5WshqQ==}
     dev: true
 
   /color-convert/2.0.1:

@@ -5,3 +5,4 @@ node_modules
 /package
 /.idea
 /.vercel_build_output
+/.vercel

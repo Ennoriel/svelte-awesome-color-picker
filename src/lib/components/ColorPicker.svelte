@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { hsv2Color, hex2Color, rgb2Color } from 'chyme';
-	import type { Color, Rgb, Hsv } from 'chyme';
+	import type { Rgb, Hsv } from 'chyme';
 	import Picker from './Picker.svelte';
 	import Slider from './Slider.svelte';
 	import Alpha from './Alpha.svelte';
@@ -26,8 +26,12 @@
 	export let toRight = false;
 
 	export let rgb: Rgb = { r: 255, g: 0, b: 0 } as Rgb;
-	export let hsv: Hsv = {} as Hsv;
-	export let hex = '';
+	export let hsv: Hsv = { h: 0, s: 1, v: 1 } as Hsv;
+	export let hex = '#ff0000';
+
+	let _rgb: Rgb = { r: 255, g: 0, b: 0 } as Rgb;
+	let _hsv: Hsv = { h: 0, s: 1, v: 1 } as Hsv;
+	let _hex = '#ff0000';
 
 	const default_components: Components = {
 		sliderIndicator: SliderIndicator,
@@ -60,19 +64,45 @@
 		}
 	}
 
-	$: {
-		let color: Color = {} as Color;
-		if (hsv && 'h' in hsv) {
-			color = hsv2Color(hsv);
-		} else if (hex && hex.length) {
-			color = hex2Color({ hex });
-		} else if (rgb && 'r' in rgb) {
-			color = rgb2Color(rgb);
+	/**
+	 * using a function seems to trigger the exported value change only once when all of them has been updated
+	 * and not just after the hsv change
+	 */
+	function updateColor() {
+		// reinitialize empty alpha values
+		if (hsv.a === undefined) hsv.a = 1;
+		if (_hsv.a === undefined) _hsv.a = 1;
+		if (rgb.a === undefined) rgb.a = 1;
+		if (_rgb.a === undefined) _rgb.a = 1;
+		if (hex?.substring(7) === 'ff') hex = hex.substring(0, 7);
+		if (hex?.substring(7) === 'ff') hex = hex.substring(0, 7);
+
+		// check which color format changed and updates the others accordingly
+		if (hsv.h !== _hsv.h || hsv.s !== _hsv.s || hsv.v !== _hsv.v || hsv.a !== hsv.a) {
+			const color = hsv2Color(hsv);
+			const { r, g, b, a, hex: cHex } = color;
+			rgb = { r, g, b, a };
+			hex = cHex;
+		} else if (rgb.r !== _rgb.r || rgb.g !== _rgb.g || rgb.b !== _rgb.b || rgb.a !== _rgb.a) {
+			const color = rgb2Color(rgb);
+			const { h, s, v, a, hex: cHex } = color;
+			hsv = { h, s, v, a };
+			hex = cHex;
+		} else if (hex !== _hex) {
+			const color = hex2Color({ hex });
+			const { r, g, b, h, s, v, a } = color;
+			rgb = { r, g, b, a };
+			hsv = { h, s, v, a };
 		}
-		const { r, g, b, h, s, v, a, hex: cHex } = color;
-		rgb = { r, g, b, a };
-		hsv = { h, s, v, a };
-		hex = cHex;
+
+		// update old colors
+		_hsv = Object.assign({}, hsv);
+		_rgb = Object.assign({}, rgb);
+		_hex = hex;
+	}
+
+	$: if (hsv || rgb || hex) {
+		updateColor();
 	}
 </script>
 
