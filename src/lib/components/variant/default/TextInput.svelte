@@ -39,19 +39,22 @@
 <div class="container">
 	{#if mode === 0}
 		<div class="input-container">
-			<input value={hex} on:input={updateHex} />
+			<input value={hex} on:input={updateHex} style:flex="3" />
+			<input value={rgb.a} type="number" min="0" max="1" step="0.01" on:input={updateRgb('a')} />
 		</div>
 	{:else if mode === 1}
 		<div class="input-container">
 			<input value={rgb.r} type="number" min="0" max="255" on:input={updateRgb('r')} />
 			<input value={rgb.g} type="number" min="0" max="255" on:input={updateRgb('g')} />
 			<input value={rgb.b} type="number" min="0" max="255" on:input={updateRgb('b')} />
+			<input value={rgb.a} type="number" min="0" max="1" step="0.01" on:input={updateRgb('a')} />
 		</div>
 	{:else}
 		<div class="input-container">
 			<input value={h} type="number" min="0" max="360" on:input={updateHsv('h')} />
 			<input value={s} type="number" min="0" max="1" step="0.01" on:input={updateHsv('s')} />
 			<input value={v} type="number" min="0" max="1" step="0.01" on:input={updateHsv('v')} />
+			<input value={hsv.a} type="number" min="0" max="1" step="0.01" on:input={updateHsv('a')} />
 		</div>
 	{/if}
 	<button on:click={() => (mode = (mode + 1) % 3)}>{modes[mode]}</button>
@@ -89,11 +92,18 @@
 		flex: 1;
 		transition: background-color 0.2s;
 	}
+
 	button:hover {
 		background-color: #ccc;
 	}
+
 	input:focus,
 	button:focus {
+		outline: none;
+	}
+
+	:global(.has-been-tabbed) input:focus-visible,
+	:global(.has-been-tabbed) button:focus-visible {
 		outline: 2px solid var(--focus-color, red);
 		outline-offset: 2px;
 	}

@@ -13,7 +13,7 @@
 		display: inline-block;
 		margin-bottom: 5px;
 		height: 200px;
-		width: 200px;
+		width: 260px;
 		border-radius: 8px 8px 0 0;
 		overflow: hidden;
 
