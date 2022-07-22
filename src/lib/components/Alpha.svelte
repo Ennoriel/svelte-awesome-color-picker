@@ -110,9 +110,9 @@
 		class:to-right={toRight}
 		style="--alpha-color: {hex?.substring(0, 7)}"
 		bind:this={alpha}
-		on:mousedown={mouseDown}
+		on:mousedown|preventDefault|stopPropagation={mouseDown}
 		on:touchstart={touch}
-		on:touchmove={touch}
+		on:touchmove|preventDefault|stopPropagation={touch}
 		on:touchend={touch}
 	>
 		<svelte:component

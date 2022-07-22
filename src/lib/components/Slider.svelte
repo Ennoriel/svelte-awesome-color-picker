@@ -100,9 +100,9 @@
 		class:to-right={toRight}
 		tabindex="0"
 		bind:this={slider}
-		on:mousedown={mouseDown}
+		on:mousedown|preventDefault|stopPropagation={mouseDown}
 		on:touchstart={touch}
-		on:touchmove={touch}
+		on:touchmove|preventDefault|stopPropagation={touch}
 		on:touchend={touch}
 	>
 		<svelte:component this={components.sliderIndicator} {pos} {toRight} />

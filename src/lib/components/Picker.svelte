@@ -136,9 +136,9 @@
 		class="picker"
 		tabindex="0"
 		bind:this={picker}
-		on:mousedown={pickerMouseDown}
+		on:mousedown|preventDefault|stopPropagation={pickerMouseDown}
 		on:touchstart={touch}
-		on:touchmove={touch}
+		on:touchmove|preventDefault|stopPropagation={touch}
 		on:touchend={touch}
 		style="--color-bg: {colorBg?.hex};"
 	>
