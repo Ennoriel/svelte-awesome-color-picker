@@ -122,8 +122,6 @@
 	function keydown(e: KeyboardEvent) {
 		if (e.key === 'Tab') span.classList.add('has-been-tabbed');
 	}
-
-	$: console.log(isDark);
 </script>
 
 <ArrowKeyHandler />

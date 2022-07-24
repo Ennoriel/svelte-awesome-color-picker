@@ -7,10 +7,9 @@
 </script>
 
 <div
-	style:left="{pos.x}%"
-	style:top="{pos.y}%"
-	style:background-color={color.hex}
-	style:border-color={isDark ? 'white' : 'black'}
+	style={`left: ${pos.x}%; top: ${pos.y}%; background-color: ${color.hex}; border-color: ${
+		isDark ? 'white' : 'black'
+	};`}
 />
 
 <style>

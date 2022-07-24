@@ -40,7 +40,7 @@
 <div class="container">
 	{#if mode === 0}
 		<div class="input-container">
-			<input value={hex} on:input={updateHex} style:flex="3" />
+			<input value={hex} on:input={updateHex} style="flex: 3" />
 			<input value={a} type="number" min="0" max="1" step="0.01" on:input={updateRgb('a')} />
 		</div>
 	{:else if mode === 1}
@@ -66,7 +66,7 @@
 		display: flex;
 		flex-direction: column;
 		gap: 10px;
-		margin: 5px 10px;
+		margin: 10px 5px 5px;
 	}
 	.input-container {
 		display: flex;

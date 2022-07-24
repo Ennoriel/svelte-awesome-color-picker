@@ -8,9 +8,9 @@
 </script>
 
 <div
-	style:left="calc({(pos.x / 200) * 186}% + 2px)"
-	style:top="calc({(pos.y / 200) * 186}% + 2px)"
-	style:box-shadow={`0 0 4px ${isDark ? 'white' : 'black'}`}
+	style={`left: calc(${(pos.x / 200) * 186}% + 2px); top: calc(${
+		(pos.y / 200) * 186
+	}% + 2px); box-shadow: 0 0 4px ${isDark ? 'white' : 'black'};`}
 />
 
 <style>

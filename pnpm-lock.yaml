@@ -3,27 +3,27 @@ lockfileVersion: 5.4
 specifiers:
   '@sveltejs/adapter-vercel': next
   '@sveltejs/kit': next
-  '@typescript-eslint/eslint-plugin': ^5.27.0
+  '@typescript-eslint/eslint-plugin': ^5.30.7
   '@typescript-eslint/parser': ^5.30.7
-  chyme: ^1.2.2
+  chyme: ^1.2.3
   eslint: ^8.20.0
-  eslint-config-prettier: ^8.3.0
+  eslint-config-prettier: ^8.5.0
   eslint-plugin-svelte3: ^4.0.0
   mdsvex: ^0.10.6
-  prettier: ^2.6.2
+  prettier: ^2.7.1
   prettier-plugin-svelte: ^2.7.0
   rehype-autolink-headings: ^6.1.1
   rehype-slug: ^5.0.1
-  svelte: ^3.44.0
-  svelte-check: ^2.7.1
-  svelte-preprocess: ^4.10.6
+  svelte: ^3.49.0
+  svelte-check: ^2.8.0
+  svelte-preprocess: ^4.10.7
   svelte2tsx: ^0.5.12
-  tslib: ^2.3.1
-  typescript: ^4.7.2
+  tslib: ^2.4.0
+  typescript: ^4.7.4
   vite: ^3.0.2
 
 dependencies:
-  chyme: 1.2.2
+  chyme: 1.2.3
 
 devDependencies:
   '@sveltejs/adapter-vercel': 1.0.0-next.65
@@ -55,7 +55,7 @@ packages:
       ajv: 6.12.6
       debug: 4.3.4
       espree: 9.3.2
-      globals: 13.16.0
+      globals: 13.17.0
       ignore: 5.2.0
       import-fresh: 3.3.0
       js-yaml: 4.1.0
@@ -514,8 +514,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /chyme/1.2.2:
-    resolution: {integrity: sha512-dXPkyHHqPWqen6BAtyfWYbfq89OP7tuvuQJsavGtPEjm9aeoeWydQr36kqFbKi+ci4FJCdxJuLx9MhRPXlvQIg==}
+  /chyme/1.2.3:
+    resolution: {integrity: sha512-4ioKnCEXxiaEIPq2+opq7Yyykri9XfbGIxDLmwAyDyAHcCAoFsSh7dbGcpjHIF2h296e18sRhVnj9Qq8eUySvA==}
     dev: false
 
   /color-convert/2.0.1:
@@ -903,7 +903,7 @@ packages:
       file-entry-cache: 6.0.1
       functional-red-black-tree: 1.0.1
       glob-parent: 6.0.2
-      globals: 13.16.0
+      globals: 13.17.0
       ignore: 5.2.0
       import-fresh: 3.3.0
       imurmurhash: 0.1.4
@@ -1104,8 +1104,8 @@ packages:
       path-is-absolute: 1.0.1
     dev: true
 
-  /globals/13.16.0:
-    resolution: {integrity: sha512-A1lrQfpNF+McdPOnnFqY3kSN0AFTy485bTi1bkLk4mVPODIUEcSfhHgRqA+QdXPksrSTTztYXx37NFV+GpGk3Q==}
+  /globals/13.17.0:
+    resolution: {integrity: sha512-1C+6nQRb1GwGMKm2dH/E7enFAMxGTmGI7/dEdhy/DNelv85w9B72t3uc5frtMNXIbzrarJJ/lTCjcaZwbLJmyw==}
     engines: {node: '>=8'}
     dependencies:
       type-fest: 0.20.2

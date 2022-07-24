@@ -31,7 +31,7 @@ npm i -D svelte-awesome-color-picker
 ### props
 
 | Props       | Type         | Default Value  | Usage                                                                            |
-|-------------| ------------ | -------------- |----------------------------------------------------------------------------------|
+| ----------- | ------------ | -------------- | -------------------------------------------------------------------------------- |
 | label       | `string`     | Choose a color | Label of the component                                                           |
 | isAlpha     | `boolean`    | true           | The alpha slider is visible                                                      |
 | isTextInput | `boolean`    | true           | The textual hex / rgb / hsv input are visible                                    |
@@ -92,11 +92,11 @@ Component representing the picker indicator.
 
 Props:
 
-| Props   | Default Value            | Usage                                                               |
-|---------|--------------------------|---------------------------------------------------------------------|
-| pos     | `{x: number, y: number}` | expressed in %                                                      |
-| color   | `Color`                  | the actual color                                                    |
-| isDark  | `boolean`                | Indicates if the selected color is dark based on HSP representation |
+| Props  | Default Value            | Usage                                                               |
+| ------ | ------------------------ | ------------------------------------------------------------------- |
+| pos    | `{x: number, y: number}` | expressed in %                                                      |
+| color  | `Color`                  | the actual color                                                    |
+| isDark | `boolean`                | Indicates if the selected color is dark based on HSP representation |
 
 #### sliderIndicator & alphaIndicator
 
