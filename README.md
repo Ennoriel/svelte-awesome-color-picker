@@ -68,7 +68,7 @@ A **Circle** and a **Chrome** variants are available. **To use the Chrome varian
 </script>
 
 <!-- example with the CircleVariant and a custom Input component -->
-<ColorPicker bind:rgb components={{...CircleVariant: input: CustomInput}} />
+<ColorPicker bind:rgb components={{...CircleVariant, input: CustomInput}} />
 ```
 
 The components that can be overridden are:
