@@ -64,11 +64,11 @@ A **Circle** and a **Chrome** variants are available. **To use the Chrome varian
 	import ColorPicker, { CircleVariant } from 'svelte-awesome-color-picker';
 	import CustomInput from '$lib/path/to/my/awesome/variant/Input.svelte';
 
-	let rgb
+	let rgb;
 </script>
 
 <!-- example with the CircleVariant and a custom Input component -->
-<ColorPicker bind:rgb components={{...CircleVariant, input: CustomInput}} />
+<ColorPicker bind:rgb components={{ ...CircleVariant, input: CustomInput }} />
 ```
 
 The components that can be overridden are:
@@ -117,11 +117,12 @@ Component representing the rgb / hex / hsv textual input below the picker
 
 Props:
 
-| Props | Type     | Usage                                        |
-| ----- | -------- | -------------------------------------------- |
-| rgb   | `Rgb`    | The RGB color object that should be bound to |
-| hex   | `string` | The hex color string that should be bound to |
-| hsv   | `Hsv`    | The HSV color object that should be bound to |
+| Props   | Type     | Usage                                        |
+| ------- | -------- | -------------------------------------------- |
+| isAlpha | boolean  | The alpha input is visible                   |
+| rgb     | `Rgb`    | The RGB color object that should be bound to |
+| hex     | `string` | The hex color string that should be bound to |
+| hsv     | `Hsv`    | The HSV color object that should be bound to |
 
 #### Input
 

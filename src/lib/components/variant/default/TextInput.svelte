@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Rgb, Hsv } from 'chyme';
 
+	export let isAlpha: boolean;
 	export let rgb: Rgb;
 	export let hsv: Hsv;
 	export let hex: string;
@@ -41,21 +42,27 @@
 	{#if mode === 0}
 		<div class="input-container">
 			<input value={hex} on:input={updateHex} style="flex: 3" />
-			<input value={a} type="number" min="0" max="1" step="0.01" on:input={updateRgb('a')} />
+			{#if isAlpha}
+				<input value={a} type="number" min="0" max="1" step="0.01" on:input={updateRgb('a')} />
+			{/if}
 		</div>
 	{:else if mode === 1}
 		<div class="input-container">
 			<input value={rgb.r} type="number" min="0" max="255" on:input={updateRgb('r')} />
 			<input value={rgb.g} type="number" min="0" max="255" on:input={updateRgb('g')} />
 			<input value={rgb.b} type="number" min="0" max="255" on:input={updateRgb('b')} />
-			<input value={a} type="number" min="0" max="1" step="0.01" on:input={updateRgb('a')} />
+			{#if isAlpha}
+				<input value={a} type="number" min="0" max="1" step="0.01" on:input={updateRgb('a')} />
+			{/if}
 		</div>
 	{:else}
 		<div class="input-container">
 			<input value={h} type="number" min="0" max="360" on:input={updateHsv('h')} />
 			<input value={s} type="number" min="0" max="1" step="0.01" on:input={updateHsv('s')} />
 			<input value={v} type="number" min="0" max="1" step="0.01" on:input={updateHsv('v')} />
-			<input value={a} type="number" min="0" max="1" step="0.01" on:input={updateHsv('a')} />
+			{#if isAlpha}
+				<input value={a} type="number" min="0" max="1" step="0.01" on:input={updateHsv('a')} />
+			{/if}
 		</div>
 	{/if}
 	<button on:click={() => (mode = (mode + 1) % 3)}>{modes[mode]}</button>

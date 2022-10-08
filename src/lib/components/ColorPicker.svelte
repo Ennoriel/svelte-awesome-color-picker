@@ -163,7 +163,7 @@
 			/>
 		{/if}
 		{#if isTextInput}
-			<svelte:component this={getComponents().textInput} bind:hex bind:rgb bind:hsv />
+			<svelte:component this={getComponents().textInput} bind:hex bind:rgb bind:hsv {isAlpha} />
 		{/if}
 	</svelte:component>
 </span>
