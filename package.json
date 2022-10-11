@@ -1,6 +1,6 @@
 {
 	"name": "svelte-awesome-color-picker",
-	"version": "1.2.4",
+	"version": "1.2.5",
 	"description": "A Svelte component to crop images with easy interactions",
 	"homepage": "https://ennoriel.github.io/svelte-awesome-color-picker",
 	"repository": {
@@ -15,8 +15,8 @@
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync",
 		"check": "svelte-check --tsconfig ./tsconfig.json",
-		"lint": "prettier --check --plugin-search-dir=. . && eslint .",
-		"format": "prettier --write --plugin-search-dir=. .",
+		"lint": "eslint .",
+		"prettier": "prettier --write --plugin-search-dir=. .",
 		"package": "svelte-kit package"
 	},
 	"entry": "ColorPicker.svelte",
