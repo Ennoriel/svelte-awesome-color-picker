@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ColorPicker, { CircleVariant } from 'svelte-awesome-color-picker';
+	import ColorPicker, { CircleVariant } from '$lib';
 	import type { Rgb, Hsv } from 'chyme';
 
 	export let rgb: Rgb | undefined = undefined;

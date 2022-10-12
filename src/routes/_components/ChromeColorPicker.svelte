@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ColorPicker, { ChromeVariant } from 'svelte-awesome-color-picker';
+	import ColorPicker, { ChromeVariant } from '$lib';
 	import type { Rgb, Hsv } from 'chyme';
 
 	export let rgb: Rgb | undefined = undefined;

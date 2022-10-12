@@ -1,8 +1,8 @@
 <script lang="ts">
-	import ColorPicker from 'svelte-awesome-color-picker';
+	import ColorPicker from '$lib';
 	import CirclePickerColorPicker from './_components/CircleColorPicker.svelte';
 	import ChromePickerColorPicker from './_components/ChromeColorPicker.svelte';
-    import { browser } from '$app/env';
+    import { browser } from '$app/environment';
 
     let hex = "#f6f0dc";
     let rgb;

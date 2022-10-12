@@ -103,7 +103,6 @@
 
 <svelte:component this={components.alphaWrapper} {focused} {toRight}>
 	<div
-		tabindex="0"
 		class="alpha"
 		class:to-right={toRight}
 		style="--alpha-color: {hex?.substring(0, 7)}"

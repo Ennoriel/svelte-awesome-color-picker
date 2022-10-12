@@ -133,7 +133,6 @@
 <svelte:component this={components.pickerWrapper} {focused} {toRight}>
 	<div
 		class="picker"
-		tabindex="0"
 		bind:this={picker}
 		on:mousedown|preventDefault|stopPropagation={pickerMouseDown}
 		on:touchstart={touch}

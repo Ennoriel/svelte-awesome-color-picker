@@ -98,7 +98,6 @@
 	<div
 		class="slider"
 		class:to-right={toRight}
-		tabindex="0"
 		bind:this={slider}
 		on:mousedown|preventDefault|stopPropagation={mouseDown}
 		on:touchstart={touch}
