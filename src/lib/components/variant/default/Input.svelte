@@ -1,18 +1,16 @@
 <script lang="ts">
-	import type { Color } from 'chyme';
-
 	export let button: HTMLButtonElement;
-	export let color: Color;
+	export let hex: string;
 	export let label: string;
 	/* svelte-ignore unused-export-let */
 	export let isOpen: boolean;
 </script>
 
 <button bind:this={button}>
-	<div style="background-color: {color.hex};" />
+	<div style="background-color: {hex};" />
 	{label}
 </button>
-<input type="hidden" value={color.hex} />
+<input type="hidden" value={hex} />
 
 <style>
 	div {

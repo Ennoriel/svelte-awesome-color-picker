@@ -1,7 +1,7 @@
 import { default as ColorPicker } from './components/ColorPicker.svelte';
 export default ColorPicker;
 
-export type { Hsv, Rgb, Color } from 'chyme';
+export type { HsvaColor, RgbaColor } from 'colord';
 
 import { default as ChromeInput } from './components/variant/chrome-picker/Input.svelte';
 import { default as ChromePickerIndicator } from './components/variant/chrome-picker/PickerIndicator.svelte';

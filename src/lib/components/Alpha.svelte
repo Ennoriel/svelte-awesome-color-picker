@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { hsv2Color } from 'chyme';
+	import { colord } from 'colord';
 	import { keyPressed, keyPressedCustom } from '../util/store';
 	import { easeInOutSin } from '../util/transition';
 	import type { Components } from '$lib/type/types';
@@ -102,8 +102,10 @@
 />
 
 <svelte:component this={components.alphaWrapper} {focused} {toRight}>
+	<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 	<div
 		class="alpha"
+		tabindex="0"
 		class:to-right={toRight}
 		style="--alpha-color: {hex?.substring(0, 7)}"
 		bind:this={alpha}
@@ -116,7 +118,7 @@
 			this={components.alphaIndicator}
 			{pos}
 			{toRight}
-			color={hsv2Color({ h, s, v, a })}
+			hex={colord({ h, s, v, a }).toHex()}
 		/>
 	</div>
 </svelte:component>

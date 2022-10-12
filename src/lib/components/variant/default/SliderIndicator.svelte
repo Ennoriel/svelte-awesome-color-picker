@@ -1,9 +1,5 @@
 <script lang="ts">
-	import type { Color } from 'chyme';
-
 	export let pos: number;
-	/* svelte-ignore unused-export-let */
-	export let color: Color;
 	export let toRight: boolean;
 </script>
 

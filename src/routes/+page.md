@@ -92,9 +92,9 @@ npm i -D svelte-awesome-color-picker
 | isOpen      | `boolean`    | false          | The picker is open by default and cannot be closed                               |
 | isDark      | `boolean`    | false          | Indicates if the selected color is dark based on HSP representation              |
 | toRight     | `boolean`    | false          | Sliders direction, if true, the direction is horizontal                          |
-| rgb         | `Rgb`        | red            | The RGB color object that should be bound to                                     |
+| rgb         | `RgbaColor`  | red            | The RGB color object that should be bound to                                     |
 | hex         | `string`     | red            | The hex color string that should be bound to                                     |
-| hsv         | `Hsv`        | red            | The HSV color object that should be bound to                                     |
+| hsv         | `HsvaColor`  | red            | The HSV color object that should be bound to                                     |
 | components  | `Components` |                | By default a Circle and a Chrome variants are available. Can be fully customized |
 
 ### css variables
@@ -148,7 +148,7 @@ Props:
 | Props  | Default Value            | Usage                                                               |
 | ------ | ------------------------ | ------------------------------------------------------------------- |
 | pos    | `{x: number, y: number}` | expressed in %                                                      |
-| color  | `Color`                  | the actual color                                                    |
+| hex    | string                   | the actual hexadecimal color                                        |
 | isDark | `boolean`                | Indicates if the selected color is dark based on HSP representation |
 
 #### sliderIndicator & alphaIndicator
@@ -159,10 +159,10 @@ Components representing the (hue) slider and alpha indicators.
 
 Props:
 
-| Props | Type     | Usage                                           |
-| ----- | -------- | ----------------------------------------------- |
-| pos   | `number` | expressed in %                                  |
-| color | `Color`  | respectively the Hue color and the actual color |
+| Props   | Type     | Usage                                                  |
+| ------- | -------- | ------------------------------------------------------ |
+| pos     | `number` | expressed in %                                         |
+| toRight | boolean  | slider direction, if true, the direction is horizontal |
 
 #### TextInput
 
@@ -170,12 +170,12 @@ Component representing the rgb / hex / hsv textual input below the picker
 
 Props:
 
-| Props   | Type     | Usage                                        |
-| ------- | -------- | -------------------------------------------- |
-| isAlpha | boolean  | The alpha input is visible                   |
-| rgb     | `Rgb`    | The RGB color object that should be bound to |
-| hex     | `string` | The hex color string that should be bound to |
-| hsv     | `Hsv`    | The HSV color object that should be bound to |
+| Props   | Type        | Usage                                        |
+| ------- | ----------- | -------------------------------------------- |
+| isAlpha | boolean     | The alpha input is visible                   |
+| rgb     | `RgbaColor` | The RGB color object that should be bound to |
+| hex     | `string`    | The hex color string that should be bound to |
+| hsv     | `HsvaColor` | The HSV color object that should be bound to |
 
 #### Input
 
@@ -186,7 +186,7 @@ Props:
 | Props  | Type          | Usage                                                                          |
 | ------ | ------------- | ------------------------------------------------------------------------------ |
 | button | `HTMLElement` | this property should be exported from only focusable element of this component |
-| color  | `Color`       | the actual color                                                               |
+| hex    | string        | the actual hexadecimal color                                                   |
 | label  | `string`      | Label of the component                                                         |
 | isOpen | `boolean`     | props that can be toggled on or off to open or close the color picker          |
 

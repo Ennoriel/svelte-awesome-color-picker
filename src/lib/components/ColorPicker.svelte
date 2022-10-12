@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { hsv2Color, hex2Color, rgb2Color, isDark as checkIsDark } from 'chyme';
-	import type { Rgb, Hsv } from 'chyme';
+	import type { RgbaColor, HsvaColor, Colord } from 'colord';
 	import Picker from './Picker.svelte';
 	import Slider from './Slider.svelte';
 	import Alpha from './Alpha.svelte';
@@ -13,6 +12,7 @@
 	import Input from './variant/default/Input.svelte';
 	import Wrapper from './variant/default/Wrapper.svelte';
 	import type { Components } from '../type/types';
+	import { colord } from 'colord';
 
 	export let components: Partial<Components> = {};
 
@@ -28,12 +28,12 @@
 	export let toRight = false;
 	export let isDark = false;
 
-	export let rgb: Rgb = { r: 255, g: 0, b: 0 } as Rgb;
-	export let hsv: Hsv = { h: 0, s: 1, v: 1 } as Hsv;
+	export let rgb: RgbaColor = { r: 255, g: 0, b: 0 } as RgbaColor;
+	export let hsv: HsvaColor = { h: 0, s: 1, v: 1 } as HsvaColor;
 	export let hex = '#ff0000';
 
-	let _rgb: Rgb = { r: 255, g: 0, b: 0 } as Rgb;
-	let _hsv: Hsv = { h: 0, s: 1, v: 1 } as Hsv;
+	let _rgb: RgbaColor = { r: 255, g: 0, b: 0 } as RgbaColor;
+	let _hsv: HsvaColor = { h: 0, s: 1, v: 1 } as HsvaColor;
 	let _hex = '#ff0000';
 
 	let span: HTMLSpanElement;
@@ -89,25 +89,26 @@
 		if (hex?.substring(7) === 'ff') hex = hex.substring(0, 7);
 		if (hex?.substring(7) === 'ff') hex = hex.substring(0, 7);
 
+		let tmpColor: Colord | undefined;
+
 		// check which color format changed and updates the others accordingly
 		if (hsv.h !== _hsv.h || hsv.s !== _hsv.s || hsv.v !== _hsv.v || hsv.a !== _hsv.a) {
-			const color = hsv2Color(hsv);
-			const { r, g, b, a, hex: cHex } = color;
-			rgb = { r, g, b, a };
-			hex = cHex;
+			tmpColor = colord(hsv);
+			rgb = tmpColor.toRgb();
+			hex = tmpColor.toHex();
 		} else if (rgb.r !== _rgb.r || rgb.g !== _rgb.g || rgb.b !== _rgb.b || rgb.a !== _rgb.a) {
-			const color = rgb2Color(rgb);
-			const { h, s, v, a, hex: cHex } = color;
-			hsv = { h, s, v, a };
-			hex = cHex;
+			tmpColor = colord(rgb);
+			hex = tmpColor.toHex();
+			hsv = tmpColor.toHsv();
 		} else if (hex !== _hex) {
-			const color = hex2Color({ hex });
-			const { r, g, b, h, s, v, a } = color;
-			rgb = { r, g, b, a };
-			hsv = { h, s, v, a };
+			tmpColor = colord(hex);
+			rgb = tmpColor.toRgb();
+			hsv = tmpColor.toHsv();
 		}
 
-		isDark = checkIsDark(rgb);
+		if (tmpColor) {
+			isDark = tmpColor.isDark();
+		}
 
 		// update old colors
 		_hsv = Object.assign({}, hsv);
@@ -130,13 +131,7 @@
 
 <span bind:this={span}>
 	{#if isInput}
-		<svelte:component
-			this={getComponents().input}
-			color={{ ...hsv, ...rgb, hex }}
-			{label}
-			bind:button
-			bind:isOpen
-		/>
+		<svelte:component this={getComponents().input} {hex} {label} bind:button bind:isOpen />
 	{/if}
 
 	<svelte:component this={getComponents().wrapper} bind:wrapper {isOpen} {isPopup} {toRight}>

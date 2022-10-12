@@ -95,8 +95,10 @@
 />
 
 <svelte:component this={components.sliderWrapper} {focused} {toRight}>
+	<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 	<div
 		class="slider"
+		tabindex="0"
 		class:to-right={toRight}
 		bind:this={slider}
 		on:mousedown|preventDefault|stopPropagation={mouseDown}
@@ -110,35 +112,16 @@
 
 <style>
 	.slider {
+		--gradient: #ff0000, #ffff00 17.2%, #ffff00 18.2%, #00ff00 33.3%, #00ffff 49.5%, #00ffff 51.5%,
+			#0000ff 67.7%, #ff00ff 83.3%, #ff0000;
 		position: relative;
 		width: 100%;
 		height: 100%;
-		background: linear-gradient(
-			#ff0000,
-			#ffff00 17.2%,
-			#ffff00 18.2%,
-			#00ff00 33.3%,
-			#00ffff 49.5%,
-			#00ffff 51.5%,
-			#0000ff 67.7%,
-			#ff00ff 83.3%,
-			#ff0000
-		);
+		background: linear-gradient(var(--gradient));
 		outline: none;
 		user-select: none;
 	}
 	.to-right {
-		background: linear-gradient(
-			0.25turn,
-			#ff0000,
-			#ffff00 12.5%,
-			#0bed00 25%,
-			#00ff40 37.5%,
-			#00ffff 50%,
-			#0040ff 62.5%,
-			#8000ff 75%,
-			#ff00ff 87.5%,
-			#ff0000
-		);
+		background: linear-gradient(0.25turn, var(--gradient));
 	}
 </style>

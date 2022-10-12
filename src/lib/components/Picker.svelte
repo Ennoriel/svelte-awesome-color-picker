@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { hsv2Color, clamp } from 'chyme';
-	import type { Color } from 'chyme';
+	import { colord } from 'colord';
 	import { keyPressed, keyPressedCustom } from '../util/store';
 	import { easeInOutSin } from '../util/transition';
 	import type { Components } from '$lib/type/types';
@@ -23,18 +22,22 @@
 	let focusMovementIntervalId: number | undefined;
 	let focusMovementCounter: number;
 
-	let colorBg: Color;
+	let colorBg: string;
 	let pos = { x: 100, y: 0 };
 
-	$: if (typeof h === 'number') colorBg = hsv2Color({ h, s: 1, v: 1, a: 1 });
+	$: if (typeof h === 'number') colorBg = colord({ h, s: 100, v: 100, a: 1 }).toHex();
+
+	function clamp(value: number, min: number, max: number): number {
+		return Math.min(Math.max(min, value), max);
+	}
 
 	function onClick(e: { offsetX: number; offsetY: number }) {
 		let mouse = { x: e.offsetX, y: e.offsetY };
 		let width = picker.getBoundingClientRect().width;
 		let height = picker.getBoundingClientRect().height;
 
-		s = clamp(mouse.x / width, 0, 1);
-		v = clamp((height - mouse.y) / height, 0, 1);
+		s = clamp(mouse.x / width, 0, 1) * 100;
+		v = clamp((height - mouse.y) / height, 0, 1) * 100;
 	}
 
 	function pickerMouseDown(e: MouseEvent) {
@@ -92,12 +95,18 @@
 				focusMovementIntervalId = window.setInterval(() => {
 					let focusMovementFactor = easeInOutSin(++focusMovementCounter);
 					s = Math.min(
-						1,
-						Math.max(0, s + ($keyPressed.ArrowRight - $keyPressed.ArrowLeft) * focusMovementFactor)
+						100,
+						Math.max(
+							0,
+							s + ($keyPressed.ArrowRight - $keyPressed.ArrowLeft) * focusMovementFactor * 100
+						)
 					);
 					v = Math.min(
-						1,
-						Math.max(0, v + ($keyPressed.ArrowUp - $keyPressed.ArrowDown) * focusMovementFactor)
+						100,
+						Math.max(
+							0,
+							v + ($keyPressed.ArrowUp - $keyPressed.ArrowDown) * focusMovementFactor * 100
+						)
 					);
 				}, 10);
 			}
@@ -117,8 +126,8 @@
 
 	$: if (typeof s === 'number' && typeof v === 'number' && picker)
 		pos = {
-			x: s * 100,
-			y: (1 - v) * 100
+			x: s,
+			y: 100 - v
 		};
 </script>
 
@@ -131,20 +140,22 @@
 />
 
 <svelte:component this={components.pickerWrapper} {focused} {toRight}>
+	<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 	<div
 		class="picker"
+		tabindex="0"
 		bind:this={picker}
 		on:mousedown|preventDefault|stopPropagation={pickerMouseDown}
 		on:touchstart={touch}
 		on:touchmove|preventDefault|stopPropagation={touch}
 		on:touchend={touch}
-		style="--color-bg: {colorBg?.hex};"
+		style="--color-bg: {colorBg};"
 	>
 		<svelte:component
 			this={components.pickerIndicator}
 			{pos}
 			{isDark}
-			color={hsv2Color({ h, s, v, a: 1 })}
+			hex={colord({ h, s, v, a: 1 }).toHex()}
 		/>
 	</div>
 </svelte:component>

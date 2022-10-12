@@ -1,9 +1,9 @@
 <script lang="ts">
-	import type { Rgb, Hsv } from 'chyme';
+	import type { RgbaColor, HsvaColor } from 'colord';
 
 	export let isAlpha: boolean;
-	export let rgb: Rgb;
-	export let hsv: Hsv;
+	export let rgb: RgbaColor;
+	export let hsv: HsvaColor;
 	export let hex: string;
 
 	const HEX_COLOR_REGEX = /^#?([A-F0-9]{6}|[A-F0-9]{8})$/i;
@@ -12,8 +12,8 @@
 	let mode = 0;
 
 	$: h = Math.round(hsv.h);
-	$: s = Math.round(hsv.s * 100) / 100;
-	$: v = Math.round(hsv.v * 100) / 100;
+	$: s = Math.round(hsv.s);
+	$: v = Math.round(hsv.v);
 	$: a = hsv.a === undefined ? 1 : Math.round(hsv.a * 100) / 100;
 
 	type InputEvent = Event & { currentTarget: EventTarget & HTMLInputElement };
@@ -58,8 +58,8 @@
 	{:else}
 		<div class="input-container">
 			<input value={h} type="number" min="0" max="360" on:input={updateHsv('h')} />
-			<input value={s} type="number" min="0" max="1" step="0.01" on:input={updateHsv('s')} />
-			<input value={v} type="number" min="0" max="1" step="0.01" on:input={updateHsv('v')} />
+			<input value={s} type="number" min="0" max="100" on:input={updateHsv('s')} />
+			<input value={v} type="number" min="0" max="100" on:input={updateHsv('v')} />
 			{#if isAlpha}
 				<input value={a} type="number" min="0" max="1" step="0.01" on:input={updateHsv('a')} />
 			{/if}

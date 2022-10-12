@@ -1,9 +1,9 @@
 <script lang="ts">
 	import ColorPicker, { CircleVariant } from '$lib';
-	import type { Rgb, Hsv } from 'chyme';
+	import type { RgbaColor, HsvaColor } from 'colord';
 
-	export let rgb: Rgb | undefined = undefined;
-	export let hsv: Hsv | undefined = undefined;
+	export let rgb: RgbaColor | undefined = undefined;
+	export let hsv: HsvaColor | undefined = undefined;
 	export let hex: string | undefined = undefined;
 </script>
 

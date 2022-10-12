@@ -1,13 +1,11 @@
 <script lang="ts">
-	import type { Color } from 'chyme';
-
 	export let pos: { x: number; y: number };
-	export let color: Color;
+	export let hex: string;
 	export let isDark: boolean;
 </script>
 
 <div
-	style={`left: ${pos.x}%; top: ${pos.y}%; background-color: ${color.hex}; border-color: ${
+	style={`left: ${pos.x}%; top: ${pos.y}%; background-color: ${hex}; border-color: ${
 		isDark ? 'white' : 'black'
 	};`}
 />
