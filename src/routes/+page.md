@@ -1,7 +1,7 @@
 <script lang="ts">
     import './_style.css';
 	import ColorPicker from '$lib';
-	import CirclePickerColorPicker from './_components/CircleColorPicker.svelte';
+	import CustomWrapper from './_components/CustomWrapper.svelte';
 	import ChromePickerColorPicker from './_components/ChromeColorPicker.svelte';
     import { browser } from '$app/environment';
 
@@ -43,11 +43,24 @@ The library uses [colord](https://www.npmjs.com/colord) internally because it's 
 
 <ColorPicker bind:hex bind:rgb bind:hsv />
 
-### Circle variant
+### With a11y contrast, custom wrapper:
 
-The circle variant with custom accessibility settings
-
-<CirclePickerColorPicker bind:hex bind:rgb bind:hsv />
+<ColorPicker
+components={{ wrapper: CustomWrapper }}
+bind:hex
+bind:rgb
+bind:hsv
+isAlpha
+isA11y
+isA11yOpen
+isA11yClosable={false}
+a11yColors={[
+{ hex: '#FFF', reverse: true, placeholder: 'background' },
+{ hex: '#FFF', placeholder: 'title', size: 'large' },
+{ hex: '#FFF', placeholder: 'text' },
+{ hex: '#EEE', placeholder: 'button' }
+]}
+/>
 
 ### Chrome variant
 
@@ -92,23 +105,23 @@ The default export of the library is the main ColorPicker. It has the following 
 
 ### props
 
-| Props          | Type               | Default Value          | Usage                                                                                                                    |
-| -------------- | ------------------ | ---------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| label          | `string`           | Choose a color         | Label of the component                                                                                                   |
-| isAlpha        | `boolean`          | `true`                 | The alpha slider is visible                                                                                              |
-| isInput        | `boolean`          | `true`                 | The input button is visible                                                                                              |
-| isTextInput    | `boolean`          | `true`                 | The textual hex / rgb / hsv input are visible                                                                            |
-| isA11y         | `boolean`          | `true`                 | The accessibility contrast warnings are visible                                                                          |
-| a11yColors     | `Array<A11yColor>` | `[{ hex: '#ffffff' }]` | The colors to check the contrasts against. See [details about the type](#type-a11y-color)                                |
-| a11yGuidelines | `string`           | `link to WebAIM`       | Adds a custom string (rendered as @html) for additional reference                                                        |
-| isOpen         | `boolean`          | `false`                | The picker is open by default and cannot be closed                                                                       |
-| isDark         | `boolean`          | `false`                | Indicates if the selected color is dark based on HSP representation                                                      |
-| toRight        | `boolean`          | `false`                | Sliders direction, if true, the direction is horizontal                                                                  |
-| rgb            | `RgbaColor`        | `red`                  | The RGB color object that should be bound to                                                                             |
-| hex            | `string`           | `red`                  | The hex color string that should be bound to                                                                             |
-| hsv            | `HsvaColor`        | `red`                  | The HSV color object that should be bound to                                                                             |
-| color          | `ColorD`           | `red`                  | A colord representation of the color. It can be bound to but should not be modified                                      |
-| components     | `Components`       |                        | By default a Circle and a Chrome variants are available. Can be fully customized. See [#components section](#components) |
+| Props          | Type               | Default Value          | Usage                                                                                           |
+| -------------- | ------------------ | ---------------------- | ----------------------------------------------------------------------------------------------- |
+| label          | `string`           | Choose a color         | Label of the component                                                                          |
+| isAlpha        | `boolean`          | `true`                 | The alpha slider is visible                                                                     |
+| isInput        | `boolean`          | `true`                 | The input button is visible                                                                     |
+| isTextInput    | `boolean`          | `true`                 | The textual hex / rgb / hsv input are visible                                                   |
+| isA11y         | `boolean`          | `true`                 | The accessibility contrast warnings are visible                                                 |
+| a11yColors     | `Array<A11yColor>` | `[{ hex: '#ffffff' }]` | The colors to check the contrasts against. See [details about the type](#type-a11y-color)       |
+| a11yGuidelines | `string`           | `link to WebAIM`       | Adds a custom string (rendered as @html) for additional reference                               |
+| isOpen         | `boolean`          | `false`                | The picker is open by default and cannot be closed                                              |
+| isDark         | `boolean`          | `false`                | Indicates if the selected color is dark based on HSP representation                             |
+| toRight        | `boolean`          | `false`                | Sliders direction, if true, the direction is horizontal                                         |
+| rgb            | `RgbaColor`        | `red`                  | The RGB color object that should be bound to                                                    |
+| hex            | `string`           | `red`                  | The hex color string that should be bound to                                                    |
+| hsv            | `HsvaColor`        | `red`                  | The HSV color object that should be bound to                                                    |
+| color          | `ColorD`           | `red`                  | A colord representation of the color. It can be bound to but should not be modified             |
+| components     | `Components`       |                        | A Chrome variants is available. Can be fully customized. See [#components section](#components) |
 
 ### css variables
 
@@ -123,18 +136,15 @@ The default export of the library is the main ColorPicker. It has the following 
 
 The color picker can be customized with components. The details and props are detailed below. It is easier to copy the library components and tweak it to your needs.
 
-A **Circle** and a **Chrome** variants are available. **To use the Chrome variant you need to set the props** `toRight`. You can partially overwrite the components:
+A **Chrome** variants are available. **To use the Chrome variant you need to set the props** `toRight`. You can partially overwrite the components:
 
 ```svelte
 <script>
-	import ColorPicker, { CircleVariant, ChromeVariant } from 'svelte-awesome-color-picker';
+	import ColorPicker, { ChromeVariant } from 'svelte-awesome-color-picker';
 	import CustomInput from '$lib/path/to/my/awesome/variant/Input.svelte';
 
 	let rgb;
 </script>
-
-<!-- example with the CircleVariant and a custom Input component -->
-<ColorPicker bind:rgb components={{ ...CircleVariant, input: CustomInput }} />
 
 <!-- example with the ChromeVariant -->
 <ColorPicker bind:rgb components={ChromeVariant} isRight />
@@ -202,12 +212,12 @@ Component displaying accessible contrast issues with the color chosen.
 
 Props:
 
-| Props          | Type               | Usage                                                                                                                    |
-| -------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| components     | `Components`       | By default a Circle and a Chrome variants are available. Can be fully customized. See [#components section](#components) |
-| a11yColors     | `Array<A11yColor>` | The colors to check the contrasts against. See [#a11y-colors section](#type-a11y-color) below                            |
-| hex            | `string`           | The current hexadecimal color                                                                                            |
-| a11yGuidelines | `string`           | Adds a custom string (rendered as @html) for additional reference                                                        |
+| Props          | Type               | Usage                                                                                            |
+| -------------- | ------------------ | ------------------------------------------------------------------------------------------------ |
+| components     | `Components`       | A Chrome variants are available. Can be fully customized. See [#components section](#components) |
+| a11yColors     | `Array<A11yColor>` | The colors to check the contrasts against. See [#a11y-colors section](#type-a11y-color) below    |
+| hex            | `string`           | The current hexadecimal color                                                                    |
+| a11yGuidelines | `string`           | Adds a custom string (rendered as @html) for additional reference                                |
 
 <span id="type-a11y-color"></span>
 

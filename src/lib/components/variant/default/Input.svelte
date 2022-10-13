@@ -16,7 +16,7 @@
 	div {
 		width: 40px;
 		height: 20px;
-		border-radius: 10px;
+		border-radius: 3px;
 		pointer-events: none;
 	}
 	button {
@@ -25,11 +25,11 @@
 		gap: 10px;
 
 		margin: 10px;
-		padding: 10px;
+		padding: 10px 20px 10px 10px;
 		background-color: white;
-		border: 1px solid black;
-		font-variant: small-caps;
-		font-weight: bolder;
+		border: none;
+		border-radius: 3px 20px 20px 3px;
+		box-shadow: 0 0 2px black;
 		cursor: pointer;
 
 		outline: 3px solid transparent;
@@ -37,7 +37,7 @@
 		transition: all 0.2s ease-in-out;
 	}
 	button:hover {
-		box-shadow: 0 0 3px black;
+		box-shadow: 0 0 5px black;
 	}
 	button:focus-visible {
 		outline: 3px solid var(--focus-color, red);

@@ -1,29 +1,21 @@
 <script lang="ts">
 	export let pos: number;
+	/* svelte-ignore unused-export-let */
 	export let toRight: boolean;
 </script>
 
-<div
-	class="slider-indicator"
-	class:to-right={toRight}
-	style="{toRight ? 'left' : 'top'}: {pos}%;"
-/>
+<div class="slider-indicator" style={`top: calc(${(pos / 200) * 186}% + 2px);`} />
 
 <style>
 	div {
 		position: absolute;
-		width: 40px;
+		width: 10px;
 		height: 10px;
-		border-radius: 3px;
-		box-sizing: border-box;
-		border: 2px solid black;
-		box-shadow: 0 0 2px black;
-		margin: -5px;
+		background-color: white;
+		border-radius: 5px;
+		margin-left: 2px;
+
 		pointer-events: none;
 		z-index: 1;
-	}
-	div.to-right {
-		width: 10px;
-		height: 40px;
 	}
 </style>

@@ -1,5 +1,8 @@
 <script lang="ts">
-	import type { RgbaColor, HsvaColor, Colord, HsvColor, RgbColor } from 'colord';
+	import type { RgbaColor, HsvaColor, Colord } from 'colord';
+	import { colord, extend } from 'colord';
+	import a11yPlugin from 'colord/plugins/a11y';
+	import type { A11yColor, Components } from '../type/types';
 	import Picker from './Picker.svelte';
 	import Slider from './Slider.svelte';
 	import Alpha from './Alpha.svelte';
@@ -11,9 +14,6 @@
 	import SliderWrapper from './variant/default/SliderWrapper.svelte';
 	import Input from './variant/default/Input.svelte';
 	import Wrapper from './variant/default/Wrapper.svelte';
-	import type { A11yColor, Components } from '../type/types';
-	import { colord, extend } from 'colord';
-	import a11yPlugin from 'colord/plugins/a11y';
 	import A11yNotice from './variant/default/A11yNotice.svelte';
 	import A11ySingleNotice from './variant/default/A11ySingleNotice.svelte';
 	import A11ySummary from './variant/default/A11ySummary.svelte';
@@ -29,10 +29,12 @@
 	export let isAlpha = true;
 	export let isInput = true;
 	export let isTextInput = true;
-	export let isA11y = true;
+	export let isA11y = false;
 	export let a11yColors: Array<A11yColor> = [{ hex: '#ffffff' }];
 	export let a11yGuidelines =
 		'<p style="margin: 0; font-size: 12px;">Learn more at <a href="https://webaim.org/articles/contrast/" target="_blank">WebAIM contrast guide</a></p>';
+	export let isA11yOpen = false;
+	export let isA11yClosable = true;
 	export let isPopup = true;
 	export let isOpen = !isInput;
 	export let toRight = false;
@@ -178,6 +180,8 @@
 				{a11yColors}
 				{hex}
 				{a11yGuidelines}
+				{isA11yOpen}
+				{isA11yClosable}
 			/>
 		{/if}
 	</svelte:component>

@@ -20,18 +20,19 @@
 		display: none;
 	}
 	.isOpen {
-		display: grid;
-		grid-template:
-			'picker slider a11y'
-			'input input a11y';
+		display: block;
+	}
+	@media (min-width: 768px) {
+		.isOpen {
+			display: grid;
+			grid-template:
+				'picker . . a11y'
+				'input input input a11y';
+		}
 	}
 
 	div :global(.picker) {
 		grid-area: picker;
-	}
-
-	div :global(.slider) {
-		grid-area: slider;
 	}
 
 	div :global(.text-input) {
@@ -41,6 +42,10 @@
 	div :global(.a11y-notice) {
 		grid-area: a11y;
 		margin: 0 4px 0 6px;
+	}
+
+	div :global(.slider-wrapper) {
+		margin-left: 5px;
 	}
 
 	.isPopup {

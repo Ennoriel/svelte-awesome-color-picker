@@ -6,9 +6,14 @@
 	export let a11yColors: Array<A11yColor>;
 	export let hex: string;
 	export let a11yGuidelines: string;
+	export let isA11yOpen: boolean;
+	export let isA11yClosable: boolean;
 </script>
 
-<details class="a11y-notice" open disabled>
+<details
+	class="a11y-notice {isA11yOpen && !isA11yClosable ? 'not-closable' : ''}"
+	open={isA11yOpen}
+>
 	<summary>
 		<svelte:component this={components.a11ySummary} {a11yColors} {hex} />
 	</summary>
@@ -45,6 +50,14 @@
 
 	summary:hover {
 		color: blue;
+	}
+
+	.not-closable {
+		pointer-events: none;
+	}
+
+	.not-closable summary {
+		list-style: none;
 	}
 
 	:focus-visible,

@@ -2,27 +2,25 @@
 	export let wrapper: HTMLElement;
 	export let isOpen: boolean;
 	export let isPopup: boolean;
+	/* svelte-ignore unused-export-let */
 	export let toRight: boolean;
 </script>
 
-<div class="wrapper" bind:this={wrapper} class:isOpen class:isPopup class:to-right={toRight}>
+<div class="wrapper" bind:this={wrapper} class:isOpen class:isPopup>
 	<slot />
 </div>
 
 <style>
 	div {
-		padding: 10px;
+		padding: 8px 5px 5px 8px;
 		background-color: white;
 		margin: 0 10px 10px;
 		border: 1px solid black;
+		border-radius: 12px;
 		display: none;
 	}
 	.isOpen {
 		display: block;
-	}
-	.isOpen.to-right {
-		display: flex;
-		flex-direction: column;
 	}
 	.isPopup {
 		position: absolute;
