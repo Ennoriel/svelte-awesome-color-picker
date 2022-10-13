@@ -23,9 +23,10 @@
 <style>
 	.contrast {
 		display: flex;
-		align-items: end;
-		margin: 4px 0 12px;
+		align-items: center;
+		margin: 4px 0;
 		gap: 12px;
+		height: 48px;
 	}
 
 	.large {
@@ -35,6 +36,7 @@
 	.score {
 		width: 95px;
 		flex-shrink: 0;
+		margin-bottom: 10px;
 	}
 
 	.score p {

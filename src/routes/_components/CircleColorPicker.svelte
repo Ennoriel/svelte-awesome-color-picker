@@ -15,7 +15,8 @@
 	isAlpha={false}
 	
 	a11yColors={[
-		{ hex: '#FFF', reverse: true, placeholder: 'Toto' },
-		{ hex: '#FFF', size: 'large' }
+		{ hex: '#FFF', reverse: true, placeholder: 'background' },
+		{ hex: '#FFF', placeholder: 'title', size: 'large' },
+		{ hex: '#FFF', placeholder: 'text' }
 	]}
 />

@@ -1,6 +1,6 @@
 # svelte-awesome-color-picker
 
-> _svelte-awesome-color-picker_ is a highly customizable color picker component library with built-in keyboard navigation, mobile support and accessibility information. It is compatible with form libraries.
+> _svelte-awesome-color-picker_ is a highly customizable color picker component library with built-in 🎹 keyboard navigation, 📱 mobile support and 🤸‍♂️ accessibility information. It is compatible with form libraries.
 
 The library uses [colord](https://www.npmjs.com/colord) internally because it's the lightest solution on the market at the time and supports a11y contrasts.
 
