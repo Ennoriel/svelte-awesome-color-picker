@@ -35,9 +35,11 @@
 		'<p style="margin: 0; font-size: 12px;">Learn more at <a href="https://webaim.org/articles/contrast/" target="_blank">WebAIM contrast guide</a></p>';
 	export let isA11yOpen = false;
 	export let isA11yClosable = true;
-	export let isPopup = true;
+	export let isPopup = isInput;
 	export let isOpen = !isInput;
 	export let toRight = false;
+
+	$: console.log(isInput);
 
 	/**
 	 * color properties
@@ -79,16 +81,12 @@
 		};
 	}
 
-	let button: HTMLButtonElement;
+	let button: any;
 	let wrapper: HTMLElement;
 
 	function mousedown({ target }: MouseEvent) {
-		if (isInput) {
-			if (button.isSameNode(target as Node)) {
-				isOpen = !isOpen;
-			} else if (isOpen && !wrapper.contains(target as Node)) {
-				isOpen = false;
-			}
+		if (isInput && isOpen && !wrapper.contains(target as Node)) {
+			isOpen = false;
 		}
 	}
 
@@ -153,7 +151,18 @@
 
 <span bind:this={span}>
 	{#if isInput}
-		<svelte:component this={getComponents().input} {hex} {label} bind:button bind:isOpen />
+		<svelte:component
+			this={getComponents().input}
+			bind:isOpen
+			on:click={(e) => {
+				isOpen = !isOpen;
+				e.preventDefault();
+			}}
+			{hex}
+			{label}
+		/>
+	{:else}
+		<input type="hidden" value={hex} />
 	{/if}
 
 	<svelte:component this={getComponents().wrapper} bind:wrapper {isOpen} {isPopup} {toRight}>

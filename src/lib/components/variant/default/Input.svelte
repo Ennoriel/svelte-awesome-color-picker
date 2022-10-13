@@ -1,45 +1,49 @@
 <script lang="ts">
-	export let button: HTMLButtonElement;
 	export let hex: string;
 	export let label: string;
 	/* svelte-ignore unused-export-let */
 	export let isOpen: boolean;
 </script>
 
-<button bind:this={button}>
-	<div style="background-color: {hex};" />
+<label>
+	<div>
+		<input type="color" value={hex} on:click />
+	</div>
 	{label}
-</button>
-<input type="hidden" value={hex} />
+</label>
 
 <style>
-	div {
-		width: 40px;
-		height: 20px;
-		border-radius: 3px;
-		pointer-events: none;
-	}
-	button {
+	label {
 		display: flex;
 		align-items: center;
-		gap: 10px;
-
-		margin: 10px;
-		padding: 10px 20px 10px 10px;
-		background-color: white;
-		border: none;
-		border-radius: 3px 20px 20px 3px;
-		box-shadow: 0 0 2px black;
+		gap: 8px;
 		cursor: pointer;
+		border-radius: 3px;
+	}
 
-		outline: 3px solid transparent;
-		outline-offset: 3px;
-		transition: all 0.2s ease-in-out;
+	div {
+		display: block;
+		width: 30px;
+		height: 30px;
+		overflow: hidden;
+		border-radius: 15px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
-	button:hover {
-		box-shadow: 0 0 5px black;
+
+	input {
+		margin: 0;
+		padding: 0;
+		border: none;
+		width: 32px;
+		height: 32px;
+		flex-shrink: 0;
+		cursor: pointer;
 	}
-	button:focus-visible {
-		outline: 3px solid var(--focus-color, red);
+
+	:global(.has-been-tabbed) label:focus-within {
+		outline: 2px solid var(--focus-color, red);
+		outline-offset: 2px;
 	}
 </style>

@@ -1,7 +1,14 @@
 # svelte-awesome-color-picker
 
-> _svelte-awesome-color-picker_ is a highly customizable color picker component library with built-in 🎹 keyboard navigation, 📱 mobile support and 🤸‍♂️ accessibility information. It is compatible with form libraries.
+# svelte-awesome-color-picker
 
+> _svelte-awesome-color-picker_ is a highly customizable color picker component library with 
+- 🎹 built-in keyboard navigation
+- 📱 mobile support
+- 🤸‍♂️ accessibility information
+- 🤯 and even works without javascript (fallback to browser default color input)
+- 🏇 it's compatible with form libraries
+- 🧩 fully customizable
 The library uses [colord](https://www.npmjs.com/colord) internally because it's the lightest solution on the market at the time and supports a11y contrasts.
 
 ## Links
@@ -43,7 +50,10 @@ The default export of the library is the main ColorPicker. It has the following 
 | isA11y         | `boolean`          | `true`                 | The accessibility contrast warnings are visible                                                                          |
 | a11yColors     | `Array<A11yColor>` | `[{ hex: '#ffffff' }]` | The colors to check the contrasts against. See [details about the type](#type-a11y-color)                                |
 | a11yGuidelines | `string`           | `link to WebAIM`       | Adds a custom string (rendered as @html) for additional reference                                                        |
+| isA11yOpen     | `boolean`          | `false`                | The accessible panel is open by default                                                                                  |
+| isA11yClosable | `boolean`          | `true`                 | The accessible panel is closable                                                                                         |
 | isOpen         | `boolean`          | `false`                | The picker is open by default and cannot be closed                                                                       |
+| isPopup        | `boolean`          | `true`                 | whether the color picker is floating or not                                                                              |
 | isDark         | `boolean`          | `false`                | Indicates if the selected color is dark based on HSP representation                                                      |
 | toRight        | `boolean`          | `false`                | Sliders direction, if true, the direction is horizontal                                                                  |
 | rgb            | `RgbaColor`        | `red`                  | The RGB color object that should be bound to                                                                             |

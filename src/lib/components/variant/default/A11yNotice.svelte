@@ -8,13 +8,12 @@
 	export let a11yGuidelines: string;
 	export let isA11yOpen: boolean;
 	export let isA11yClosable: boolean;
+
+	$: closable = isA11yOpen && !isA11yClosable;
 </script>
 
-<details
-	class="a11y-notice {isA11yOpen && !isA11yClosable ? 'not-closable' : ''}"
-	open={isA11yOpen}
->
-	<summary>
+<details class="a11y-notice {closable ? 'not-closable' : ''}" open={isA11yOpen}>
+	<summary tabindex={closable ? -1 : undefined}>
 		<svelte:component this={components.a11ySummary} {a11yColors} {hex} />
 	</summary>
 	<div>

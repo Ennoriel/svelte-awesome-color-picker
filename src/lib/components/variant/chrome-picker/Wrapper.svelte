@@ -27,6 +27,9 @@
 		position: absolute;
 		z-index: 2;
 	}
+	div:not(.isPopup) {
+		display: inline-flex;
+	}
 	div :global(.text-input) {
 		margin: 5px;
 	}

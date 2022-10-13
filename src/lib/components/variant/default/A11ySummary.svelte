@@ -20,7 +20,7 @@
 
 	$: message = count
 		? `⚠️ ${count} contrast grade${count && 's'} fail`
-		: 'see details about the contrast';
+		: 'Contrast grade information';
 </script>
 
 {message}
