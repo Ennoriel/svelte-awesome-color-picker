@@ -34,7 +34,7 @@
 <style>
 	details {
 		width: 230px;
-		margin: 12px auto 8px;
+		margin: 8px auto;
 	}
 
 	summary {

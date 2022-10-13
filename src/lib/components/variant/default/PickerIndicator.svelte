@@ -4,7 +4,8 @@
 	export let isDark: boolean;
 </script>
 
-<div class="picker-indicator"
+<div
+	class="picker-indicator"
 	style={`left: ${pos.x}%; top: ${pos.y}%; background-color: ${hex}; border-color: ${
 		isDark ? 'white' : 'black'
 	};`}

@@ -13,7 +13,6 @@
 	bind:hex
 	components={CircleVariant}
 	isAlpha={false}
-	
 	a11yColors={[
 		{ hex: '#FFF', reverse: true, placeholder: 'background' },
 		{ hex: '#FFF', placeholder: 'title', size: 'large' },

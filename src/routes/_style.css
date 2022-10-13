@@ -6,6 +6,10 @@ html {
 	color: #333;
 }
 
+body {
+	margin: 0;
+}
+
 main {
 	max-width: 1000px;
 	margin: auto;

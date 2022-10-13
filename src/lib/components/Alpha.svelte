@@ -110,11 +110,7 @@
 		on:touchmove|preventDefault|stopPropagation={touch}
 		on:touchend={touch}
 	>
-		<svelte:component
-			this={components.alphaIndicator}
-			{pos}
-			{toRight}
-		/>
+		<svelte:component this={components.alphaIndicator} {pos} {toRight} />
 	</div>
 </svelte:component>
 

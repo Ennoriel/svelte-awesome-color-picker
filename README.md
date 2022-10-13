@@ -241,10 +241,10 @@ The contrast between 2 colors is a value between 1 and 21.
 
 A contrast between 2 colors succeed if it follows the WCAG contrast guidelines:
 
-|                         | AA | AAA |
-| ----------------------- | ----------------------------- | ------------------------------ |
-| for small text (18.5px) | contrast > 4.5                | contrast > 7                   |
-| for big text (24px)     | contrast > 3                  | contrast > 4.5                 |
+|                         | AA             | AAA            |
+| ----------------------- | -------------- | -------------- |
+| for small text (18.5px) | contrast > 4.5 | contrast > 7   |
+| for big text (24px)     | contrast > 3   | contrast > 4.5 |
 
 In the default `A11ySingleNotice` component that renders the <span style="border-radius: 50px; padding: 2px 8px; background-color: green; color: white; font-weight: bold;">AA</span> and <span style="border-radius: 50px; padding: 2px 8px; background-color: green; color: white; font-weight: bold;">AAA</span> tags, the small text values are used (can be configured for each reference color with the `color` props).
 

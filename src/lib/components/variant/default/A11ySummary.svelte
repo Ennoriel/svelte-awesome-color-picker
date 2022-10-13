@@ -5,13 +5,14 @@
 	/* svelte-ignore unused-export-let */
 	export let hex: string;
 
-	function getNumberOfGradeFailed({contrast, size}: A11yColor): number {
-		if( !contrast) {
-			return 2
-		} if (size === "normal") {
-			return contrast < 4.5 ? 2 : contrast < 7 ? 1 : 0
+	function getNumberOfGradeFailed({ contrast, size }: A11yColor): number {
+		if (!contrast) {
+			return 2;
+		}
+		if (size === 'normal') {
+			return contrast < 4.5 ? 2 : contrast < 7 ? 1 : 0;
 		} else {
-			return contrast < 3 ? 2 : contrast < 4.5 ? 1 : 0
+			return contrast < 3 ? 2 : contrast < 4.5 ? 1 : 0;
 		}
 	}
 

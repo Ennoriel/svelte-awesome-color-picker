@@ -5,9 +5,10 @@
 	export let isDark: boolean;
 </script>
 
-<div class="picker-indicator"
+<div
+	class="picker-indicator"
 	style={`left: calc(${(pos.x / 260) * 246}% + 2px); top: calc(${
-		(pos.y / 200) * 186
+		(pos.y / 160) * 149
 	}% + 2px); box-shadow: 0 0 4px ${isDark ? 'white' : 'black'};`}
 />
 

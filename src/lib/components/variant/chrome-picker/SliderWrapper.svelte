@@ -11,7 +11,7 @@
 <style>
 	div {
 		display: inline-block;
-		margin: 5px;
+		margin: 4px;
 		width: var(--slider-width, 250px);
 		height: var(--picker-height, 10px);
 		border-radius: 7px;

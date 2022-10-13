@@ -3,7 +3,11 @@
 	export let toRight: boolean;
 </script>
 
-<div class="slider-indicator" class:to-right={toRight} style="{toRight ? 'left' : 'top'}: {pos}%;" />
+<div
+	class="slider-indicator"
+	class:to-right={toRight}
+	style="{toRight ? 'left' : 'top'}: {pos}%;"
+/>
 
 <style>
 	div {

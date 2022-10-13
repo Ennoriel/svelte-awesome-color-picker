@@ -166,13 +166,7 @@
 		/>
 		<Slider components={getComponents()} bind:h={hsv.h} {toRight} />
 		{#if isAlpha}
-			<Alpha
-				components={getComponents()}
-				bind:a={hsv.a}
-				{hex}
-				bind:isOpen
-				{toRight}
-			/>
+			<Alpha components={getComponents()} bind:a={hsv.a} {hex} bind:isOpen {toRight} />
 		{/if}
 		{#if isTextInput}
 			<svelte:component this={getComponents().textInput} bind:hex bind:rgb bind:hsv {isAlpha} />

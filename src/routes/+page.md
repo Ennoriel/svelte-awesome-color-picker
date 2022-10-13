@@ -1,4 +1,5 @@
 <script lang="ts">
+    import './_style.css';
 	import ColorPicker from '$lib';
 	import CirclePickerColorPicker from './_components/CircleColorPicker.svelte';
 	import ChromePickerColorPicker from './_components/ChromeColorPicker.svelte';
@@ -14,10 +15,10 @@
         .replace(/:\s(\d+\.?\d*)/g, ': <span style="color: #ef3b7d;">$1</span>')
         .replace(/":/g, '"<span style="color: #a77afe;">:</span>');
     }
-
-    $: if(browser) document.documentElement.style
-        .setProperty('--bg-color', hex);
 </script>
+
+<div style="padding: 8px; background-color: {hex}">
+<main>
 
 # svelte-awesome-color-picker
 
@@ -306,6 +307,9 @@ A contrast between 2 colors succeed if it follows the WCAG contrast guidelines:
 In the default `A11ySingleNotice` component that renders the <span class="grade">AA</span> and <span class="grade">AAA</span> tags, the small text values are used (can be configured for each reference color with the `color` props).
 
 See [the definition of the A11yColor type](#ype-a11y-color) for more information.
+
+</main>
+</div>
 
 <style>
     @media (min-width: 768px) {

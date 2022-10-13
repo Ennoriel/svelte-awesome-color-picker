@@ -27,4 +27,7 @@
 		position: absolute;
 		z-index: 2;
 	}
+	div :global(.text-input) {
+		margin: 5px;
+	}
 </style>
