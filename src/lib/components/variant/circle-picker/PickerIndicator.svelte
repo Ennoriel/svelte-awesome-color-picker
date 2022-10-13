@@ -5,7 +5,7 @@
 	export let isDark: boolean;
 </script>
 
-<div
+<div class="picker-indicator"
 	style={`left: calc(${(pos.x / 200) * 186}% + 2px); top: calc(${
 		(pos.y / 200) * 186
 	}% + 2px); box-shadow: 0 0 4px ${isDark ? 'white' : 'black'};`}

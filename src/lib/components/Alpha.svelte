@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { colord } from 'colord';
 	import { keyPressed, keyPressedCustom } from '../util/store';
 	import { easeInOutSin } from '../util/transition';
 	import type { Components } from '$lib/type/types';
@@ -8,9 +7,6 @@
 	/* svelte-ignore unused-export-let */
 	export let isOpen: boolean;
 
-	export let h: number;
-	export let s: number;
-	export let v: number;
 	export let a = 1;
 	export let hex: string | undefined;
 	export let toRight: boolean;
@@ -118,7 +114,6 @@
 			this={components.alphaIndicator}
 			{pos}
 			{toRight}
-			hex={colord({ h, s, v, a }).toHex()}
 		/>
 	</div>
 </svelte:component>

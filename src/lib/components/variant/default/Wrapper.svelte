@@ -10,7 +10,7 @@
 </div>
 
 <style>
-	.wrapper {
+	div {
 		padding: 10px;
 		background-color: white;
 		margin: 0 10px 10px;

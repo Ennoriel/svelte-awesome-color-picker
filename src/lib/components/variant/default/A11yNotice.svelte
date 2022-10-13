@@ -8,7 +8,7 @@
 	export let a11yGuidelines: string;
 </script>
 
-<details>
+<details class="a11y-notice" open disabled>
 	<summary>
 		<svelte:component this={components.a11ySummary} {a11yColors} {hex} />
 	</summary>

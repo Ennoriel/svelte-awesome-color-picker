@@ -11,7 +11,7 @@
 </div>
 
 <style>
-	.wrapper {
+	div {
 		padding: 8px 5px 5px 8px;
 		background-color: white;
 		margin: 0 10px 10px;
@@ -20,8 +20,27 @@
 		display: none;
 	}
 	.isOpen {
-		display: block;
+		display: grid;
+		grid-template: "picker slider a11y"
+		"input input a11y";
 	}
+
+	div :global(.picker) { 
+		grid-area: picker; 
+	}
+	
+	div :global(.slider) { 
+		grid-area: slider; 
+	}
+
+	div :global(.text-input) { 
+		grid-area: input; 
+	}
+
+	div :global(.a11y-notice) { 
+		grid-area: a11y; 
+	}
+
 	.isPopup {
 		position: absolute;
 		z-index: 2;

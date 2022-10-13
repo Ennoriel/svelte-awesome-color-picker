@@ -6,7 +6,7 @@
 	export let size: 'normal' | 'large' | undefined = undefined;
 </script>
 
-<div class="contrast">
+<div class="a11y-single-notice">
 	<p
 		class="lorem {size === 'large' && 'large'}"
 		style="color: {textColor}; background-color: {bgColor}"
@@ -21,7 +21,7 @@
 </div>
 
 <style>
-	.contrast {
+	.a11y-single-notice {
 		display: flex;
 		align-items: center;
 		margin: 4px 0;

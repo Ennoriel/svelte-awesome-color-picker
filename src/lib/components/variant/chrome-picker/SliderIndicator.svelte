@@ -4,7 +4,7 @@
 	export let toRight: boolean;
 </script>
 
-<div style={`left: calc(${(pos / 200) * 190}% + 2px);`} />
+<div class="slider-indicator" style={`left: calc(${(pos / 200) * 190}% + 2px);`} />
 
 <style>
 	div {

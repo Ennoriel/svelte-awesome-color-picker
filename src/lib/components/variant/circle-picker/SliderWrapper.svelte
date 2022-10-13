@@ -4,7 +4,7 @@
 	export let toRight: boolean;
 </script>
 
-<div class:focused>
+<div class="slider-wrapper" class:focused>
 	<slot />
 </div>
 

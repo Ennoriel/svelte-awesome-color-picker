@@ -3,7 +3,7 @@
 	export let toRight: boolean;
 </script>
 
-<div class:focused class:to-right={toRight}>
+<div class="picker-wrapper" class:focused class:to-right={toRight}>
 	<slot />
 </div>
 

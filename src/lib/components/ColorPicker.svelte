@@ -168,9 +168,6 @@
 		{#if isAlpha}
 			<Alpha
 				components={getComponents()}
-				h={hsv.h}
-				s={hsv.s}
-				v={hsv.v}
 				bind:a={hsv.a}
 				{hex}
 				bind:isOpen

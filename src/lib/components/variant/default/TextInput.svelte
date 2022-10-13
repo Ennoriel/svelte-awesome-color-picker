@@ -38,7 +38,7 @@
 	}
 </script>
 
-<div class="container">
+<div class="text-input">
 	{#if mode === 0}
 		<div class="input-container">
 			<input value={hex} on:input={updateHex} style="flex: 3" />
@@ -69,7 +69,7 @@
 </div>
 
 <style>
-	.container {
+	.text-input {
 		display: flex;
 		flex-direction: column;
 		gap: 10px;

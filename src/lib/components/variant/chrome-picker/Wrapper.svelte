@@ -11,7 +11,7 @@
 </div>
 
 <style>
-	.wrapper {
+	div {
 		background-color: white;
 		margin: 0 10px 15px;
 		padding-bottom: 3px;
