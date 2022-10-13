@@ -39,8 +39,6 @@
 	export let isOpen = !isInput;
 	export let toRight = false;
 
-	$: console.log(isInput);
-
 	/**
 	 * color properties
 	 */
