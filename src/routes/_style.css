@@ -15,6 +15,11 @@ main {
 	box-shadow: 0 0 8px 0 #777;
 }
 
+a,
+a:visited {
+	color: #0000ee;
+}
+
 h1,
 h2,
 h3,
@@ -23,12 +28,27 @@ h4 {
 	margin-left: 1rem;
 }
 
-h2 {
+h2,
+h3,
+h4 {
 	margin-top: 4rem;
 }
 
 h4 {
 	font-weight: bold;
+}
+
+h1 + h2,
+h2 + h3,
+h3 + h4,
+#default-layout {
+	margin-top: 0;
+}
+
+@media (min-width: 768px) {
+	#color-props {
+		margin-top: 0;
+	}
 }
 
 blockquote {

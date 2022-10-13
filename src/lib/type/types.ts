@@ -3,6 +3,9 @@ import type PickerIndicator from '../components/variant/default/PickerIndicator.
 import type PickerWrapper from '../components/variant/default/PickerWrapper.svelte';
 import type SliderWrapper from '../components/variant/default/SliderWrapper.svelte';
 import type TextInput from '../components/variant/default/TextInput.svelte';
+import type A11yNotice from '../components/variant/default/A11yNotice.svelte';
+import type A11ySingleNotice from '../components/variant/default/A11ySingleNotice.svelte';
+import type A11ySummary from '$lib/components/variant/default/A11ySummary.svelte';
 import type Input from '../components/variant/default/Input.svelte';
 import type Wrapper from '../components/variant/default/Wrapper.svelte';
 
@@ -14,6 +17,20 @@ export type Components = {
 	sliderWrapper: typeof SliderWrapper;
 	alphaWrapper: typeof SliderWrapper;
 	textInput: typeof TextInput;
+	a11yNotice: typeof A11yNotice;
+	a11ySingleNotice: typeof A11ySingleNotice;
+	a11ySummary: typeof A11ySummary;
 	input: typeof Input;
 	wrapper: typeof Wrapper;
+};
+
+export type A11yColor = {
+	hex: string;
+	reverse?: boolean;
+	placeholder?: string;
+	size?: 'normal' | 'large';
+	/**
+	 * do not set this value. You can read it by bounding to a11yColors instead
+	 */
+	contrast?: number;
 };

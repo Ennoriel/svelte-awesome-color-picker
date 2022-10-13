@@ -12,7 +12,7 @@
 		display: inline-block;
 		margin: 0 5px;
 		width: var(--slider-width, 30px);
-		height: var(--picker-height, 300px);
+		height: var(--picker-height, 200px);
 
 		outline: 3px solid transparent;
 		outline-offset: 3px;
@@ -25,7 +25,7 @@
 	}
 
 	div.to-right {
-		--slider-width: 300px;
+		--slider-width: 200px;
 		--picker-height: 30px;
 		margin: 5px 0;
 	}

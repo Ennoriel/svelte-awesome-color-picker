@@ -7,4 +7,15 @@
 	export let hex: string | undefined = undefined;
 </script>
 
-<ColorPicker bind:rgb bind:hsv bind:hex components={CircleVariant} />
+<ColorPicker
+	bind:rgb
+	bind:hsv
+	bind:hex
+	components={CircleVariant}
+	isAlpha={false}
+	
+	a11yColors={[
+		{ hex: '#FFF', reverse: true, placeholder: 'Toto' },
+		{ hex: '#FFF', size: 'large' }
+	]}
+/>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { RgbaColor, HsvaColor, Colord } from 'colord';
+	import type { RgbaColor, HsvaColor, Colord, HsvColor, RgbColor } from 'colord';
 	import Picker from './Picker.svelte';
 	import Slider from './Slider.svelte';
 	import Alpha from './Alpha.svelte';
@@ -11,8 +11,14 @@
 	import SliderWrapper from './variant/default/SliderWrapper.svelte';
 	import Input from './variant/default/Input.svelte';
 	import Wrapper from './variant/default/Wrapper.svelte';
-	import type { Components } from '../type/types';
-	import { colord } from 'colord';
+	import type { A11yColor, Components } from '../type/types';
+	import { colord, extend } from 'colord';
+	import a11yPlugin from 'colord/plugins/a11y';
+	import A11yNotice from './variant/default/A11yNotice.svelte';
+	import A11ySingleNotice from './variant/default/A11ySingleNotice.svelte';
+	import A11ySummary from './variant/default/A11ySummary.svelte';
+
+	extend([a11yPlugin]);
 
 	export let components: Partial<Components> = {};
 
@@ -23,17 +29,28 @@
 	export let isAlpha = true;
 	export let isInput = true;
 	export let isTextInput = true;
+	export let isA11y = true;
+	export let a11yColors: Array<A11yColor> = [{ hex: '#ffffff' }];
+	export let a11yGuidelines =
+		'<p style="margin: 0; font-size: 12px;">Learn more at <a href="https://webaim.org/articles/contrast/" target="_blank">WebAIM contrast guide</a></p>';
 	export let isPopup = true;
 	export let isOpen = !isInput;
 	export let toRight = false;
+
+	/**
+	 * color properties
+	 */
+	export let rgb: RgbaColor = { r: 255, g: 0, b: 0, a: 1 };
+	export let hsv: HsvaColor = { h: 0, s: 1, v: 1, a: 1 };
+	export let hex = '#ff0000';
+	export let color: Colord | undefined = undefined;
 	export let isDark = false;
 
-	export let rgb: RgbaColor = { r: 255, g: 0, b: 0 } as RgbaColor;
-	export let hsv: HsvaColor = { h: 0, s: 1, v: 1 } as HsvaColor;
-	export let hex = '#ff0000';
-
-	let _rgb: RgbaColor = { r: 255, g: 0, b: 0 } as RgbaColor;
-	let _hsv: HsvaColor = { h: 0, s: 1, v: 1 } as HsvaColor;
+	/**
+	 * Internal old value to trigger color conversion
+	 */
+	let _rgb: RgbaColor = { r: 255, g: 0, b: 0, a: 1 };
+	let _hsv: HsvaColor = { h: 0, s: 1, v: 1, a: 1 };
 	let _hex = '#ff0000';
 
 	let span: HTMLSpanElement;
@@ -46,6 +63,9 @@
 		sliderWrapper: SliderWrapper,
 		alphaWrapper: SliderWrapper,
 		textInput: TextInput,
+		a11yNotice: A11yNotice,
+		a11ySingleNotice: A11ySingleNotice,
+		a11ySummary: A11ySummary,
 		input: Input,
 		wrapper: Wrapper
 	};
@@ -89,25 +109,25 @@
 		if (hex?.substring(7) === 'ff') hex = hex.substring(0, 7);
 		if (hex?.substring(7) === 'ff') hex = hex.substring(0, 7);
 
-		let tmpColor: Colord | undefined;
-
 		// check which color format changed and updates the others accordingly
 		if (hsv.h !== _hsv.h || hsv.s !== _hsv.s || hsv.v !== _hsv.v || hsv.a !== _hsv.a) {
-			tmpColor = colord(hsv);
-			rgb = tmpColor.toRgb();
-			hex = tmpColor.toHex();
+			color = colord(hsv);
+			rgb = color.toRgb();
+			hex = color.toHex();
 		} else if (rgb.r !== _rgb.r || rgb.g !== _rgb.g || rgb.b !== _rgb.b || rgb.a !== _rgb.a) {
-			tmpColor = colord(rgb);
-			hex = tmpColor.toHex();
-			hsv = tmpColor.toHsv();
+			color = colord(rgb);
+			hex = color.toHex();
+			hsv = color.toHsv();
 		} else if (hex !== _hex) {
-			tmpColor = colord(hex);
-			rgb = tmpColor.toRgb();
-			hsv = tmpColor.toHsv();
+			color = colord(hex);
+			rgb = color.toRgb();
+			hsv = color.toHsv();
 		}
 
-		if (tmpColor) {
-			isDark = tmpColor.isDark();
+		if (color) {
+			isDark = color.isDark();
+			a11yColors.forEach((c) => (c.contrast = color?.contrast(c.hex) || 1));
+			a11yColors = a11yColors;
 		}
 
 		// update old colors
@@ -159,6 +179,15 @@
 		{/if}
 		{#if isTextInput}
 			<svelte:component this={getComponents().textInput} bind:hex bind:rgb bind:hsv {isAlpha} />
+		{/if}
+		{#if isA11y}
+			<svelte:component
+				this={getComponents().a11yNotice}
+				components={getComponents()}
+				{a11yColors}
+				{hex}
+				{a11yGuidelines}
+			/>
 		{/if}
 	</svelte:component>
 </span>

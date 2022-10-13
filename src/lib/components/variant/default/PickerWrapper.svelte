@@ -11,8 +11,8 @@
 	div {
 		display: inline-block;
 		margin-right: 5px;
-		height: var(--picker-height, 300px);
-		width: var(--picker-width, 300px);
+		height: var(--picker-height, 200px);
+		width: var(--picker-width, 200px);
 
 		outline: 3px solid transparent;
 		outline-offset: 3px;
