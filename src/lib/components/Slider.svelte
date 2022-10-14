@@ -105,6 +105,10 @@
 		on:touchstart={touch}
 		on:touchmove|preventDefault|stopPropagation={touch}
 		on:touchend={touch}
+		aria-label="hue picker (arrow keyboard navigation)"
+		aria-valuemin={0}
+		aria-valuemax={360}
+		aria-valuenow={Math.round(h)}
 	>
 		<svelte:component this={components.sliderIndicator} {pos} {toRight} />
 	</div>

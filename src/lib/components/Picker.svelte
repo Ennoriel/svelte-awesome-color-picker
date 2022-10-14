@@ -150,6 +150,10 @@
 		on:touchmove|preventDefault|stopPropagation={touch}
 		on:touchend={touch}
 		style="--color-bg: {colorBg};"
+		aria-label="saturation and brightness picker (arrow keyboard navigation)"
+		aria-valuemin={0}
+		aria-valuemax={100}
+		aria-valuetext="saturation {pos.x?.toFixed()}%, brightness {pos.y?.toFixed()}%"
 	>
 		<svelte:component
 			this={components.pickerIndicator}

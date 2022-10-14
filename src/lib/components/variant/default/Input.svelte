@@ -7,7 +7,7 @@
 
 <label>
 	<div>
-		<input type="color" value={hex} on:click />
+		<input type="color" value={hex} on:click aria-haspopup="dialog" />
 	</div>
 	{label}
 </label>

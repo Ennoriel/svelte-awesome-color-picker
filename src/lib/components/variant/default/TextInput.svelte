@@ -43,29 +43,98 @@
 		<div class="input-container">
 			<input value={hex} on:input={updateHex} style="flex: 3" />
 			{#if isAlpha}
-				<input value={a} type="number" min="0" max="1" step="0.01" on:input={updateRgb('a')} />
+				<input
+					aria-label="hexadecimal color"
+					value={a}
+					type="number"
+					min="0"
+					max="1"
+					step="0.01"
+					on:input={updateRgb('a')}
+				/>
 			{/if}
 		</div>
 	{:else if mode === 1}
 		<div class="input-container">
-			<input value={rgb.r} type="number" min="0" max="255" on:input={updateRgb('r')} />
-			<input value={rgb.g} type="number" min="0" max="255" on:input={updateRgb('g')} />
-			<input value={rgb.b} type="number" min="0" max="255" on:input={updateRgb('b')} />
+			<input
+				aria-label="red chanel color"
+				value={rgb.r}
+				type="number"
+				min="0"
+				max="255"
+				on:input={updateRgb('r')}
+			/>
+			<input
+				aria-label="green chanel color"
+				value={rgb.g}
+				type="number"
+				min="0"
+				max="255"
+				on:input={updateRgb('g')}
+			/>
+			<input
+				aria-label="blue chanel color"
+				value={rgb.b}
+				type="number"
+				min="0"
+				max="255"
+				on:input={updateRgb('b')}
+			/>
 			{#if isAlpha}
-				<input value={a} type="number" min="0" max="1" step="0.01" on:input={updateRgb('a')} />
+				<input
+					aria-label="transparency chanel color"
+					value={a}
+					type="number"
+					min="0"
+					max="1"
+					step="0.01"
+					on:input={updateRgb('a')}
+				/>
 			{/if}
 		</div>
 	{:else}
 		<div class="input-container">
-			<input value={h} type="number" min="0" max="360" on:input={updateHsv('h')} />
-			<input value={s} type="number" min="0" max="100" on:input={updateHsv('s')} />
-			<input value={v} type="number" min="0" max="100" on:input={updateHsv('v')} />
+			<input
+				aria-label="hue chanel color"
+				value={h}
+				type="number"
+				min="0"
+				max="360"
+				on:input={updateHsv('h')}
+			/>
+			<input
+				aria-label="saturation chanel color"
+				value={s}
+				type="number"
+				min="0"
+				max="100"
+				on:input={updateHsv('s')}
+			/>
+			<input
+				aria-label="brightness chanel color"
+				value={v}
+				type="number"
+				min="0"
+				max="100"
+				on:input={updateHsv('v')}
+			/>
 			{#if isAlpha}
-				<input value={a} type="number" min="0" max="1" step="0.01" on:input={updateHsv('a')} />
+				<input
+					aria-label="transparency chanel color"
+					value={a}
+					type="number"
+					min="0"
+					max="1"
+					step="0.01"
+					on:input={updateHsv('a')}
+				/>
 			{/if}
 		</div>
 	{/if}
-	<button on:click={() => (mode = (mode + 1) % 3)}>{modes[mode]}</button>
+	<button
+		aria-label="change inputs to {modes[(mode + 1) % 3]}"
+		on:click={() => (mode = (mode + 1) % 3)}>{modes[mode]}</button
+	>
 </div>
 
 <style>

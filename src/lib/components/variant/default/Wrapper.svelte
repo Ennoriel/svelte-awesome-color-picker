@@ -6,7 +6,14 @@
 	export let toRight: boolean;
 </script>
 
-<div class="wrapper" bind:this={wrapper} class:isOpen class:isPopup>
+<div
+	class="wrapper"
+	bind:this={wrapper}
+	class:isOpen
+	class:isPopup
+	role={isPopup ? 'dialog' : undefined}
+	aria-label="color picker"
+>
 	<slot />
 </div>
 

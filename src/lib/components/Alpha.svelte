@@ -109,6 +109,11 @@
 		on:touchstart={touch}
 		on:touchmove|preventDefault|stopPropagation={touch}
 		on:touchend={touch}
+		aria-label="transparency picker (arrow keyboard navigation)"
+		aria-valuemin={0}
+		aria-valuemax={100}
+		aria-valuenow={Math.round(pos)}
+		aria-valuetext="{pos?.toFixed()}%"
 	>
 		<svelte:component this={components.alphaIndicator} {pos} {toRight} />
 	</div>
