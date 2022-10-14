@@ -18,12 +18,14 @@
 		border: 1px solid black;
 		border-radius: 12px;
 		display: none;
+		width: max-content;
 	}
 	.isOpen {
 		display: block;
 	}
 	.isPopup {
 		position: absolute;
+		top: 25px;
 		z-index: 2;
 	}
 </style>

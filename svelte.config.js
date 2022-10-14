@@ -17,6 +17,16 @@ const config = {
 
 	kit: {
 		adapter: vercel()
+	},
+
+	vitePlugin: {
+		experimental: {
+			inspector: {
+				holdMode: true,
+				showToggleButton: 'always',
+				toggleButtonPos: 'bottom-right'
+			}
+		}
 	}
 };
 

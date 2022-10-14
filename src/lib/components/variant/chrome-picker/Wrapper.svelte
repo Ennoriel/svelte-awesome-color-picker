@@ -25,10 +25,12 @@
 	}
 	.isPopup {
 		position: absolute;
+		top: 25px;
 		z-index: 2;
 	}
 	div:not(.isPopup) {
 		display: inline-flex;
+		flex-direction: column;
 	}
 	div :global(.text-input) {
 		margin: 5px;

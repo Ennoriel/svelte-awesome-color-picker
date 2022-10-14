@@ -193,3 +193,9 @@
 		{/if}
 	</svelte:component>
 </span>
+
+<style>
+	span {
+		position: relative;
+	}
+</style>
