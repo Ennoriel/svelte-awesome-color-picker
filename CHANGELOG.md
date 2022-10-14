@@ -1,5 +1,11 @@
 # svelte-awesome-color-picker
 
+## 2.1.1
+
+### Patch Changes
+
+- fix dependency
+
 ## 2.1.0
 
 ### Minor Changes
