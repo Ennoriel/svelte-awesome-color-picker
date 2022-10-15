@@ -1,13 +1,21 @@
 <script lang="ts">
+	export let labelWrapper: HTMLLabelElement;
 	export let hex: string;
 	export let label: string;
 	/* svelte-ignore unused-export-let */
 	export let isOpen: boolean;
 </script>
 
-<label>
+<label bind:this={labelWrapper}>
 	<div>
-		<input type="color" value={hex} on:click aria-haspopup="dialog" />
+		<input
+			type="color"
+			value={hex}
+			on:click|preventDefault={() => {
+				/**/
+			}}
+			aria-haspopup="dialog"
+		/>
 	</div>
 	{label}
 </label>
@@ -19,6 +27,7 @@
 		gap: 8px;
 		cursor: pointer;
 		border-radius: 3px;
+		margin: 4px;
 	}
 
 	div {

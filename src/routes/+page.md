@@ -1,7 +1,6 @@
 <script lang="ts">
-    import './_style.css';
-	import ColorPicker, { ChromeVariant } from '$lib';
-	import CustomWrapper from './_components/CustomWrapper.svelte';
+    import './style.css';
+	import ColorPicker, { ChromeVariant, A11yHorizontalWrapper } from '$lib';
     import { browser } from '$app/environment';
 
     let hex = "#f6f0dc";
@@ -52,7 +51,7 @@ The library uses [colord](https://www.npmjs.com/colord) internally because it's 
 ### With a11y contrast, custom wrapper:
 
 <ColorPicker
-components={{ wrapper: CustomWrapper }}
+components={{ wrapper: A11yHorizontalWrapper }}
 bind:hex
 bind:rgb
 bind:hsv

@@ -29,8 +29,4 @@ export type A11yColor = {
 	reverse?: boolean;
 	placeholder?: string;
 	size?: 'normal' | 'large';
-	/**
-	 * do not set this value. You can read it by bounding to a11yColors instead
-	 */
-	contrast?: number;
 };

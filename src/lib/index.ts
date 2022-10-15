@@ -9,6 +9,8 @@ import { default as ChromeSliderIndicator } from './components/variant/chrome-pi
 import { default as ChromeSliderWrapper } from './components/variant/chrome-picker/SliderWrapper.svelte';
 import { default as ChromeWrapper } from './components/variant/chrome-picker/Wrapper.svelte';
 
+export { default as A11yHorizontalWrapper } from './components/variant/A11yHorizontalWrapper.svelte';
+
 export const ChromeVariant = {
 	sliderIndicator: ChromeSliderIndicator,
 	pickerIndicator: ChromePickerIndicator,

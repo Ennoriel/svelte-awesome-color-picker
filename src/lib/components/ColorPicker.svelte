@@ -79,12 +79,16 @@
 		};
 	}
 
-	let button: any;
+	let labelWrapper: HTMLLabelElement;
 	let wrapper: HTMLElement;
 
 	function mousedown({ target }: MouseEvent) {
-		if (isInput && isOpen && !wrapper.contains(target as Node)) {
-			isOpen = false;
+		if (isInput) {
+			if (labelWrapper.contains(target as Node) || labelWrapper.isSameNode(target as Node)) {
+				isOpen = !isOpen;
+			} else if (isOpen && !wrapper.contains(target as Node)) {
+				isOpen = false;
+			}
 		}
 	}
 
@@ -124,8 +128,6 @@
 
 		if (color) {
 			isDark = color.isDark();
-			a11yColors.forEach((c) => (c.contrast = color?.contrast(c.hex) || 1));
-			a11yColors = a11yColors;
 		}
 
 		// update old colors
@@ -147,18 +149,9 @@
 
 <svelte:window on:mousedown={mousedown} on:keydown={keydown} on:keyup={keyup} />
 
-<span bind:this={span}>
+<span bind:this={span} class="color-picker">
 	{#if isInput}
-		<svelte:component
-			this={getComponents().input}
-			bind:isOpen
-			on:click={(e) => {
-				isOpen = !isOpen;
-				e.preventDefault();
-			}}
-			{hex}
-			{label}
-		/>
+		<svelte:component this={getComponents().input} bind:labelWrapper bind:isOpen {hex} {label} />
 	{:else}
 		<input type="hidden" value={hex} />
 	{/if}
@@ -185,6 +178,7 @@
 				this={getComponents().a11yNotice}
 				components={getComponents()}
 				{a11yColors}
+				{color}
 				{hex}
 				{a11yGuidelines}
 				{isA11yOpen}

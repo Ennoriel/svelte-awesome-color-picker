@@ -1,10 +1,12 @@
 <script lang="ts">
 	import type { A11yColor } from '$lib/type/types';
 	import type { Components } from '$lib/type/types';
+	import type { Colord } from 'colord';
 
 	export let components: Components;
 	export let a11yColors: Array<A11yColor>;
 	export let hex: string;
+	export let color: Colord | undefined;
 	export let a11yGuidelines: string;
 	export let isA11yOpen: boolean;
 	export let isA11yClosable: boolean;
@@ -17,14 +19,14 @@
 		<svelte:component this={components.a11ySummary} {a11yColors} {hex} />
 	</summary>
 	<div>
-		{#each a11yColors as color}
+		{#each a11yColors as { hex: a11yHex, placeholder, reverse, size }}
 			<svelte:component
 				this={components.a11ySingleNotice}
-				contrast={color.contrast}
-				textColor={color.reverse ? color.hex : hex}
-				bgColor={color.reverse ? hex : color.hex}
-				ph={color.placeholder}
-				size={color.size}
+				contrast={color?.contrast(a11yHex)}
+				textColor={reverse ? a11yHex : hex}
+				bgColor={reverse ? hex : a11yHex}
+				ph={placeholder}
+				{size}
 			/>
 		{/each}
 		{#if a11yGuidelines}
@@ -51,7 +53,7 @@
 		color: blue;
 	}
 
-	.not-closable {
+	.not-closable summary {
 		pointer-events: none;
 	}
 
