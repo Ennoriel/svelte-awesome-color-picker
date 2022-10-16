@@ -7,6 +7,7 @@ specifiers:
   '@sveltejs/package': 1.0.0-next.5
   '@typescript-eslint/eslint-plugin': ^5.30.7
   '@typescript-eslint/parser': ^5.30.7
+  chyme: link:..\chyme
   colord: ^2.9.3
   eslint: ^8.20.0
   eslint-config-prettier: ^8.5.0
@@ -34,6 +35,7 @@ devDependencies:
   '@sveltejs/package': 1.0.0-next.5_c36sqhgzdfaw4kmxogryyrffx4
   '@typescript-eslint/eslint-plugin': 5.40.0_25sstg4uu2sk4pm7xcyzuov7xq
   '@typescript-eslint/parser': 5.40.0_z4bbprzjrhnsfa24uvmcbu7f5q
+  chyme: link:../chyme
   eslint: 8.25.0
   eslint-config-prettier: 8.5.0_eslint@8.25.0
   eslint-plugin-svelte3: 4.0.0_pr36k4f4yzzzfpayao7l7fkqni

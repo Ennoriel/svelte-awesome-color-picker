@@ -163,6 +163,7 @@
 			bind:s={hsv.s}
 			bind:v={hsv.v}
 			bind:isOpen
+			{a11yColors}
 			{toRight}
 			{isDark}
 		/>

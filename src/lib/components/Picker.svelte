@@ -2,7 +2,9 @@
 	import { colord } from 'colord';
 	import { keyPressed, keyPressedCustom } from '../util/store';
 	import { easeInOutSin } from '../util/transition';
-	import type { Components } from '$lib/type/types';
+	import type { A11yColor, Components } from '$lib/type/types';
+	import { getContrastPoints } from '$lib/util/contrast';
+	import { drawCurve } from '$lib/util/svg';
 
 	export let components: Components;
 
@@ -15,6 +17,8 @@
 	export let toRight: boolean;
 	export let isDark: boolean;
 
+	export let a11yColors: Array<A11yColor>;
+
 	let picker: HTMLDivElement;
 	let isMouseDown = false;
 	let focused = false;
@@ -24,6 +28,10 @@
 
 	let colorBg: string;
 	let pos = { x: 100, y: 0 };
+
+	let path30 = '';
+	let path45 = '';
+	let path70 = '';
 
 	$: if (typeof h === 'number') colorBg = colord({ h, s: 100, v: 100, a: 1 }).toHex();
 
@@ -124,11 +132,18 @@
 		});
 	}
 
-	$: if (typeof s === 'number' && typeof v === 'number' && picker)
+	$: if (typeof s === 'number' && typeof v === 'number' && picker) {
 		pos = {
 			x: s,
 			y: 100 - v
 		};
+	}
+
+	$: {
+		path30 = getContrastPoints(a11yColors?.[0].hex, h, 3).map((points) => drawCurve(points));
+		path45 = getContrastPoints(a11yColors?.[0].hex, h, 4.5).map((points) => drawCurve(points));
+		path70 = getContrastPoints(a11yColors?.[0].hex, h, 7).map((points) => drawCurve(points));
+	}
 </script>
 
 <svelte:window
@@ -161,6 +176,30 @@
 			{isDark}
 			hex={colord({ h, s, v, a: 1 }).toHex()}
 		/>
+		<svg id="svg" viewBox="0 0 100 100" width="260px" height="200px" preserveAspectRatio="none">
+			<defs>
+				<pattern
+					id="lines"
+					width="2"
+					height="2"
+					patternUnits="userSpaceOnUse"
+					patternTransform="rotate(35)"
+				>
+					<circle cx="1" cy="1" r=".5" style="stroke: none; fill: #0000ff" />
+				</pattern>
+			</defs>
+			{#each path30 as path}
+				<path d={path} fill="none" stroke="white" stroke-width=".5" />
+			{/each}
+			{#each path45 as path}
+				<path d={path} fill="none" stroke="white" stroke-width=".5" />
+			{/each}
+			{#each path70 as path}
+				<path d={path} fill="none" stroke="white" stroke-width=".5" />
+			{/each}
+			<!-- <path d={path45} fill="none" stroke="white" stroke-width=".5" />
+			<path d={path70} fill="none" stroke="white" stroke-width=".5" /> -->
+		</svg>
 	</div>
 </svelte:component>
 
@@ -172,6 +211,11 @@
 		background: linear-gradient(#ffffff00, #000000ff),
 			linear-gradient(0.25turn, #ffffffff, #00000000), var(--color-bg);
 		outline: none;
+		user-select: none;
+	}
+	svg {
+		position: absolute;
+		inset: 0;
 		user-select: none;
 	}
 </style>
