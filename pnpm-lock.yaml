@@ -7,7 +7,7 @@ specifiers:
   '@sveltejs/package': 1.0.0-next.5
   '@typescript-eslint/eslint-plugin': ^5.30.7
   '@typescript-eslint/parser': ^5.30.7
-  chyme: link:..\chyme
+  chyme: ^1.3.5
   colord: ^2.9.3
   eslint: ^8.20.0
   eslint-config-prettier: ^8.5.0
@@ -35,7 +35,7 @@ devDependencies:
   '@sveltejs/package': 1.0.0-next.5_c36sqhgzdfaw4kmxogryyrffx4
   '@typescript-eslint/eslint-plugin': 5.40.0_25sstg4uu2sk4pm7xcyzuov7xq
   '@typescript-eslint/parser': 5.40.0_z4bbprzjrhnsfa24uvmcbu7f5q
-  chyme: link:../chyme
+  chyme: 1.3.5
   eslint: 8.25.0
   eslint-config-prettier: 8.5.0_eslint@8.25.0
   eslint-plugin-svelte3: 4.0.0_pr36k4f4yzzzfpayao7l7fkqni
@@ -923,6 +923,12 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
+  /chyme/1.3.5:
+    resolution: {integrity: sha512-7P0GbJXQGzdWnFSJXVxIYPjAxdqCwTmigJiLiBdO7i7bWo9W9b/VehIC1E45AvivHTcmWDcK086mTXB2oBkTRw==}
+    dependencies:
+      form-data-to-object: 0.2.0
+    dev: true
+
   /ci-info/3.5.0:
     resolution: {integrity: sha512-yH4RezKOGlOhxkmhbeNuC4eYZKAUsEaGtBuBzDDP1eFUKiccDWzBABxBfOx31IDwDIXMTxWuwAxUGModvkbuVw==}
     dev: true
@@ -1657,6 +1663,10 @@ packages:
 
   /flatted/3.2.7:
     resolution: {integrity: sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==}
+    dev: true
+
+  /form-data-to-object/0.2.0:
+    resolution: {integrity: sha512-F10KT6YgIq4CxmiMCZONnYN4PC5ommk8rLb4WmeahqDDszerxVwBrjqjXiedqUfNClMxDHj04KWGRK30aDnIpw==}
     dev: true
 
   /fs-extra/7.0.1:
