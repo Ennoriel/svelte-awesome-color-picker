@@ -1,5 +1,11 @@
 # svelte-awesome-color-picker
 
+## 2.1.2
+
+### Patch Changes
+
+- add license
+
 ## 2.1.1
 
 ### Patch Changes
