@@ -120,6 +120,7 @@ The default export of the library is the main ColorPicker. It has the following 
 | -------------- | ------------------ | ---------------------- | ----------------------------------------------------------------------------------------------- |
 | label          | `string`           | Choose a color         | Label of the component                                                                          |
 | isAlpha        | `boolean`          | `true`                 | The alpha slider is visible                                                                     |
+| canChangeMode  | `boolean`          | `true`                 | Show the button to change the mode                                                              |
 | isInput        | `boolean`          | `true`                 | The input button is visible                                                                     |
 | isTextInput    | `boolean`          | `true`                 | The textual hex / rgb / hsv input are visible                                                   |
 | isA11y         | `boolean`          | `true`                 | The accessibility contrast warnings are visible                                                 |
@@ -166,18 +167,32 @@ A **Chrome** variants are available. **To use the Chrome variant you need to set
 
 The components that can be overridden are:
 
-- [pickerIndicator](#pickerindicator)
-- [sliderIndicator](#sliderindicator--alphaindicator)
-- [alphaIndicator](#sliderindicator--alphaindicator)
-- [textInput](#textinput)
-- [a11yNotice](#a11ynotice)
-- [a11ySummary](#a11ysummary)
-- [a11ySingleNotice](#a11ysinglenotice)
-- [input](#input)
-- [pickerWrapper](#pickerwrapper--sliderwrapper--alphawrapper)
-- [sliderWrapper](#pickerwrapper--sliderwrapper--alphawrapper)
-- [alphaWrapper](#pickerwrapper--sliderwrapper--alphawrapper)
-- [wrapper](#wrapper)
+- [svelte-awesome-color-picker](#svelte-awesome-color-picker)
+  - [Links](#links)
+  - [Examples](#examples)
+    - [Default layout](#default-layout)
+    - [With a11y contrast, custom wrapper:](#with-a11y-contrast-custom-wrapper)
+    - [Chrome variant](#chrome-variant)
+    - [Color props](#color-props)
+    - [Always open version](#always-open-version)
+  - [install](#install)
+  - [Usage](#usage)
+  - [Api](#api)
+    - [props](#props)
+    - [css variables](#css-variables)
+    - [components](#components)
+      - [pickerIndicator](#pickerindicator)
+      - [sliderIndicator & alphaIndicator](#sliderindicator--alphaindicator)
+      - [TextInput](#textinput)
+      - [A11yNotice](#a11ynotice)
+      - [a11ySummary](#a11ysummary)
+      - [a11ySingleNotice](#a11ysinglenotice)
+      - [Input](#input)
+      - [pickerWrapper & sliderWrapper & alphaWrapper](#pickerwrapper--sliderwrapper--alphawrapper)
+      - [wrapper](#wrapper)
+    - [Accessibility](#accessibility)
+      - [The component itself](#the-component-itself)
+      - [Accessibility notice](#accessibility-notice)
 
 #### pickerIndicator
 
@@ -347,7 +362,7 @@ See [the definition of the A11yColor type](#ype-a11y-color) for more information
     :global(body) {
         background-color: var(--bg-color);
     }
-    
+
 	.grade {
 		border-radius: 50px;
 		padding: 2px 8px;
