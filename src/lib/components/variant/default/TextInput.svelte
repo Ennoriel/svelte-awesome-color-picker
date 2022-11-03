@@ -5,6 +5,7 @@
 	export let rgb: RgbaColor;
 	export let hsv: HsvaColor;
 	export let hex: string;
+	export let canChangeMode: boolean;
 
 	const HEX_COLOR_REGEX = /^#?([A-F0-9]{6}|[A-F0-9]{8})$/i;
 
@@ -131,10 +132,13 @@
 			{/if}
 		</div>
 	{/if}
-	<button
-		aria-label="change inputs to {modes[(mode + 1) % 3]}"
-		on:click={() => (mode = (mode + 1) % 3)}>{modes[mode]}</button
-	>
+
+	{#if canChangeMode}
+		<button
+			aria-label="change inputs to {modes[(mode + 1) % 3]}"
+			on:click={() => (mode = (mode + 1) % 3)}>{modes[mode]}</button
+		>
+	{/if}
 </div>
 
 <style>

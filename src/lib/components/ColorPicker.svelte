@@ -29,6 +29,7 @@
 	export let isAlpha = true;
 	export let isInput = true;
 	export let isTextInput = true;
+	export let canChangeMode = true;
 	export let isA11y = false;
 	export let a11yColors: Array<A11yColor> = [{ hex: '#ffffff' }];
 	export let a11yGuidelines =
@@ -171,7 +172,14 @@
 			<Alpha components={getComponents()} bind:a={hsv.a} {hex} bind:isOpen {toRight} />
 		{/if}
 		{#if isTextInput}
-			<svelte:component this={getComponents().textInput} bind:hex bind:rgb bind:hsv {isAlpha} />
+			<svelte:component
+				this={getComponents().textInput}
+				bind:hex
+				bind:rgb
+				bind:hsv
+				{isAlpha}
+				{canChangeMode}
+			/>
 		{/if}
 		{#if isA11y}
 			<svelte:component
