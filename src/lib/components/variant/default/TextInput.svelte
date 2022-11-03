@@ -5,7 +5,7 @@
 	export let rgb: RgbaColor;
 	export let hsv: HsvaColor;
 	export let hex: string;
-	export let canChangeMode: boolean = true;
+	export let canChangeMode: boolean;
 
 	const HEX_COLOR_REGEX = /^#?([A-F0-9]{6}|[A-F0-9]{8})$/i;
 

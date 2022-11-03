@@ -1,5 +1,11 @@
 # svelte-awesome-color-picker
 
+## 2.1.3
+
+### Patch Changes
+
+- Add option to show the mode button (thanks to [dnlml](https://github.com/dnlml))
+
 ## 2.1.2
 
 ### Patch Changes

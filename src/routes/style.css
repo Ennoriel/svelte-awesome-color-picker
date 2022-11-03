@@ -70,6 +70,41 @@ th {
 	padding: 8px;
 }
 
+@media (min-width: 768px) {
+	.example-wrapper {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 16px;
+	}
+}
+
+:global(body) {
+	background-color: var(--bg-color);
+}
+
+.grade {
+	border-radius: 50px;
+	padding: 2px 8px;
+	background-color: green;
+	color: white;
+	font-weight: bold;
+}
+
+.center {
+	text-align: center;
+}
+
+ul {
+	padding-left: 32px;
+	margin: 8px 0;
+}
+
+@media (max-width: 768px) {
+	li {
+		margin: 4px 0;
+	}
+}
+
 /** scoll stuff */
 * {
 	--dark: #ccc;

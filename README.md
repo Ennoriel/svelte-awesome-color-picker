@@ -18,6 +18,28 @@
 - 🌴 [Npm repository](https://www.npmjs.com/package/svelte-awesome-color-picker)
 - 🛫 [Documentation](https://svelte-awesome-color-picker.vercel.app/)
 
+## summary
+
+- [Links](#links)
+- [install](#install)
+- [Usage](#usage)
+- [Api](#api)
+  - [props](#props)
+  - [css variables](#css-variables)
+  - [components](#components)
+    - [pickerIndicator](#pickerindicator)
+    - [sliderIndicator & alphaIndicator](#sliderindicator--alphaindicator)
+    - [TextInput](#textinput)
+    - [A11yNotice](#a11ynotice)
+    - [a11ySummary](#a11ysummary)
+    - [a11ySingleNotice](#a11ysinglenotice)
+    - [Input](#input)
+    - [pickerWrapper & sliderWrapper & alphaWrapper](#pickerwrapper--sliderwrapper--alphawrapper)
+    - [wrapper](#wrapper)
+  - [Accessibility](#accessibility)
+    - [The component itself](#the-component-itself)
+    - [Accessibility notice](#accessibility-notice)
+
 ## install
 
 ```shell
@@ -46,9 +68,9 @@ The default export of the library is the main ColorPicker. It has the following 
 | -------------- | ------------------ | ---------------------- | ------------------------------------------------------------------------------------------------------------------------ |
 | label          | `string`           | Choose a color         | Label of the component                                                                                                   |
 | isAlpha        | `boolean`          | `true`                 | The alpha slider is visible                                                                                              |
-| canChangeMode  | `boolean`          | `true`                 | Show the button to change the mode                                                                                       |
 | isInput        | `boolean`          | `true`                 | The input button is visible                                                                                              |
 | isTextInput    | `boolean`          | `true`                 | The textual hex / rgb / hsv input are visible                                                                            |
+| canChangeMode  | `boolean`          | `true`                 | Show the button to change the color mode. If true, only the hex input is visible                                         |
 | isA11y         | `boolean`          | `true`                 | The accessibility contrast warnings are visible                                                                          |
 | a11yColors     | `Array<A11yColor>` | `[{ hex: '#ffffff' }]` | The colors to check the contrasts against. See [details about the type](#type-a11y-color)                                |
 | a11yGuidelines | `string`           | `link to WebAIM`       | Adds a custom string (rendered as @html) for additional reference                                                        |
@@ -96,27 +118,15 @@ A **Circle** and a **Chrome** variants are available. **To use the Chrome varian
 
 The components that can be overridden are:
 
-- [svelte-awesome-color-picker](#svelte-awesome-color-picker)
-- [svelte-awesome-color-picker](#svelte-awesome-color-picker-1)
-	- [Links](#links)
-	- [install](#install)
-	- [Usage](#usage)
-	- [Api](#api)
-		- [props](#props)
-		- [css variables](#css-variables)
-		- [components](#components)
-			- [pickerIndicator](#pickerindicator)
-			- [sliderIndicator & alphaIndicator](#sliderindicator--alphaindicator)
-			- [TextInput](#textinput)
-			- [A11yNotice](#a11ynotice)
-			- [a11ySummary](#a11ysummary)
-			- [a11ySingleNotice](#a11ysinglenotice)
-			- [Input](#input)
-			- [pickerWrapper & sliderWrapper & alphaWrapper](#pickerwrapper--sliderwrapper--alphawrapper)
-			- [wrapper](#wrapper)
-		- [Accessibility](#accessibility)
-			- [The component itself](#the-component-itself)
-			- [Accessibility notice](#accessibility-notice)
+- [pickerIndicator](#pickerindicator)
+- [sliderIndicator & alphaIndicator](#sliderindicator--alphaindicator)
+- [TextInput](#textinput)
+- [A11yNotice](#a11ynotice)
+- [a11ySummary](#a11ysummary)
+- [a11ySingleNotice](#a11ysinglenotice)
+- [Input](#input)
+- [pickerWrapper & sliderWrapper & alphaWrapper](#pickerwrapper--sliderwrapper--alphawrapper)
+- [wrapper](#wrapper)
 
 #### pickerIndicator
 
@@ -269,4 +279,4 @@ A contrast between 2 colors succeed if it follows the WCAG contrast guidelines:
 
 In the default `A11ySingleNotice` component that renders the <span style="border-radius: 50px; padding: 2px 8px; background-color: green; color: white; font-weight: bold;">AA</span> and <span style="border-radius: 50px; padding: 2px 8px; background-color: green; color: white; font-weight: bold;">AAA</span> tags, the small text values are used (can be configured for each reference color with the `color` props).
 
-See [the definition of the A11yColor type](#ype-a11y-color) for more information.
+See [the definition of the A11yColor type](#type-a11y-color) for more information.
