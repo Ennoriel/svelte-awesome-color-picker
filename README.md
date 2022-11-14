@@ -1,7 +1,5 @@
 # svelte-awesome-color-picker
 
-# svelte-awesome-color-picker
-
 > _svelte-awesome-color-picker_ is a highly customizable color picker component library with
 
 - 🎹 built-in keyboard navigation
