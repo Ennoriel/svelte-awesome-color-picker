@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { createEventDispatcher } from 'svelte';
 	import type { RgbaColor, HsvaColor, Colord } from 'colord';
 	import { colord, extend } from 'colord';
 	import a11yPlugin from 'colord/plugins/a11y';
@@ -21,6 +22,10 @@
 	extend([a11yPlugin]);
 
 	export let components: Partial<Components> = {};
+
+	const dispatch = createEventDispatcher<{
+		change: { hsv: HsvaColor; rgb: RgbaColor; hex: string };
+	}>();
 
 	/**
 	 * Customization properties
@@ -135,6 +140,8 @@
 		_hsv = Object.assign({}, hsv);
 		_rgb = Object.assign({}, rgb);
 		_hex = hex;
+
+		dispatch('change', { hsv, rgb, hex });
 	}
 
 	$: if (hsv || rgb || hex) {
