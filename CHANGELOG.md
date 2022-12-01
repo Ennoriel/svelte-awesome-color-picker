@@ -4,7 +4,7 @@
 
 ### Minor Changes
 
-- Add input event fired at every color change (tanks to [Valandur](https://github.com/Valandur))
+- Add input event fired at every color change (thanks to [Valandur](https://github.com/Valandur))
 
 ## 2.1.3
 
