@@ -12,9 +12,16 @@
 
 ## Links
 
+Please read the documentation on the documentation website. It has interactive examples!
+
+- 🛫 [Documentation](https://svelte-awesome-color-picker.vercel.app/)
 - 🌟 [Github repository](https://github.com/Ennoriel/svelte-awesome-color-picker)
 - 🌴 [Npm repository](https://www.npmjs.com/package/svelte-awesome-color-picker)
-- 🛫 [Documentation](https://svelte-awesome-color-picker.vercel.app/)
+- 👌 [Changelog](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/CHANGELOG.md)
+
+![Default layout](https://svelte-awesome-color-picker.vercel.app/default-variant.png)
+
+![Chrome like layout](https://svelte-awesome-color-picker.vercel.app/chrome-variant.png)
 
 ## summary
 
@@ -23,6 +30,7 @@
 - [Usage](#usage)
 - [Api](#api)
   - [props](#props)
+  - [events](#events)
   - [css variables](#css-variables)
   - [components](#components)
     - [pickerIndicator](#pickerindicator)
@@ -83,6 +91,10 @@ The default export of the library is the main ColorPicker. It has the following 
 | hsv            | `HsvaColor`        | `red`                  | The HSV color object that should be bound to                                                                             |
 | color          | `ColorD`           | `red`                  | A colord representation of the color. It can be bound to but should not be modified                                      |
 | components     | `Components`       |                        | By default a Circle and a Chrome variants are available. Can be fully customized. See [#components section](#components) |
+
+| Event | Type                       | Usage                                                           |
+| ----- | -------------------------- | --------------------------------------------------------------- |
+| input | `{ color, hsv, rgb, hex }` | Event fired on every color change (click & drag & mouse, touch) |
 
 ### css variables
 

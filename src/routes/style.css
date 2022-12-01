@@ -1,7 +1,7 @@
 html {
 	font-family: 'Segoe UI', sans-serif;
 	font-size: 14px;
-	letter-spacing: 0.05em;
+	letter-spacing: 0.04em;
 	--bg-color: white;
 	color: #333;
 }
@@ -17,6 +17,14 @@ main {
 	background-color: white;
 	border-radius: 8px;
 	box-shadow: 0 0 8px 0 #777;
+}
+
+button {
+	cursor: pointer;
+	border: none;
+	padding: 8px 16px;
+	margin: 8px 0;
+	border-radius: 4px;
 }
 
 a,

@@ -6,10 +6,13 @@
     let hex = "#f6f0dc";
     let rgb;
     let hsv;
+    let historyHex = [];
+    $: historyHex = historyHex.length > 8 ? ['...', ...historyHex.slice(Math.max(0, historyHex.length - 8))] : historyHex
 
     function beautify(object, name) {
         return `<span style="color: #ef3b7d;">let</span> ${name}<span style="color: #a77afe;"> = </span>` + JSON.stringify(object || {}, null, 2)
         .replace(/("#\w+")/g, '<span style="color: #e6d06c;">$1</span>')
+        .replace(/("...")/g, '<span style="color: #e6d06c;">$1</span>')
         .replace(/:\s(\d+\.?\d*)/g, ': <span style="color: #ef3b7d;">$1</span>')
         .replace(/":/g, '"<span style="color: #a77afe;">:</span>');
     }
@@ -35,9 +38,10 @@ The library uses [colord](https://www.npmjs.com/colord) internally because it's 
 
 ## Links
 
+- 🛫 [Documentation](https://svelte-awesome-color-picker.vercel.app/)
 - 🌟 [Github repository](https://github.com/Ennoriel/svelte-awesome-color-picker)
 - 🌴 [Npm repository](https://www.npmjs.com/package/svelte-awesome-color-picker)
-- 🛫 [Documentation](https://svelte-awesome-color-picker.vercel.app/)
+- 👌 [Changelog](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/CHANGELOG.md)
 
 ## summary
 
@@ -46,6 +50,7 @@ The library uses [colord](https://www.npmjs.com/colord) internally because it's 
 - [Usage](#usage)
 - [Api](#api)
   - [props](#props)
+  - [events](#events)
   - [css variables](#css-variables)
   - [components](#components)
     - [pickerIndicator](#pickerindicator)
@@ -68,7 +73,11 @@ The library uses [colord](https://www.npmjs.com/colord) internally because it's 
 
 ### Default layout
 
-<ColorPicker bind:hex bind:rgb bind:hsv />
+<ColorPicker bind:hex bind:rgb bind:hsv open />
+
+### Chrome variant
+
+<ColorPicker bind:rgb bind:hsv bind:hex components={ChromeVariant} toRight />
 
 ### With a11y contrast, custom wrapper:
 
@@ -89,10 +98,6 @@ a11yColors={[
 ]}
 />
 
-### Chrome variant
-
-<ColorPicker bind:rgb bind:hsv bind:hex components={ChromeVariant} toRight />
-
 </div>
 <div class="example-col">
 
@@ -112,6 +117,28 @@ a11yColors={[
 
 <div class="center">
     <ColorPicker bind:rgb bind:hsv bind:hex components={ChromeVariant} toRight isInput={false} />
+</div>
+
+<div class="example-wrapper">
+
+<div class="example-col">
+
+### Bind event '`on:input`'
+
+<ColorPicker {rgb} on:input={v => {
+historyHex = [...historyHex, v.detail.hex]
+}} />
+
+On every event, the hex color is appended to the history array
+
+<button on:click={() => historyHex = [hex]}>Reset history</button>
+
+</div>
+
+<div class="example-col">
+<pre class="language-javascript" style:margin-top="48px">{@html beautify(historyHex, "history")}</pre>
+</div>
+
 </div>
 
 ## install
@@ -159,6 +186,12 @@ The default export of the library is the main ColorPicker. It has the following 
 | hsv            | `HsvaColor`        | `red`                  | The HSV color object that should be bound to                                                    |
 | color          | `ColorD`           | `red`                  | A colord representation of the color. It can be bound to but should not be modified             |
 | components     | `Components`       |                        | A Chrome variants is available. Can be fully customized. See [#components section](#components) |
+
+### events
+
+| Event | Type                       | Usage                                                           |
+| ----- | -------------------------- | --------------------------------------------------------------- |
+| input | `{ color, hsv, rgb, hex }` | Event fired on every color change (click & drag & mouse, touch) |
 
 ### css variables
 

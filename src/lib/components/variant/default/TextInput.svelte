@@ -171,6 +171,7 @@
 	button {
 		cursor: pointer;
 		flex: 1;
+		margin: 0;
 		transition: background-color 0.2s;
 	}
 
