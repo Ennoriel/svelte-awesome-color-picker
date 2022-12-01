@@ -6,8 +6,8 @@
     let hex = "#f6f0dc";
     let rgb;
     let hsv;
-    let historicHex = [];
-    $: historicHex = historicHex.length > 8 ? ['...', ...historicHex.slice(Math.max(0, historicHex.length - 8))] : historicHex
+    let historyHex = [];
+    $: historyHex = historyHex.length > 8 ? ['...', ...historyHex.slice(Math.max(0, historyHex.length - 8))] : historyHex
 
     function beautify(object, name) {
         return `<span style="color: #ef3b7d;">let</span> ${name}<span style="color: #a77afe;"> = </span>` + JSON.stringify(object || {}, null, 2)
@@ -37,8 +37,6 @@
 The library uses [colord](https://www.npmjs.com/colord) internally because it's the lightest color conversion solution on the market and supports a11y contrasts.
 
 ## Links
-
-> Please read the documentation on the documentation website. It has interactive examples!
 
 - 🛫 [Documentation](https://svelte-awesome-color-picker.vercel.app/)
 - 🌟 [Github repository](https://github.com/Ennoriel/svelte-awesome-color-picker)
@@ -128,17 +126,17 @@ a11yColors={[
 ### Bind event '`on:input`'
 
 <ColorPicker {rgb} on:input={v => {
-historicHex = [...historicHex, v.detail.hex]
+historyHex = [...historyHex, v.detail.hex]
 }} />
 
-On every event, the hex color is appended to the historic array
+On every event, the hex color is appended to the history array
 
-<button on:click={() => historicHex = [hex]}>Reset historic</button>
+<button on:click={() => historyHex = [hex]}>Reset history</button>
 
 </div>
 
 <div class="example-col">
-<pre class="language-javascript" style:margin-top="48px">{@html beautify(historicHex, "historic")}</pre>
+<pre class="language-javascript" style:margin-top="48px">{@html beautify(historyHex, "history")}</pre>
 </div>
 
 </div>

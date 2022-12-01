@@ -12,6 +12,8 @@
 
 ## Links
 
+Please read the documentation on the documentation website. It has interactive examples!
+
 - 🛫 [Documentation](https://svelte-awesome-color-picker.vercel.app/)
 - 🌟 [Github repository](https://github.com/Ennoriel/svelte-awesome-color-picker)
 - 🌴 [Npm repository](https://www.npmjs.com/package/svelte-awesome-color-picker)
