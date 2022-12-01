@@ -19,9 +19,7 @@ Please read the documentation on the documentation website. It has interactive e
 - 🌴 [Npm repository](https://www.npmjs.com/package/svelte-awesome-color-picker)
 - 👌 [Changelog](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/CHANGELOG.md)
 
-![Default layout](https://svelte-awesome-color-picker.vercel.app/default-variant.png)
-
-![Chrome like layout](https://svelte-awesome-color-picker.vercel.app/chrome-variant.png)
+![Example of the color picker](https://svelte-awesome-color-picker.vercel.app/examples.png)
 
 ## summary
 
