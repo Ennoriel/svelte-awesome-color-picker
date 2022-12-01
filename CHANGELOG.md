@@ -1,5 +1,11 @@
 # svelte-awesome-color-picker
 
+## 2.2.1
+
+### Patch Changes
+
+- Fix event type
+
 ## 2.2.0
 
 ### Minor Changes
