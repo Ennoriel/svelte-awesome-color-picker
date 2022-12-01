@@ -90,6 +90,8 @@ The default export of the library is the main ColorPicker. It has the following 
 | color          | `ColorD`           | `red`                  | A colord representation of the color. It can be bound to but should not be modified                                      |
 | components     | `Components`       |                        | By default a Circle and a Chrome variants are available. Can be fully customized. See [#components section](#components) |
 
+### events
+
 | Event | Type                       | Usage                                                           |
 | ----- | -------------------------- | --------------------------------------------------------------- |
 | input | `{ color, hsv, rgb, hex }` | Event fired on every color change (click & drag & mouse, touch) |
