@@ -1,5 +1,11 @@
 # svelte-awesome-color-picker
 
+## 2.2.0
+
+### Minor Changes
+
+- Add input event fired at every color change (tanks to [Valandur](https://github.com/Valandur))
+
 ## 2.1.3
 
 ### Patch Changes

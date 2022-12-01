@@ -50,7 +50,7 @@
 
 	.isPopup {
 		position: absolute;
-		top: 25px;
+		top: 15px;
 		z-index: 2;
 	}
 </style>
