@@ -1,5 +1,11 @@
 # svelte-awesome-color-picker
 
+## 2.2.2
+
+### Patch Changes
+
+- fix issue #18: prevent default color input picker to open on safari
+
 ## 2.2.1
 
 ### Patch Changes

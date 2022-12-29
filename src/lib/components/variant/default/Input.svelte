@@ -12,7 +12,10 @@
 			type="color"
 			value={hex}
 			on:click|preventDefault={() => {
-				/**/
+				/* prevent default behavior on most browsers */
+			}}
+			on:mousedown|preventDefault={() => {
+				/* prevent default behavior on safari */
 			}}
 			aria-haspopup="dialog"
 		/>
