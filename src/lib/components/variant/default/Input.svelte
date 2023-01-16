@@ -19,8 +19,8 @@
 			}}
 			aria-haspopup="dialog"
 		/>
-		<div class="alpha"></div>
-		<div class="color" style="background: {hex}"></div>
+		<div class="alpha" />
+		<div class="color" style="background: {hex}" />
 	</div>
 	{label}
 </label>
@@ -59,26 +59,25 @@
 	}
 
 	.alpha {
-		position: absolute;
-		width: 28px;
-		height: 28px;
-		border-radius: 14px;
-		background-image: /* tint image */
-			linear-gradient(to right, rgba(238, 238, 238, 0.75), rgba(238, 238, 238, 0.75)),
-			/* checkered effect */
+		clip-path: circle(50%);
+		background-image: linear-gradient(
+				to right,
+				rgba(238, 238, 238, 0.75),
+				rgba(238, 238, 238, 0.75)
+			),
 			linear-gradient(to right, black 50%, white 50%),
 			linear-gradient(to bottom, black 50%, white 50%);
 		background-blend-mode: normal, difference, normal;
-		background-size: 14px 14px;
-		outline: none;
-		user-select: none;
+		background-size: 15px 15px;
 	}
 
+	.alpha,
 	.color {
 		position: absolute;
 		width: 30px;
 		height: 30px;
 		border-radius: 15px;
+		user-select: none;
 	}
 
 	:global(.has-been-tabbed) label:focus-within {
