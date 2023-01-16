@@ -24,7 +24,7 @@
 	export let components: Partial<Components> = {};
 
 	const dispatch = createEventDispatcher<{
-		input: { hsv: HsvaColor; rgb: RgbaColor; hex: string, color: Colord | undefined };
+		input: { hsv: HsvaColor; rgb: RgbaColor; hex: string; color: Colord | undefined };
 	}>();
 
 	/**

@@ -7,7 +7,7 @@
 </script>
 
 <label bind:this={labelWrapper}>
-	<div>
+	<div class="container">
 		<input
 			type="color"
 			value={hex}
@@ -19,6 +19,8 @@
 			}}
 			aria-haspopup="dialog"
 		/>
+		<div class="alpha" />
+		<div class="color" style="background: {hex}" />
 	</div>
 	{label}
 </label>
@@ -33,7 +35,8 @@
 		margin: 4px;
 	}
 
-	div {
+	.container {
+		position: relative;
 		display: block;
 		width: 30px;
 		height: 30px;
@@ -52,6 +55,29 @@
 		height: 32px;
 		flex-shrink: 0;
 		cursor: pointer;
+		visibility: hidden;
+	}
+
+	.alpha {
+		clip-path: circle(50%);
+		background-image: linear-gradient(
+				to right,
+				rgba(238, 238, 238, 0.75),
+				rgba(238, 238, 238, 0.75)
+			),
+			linear-gradient(to right, black 50%, white 50%),
+			linear-gradient(to bottom, black 50%, white 50%);
+		background-blend-mode: normal, difference, normal;
+		background-size: 15px 15px;
+	}
+
+	.alpha,
+	.color {
+		position: absolute;
+		width: 30px;
+		height: 30px;
+		border-radius: 15px;
+		user-select: none;
 	}
 
 	:global(.has-been-tabbed) label:focus-within {

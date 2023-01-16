@@ -1,5 +1,11 @@
 # svelte-awesome-color-picker
 
+## 2.2.3
+
+### Patch Changes
+
+- Display transparency in the closed picker (thanks to [Manstie](https://github.com/manstie))
+
 ## 2.2.2
 
 ### Patch Changes
