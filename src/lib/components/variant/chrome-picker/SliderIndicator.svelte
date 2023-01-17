@@ -17,5 +17,6 @@
 
 		pointer-events: none;
 		z-index: 1;
+		box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 1px, rgb(51, 51, 51) 0px 0px 0px 1px;
 	}
 </style>
