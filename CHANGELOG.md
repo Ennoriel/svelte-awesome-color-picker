@@ -1,5 +1,15 @@
 # svelte-awesome-color-picker
 
+## 2.3.0
+
+### Minor Changes
+
+- use SvelteKit 1.0.0 😁
+
+### Patch Changes
+
+- 3670d7c: fix a11y summary & svelte-check
+
 ## 2.2.5
 
 ### Patch Changes
