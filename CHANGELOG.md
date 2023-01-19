@@ -1,5 +1,11 @@
 # svelte-awesome-color-picker
 
+## 2.2.5
+
+### Patch Changes
+
+- Fix indicator positioning and add the border on the default display too
+
 ## 2.2.4
 
 ### Patch Changes

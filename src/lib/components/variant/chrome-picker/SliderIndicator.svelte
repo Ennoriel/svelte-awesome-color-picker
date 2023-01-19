@@ -18,5 +18,6 @@
 		pointer-events: none;
 		z-index: 1;
 		border: 1px solid black;
+		box-sizing: border-box;
 	}
 </style>
