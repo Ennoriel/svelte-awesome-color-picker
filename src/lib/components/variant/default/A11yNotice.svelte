@@ -12,20 +12,21 @@
 	export let isA11yClosable: boolean;
 
 	$: closable = isA11yOpen && !isA11yClosable;
+	$: _a11yColors = a11yColors.map((a11yColor) => ({...a11yColor, contrast: color?.contrast(a11yColor.hex)}))
 </script>
 
 <details class="a11y-notice {closable ? 'not-closable' : ''}" open={isA11yOpen}>
 	<summary tabindex={closable ? -1 : undefined}>
-		<svelte:component this={components.a11ySummary} {a11yColors} {hex} />
+		<svelte:component this={components.a11ySummary} a11yColors={_a11yColors} {hex} />
 	</summary>
 	<div>
-		{#each a11yColors as { hex: a11yHex, placeholder, reverse, size }}
+		{#each _a11yColors as { contrast, hex: a11yHex, placeholder, reverse, size }}
 			<svelte:component
 				this={components.a11ySingleNotice}
-				contrast={color?.contrast(a11yHex)}
+				{contrast}
 				textColor={reverse ? a11yHex : hex}
 				bgColor={reverse ? hex : a11yHex}
-				ph={placeholder}
+				{placeholder}
 				{size}
 			/>
 		{/each}

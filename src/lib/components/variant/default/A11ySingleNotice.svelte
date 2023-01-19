@@ -1,7 +1,7 @@
 <script lang="ts">
 	export let textColor: string;
 	export let bgColor: string;
-	export let ph: string | undefined = undefined;
+	export let placeholder: string | undefined = undefined;
 	export let contrast = 1;
 	export let size: 'normal' | 'large' | undefined = undefined;
 </script>
@@ -11,7 +11,7 @@
 		class="lorem {size === 'large' && 'large'}"
 		style="color: {textColor}; background-color: {bgColor}"
 	>
-		{ph || 'Lorem Ipsum'}
+		{placeholder || 'Lorem Ipsum'}
 	</p>
 	<div class="score">
 		<p>contrast: {contrast >= 10 ? contrast.toFixed(1) : contrast}</p>

@@ -30,3 +30,7 @@ export type A11yColor = {
 	placeholder?: string;
 	size?: 'normal' | 'large';
 };
+
+export type A11yColorContract = A11yColor & {
+	contrast?: number
+}

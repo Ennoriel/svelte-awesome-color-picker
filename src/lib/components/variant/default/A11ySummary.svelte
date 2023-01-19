@@ -1,13 +1,13 @@
 <script lang="ts">
-	import type { A11yColor } from '$lib/type/types';
+	import type { A11yColorContract } from '$lib/type/types';
 
-	export let a11yColors: Array<A11yColor>;
+	export let a11yColors: Array<A11yColorContract>;
 	/* svelte-ignore unused-export-let */
 	export let hex: string;
 
-	function getNumberOfGradeFailed({ contrast, size }: A11yColor): number {
+	function getNumberOfGradeFailed({ contrast, size }: A11yColorContract): number {
 		if (!contrast) {
-			return 2;
+			return 1;
 		}
 		if (size === 'large') {
 			return contrast < 3 ? 2 : contrast < 4.5 ? 1 : 0;
