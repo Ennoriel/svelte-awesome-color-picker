@@ -1,5 +1,11 @@
 # svelte-awesome-color-picker
 
+## 2.2.4
+
+### Patch Changes
+
+- add border in slider indicator to be always visible (thanks to [JinIgarashi](https://github.com/JinIgarashi))
+
 ## 2.2.3
 
 ### Patch Changes
