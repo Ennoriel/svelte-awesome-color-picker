@@ -17,6 +17,6 @@
 
 		pointer-events: none;
 		z-index: 1;
-		outline: 1px solid black;
+		border: 1px solid black;
 	}
 </style>
