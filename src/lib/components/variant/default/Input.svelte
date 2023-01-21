@@ -55,7 +55,6 @@
 		height: 32px;
 		flex-shrink: 0;
 		cursor: pointer;
-		visibility: hidden;
 	}
 
 	.alpha {
