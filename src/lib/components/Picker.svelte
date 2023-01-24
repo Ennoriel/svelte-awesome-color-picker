@@ -40,7 +40,7 @@
 		v = clamp((height - mouse.y) / height, 0, 1) * 100;
 	}
 
-	function pickerMouseDown(e: MouseEvent) {
+	function pickerMousedown(e: MouseEvent) {
 		if (e.button === 0) {
 			isMouseDown = true;
 			onClick(e);
@@ -145,7 +145,7 @@
 		class="picker"
 		tabindex="0"
 		bind:this={picker}
-		on:mousedown|preventDefault|stopPropagation={pickerMouseDown}
+		on:mousedown|preventDefault|stopPropagation={pickerMousedown}
 		on:touchstart={touch}
 		on:touchmove|preventDefault|stopPropagation={touch}
 		on:touchend={touch}

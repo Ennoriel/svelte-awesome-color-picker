@@ -9,11 +9,11 @@
 <style>
 	div {
 		position: absolute;
-		width: 10px;
-		height: 10px;
+		width: 9.5px;
+		height: 9.5px;
 		background-color: white;
 		border-radius: 5px;
-		margin-left: 2px;
+		margin-left: 1px;
 
 		pointer-events: none;
 		z-index: 1;

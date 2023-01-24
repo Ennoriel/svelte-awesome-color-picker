@@ -161,15 +161,11 @@
 	$: if (hsv || rgb || hex) {
 		updateColor();
 	}
-
-	function keydown(e: KeyboardEvent) {
-		if (e.key === 'Tab') span.classList.add('has-been-tabbed');
-	}
 </script>
 
 <ArrowKeyHandler />
 
-<svelte:window on:mousedown={mousedown} on:keydown={keydown} on:keyup={keyup} />
+<svelte:window on:mousedown={mousedown} on:keyup={keyup} />
 
 <span bind:this={span} class="color-picker">
 	{#if isInput}

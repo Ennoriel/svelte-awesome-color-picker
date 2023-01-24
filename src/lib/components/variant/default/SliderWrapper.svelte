@@ -12,9 +12,9 @@
 	div {
 		display: inline-block;
 		margin-right: 5px;
-		width: var(--slider-width, 14px);
+		width: var(--slider-width, 12px);
 		height: var(--picker-height, 200px);
-		border-radius: 7px;
+		border-radius: 6px;
 		overflow: hidden;
 		user-select: none;
 
