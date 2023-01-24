@@ -6,7 +6,12 @@
 	export let isOpen: boolean;
 </script>
 
-<label bind:this={labelWrapper}>
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<label
+	bind:this={labelWrapper} 
+	on:click|preventDefault={() => { /* prevent default behavior on safari */ }} 
+	on:mousedown|preventDefault={() => { /* prevent default behavior on safari */ }}
+>
 	<div class="container">
 		<input
 			type="color"
