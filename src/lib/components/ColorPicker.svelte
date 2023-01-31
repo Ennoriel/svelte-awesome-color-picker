@@ -49,7 +49,7 @@
 	 * color properties
 	 */
 	export let rgb: RgbaColor = { r: 255, g: 0, b: 0, a: 1 };
-	export let hsv: HsvaColor = { h: 0, s: 1, v: 1, a: 1 };
+	export let hsv: HsvaColor = { h: 0, s: 100, v: 100, a: 1 };
 	export let hex = '#ff0000';
 	export let color: Colord | undefined = undefined;
 	export let isDark = false;
@@ -58,7 +58,7 @@
 	 * Internal old value to trigger color conversion
 	 */
 	let _rgb: RgbaColor = { r: 255, g: 0, b: 0, a: 1 };
-	let _hsv: HsvaColor = { h: 0, s: 1, v: 1, a: 1 };
+	let _hsv: HsvaColor = { h: 0, s: 100, v: 100, a: 1 };
 	let _hex = '#ff0000';
 
 	let span: HTMLSpanElement;
@@ -156,6 +156,8 @@
 		_hex = hex;
 
 		dispatch('input', { color, hsv, rgb, hex });
+
+		console.log(color, hsv, rgb, hex);
 	}
 
 	$: if (hsv || rgb || hex) {
