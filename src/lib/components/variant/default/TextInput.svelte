@@ -184,8 +184,8 @@
 		outline: none;
 	}
 
-	:global(.has-been-tabbed) input:focus-visible,
-	:global(.has-been-tabbed) button:focus-visible {
+	input:focus-visible,
+	button:focus-visible {
 		outline: 2px solid var(--focus-color, red);
 		outline-offset: 2px;
 	}

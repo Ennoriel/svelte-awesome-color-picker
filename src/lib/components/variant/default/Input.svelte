@@ -6,7 +6,12 @@
 	export let isOpen: boolean;
 </script>
 
-<label bind:this={labelWrapper}>
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<label
+	bind:this={labelWrapper} 
+	on:click|preventDefault={() => { /* prevent default behavior on safari */ }} 
+	on:mousedown|preventDefault={() => { /* prevent default behavior on safari */ }}
+>
 	<div class="container">
 		<input
 			type="color"
@@ -38,10 +43,6 @@
 	.container {
 		position: relative;
 		display: block;
-		width: 30px;
-		height: 30px;
-		overflow: hidden;
-		border-radius: 15px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -51,11 +52,12 @@
 		margin: 0;
 		padding: 0;
 		border: none;
-		width: 32px;
-		height: 32px;
+		width: 4px;
+		height: 4px;
 		flex-shrink: 0;
 		cursor: pointer;
-		visibility: hidden;
+		border-radius: 50%;
+		margin: 0 12px;
 	}
 
 	.alpha {
@@ -68,7 +70,7 @@
 			linear-gradient(to right, black 50%, white 50%),
 			linear-gradient(to bottom, black 50%, white 50%);
 		background-blend-mode: normal, difference, normal;
-		background-size: 15px 15px;
+		background-size: 12px 12px;
 	}
 
 	.alpha,
@@ -80,8 +82,8 @@
 		user-select: none;
 	}
 
-	:global(.has-been-tabbed) label:focus-within {
+	input:focus {
 		outline: 2px solid var(--focus-color, red);
-		outline-offset: 2px;
+		outline-offset: 15px;
 	}
 </style>

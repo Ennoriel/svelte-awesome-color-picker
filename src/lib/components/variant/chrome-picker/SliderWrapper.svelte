@@ -21,6 +21,9 @@
 		outline-offset: 3px;
 		transition: outline 0.2s ease-in-out;
 		user-select: none;
+
+		--pattern-size: 5px;
+		--pattern-size-2x: 10px;
 	}
 
 	div.focused {

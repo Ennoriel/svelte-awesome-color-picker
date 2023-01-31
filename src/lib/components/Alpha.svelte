@@ -136,8 +136,8 @@
 		height: 100%;
 		background-image: linear-gradient(45deg, #eee 25%, transparent 25%, transparent 75%, #eee 75%),
 			linear-gradient(45deg, #eee 25%, transparent 25%, transparent 75%, #eee 75%);
-		background-size: 10px 10px;
-		background-position: 0 0, 5px 5px;
+		background-size: var(--pattern-size-2x, 12px) var(--pattern-size-2x, 12px);
+		background-position: 0 0, var(--pattern-size, 6px) var(--pattern-size, 6px);
 		outline: none;
 		user-select: none;
 	}

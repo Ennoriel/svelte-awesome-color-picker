@@ -40,7 +40,7 @@
 
 <style>
 	details {
-		width: 230px;
+		width: 245px;
 		margin: 8px auto;
 	}
 

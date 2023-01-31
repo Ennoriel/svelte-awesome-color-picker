@@ -1,5 +1,15 @@
 # svelte-awesome-color-picker
 
+## 2.4.0
+
+### Minor Changes
+
+- Fix tabbing into the input (thanks again to [Manstie](https://github.com/manstie))
+- Fix a11y notice display
+- Fix focus style when pressing tab ([issue #25](https://github.com/Ennoriel/svelte-awesome-color-picker/issues/25))
+- Fix default color input opening on Safari on label click ([issue #18](https://github.com/Ennoriel/svelte-awesome-color-picker/issues/18)) 
+- Fix color picker initialization ([issue #27](https://github.com/Ennoriel/svelte-awesome-color-picker/issues/27)) 
+
 ## 2.3.0
 
 ### Minor Changes
