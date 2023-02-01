@@ -156,8 +156,6 @@
 		_hex = hex;
 
 		dispatch('input', { color, hsv, rgb, hex });
-
-		console.log(color, hsv, rgb, hex);
 	}
 
 	$: if (hsv || rgb || hex) {
