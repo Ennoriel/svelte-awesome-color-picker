@@ -8,9 +8,13 @@
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <label
-	bind:this={labelWrapper} 
-	on:click|preventDefault={() => { /* prevent default behavior on safari */ }} 
-	on:mousedown|preventDefault={() => { /* prevent default behavior on safari */ }}
+	bind:this={labelWrapper}
+	on:click|preventDefault={() => {
+		/* prevent default behavior on safari */
+	}}
+	on:mousedown|preventDefault={() => {
+		/* prevent default behavior on safari */
+	}}
 >
 	<div class="container">
 		<input

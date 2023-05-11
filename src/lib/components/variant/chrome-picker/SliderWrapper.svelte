@@ -12,8 +12,8 @@
 	div {
 		display: inline-block;
 		margin: 4px;
-		width: var(--slider-width, 250px);
-		height: var(--picker-height, 10px);
+		width: calc(var(--picker-width, 260px) - 10px);
+		height: var(--slider-width, 10px);
 		border-radius: 7px;
 		overflow: hidden;
 

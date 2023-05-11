@@ -98,12 +98,12 @@ The default export of the library is the main ColorPicker. It has the following 
 
 ### css variables
 
-| Props           | Default Value | Usage                   |
-| --------------- | ------------- | ----------------------- |
-| --picker-height | `200px`       | picker & sliders height |
-| --picker-width  | `200px`       | picker width            |
-| --slider-width  | `30px`        | sliders width           |
-| --focus-color   | `red`         | focus color             |
+| Props           | Default Value                       | Usage                   |
+| --------------- | ----------------------------------- | ----------------------- |
+| --picker-height | `200px`                             | picker & sliders height |
+| --picker-width  | `200px` or `260px` (chrome variant) | picker width            |
+| --slider-width  | `12px` or `10px` (chrome variant)   | sliders width           |
+| --focus-color   | `red`                               | focus color             |
 
 ### components
 

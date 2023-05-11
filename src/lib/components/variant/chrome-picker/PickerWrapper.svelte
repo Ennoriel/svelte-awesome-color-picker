@@ -12,8 +12,8 @@
 	div {
 		display: inline-block;
 		margin-bottom: 5px;
-		height: 200px;
-		width: 260px;
+		width: var(--picker-width, 260px);
+		height: var(--picker-height, 200px);
 		border-radius: 8px 8px 0 0;
 		overflow: hidden;
 

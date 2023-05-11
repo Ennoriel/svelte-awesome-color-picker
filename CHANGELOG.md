@@ -1,5 +1,11 @@
 # svelte-awesome-color-picker
 
+## 2.4.2
+
+### Patch Changes
+
+- Fix css variables --picker-height, --picker-width and --slider-width ([issue #25](https://github.com/Ennoriel/svelte-awesome-color-picker/issues/31))
+
 ## 2.4.1
 
 ### Patch Changes

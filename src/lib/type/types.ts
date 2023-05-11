@@ -32,5 +32,5 @@ export type A11yColor = {
 };
 
 export type A11yColorContract = A11yColor & {
-	contrast?: number
-}
+	contrast?: number;
+};

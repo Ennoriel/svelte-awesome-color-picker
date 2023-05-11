@@ -2,9 +2,11 @@
 	export let pos: number;
 	/* svelte-ignore unused-export-let */
 	export let toRight: boolean;
+
+	$: left = `calc(${pos} * (var(--picker-width, 200px) - 20px) / 100 + 2px)`;
 </script>
 
-<div class="slider-indicator" style={`left: calc(${(pos / 200) * 192}% + 2px);`} />
+<div class="slider-indicator" style="left: {left}" />
 
 <style>
 	div {

@@ -3,13 +3,14 @@
 	/* svelte-ignore unused-export-let */
 	export let hex: string;
 	export let isDark: boolean;
+
+	$: left = `calc(${pos.x} * (var(--picker-width, 260px) - 14px) / 100 + 2px)`;
+	$: top = `calc(${pos.y} * (var(--picker-height, 200px) - 14px) / 100 + 2px)`;
 </script>
 
 <div
 	class="picker-indicator"
-	style={`left: calc(${(pos.x / 260) * 246}% + 2px); top: calc(${
-		(pos.y / 160) * 149
-	}% + 2px); box-shadow: 0 0 4px ${isDark ? 'white' : 'black'};`}
+	style={`left: ${left}; top: ${top}; box-shadow: 0 0 4px ${isDark ? 'white' : 'black'};`}
 />
 
 <style>

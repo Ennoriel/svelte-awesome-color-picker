@@ -12,7 +12,10 @@
 	export let isA11yClosable: boolean;
 
 	$: closable = isA11yOpen && !isA11yClosable;
-	$: _a11yColors = a11yColors.map((a11yColor) => ({...a11yColor, contrast: color?.contrast(a11yColor.hex)}))
+	$: _a11yColors = a11yColors.map((a11yColor) => ({
+		...a11yColor,
+		contrast: color?.contrast(a11yColor.hex)
+	}));
 </script>
 
 <details class="a11y-notice {closable ? 'not-closable' : ''}" open={isA11yOpen}>

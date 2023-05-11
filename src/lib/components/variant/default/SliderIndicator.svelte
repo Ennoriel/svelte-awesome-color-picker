@@ -2,9 +2,11 @@
 	export let pos: number;
 	/* svelte-ignore unused-export-let */
 	export let toRight: boolean;
+
+	$: top = `calc(${pos} * (var(--picker-height, 200px) - 14px) / 100 + 2px)`;
 </script>
 
-<div class="slider-indicator" style={`top: calc(${(pos / 200) * 186}% + 2px);`} />
+<div class="slider-indicator" style="top: {top}" />
 
 <style>
 	div {
@@ -13,7 +15,7 @@
 		height: 9.5px;
 		background-color: white;
 		border-radius: 5px;
-		margin-left: 1px;
+		margin-left: 1.5px;
 
 		pointer-events: none;
 		z-index: 1;
