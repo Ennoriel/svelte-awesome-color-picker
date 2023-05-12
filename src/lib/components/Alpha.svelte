@@ -105,9 +105,9 @@
 		class:to-right={toRight}
 		style="--alpha-color: {hex?.substring(0, 7)}"
 		bind:this={alpha}
-		on:mousedown|preventDefault|stopPropagation={mouseDown}
+		on:mousedown|preventDefault={mouseDown}
 		on:touchstart={touch}
-		on:touchmove|preventDefault|stopPropagation={touch}
+		on:touchmove|preventDefault={touch}
 		on:touchend={touch}
 		aria-label="transparency picker (arrow keyboard navigation)"
 		aria-valuemin={0}

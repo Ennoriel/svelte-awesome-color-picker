@@ -101,9 +101,9 @@
 		tabindex="0"
 		class:to-right={toRight}
 		bind:this={slider}
-		on:mousedown|preventDefault|stopPropagation={mouseDown}
+		on:mousedown|preventDefault={mouseDown}
 		on:touchstart={touch}
-		on:touchmove|preventDefault|stopPropagation={touch}
+		on:touchmove|preventDefault={touch}
 		on:touchend={touch}
 		aria-label="hue picker (arrow keyboard navigation)"
 		aria-valuemin={0}

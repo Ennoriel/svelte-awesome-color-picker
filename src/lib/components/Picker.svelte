@@ -145,9 +145,9 @@
 		class="picker"
 		tabindex="0"
 		bind:this={picker}
-		on:mousedown|preventDefault|stopPropagation={pickerMousedown}
+		on:mousedown|preventDefault={pickerMousedown}
 		on:touchstart={touch}
-		on:touchmove|preventDefault|stopPropagation={touch}
+		on:touchmove|preventDefault={touch}
 		on:touchend={touch}
 		style="--color-bg: {colorBg};"
 		aria-label="saturation and brightness picker (arrow keyboard navigation)"
