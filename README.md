@@ -43,6 +43,8 @@ Please read the documentation on the documentation website. It has interactive e
   - [Accessibility](#accessibility)
     - [The component itself](#the-component-itself)
     - [Accessibility notice](#accessibility-notice)
+  - [How to](#how-to)
+    - [fix overflow issues](#fix-overflow-issues)
 
 ## install
 
@@ -116,12 +118,16 @@ A **Circle** and a **Chrome** variants are available. **To use the Chrome varian
 <script>
 	import ColorPicker, { CircleVariant, ChromeVariant } from 'svelte-awesome-color-picker';
 	import CustomInput from '$lib/path/to/my/awesome/variant/Input.svelte';
+	import CustomWrapper from '$lib/path/to/my/awesome/variant/Wrapper.svelte';
 
 	let rgb;
 </script>
 
 <!-- example with the CircleVariant and a custom Input component -->
 <ColorPicker bind:rgb components={{ ...CircleVariant, input: CustomInput }} />
+
+<!-- example with the CircleVariant and a custom Wrapper component -->
+<ColorPicker bind:rgb components={{ ...CircleVariant, wrapper: CustomWrapper }} />
 
 <!-- example with the ChromeVariant -->
 <ColorPicker bind:rgb components={ChromeVariant} isRight />
@@ -291,3 +297,11 @@ A contrast between 2 colors succeed if it follows the WCAG contrast guidelines:
 In the default `A11ySingleNotice` component that renders the <span style="border-radius: 50px; padding: 2px 8px; background-color: green; color: white; font-weight: bold;">AA</span> and <span style="border-radius: 50px; padding: 2px 8px; background-color: green; color: white; font-weight: bold;">AAA</span> tags, the small text values are used (can be configured for each reference color with the `color` props).
 
 See [the definition of the A11yColor type](#type-a11y-color) for more information.
+
+### How to
+
+#### Fix overflow issues
+
+If you use the ColorPicker component inside a container that is set with `overflow: auto` or `overflow: hidden`, the picker will be hidden outside of the wrapper.
+
+To fix this, you can override the `Wrapper` component and use [the svelte-portal library](https://github.com/romkor/svelte-portal) to render the picker outside of your container. An example of how to do that is presented in this [svelte-awesome-color-picker portal REPL](https://svelte.dev/repl/aab96e19ae3e4b96a592322497b232a7?version=3.59.1).

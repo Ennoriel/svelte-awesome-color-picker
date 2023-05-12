@@ -211,11 +211,18 @@ A **Chrome** variants are available. **To use the Chrome variant you need to set
 
 ```svelte
 <script>
-	import ColorPicker, { ChromeVariant } from 'svelte-awesome-color-picker';
+	import ColorPicker, { CircleVariant, ChromeVariant } from 'svelte-awesome-color-picker';
 	import CustomInput from '$lib/path/to/my/awesome/variant/Input.svelte';
+	import CustomWrapper from '$lib/path/to/my/awesome/variant/Wrapper.svelte';
 
 	let rgb;
 </script>
+
+<!-- example with the CircleVariant and a custom Input component -->
+<ColorPicker bind:rgb components={{ ...CircleVariant, input: CustomInput }} />
+
+<!-- example with the CircleVariant and a custom Wrapper component -->
+<ColorPicker bind:rgb components={{ ...CircleVariant, wrapper: CustomWrapper }} />
 
 <!-- example with the ChromeVariant -->
 <ColorPicker bind:rgb components={ChromeVariant} isRight />
@@ -386,6 +393,14 @@ A contrast between 2 colors succeed if it follows the WCAG contrast guidelines:
 In the default `A11ySingleNotice` component that renders the <span class="grade">AA</span> and <span class="grade">AAA</span> tags, the small text values are used (can be configured for each reference color with the `color` props).
 
 See [the definition of the A11yColor type](#type-a11y-color) for more information.
+
+### How to
+
+#### Fix overflow issues
+
+If you use the ColorPicker component inside a container that is set with `overflow: auto` or `overflow: hidden`, the picker will be hidden outside of the wrapper.
+
+To fix this, you can override the `Wrapper` component and use [the svelte-portal library](https://github.com/romkor/svelte-portal) to render the picker outside of your container. An example of how to do that is presented in this [svelte-awesome-color-picker portal REPL](https://svelte.dev/repl/aab96e19ae3e4b96a592322497b232a7?version=3.59.1).
 
 </main>
 </div>
