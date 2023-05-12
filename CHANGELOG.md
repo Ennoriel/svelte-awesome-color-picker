@@ -1,5 +1,11 @@
 # svelte-awesome-color-picker
 
+## 2.4.3
+
+### Patch Changes
+
+- Add --picker-z-index to customize z-index ([issue #29](https://github.com/Ennoriel/svelte-awesome-color-picker/issues/29))
+
 ## 2.4.2
 
 ### Patch Changes
