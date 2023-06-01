@@ -99,7 +99,7 @@
 	}
 
 	function keyup(e: KeyboardEvent) {
-		if (e.key === 'Tab') {
+		if (e.key === 'Tab' && isPopup) {
 			isOpen = span?.contains(document.activeElement);
 		}
 	}
