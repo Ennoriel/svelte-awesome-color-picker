@@ -1,5 +1,11 @@
 # svelte-awesome-color-picker
 
+## 2.4.4
+
+### Patch Changes
+
+- Fix always open version disapear when tabbing ([issue #36](https://github.com/Ennoriel/svelte-awesome-color-picker/issues/36) - thanks to [frostbytedata](https://github.com/frostbytedata))
+
 ## 2.4.3
 
 ### Patch Changes
