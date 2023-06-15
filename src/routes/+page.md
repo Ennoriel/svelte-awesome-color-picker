@@ -179,6 +179,7 @@ The default export of the library is the main ColorPicker. It has the following 
 | isA11yClosable | `boolean`          | `true`                 | The accessible panel is closable                                                                |
 | isOpen         | `boolean`          | `false`                | The picker is open by default and cannot be closed                                              |
 | isPopup        | `boolean`          | `true`                 | whether the color picker is floating or not                                                     |
+| buttonCloseOnly| `boolean`          | `false`                | Determines if the color picker can be closed only by clicking the button or also when clicking the mouse outside of the color picker                                                                        |
 | isDark         | `boolean`          | `false`                | Indicates if the selected color is dark based on HSP representation                             |
 | toRight        | `boolean`          | `false`                | Sliders direction, if true, the direction is horizontal                                         |
 | rgb            | `RgbaColor`        | `red`                  | The RGB color object that should be bound to                                                    |
