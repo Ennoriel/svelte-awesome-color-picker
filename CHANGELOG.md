@@ -1,5 +1,11 @@
 # svelte-awesome-color-picker
 
+## 2.4.5
+
+### Patch Changes
+
+- Add props disableCloseClickOutside ([issue #37](https://github.com/Ennoriel/svelte-awesome-color-picker/issues/37) - thanks to [JanRoma](https://github.com/JanRoma))
+
 ## 2.4.4
 
 ### Patch Changes

@@ -44,7 +44,7 @@
 	export let isPopup = isInput;
 	export let isOpen = !isInput;
 	export let toRight = false;
-  export let buttonCloseOnly = false;
+	export let disableCloseClickOutside = false;
 
 	/**
 	 * color properties
@@ -93,7 +93,7 @@
 		if (isInput) {
 			if (labelWrapper.contains(target as Node) || labelWrapper.isSameNode(target as Node)) {
 				isOpen = !isOpen;
-			} else if (isOpen && !wrapper.contains(target as Node) && !buttonCloseOnly) {
+			} else if (isOpen && !wrapper.contains(target as Node) && !disableCloseClickOutside) {
 				isOpen = false;
 			}
 		}
