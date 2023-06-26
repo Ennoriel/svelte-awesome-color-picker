@@ -186,7 +186,7 @@ The default export of the library is the main ColorPicker. It has the following 
 | hex                      | `string`           | `red`                  | The hex color string that should be bound to                                                                               |
 | hsv                      | `HsvaColor`        | `red`                  | The HSV color object that should be bound to                                                                               |
 | color                    | `ColorD`           | `red`                  | A colord representation of the color. It can be bound to but should not be modified                                        |
-| components               | `Components`       |                        | A Chrome variants is available. Can be fully customized. See [#components section](#components)                            |
+| components               | `Components`       |                        | A Chrome variant is available. Can be fully customized. See [#components section](#components)                             |
 
 ### events
 
@@ -208,22 +208,22 @@ The default export of the library is the main ColorPicker. It has the following 
 
 The color picker can be customized with components. The details and props are detailed below. It is easier to copy the library components and tweak it to your needs.
 
-A **Chrome** variants are available. **To use the Chrome variant you need to set the props** `toRight`. You can partially overwrite the components:
+A **Chrome** variant is available. **To use the Chrome variant you need to set the props** `toRight`. You can also partially overwrite the components:
 
 ```svelte
 <script>
-	import ColorPicker, { CircleVariant, ChromeVariant } from 'svelte-awesome-color-picker';
+	import ColorPicker, { ChromeVariant } from 'svelte-awesome-color-picker';
 	import CustomInput from '$lib/path/to/my/awesome/variant/Input.svelte';
 	import CustomWrapper from '$lib/path/to/my/awesome/variant/Wrapper.svelte';
 
 	let rgb;
 </script>
 
-<!-- example with the CircleVariant and a custom Input component -->
-<ColorPicker bind:rgb components={{ ...CircleVariant, input: CustomInput }} />
+<!-- example with the default display and a custom Input component -->
+<ColorPicker bind:rgb components={{ input: CustomInput }} />
 
-<!-- example with the CircleVariant and a custom Wrapper component -->
-<ColorPicker bind:rgb components={{ ...CircleVariant, wrapper: CustomWrapper }} />
+<!-- example with the Chrome variant and a custom Wrapper component -->
+<ColorPicker bind:rgb components={{ ...ChromeVariant, wrapper: CustomWrapper }} />
 
 <!-- example with the ChromeVariant -->
 <ColorPicker bind:rgb components={ChromeVariant} isRight />
@@ -289,12 +289,12 @@ Component displaying accessible contrast issues with the color chosen.
 
 Props:
 
-| Props          | Type               | Usage                                                                                            |
-| -------------- | ------------------ | ------------------------------------------------------------------------------------------------ |
-| components     | `Components`       | A Chrome variants are available. Can be fully customized. See [#components section](#components) |
-| a11yColors     | `Array<A11yColor>` | The colors to check the contrasts against. See [#a11y-colors section](#type-a11y-color) below    |
-| hex            | `string`           | The current hexadecimal color                                                                    |
-| a11yGuidelines | `string`           | Adds a custom string (rendered as @html) for additional reference                                |
+| Props          | Type               | Usage                                                                                          |
+| -------------- | ------------------ | ---------------------------------------------------------------------------------------------- |
+| components     | `Components`       | A Chrome variant is available. Can be fully customized. See [#components section](#components) |
+| a11yColors     | `Array<A11yColor>` | The colors to check the contrasts against. See [#a11y-colors section](#type-a11y-color) below  |
+| hex            | `string`           | The current hexadecimal color                                                                  |
+| a11yGuidelines | `string`           | Adds a custom string (rendered as @html) for additional reference                              |
 
 <span id="type-a11y-color"></span>
 

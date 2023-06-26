@@ -1,5 +1,12 @@
 # svelte-awesome-color-picker
 
+## 2.4.6
+
+### Patch Changes
+
+- Fix doc: remove the CircleVariant which is the default display since v.2.0.0 ([issue #39](https://github.com/Ennoriel/svelte-awesome-color-picker/issues/39))
+- 6dba255: Fix chrome variant hue max value ([issue #40](https://github.com/Ennoriel/svelte-awesome-color-picker/issues/40))
+
 ## 2.4.5
 
 ### Patch Changes
