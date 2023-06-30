@@ -70,28 +70,28 @@ The default export of the library is the main ColorPicker. It has the following 
 
 ### props
 
-| Props                    | Type               | Default Value          | Usage                                                                                                                      |
-| ------------------------ | ------------------ | ---------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| label                    | `string`           | Choose a color         | Label of the component                                                                                                     |
-| isAlpha                  | `boolean`          | `true`                 | The alpha slider is visible                                                                                                |
-| isInput                  | `boolean`          | `true`                 | The input button is visible                                                                                                |
-| isTextInput              | `boolean`          | `true`                 | The textual hex / rgb / hsv input are visible                                                                              |
-| canChangeMode            | `boolean`          | `true`                 | Show the button to change the color mode. If true, only the hex input is visible                                           |
-| isA11y                   | `boolean`          | `true`                 | The accessibility contrast warnings are visible                                                                            |
-| a11yColors               | `Array<A11yColor>` | `[{ hex: '#ffffff' }]` | The colors to check the contrasts against. See [details about the type](#type-a11y-color)                                  |
-| a11yGuidelines           | `string`           | `link to WebAIM`       | Adds a custom string (rendered as @html) for additional reference                                                          |
-| isA11yOpen               | `boolean`          | `false`                | The accessible panel is open by default                                                                                    |
-| isA11yClosable           | `boolean`          | `true`                 | The accessible panel is closable                                                                                           |
-| isOpen                   | `boolean`          | `false`                | The picker is open by default and cannot be closed                                                                         |
-| isPopup                  | `boolean`          | `true`                 | whether the color picker is floating or not                                                                                |
-| disableCloseClickOutside | `boolean`          | `false`                | Disable the ability to close the color picker by clicking outside of it. The close button will be the only way to close it |
-| isDark                   | `boolean`          | `false`                | Indicates if the selected color is dark based on HSP representation                                                        |
-| toRight                  | `boolean`          | `false`                | Sliders direction, if true, the direction is horizontal                                                                    |
-| rgb                      | `RgbaColor`        | `red`                  | The RGB color object that should be bound to                                                                               |
-| hex                      | `string`           | `red`                  | The hex color string that should be bound to                                                                               |
-| hsv                      | `HsvaColor`        | `red`                  | The HSV color object that should be bound to                                                                               |
-| color                    | `ColorD`           | `red`                  | A colord representation of the color. It can be bound to but should not be modified                                        |
-| components               | `Components`       |                        | A Chrome variant is available. Can be fully customized. See [#components section](#components)                             |
+| Props                    | Type               | Default Value          | Usage                                                                                                                                      |
+| ------------------------ | ------------------ | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| label                    | `string`           | Choose a color         | Label of the component                                                                                                                     |
+| isAlpha                  | `boolean`          | `true`                 | The alpha slider is visible                                                                                                                |
+| isInput                  | `boolean`          | `true`                 | The input button is visible                                                                                                                |
+| isTextInput              | `boolean`          | `true`                 | The textual hex / rgb / hsv input are visible                                                                                              |
+| canChangeMode            | `boolean`          | `true`                 | Show the button to change the color mode. If true, only the hex input is visible                                                           |
+| isA11y                   | `boolean`          | `true`                 | The accessibility contrast warnings are visible                                                                                            |
+| a11yColors               | `Array<A11yColor>` | `[{ hex: '#ffffff' }]` | The colors to check the contrasts against. See [details about the type](#type-a11y-color)                                                  |
+| a11yGuidelines           | `string`           | `link to WebAIM`       | Adds a custom string (rendered as @html) for additional reference                                                                          |
+| isA11yOpen               | `boolean`          | `false`                | The accessible panel is open by default                                                                                                    |
+| isA11yClosable           | `boolean`          | `true`                 | The accessible panel is closable                                                                                                           |
+| isOpen                   | `boolean`          | `false`                | The picker is open by default and cannot be closed                                                                                         |
+| isPopup                  | `boolean`          | `true`                 | whether the color picker is floating or not                                                                                                |
+| disableCloseClickOutside | `boolean`          | `false`                | Disable the ability to close the color picker by clicking outside of it. The close button will be the only way to close it                 |
+| isDark                   | `boolean`          | `false`                | Indicates if the selected color is dark based on HSP representation                                                                        |
+| toRight                  | `boolean`          | `false`                | Sliders direction, if true, the direction is horizontal. This property must be used at the same time as the overwriting of the components. |
+| rgb                      | `RgbaColor`        | `red`                  | The RGB color object that should be bound to                                                                                               |
+| hex                      | `string`           | `red`                  | The hex color string that should be bound to                                                                                               |
+| hsv                      | `HsvaColor`        | `red`                  | The HSV color object that should be bound to                                                                                               |
+| color                    | `ColorD`           | `red`                  | A colord representation of the color. It can be bound to but should not be modified                                                        |
+| components               | `Components`       |                        | A Chrome variant is available. Can be fully customized. See [#components section](#components)                                             |
 
 ### events
 
