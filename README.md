@@ -43,8 +43,13 @@ Please read the documentation on the documentation website. It has interactive e
   - [Accessibility](#accessibility)
     - [The component itself](#the-component-itself)
     - [Accessibility notice](#accessibility-notice)
+    - [A11yNotice](#a11ynotice)
+    - [a11ySummary](#a11ysummary)
+    - [a11ySingleNotice](#a11ysinglenotice)
   - [How to](#how-to)
     - [fix overflow issues](#fix-overflow-issues)
+  - [Migration](#migration)
+    - [v2 -> v3](#migration)
 
 ## install
 
@@ -70,28 +75,23 @@ The default export of the library is the main ColorPicker. It has the following 
 
 ### props
 
-| Props                    | Type               | Default Value          | Usage                                                                                                                                      |
-| ------------------------ | ------------------ | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| label                    | `string`           | Choose a color         | Label of the component                                                                                                                     |
-| isAlpha                  | `boolean`          | `true`                 | The alpha slider is visible                                                                                                                |
-| isInput                  | `boolean`          | `true`                 | The input button is visible                                                                                                                |
-| isTextInput              | `boolean`          | `true`                 | The textual hex / rgb / hsv input are visible                                                                                              |
-| canChangeMode            | `boolean`          | `true`                 | Show the button to change the color mode. If true, only the hex input is visible                                                           |
-| isA11y                   | `boolean`          | `true`                 | The accessibility contrast warnings are visible                                                                                            |
-| a11yColors               | `Array<A11yColor>` | `[{ hex: '#ffffff' }]` | The colors to check the contrasts against. See [details about the type](#type-a11y-color)                                                  |
-| a11yGuidelines           | `string`           | `link to WebAIM`       | Adds a custom string (rendered as @html) for additional reference                                                                          |
-| isA11yOpen               | `boolean`          | `false`                | The accessible panel is open by default                                                                                                    |
-| isA11yClosable           | `boolean`          | `true`                 | The accessible panel is closable                                                                                                           |
-| isOpen                   | `boolean`          | `false`                | The picker is open by default and cannot be closed                                                                                         |
-| isPopup                  | `boolean`          | `true`                 | whether the color picker is floating or not                                                                                                |
-| disableCloseClickOutside | `boolean`          | `false`                | Disable the ability to close the color picker by clicking outside of it. The close button will be the only way to close it                 |
-| isDark                   | `boolean`          | `false`                | Indicates if the selected color is dark based on HSP representation                                                                        |
-| toRight                  | `boolean`          | `false`                | Sliders direction, if true, the direction is horizontal. This property must be used at the same time as the overwriting of the components. |
-| rgb                      | `RgbaColor`        | `red`                  | The RGB color object that should be bound to                                                                                               |
-| hex                      | `string`           | `red`                  | The hex color string that should be bound to                                                                                               |
-| hsv                      | `HsvaColor`        | `red`                  | The HSV color object that should be bound to                                                                                               |
-| color                    | `ColorD`           | `red`                  | A colord representation of the color. It can be bound to but should not be modified                                                        |
-| components               | `Components`       |                        | A Chrome variant is available. Can be fully customized. See [#components section](#components)                                             |
+| Props                    | Type         | Default Value  | Usage                                                                                                                                      |
+| ------------------------ | ------------ | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| label                    | `string`     | Choose a color | Label of the component                                                                                                                     |
+| isAlpha                  | `boolean`    | `true`         | The alpha slider is visible                                                                                                                |
+| isInput                  | `boolean`    | `true`         | The input button is visible                                                                                                                |
+| isTextInput              | `boolean`    | `true`         | The textual hex / rgb / hsv input are visible                                                                                              |
+| canChangeMode            | `boolean`    | `true`         | Show the button to change the color mode. If true, only the hex input is visible                                                           |
+| isOpen                   | `boolean`    | `false`        | The picker is open by default and cannot be closed                                                                                         |
+| isPopup                  | `boolean`    | `true`         | whether the color picker is floating or not                                                                                                |
+| disableCloseClickOutside | `boolean`    | `false`        | Disable the ability to close the color picker by clicking outside of it. The close button will be the only way to close it                 |
+| isDark                   | `boolean`    | `false`        | Indicates if the selected color is dark based on HSP representation                                                                        |
+| toRight                  | `boolean`    | `false`        | Sliders direction, if true, the direction is horizontal. This property must be used at the same time as the overwriting of the components. |
+| rgb                      | `RgbaColor`  | `red`          | The RGB color object that should be bound to                                                                                               |
+| hex                      | `string`     | `red`          | The hex color string that should be bound to                                                                                               |
+| hsv                      | `HsvaColor`  | `red`          | The HSV color object that should be bound to                                                                                               |
+| color                    | `ColorD`     | `red`          | A colord representation of the color. It can be bound to but should not be modified                                                        |
+| components               | `Components` |                | A Chrome variant is available. Can be fully customized. See [#components section](#components)                                             |
 
 ### events
 
@@ -139,9 +139,6 @@ The components that can be overridden are:
 - [pickerIndicator](#pickerindicator)
 - [sliderIndicator & alphaIndicator](#sliderindicator--alphaindicator)
 - [TextInput](#textinput)
-- [A11yNotice](#a11ynotice)
-- [a11ySummary](#a11ysummary)
-- [a11ySingleNotice](#a11ysinglenotice)
 - [Input](#input)
 - [pickerWrapper & sliderWrapper & alphaWrapper](#pickerwrapper--sliderwrapper--alphawrapper)
 - [wrapper](#wrapper)
@@ -186,57 +183,6 @@ Props:
 | rgb     | `RgbaColor` | The RGB color object that should be bound to |
 | hex     | `string`    | The hex color string that should be bound to |
 | hsv     | `HsvaColor` | The HSV color object that should be bound to |
-
-#### A11yNotice
-
-Component displaying accessible contrast issues with the color chosen.
-
-Props:
-
-| Props          | Type               | Usage                                                                                          |
-| -------------- | ------------------ | ---------------------------------------------------------------------------------------------- |
-| components     | `Components`       | A Chrome variant is available. Can be fully customized. See [#components section](#components) |
-| a11yColors     | `Array<A11yColor>` | The colors to check the contrasts against. See [#a11y-colors section](#type-a11y-color) below  |
-| hex            | `string`           | The current hexadecimal color                                                                  |
-| a11yGuidelines | `string`           | Adds a custom string (rendered as @html) for additional reference                              |
-
-<span id="type-a11y-color"></span>
-
-Type A11yColor:
-
-| Attribute   | Type            | Usage                                                                         |
-| ----------- | --------------- | ----------------------------------------------------------------------------- |
-| hex         | `string`        | The reference color                                                           |
-| reverse     | `boolean`       | if set to true, use the hex color as the text color instead of the background |
-| placeholder | `string`        | placeholder text, default to `Lorem Ipsum`                                    |
-| size        | `normal, large` | used to check the contrast guidelines                                         |
-| contrast    | `string`        | color contrast between the current color and the hex reference color          |
-
-read more about this component accessibility in the [#a11y section](#accessibility).
-
-#### a11ySummary
-
-component displaying the content of the `<summary>` inside `<details>` tags.
-
-Props:
-
-| Props      | Type               | Usage                                                                               |
-| ---------- | ------------------ | ----------------------------------------------------------------------------------- |
-| a11yColors | `Array<A11yColor>` | The colors to check the contrasts against. See [#a11y-colors section](#a11y-colors) |
-| hex        | `string`           | The current hexadecimal color                                                       |
-
-#### a11ySingleNotice
-
-component display the accessibility result of the color over a single item of the `a11yColors` props.
-
-Props:
-
-| Props     | Type     | Usage                                                                                                                                                                                                                                                                              |
-| --------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| textColor | `string` | The text color                                                                                                                                                                                                                                                                     |
-| bgColor   | `string` | The background color                                                                                                                                                                                                                                                               |
-| ph        | `string` | The placeholder string. Default to `Lorem Ipsum`                                                                                                                                                                                                                                   |
-| contrast  | `number` | contrast of the text color over the background color as computed by [the colord a11y plugin library](https://github.com/omgovich/colord) based on [WCAG 2.0 guidelines for contrast accessibility](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html) |
 
 #### Input
 
@@ -284,7 +230,29 @@ In progress
 
 #### Accessibility notice
 
-The component can display an accessibility notice that updates the WCAG contrast grades by setting the `isA11y` props.
+The component can display an accessibility notice that updates the WCAG contrast grades. To enable this display, use the `A11yNotice` component as a `a11y-notice` slot of the ColorPicker alongside the `A11yHorizontalWrapper` wrapper component:
+
+```
+<script>
+  import ColorPicker, { A11yHorizontalWrapper, A11yNotice } from '$lib';
+
+  let hex;
+  let rgb;
+  let hsv;
+</script>
+
+<ColorPicker components={{ wrapper: A11yHorizontalWrapper }} bind:hex bind:rgb bind:hsv>
+	<A11yNotice
+		slot="a11y-notice"
+		let:hex
+		let:color
+		{hex}
+		{color}
+	/>
+</ColorPicker>
+```
+
+> Since v.3.0.0, the accessibility notice is passed as a slot to make the color picker lighter when the accessibility notice is not used. It has no effect on the accessibility notice.
 
 The contrast between 2 colors is a value between 1 and 21.
 
@@ -299,6 +267,58 @@ In the default `A11ySingleNotice` component that renders the <span style="border
 
 See [the definition of the A11yColor type](#type-a11y-color) for more information.
 
+#### A11yNotice
+
+Component displaying accessible contrast issues with the color chosen.
+
+Props:
+
+| Props          | Type               | Usage                                                                                         |
+| -------------- | ------------------ | --------------------------------------------------------------------------------------------- |
+| components     | `A11yComponents`   | can be fully customized. See below                                                            |
+| a11yColors     | `Array<A11yColor>` | The colors to check the contrasts against. See [#a11y-colors section](#type-a11y-color) below |
+| hex            | `string`           | The current hexadecimal color                                                                 |
+| color          | `Colord`           | The current colord color                                                                      |
+| a11yGuidelines | `string`           | Adds a custom string (rendered as @html) for additional reference                             |
+
+<span id="type-a11y-color"></span>
+
+Type A11yColor:
+
+| Attribute   | Type            | Usage                                                                         |
+| ----------- | --------------- | ----------------------------------------------------------------------------- |
+| hex         | `string`        | The reference color                                                           |
+| reverse     | `boolean`       | if set to true, use the hex color as the text color instead of the background |
+| placeholder | `string`        | placeholder text, default to `Lorem Ipsum`                                    |
+| size        | `normal, large` | used to check the contrast guidelines                                         |
+| contrast    | `string`        | color contrast between the current color and the hex reference color          |
+
+read more about this component accessibility in the [#a11y section](#accessibility).
+
+#### A11ySummary
+
+component displaying the content of the `<summary>` inside `<details>` tags.
+
+Props:
+
+| Props      | Type               | Usage                                                                               |
+| ---------- | ------------------ | ----------------------------------------------------------------------------------- |
+| a11yColors | `Array<A11yColor>` | The colors to check the contrasts against. See [#a11y-colors section](#a11y-colors) |
+| hex        | `string`           | The current hexadecimal color                                                       |
+
+#### A11ySingleNotice
+
+component display the accessibility result of the color over a single item of the `a11yColors` props.
+
+Props:
+
+| Props     | Type     | Usage                                                                                                                                                                                                                                                                              |
+| --------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| textColor | `string` | The text color                                                                                                                                                                                                                                                                     |
+| bgColor   | `string` | The background color                                                                                                                                                                                                                                                               |
+| ph        | `string` | The placeholder string. Default to `Lorem Ipsum`                                                                                                                                                                                                                                   |
+| contrast  | `number` | contrast of the text color over the background color as computed by [the colord a11y plugin library](https://github.com/omgovich/colord) based on [WCAG 2.0 guidelines for contrast accessibility](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html) |
+
 ### How to
 
 #### Fix overflow issues
@@ -306,3 +326,49 @@ See [the definition of the A11yColor type](#type-a11y-color) for more informatio
 If you use the ColorPicker component inside a container that is set with `overflow: auto` or `overflow: hidden`, the picker will be hidden outside of the wrapper.
 
 To fix this, you can override the `Wrapper` component and use [the svelte-portal library](https://github.com/romkor/svelte-portal) to render the picker outside of your container. An example of how to do that is presented in this [svelte-awesome-color-picker portal REPL](https://svelte.dev/repl/aab96e19ae3e4b96a592322497b232a7?version=3.59.1).
+
+# Migration
+
+## Migrate from v2 to v3
+
+### Use of the accessibility notice
+
+Since v.3.0.0, the accessibility notice is passed as a slot to make the color picker lighter when the accessibility notice is not used. It has no effect on the accessibility notice.
+
+Note that the alpha is removed since it's not yet working with the accessibility panel.
+
+```diff
+  <ColorPicker
+    components={{ wrapper: A11yHorizontalWrapper }}
+    bind:hex
+    bind:rgb
+    bind:hsv
+-   isAlpha
+-   isA11yOpen
+-   isA11yClosable={false}
+-   a11yColors={[
+-     { hex: '#FFF', reverse: true, placeholder: 'background' },
+-     { hex: '#FFF', placeholder: 'title', size: 'large' },
+-     { hex: '#FFF', placeholder: 'text' },
+-     { hex: '#EEE', placeholder: 'button' }
+-   ]}
+- />
++   isAlpha={false}
++ >
++   <A11yNotice
++     slot="a11y-notice"
++     let:hex
++     let:color
++     {hex}
++     {color}
++     isA11yOpen
++     isA11yClosable={false}
++     a11yColors={[
++       { hex: '#FFF', reverse: true, placeholder: 'background' },
++       { hex: '#FFF', placeholder: 'title', size: 'large' },
++       { hex: '#FFF', placeholder: 'text' },
++       { hex: '#EEE', placeholder: 'button' }
++     ]}
++   />
++ </ColorPicker>
+```
