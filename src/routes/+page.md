@@ -34,9 +34,11 @@
 
 <br/>
 
-The library uses [colord](https://www.npmjs.com/colord) internally because it's the lightest color conversion solution on the market and supports a11y contrasts.
+The library uses [colord](https://www.npmjs.com/colord) internally because it's the lightest color conversion library on the market at the time and supports a11y contrasts.
 
 ## Links
+
+The documentation can be seen on Github, the npm registry or on the documentation site. I would suggest to visite the documentation site since it has interactive examples!
 
 - 🛫 [Documentation](https://svelte-awesome-color-picker.vercel.app/)
 - 🌟 [Github repository](https://github.com/Ennoriel/svelte-awesome-color-picker)
@@ -171,7 +173,7 @@ The default export of the library is the main ColorPicker. It has the following 
 | isAlpha                  | `boolean`          | `true`                 | The alpha slider is visible                                                                                                                |
 | isInput                  | `boolean`          | `true`                 | The input button is visible                                                                                                                |
 | isTextInput              | `boolean`          | `true`                 | The textual hex / rgb / hsv input are visible                                                                                              |
-| canChangeMode            | `boolean`          | `true`                 | Show the button to change the color mode. If false, only the hex input is visible                                                           |
+| canChangeMode            | `boolean`          | `true`                 | Show the button to change the color mode. If false, only the hex input is visible                                                          |
 | isA11y                   | `boolean`          | `true`                 | The accessibility contrast warnings are visible                                                                                            |
 | a11yColors               | `Array<A11yColor>` | `[{ hex: '#ffffff' }]` | The colors to check the contrasts against. See [details about the type](#type-a11y-color)                                                  |
 | a11yGuidelines           | `string`           | `link to WebAIM`       | Adds a custom string (rendered as @html) for additional reference                                                                          |
@@ -264,10 +266,10 @@ Components representing the (hue) slider and alpha indicators.
 
 Props:
 
-| Props   | Type     | Usage                                                  |
-| ------- | -------- | ------------------------------------------------------ |
-| pos     | `number` | expressed in %                                         |
-| toRight | boolean  | slider direction, if true, the direction is horizontal |
+| Props   | Type      | Usage                                                  |
+| ------- | --------- | ------------------------------------------------------ |
+| pos     | `number`  | expressed in %                                         |
+| toRight | `boolean` | slider direction, if true, the direction is horizontal |
 
 #### TextInput
 
@@ -275,13 +277,13 @@ Component representing the rgb / hex / hsv textual input below the picker
 
 Props:
 
-| Props         | Type        | Usage                                                                            |
-| ------------- | ----------- | -------------------------------------------------------------------------------- |
-| isAlpha       | `boolean`   | The alpha input is visible                                                       |
-| rgb           | `RgbaColor` | The RGB color object that should be bound to                                     |
-| hex           | `string`    | The hex color string that should be bound to                                     |
-| hsv           | `HsvaColor` | The HSV color object that should be bound to                                     |
-| canChangeMode | `boolean`   | Show the button to change the color mode. If true, only the hex input is visible |
+| Props         | Type        | Usage                                                                             |
+| ------------- | ----------- | --------------------------------------------------------------------------------- |
+| isAlpha       | `boolean`   | The alpha input is visible                                                        |
+| rgb           | `RgbaColor` | The RGB color object that should be bound to                                      |
+| hex           | `string`    | The hex color string that should be bound to                                      |
+| hsv           | `HsvaColor` | The HSV color object that should be bound to                                      |
+| canChangeMode | `boolean`   | Show the button to change the color mode. If false, only the hex input is visible |
 
 #### A11yNotice
 
@@ -358,7 +360,7 @@ Props:
 | Props   | Type      | Usage                                                  |
 | ------- | --------- | ------------------------------------------------------ |
 | focused | `boolean` | whether the element is focused                         |
-| toRight | boolean   | slider direction, if true, the direction is horizontal |
+| toRight | `boolean` | slider direction, if true, the direction is horizontal |
 
 #### wrapper
 

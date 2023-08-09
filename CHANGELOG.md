@@ -1,5 +1,11 @@
 # svelte-awesome-color-picker
 
+## 2.4.7
+
+### Patch Changes
+
+- Fix canChangeMode typo in the documentation ([issue #49](https://github.com/Ennoriel/svelte-awesome-color-picker/issues/49) - thanks to [willuhmjs](https://github.com/willuhmjs))
+
 ## 2.4.6
 
 ### Patch Changes
