@@ -371,7 +371,7 @@ Props:
 | Props   | Type             | Usage                                                          |
 | ------- | ---------------- | -------------------------------------------------------------- |
 | wrapper | `HTMLDivElement` | this property should be exported with the top most DOM element |
-| isOpen  | `boolean`        | whether toe color picker is open or not                        |
+| isOpen  | `boolean`        | whether the color picker is open or not                        |
 | isPopup | `boolean`        | whether the color picker is floating or not                    |
 
 ### Accessibility
