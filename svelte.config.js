@@ -20,12 +20,10 @@ const config = {
 	},
 
 	vitePlugin: {
-		experimental: {
-			inspector: {
-				holdMode: true,
-				showToggleButton: 'always',
-				toggleButtonPos: 'bottom-right'
-			}
+		inspector: {
+			holdMode: true,
+			showToggleButton: 'always',
+			toggleButtonPos: 'bottom-right'
 		}
 	}
 };

@@ -1,0 +1,32 @@
+## Summary
+
+<!-- SUMMARY -->
+
+- [Install](#install)
+- [Links](#links)
+- [Summary](#summary)
+- [Examples](#examples)
+  - [Default layout](#default-layout)
+  - [Chrome variant](#chrome-variant)
+  - [Accessibility notice variant](#accessibility-notice-variant)
+  - [Always open version](#always-open-version)
+  - [Bind event '`on:input`'](#bind-event-oninput)
+  - [Override the css variables](#override-the-css-variables)
+- [Api](#api)
+  - [Color picker](#color-picker)
+    - [events](#events)
+    - [css variables](#css-variables)
+  - [components](#components)
+    - [pickerIndicator](#pickerindicator)
+    - [textInput](#textinput)
+    - [Input](#input)
+    - [wrapper](#wrapper)
+    - [a11yNotice](#a11ynotice)
+    - [a11ySummary](#a11ysummary)
+    - [a11ySingleNotice](#a11ysinglenotice)
+  - [Accessibility](#accessibility)
+    - [The component itself](#the-component-itself)
+    - [Accessibility notice](#accessibility-notice)
+- [How to](#how-to)
+  - [Fix overflow issues](#fix-overflow-issues)
+  <!-- ¤SUMMARY -->

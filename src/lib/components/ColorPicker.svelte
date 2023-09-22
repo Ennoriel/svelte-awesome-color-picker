@@ -1,80 +1,91 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
 	import type { RgbaColor, HsvaColor, Colord } from 'colord';
-	import { colord, extend } from 'colord';
-	import a11yPlugin from 'colord/plugins/a11y';
+	import { colord } from 'colord';
 	import type { A11yColor, Components } from '../type/types';
 	import Picker from './Picker.svelte';
-	import Slider from './Slider.svelte';
-	import Alpha from './Alpha.svelte';
-	import TextInput from './variant/default/TextInput.svelte';
-	import SliderIndicator from './variant/default/SliderIndicator.svelte';
+	import { Slider } from 'svelte-awesome-slider';
 	import PickerIndicator from './variant/default/PickerIndicator.svelte';
-	import ArrowKeyHandler from './ArrowKeyHandler.svelte';
-	import PickerWrapper from './variant/default/PickerWrapper.svelte';
-	import SliderWrapper from './variant/default/SliderWrapper.svelte';
+	import TextInput from './variant/default/TextInput.svelte';
 	import Input from './variant/default/Input.svelte';
 	import Wrapper from './variant/default/Wrapper.svelte';
-	import A11yNotice from './variant/default/A11yNotice.svelte';
-	import A11ySingleNotice from './variant/default/A11ySingleNotice.svelte';
-	import A11ySummary from './variant/default/A11ySummary.svelte';
-
-	extend([a11yPlugin]);
-
-	export let components: Partial<Components> = {};
 
 	const dispatch = createEventDispatcher<{
 		input: { hsv: HsvaColor; rgb: RgbaColor; hex: string; color: Colord | undefined };
 	}>();
 
-	/**
-	 * Customization properties
-	 */
-	export let label = 'Choose a color';
-	export let isAlpha = true;
-	export let isInput = true;
-	export let isTextInput = true;
-	export let canChangeMode = true;
-	export let isA11y = false;
+	/** customize the ColorPicker component parts. Can be used to display a Chrome variant or an Accessibility Notice */
+	export let components: Partial<Components> = {};
+
+	/** input label, hidden when the ColorPicker is always shown (prop `isDialog={false}`) */
+	export let label: string = 'Choose a color';
+
+	/** input name, useful in a native form */
+	export let name: string | undefined = undefined;
+
+	/** if set to false, disables the alpha channel */
+	export let isAlpha: boolean = true;
+
+	/** if set to false, the input and the label will not be displayed and the ColorPicker will always be visible */
+	export let isDialog: boolean = true;
+
+	/** if set to false, hide the hex, rgb and hsv text inputs */
+	export let isTextInput: boolean = true;
+
+	/** configure which hex, rgb and hsv inputs will be visible and in which order. If overridden, it is necessary to provide at least one value */
+	export let textInputModes: Array<'hex' | 'rgb' | 'hsv'> = ['hex', 'rgb', 'hsv'];
+
+	/** used with the A11yVariant. Define the accessibility examples in the color picker */
 	export let a11yColors: Array<A11yColor> = [{ hex: '#ffffff' }];
-	export let a11yGuidelines =
+
+	/** used with the A11yVariant. Define the accessibility guidelines (HTML) */
+	export let a11yGuidelines: string =
 		'<p style="margin: 0; font-size: 12px;">Learn more at <a href="https://webaim.org/articles/contrast/" target="_blank">WebAIM contrast guide</a></p>';
-	export let isA11yOpen = false;
-	export let isA11yClosable = true;
-	export let isPopup = isInput;
-	export let isOpen = !isInput;
-	export let toRight = false;
-	export let disableCloseClickOutside = false;
 
-	/**
-	 * color properties
-	 */
+	/** used with the A11yVariant. If set to true, the accessibility panel will be shown by default */
+	export let isA11yOpen: boolean = false;
+
+	/** used with the A11yVariant. If set to false, the accessibility panel will always be shown */
+	export let isA11yClosable: boolean = true;
+
+	/** indicator of the popup state */
+	export let isOpen: boolean = !isDialog;
+
+	/** If set to "horizontal", the hue and alpha sliders will be displayed horizontally. It is necessary to set this props to "horizontal" for the ChromeVariant */
+	export let sliderDirection: 'horizontal' | 'vertical' = 'vertical';
+
+	/** If set to true, it will not be possible to close the color picker by clicking outside */
+	export let disableCloseClickOutside: boolean = false;
+
+	/** rgb color */
 	export let rgb: RgbaColor = { r: 255, g: 0, b: 0, a: 1 };
+
+	/** hsv color */
 	export let hsv: HsvaColor = { h: 0, s: 100, v: 100, a: 1 };
-	export let hex = '#ff0000';
+
+	/** hex color */
+	export let hex: string = '#ff0000';
+
+	/** Colord color */
 	export let color: Colord | undefined = undefined;
-	export let isDark = false;
+
+	/** indicator whether the selected color is light or dark */
+	export let isDark: boolean = false;
 
 	/**
-	 * Internal old value to trigger color conversion
+	 * Internal old values to trigger color conversion
 	 */
 	let _rgb: RgbaColor = { r: 255, g: 0, b: 0, a: 1 };
 	let _hsv: HsvaColor = { h: 0, s: 100, v: 100, a: 1 };
 	let _hex = '#ff0000';
 
-	let span: HTMLSpanElement;
+	let spanElement: HTMLSpanElement;
+	let labelElement: HTMLLabelElement;
+	let wrapper: HTMLElement;
 
 	const default_components: Components = {
-		sliderIndicator: SliderIndicator,
 		pickerIndicator: PickerIndicator,
-		alphaIndicator: SliderIndicator,
-		pickerWrapper: PickerWrapper,
-		sliderWrapper: SliderWrapper,
-		alphaWrapper: SliderWrapper,
 		textInput: TextInput,
-		a11yNotice: A11yNotice,
-		a11ySingleNotice: A11ySingleNotice,
-		a11ySummary: A11ySummary,
 		input: Input,
 		wrapper: Wrapper
 	};
@@ -86,12 +97,9 @@
 		};
 	}
 
-	let labelWrapper: HTMLLabelElement;
-	let wrapper: HTMLElement;
-
 	function mousedown({ target }: MouseEvent) {
-		if (isInput) {
-			if (labelWrapper.contains(target as Node) || labelWrapper.isSameNode(target as Node)) {
+		if (isDialog) {
+			if (labelElement.contains(target as Node) || labelElement.isSameNode(target as Node)) {
 				isOpen = !isOpen;
 			} else if (isOpen && !wrapper.contains(target as Node) && !disableCloseClickOutside) {
 				isOpen = false;
@@ -99,9 +107,16 @@
 		}
 	}
 
-	function keyup(e: KeyboardEvent) {
-		if (e.key === 'Tab' && isPopup) {
-			isOpen = span?.contains(document.activeElement);
+	function keyup({ key, target }: KeyboardEvent) {
+		if (!isDialog) {
+			return;
+		} else if (key === 'Enter' && labelElement.isEqualNode(target as Node)) {
+			isOpen = !isOpen;
+		} else if (key === 'Escape' && isOpen) {
+			isOpen = false;
+			if (spanElement.contains(target as Node)) {
+				labelElement?.focus();
+			}
 		}
 	}
 
@@ -164,42 +179,43 @@
 	}
 </script>
 
-<ArrowKeyHandler />
-
 <svelte:window on:mousedown={mousedown} on:keyup={keyup} />
 
-<span bind:this={span} class="color-picker">
-	{#if isInput}
-		<svelte:component this={getComponents().input} bind:labelWrapper bind:isOpen {hex} {label} />
-	{:else}
-		<input type="hidden" value={hex} />
+<span bind:this={spanElement} class="color-picker {sliderDirection}" style:--alphaless-color={hex?.substring(0, 7)}>
+	{#if isDialog}
+		<svelte:component this={getComponents().input} bind:labelElement bind:isOpen {hex} {label} {name} />
+	{:else if name}
+		<input type="hidden" value={hex} {name} />
 	{/if}
 
-	<svelte:component this={getComponents().wrapper} bind:wrapper {isOpen} {isPopup} {toRight}>
-		<Picker
-			components={getComponents()}
-			h={hsv.h}
-			bind:s={hsv.s}
-			bind:v={hsv.v}
-			bind:isOpen
-			{toRight}
-			{isDark}
-		/>
-		<Slider components={getComponents()} bind:h={hsv.h} {toRight} />
+	<svelte:component this={getComponents().wrapper} bind:wrapper {isOpen} {isDialog}>
+		<Picker components={getComponents()} h={hsv.h} bind:s={hsv.s} bind:v={hsv.v} {isDark} />
+		<div class="h">
+			<Slider
+				min={0}
+				max={360}
+				step={1}
+				bind:value={hsv.h}
+				direction={sliderDirection}
+				reverse={sliderDirection === 'vertical'}
+			/>
+		</div>
 		{#if isAlpha}
-			<Alpha components={getComponents()} bind:a={hsv.a} {hex} bind:isOpen {toRight} />
+			<div class="a">
+				<Slider
+					min={0}
+					max={1}
+					step={0.01}
+					bind:value={hsv.a}
+					direction={sliderDirection}
+					reverse={sliderDirection === 'vertical'}
+				/>
+			</div>
 		{/if}
 		{#if isTextInput}
-			<svelte:component
-				this={getComponents().textInput}
-				bind:hex
-				bind:rgb
-				bind:hsv
-				{isAlpha}
-				{canChangeMode}
-			/>
+			<svelte:component this={getComponents().textInput} bind:hex bind:rgb bind:hsv {isAlpha} {textInputModes} />
 		{/if}
-		{#if isA11y}
+		{#if getComponents().a11yNotice}
 			<svelte:component
 				this={getComponents().a11yNotice}
 				components={getComponents()}
@@ -214,8 +230,95 @@
 	</svelte:component>
 </span>
 
+<!-- 
+@component Color Picker Component — default export of the library
+
+**Import**
+```js
+import ColorPicker from 'svelte-awesome-color-picker';
+```
+
+**Use**
+```svelte
+<ColorPicker bind:hex />
+```
+
+**Props**
+@prop components: Partial&lt;Components&gt; = {} — customize the ColorPicker component parts. Can be used to display a Chrome variant or an Accessibility Notice
+@prop label: string = 'Choose a color' — input label, hidden when the ColorPicker is always shown (prop `isDialog={false}`)
+@prop name: string | undefined = undefined — input name, useful in a native form
+@prop isAlpha: boolean = true — if set to false, disables the alpha channel
+@prop isDialog: boolean = true — if set to false, the input and the label will not be displayed and the ColorPicker will always be visible
+@prop isTextInput: boolean = true — if set to false, hide the hex, rgb and hsv text inputs
+@prop textInputModes: Array&lt;'hex' | 'rgb' | 'hsv'&gt; = ['hex', 'rgb', 'hsv'] — configure which hex, rgb and hsv inputs will be visible and in which order. If overridden, it is necessary to provide at least one value
+@prop a11yColors: Array&lt;A11yColor&gt; = [{ hex: '#ffffff' }] — used with the A11yVariant. Define the accessibility examples in the color picker
+@prop a11yGuidelines: string — used with the A11yVariant. Define the accessibility guidelines (HTML)
+@prop isA11yOpen: boolean = false — used with the A11yVariant. If set to true, the accessibility panel will be shown by default
+@prop isA11yClosable: boolean = true — used with the A11yVariant. If set to false, the accessibility panel will always be shown
+@prop isOpen: boolean = !isDialog — indicator of the popup state
+@prop sliderDirection: 'horizontal' | 'vertical' = 'vertical' — If set to "horizontal", the hue and alpha sliders will be displayed horizontally. It is necessary to set this props to "horizontal" for the ChromeVariant
+@prop disableCloseClickOutside: boolean = false — If set to true, it will not be possible to close the color picker by clicking outside
+@prop rgb: RgbaColor = { r: 255, g: 0, b: 0, a: 1 } — rgb color
+@prop hsv: HsvaColor = { h: 0, s: 100, v: 100, a: 1 } — hsv color
+@prop hex: string = '#ff0000' — hex color
+@prop color: Colord | undefined = undefined — Colord color
+@prop isDark: boolean = false — indicator whether the selected color is light or dark
+-->
 <style>
 	span {
 		position: relative;
+
+		--alpha-grid-bg: linear-gradient(45deg, #eee 25%, #0000 25%, #0000 75%, #eee 75%) 0 0 / 10px 10px,
+			linear-gradient(45deg, #eee 25%, #0000 25%, #0000 75%, #eee 75%) 5px 5px / 10px 10px;
+	}
+
+	.h,
+	.a {
+		display: inline-flex;
+		justify-content: center;
+		--track-height: var(--slider-width, 10px);
+		--track-width: var(--picker-height, 200px);
+		--track-border: none;
+		--thumb-size: calc(var(--slider-width, 10px) - 3px);
+		--thumb-background: white;
+		--thumb-border: 1px solid black;
+
+		--gradient-direction: 0.5turn;
+	}
+	.horizontal .h,
+	.horizontal .a {
+		--track-width: calc(var(--picker-width, 200px) - 12px);
+
+		--gradient-direction: 0.25turn;
+		margin: 4px 6px;
+	}
+	.vertical .h,
+	.vertical .a {
+		margin-left: 3px;
+	}
+
+	.h {
+		--gradient-hue: #ff1500fb, #ffff00 17.2%, #ffff00 18.2%, #00ff00 33.3%, #00ffff 49.5%, #00ffff 51.5%, #0000ff 67.7%,
+			#ff00ff 83.3%, #ff0000;
+		--track-background: linear-gradient(var(--gradient-direction), var(--gradient-hue));
+	}
+
+	.a {
+		margin-top: 2px;
+
+		--track-background: linear-gradient(var(--gradient-direction), rgba(0, 0, 0, 0), var(--alphaless-color)),
+			var(--alpha-grid-bg);
+	}
+
+	span :global(.sr-only) {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border-width: 0;
 	}
 </style>

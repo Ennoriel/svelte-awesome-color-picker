@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 dependencies:
   colord:
     specifier: ^2.9.3
@@ -51,6 +55,9 @@ devDependencies:
   svelte:
     specifier: ^3.55.1
     version: 3.55.1
+  svelte-awesome-slider:
+    specifier: link:../svelte-awesome-slider
+    version: link:../svelte-awesome-slider
   svelte-check:
     specifier: ^3.0.2
     version: 3.0.2(svelte@3.55.1)

@@ -1,40 +1,39 @@
 <script lang="ts">
 	import { colord } from 'colord';
-	import { keyPressed, keyPressedCustom } from '../util/store';
-	import { easeInOutSin } from '../util/transition';
 	import type { Components } from '$lib/type/types';
+	import { Slider } from 'svelte-awesome-slider';
 
+	/** customize the ColorPicker component parts. Can be used to display a Chrome variant or an Accessibility Notice */
 	export let components: Components;
 
+	/** hue value */
 	export let h: number;
+
+	/** saturation value */
 	export let s: number;
+
+	/** vibrance value */
 	export let v: number;
 
-	/* svelte-ignore unused-export-let */
-	export let isOpen: boolean;
-	export let toRight: boolean;
+	/** indicator whether the selected color is light or dark */
 	export let isDark: boolean;
 
 	let picker: HTMLDivElement;
 	let isMouseDown = false;
 	let focused = false;
 
-	let focusMovementIntervalId: number | undefined;
-	let focusMovementCounter: number;
-
-	let colorBg: string;
+	let pickerColorBg: string;
 	let pos = { x: 100, y: 0 };
 
-	$: if (typeof h === 'number') colorBg = colord({ h, s: 100, v: 100, a: 1 }).toHex();
+	$: if (typeof h === 'number') pickerColorBg = colord({ h, s: 100, v: 100, a: 1 }).toHex();
 
 	function clamp(value: number, min: number, max: number): number {
 		return Math.min(Math.max(min, value), max);
 	}
 
-	function onClick(e: { offsetX: number; offsetY: number }) {
-		let mouse = { x: e.offsetX, y: e.offsetY };
-		let width = picker.getBoundingClientRect().width;
-		let height = picker.getBoundingClientRect().height;
+	function onClick(e: { clientX: number; clientY: number }) {
+		const { width, left, height, top } = picker.getBoundingClientRect();
+		const mouse = { x: clamp(e.clientX - left, 0, width), y: clamp(e.clientY - top, 0, height) };
 
 		s = clamp(mouse.x / width, 0, 1) * 100;
 		v = clamp((height - mouse.y) / height, 0, 1) * 100;
@@ -52,76 +51,16 @@
 	}
 
 	function mouseMove(e: MouseEvent) {
-		if (isMouseDown)
-			onClick({
-				offsetX: Math.max(
-					0,
-					Math.min(
-						picker.getBoundingClientRect().width,
-						e.clientX - picker.getBoundingClientRect().left
-					)
-				),
-				offsetY: Math.max(
-					0,
-					Math.min(
-						picker.getBoundingClientRect().height,
-						e.clientY - picker.getBoundingClientRect().top
-					)
-				)
-			});
+		if (isMouseDown) onClick(e);
 	}
 
 	function mouseDown(e: MouseEvent) {
 		if (!(<HTMLElement>e.target).isSameNode(picker)) focused = false;
 	}
 
-	function keyup(e: KeyboardEvent) {
-		if (e.key === 'Tab') focused = !!document.activeElement?.isSameNode(picker);
-
-		if (!e.repeat && focused) move();
-	}
-
-	function keydown(e: KeyboardEvent) {
-		if (focused && $keyPressedCustom.ArrowVH) {
-			e.preventDefault();
-			if (!e.repeat) move();
-		}
-	}
-
-	function move() {
-		if ($keyPressedCustom.ArrowVH) {
-			if (!focusMovementIntervalId) {
-				focusMovementCounter = 0;
-				focusMovementIntervalId = window.setInterval(() => {
-					let focusMovementFactor = easeInOutSin(++focusMovementCounter);
-					s = Math.min(
-						100,
-						Math.max(
-							0,
-							s + ($keyPressed.ArrowRight - $keyPressed.ArrowLeft) * focusMovementFactor * 100
-						)
-					);
-					v = Math.min(
-						100,
-						Math.max(
-							0,
-							v + ($keyPressed.ArrowUp - $keyPressed.ArrowDown) * focusMovementFactor * 100
-						)
-					);
-				}, 10);
-			}
-		} else if (focusMovementIntervalId) {
-			clearInterval(focusMovementIntervalId);
-			focusMovementIntervalId = undefined;
-		}
-	}
-
 	function touch(e: TouchEvent) {
 		e.preventDefault();
-		onClick({
-			offsetX: e.changedTouches[0].clientX - picker.getBoundingClientRect().left,
-			offsetY: e.changedTouches[0].clientY - picker.getBoundingClientRect().top
-		});
+		onClick(e.changedTouches[0]);
 	}
 
 	$: if (typeof s === 'number' && typeof v === 'number' && picker)
@@ -131,47 +70,77 @@
 		};
 </script>
 
-<svelte:window
-	on:mouseup={mouseUp}
-	on:mousedown={mouseDown}
-	on:mousemove={mouseMove}
-	on:keyup={keyup}
-	on:keydown={keydown}
-/>
+<svelte:window on:mouseup={mouseUp} on:mousedown={mouseDown} on:mousemove={mouseMove} />
 
-<svelte:component this={components.pickerWrapper} {focused} {toRight}>
-	<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-	<div
-		class="picker"
-		tabindex="0"
-		bind:this={picker}
-		on:mousedown|preventDefault={pickerMousedown}
-		on:touchstart={touch}
-		on:touchmove|preventDefault={touch}
-		on:touchend={touch}
-		style="--color-bg: {colorBg};"
-		aria-label="saturation and brightness picker (arrow keyboard navigation)"
-		aria-valuemin={0}
-		aria-valuemax={100}
-		aria-valuetext="saturation {pos.x?.toFixed()}%, brightness {pos.y?.toFixed()}%"
-	>
-		<svelte:component
-			this={components.pickerIndicator}
-			{pos}
-			{isDark}
-			hex={colord({ h, s, v, a: 1 }).toHex()}
-		/>
+<div
+	class="picker"
+	bind:this={picker}
+	on:mousedown|preventDefault={pickerMousedown}
+	on:touchstart={touch}
+	on:touchmove|preventDefault={touch}
+	on:touchend={touch}
+	style="--picker-color-bg: {pickerColorBg};"
+>
+	<svelte:component this={components.pickerIndicator} {pos} {isDark} />
+	<div class="s" style:--pos-y={pos.y}>
+		<Slider bind:value={s} keyboardOnly ariaValueText={(value) => `${value}%`} />
 	</div>
-</svelte:component>
+	<div class="v" style:--pos-x={pos.x}>
+		<Slider bind:value={v} keyboardOnly ariaValueText={(value) => `${value}%`} direction="vertical" />
+	</div>
+</div>
 
+<!-- 
+@component Picker wrapper containing the mouse and keyboard logic to select the color. _internal component_ 
+
+**Import**
+N.A.
+
+**Use**
+N.A.
+
+**Props**
+@prop components: Components — customize the ColorPicker component parts. Can be used to display a Chrome variant or an Accessibility Notice
+@prop h: number — hue value
+@prop s: number — saturation value
+@prop v: number — vibrance value
+@prop isDark: boolean — indicator whether the selected color is light or dark
+-->
 <style>
 	.picker {
 		position: relative;
-		width: 100%;
-		height: 100%;
-		background: linear-gradient(#ffffff00, #000000ff),
-			linear-gradient(0.25turn, #ffffffff, #00000000), var(--color-bg);
+		display: inline-block;
+		width: var(--picker-width, 200px);
+		height: var(--picker-height, 200px);
+		background: linear-gradient(#ffffff00, #000000ff), linear-gradient(0.25turn, #ffffffff, #00000000),
+			var(--picker-color-bg);
+		border-radius: var(--picker-radius, 8px);
 		outline: none;
 		user-select: none;
+	}
+
+	.s,
+	.v {
+		position: absolute;
+		--track-background: none;
+		--track-border: none;
+		--thumb-background: none;
+		--thumb-border: none;
+		--thumb-size: 2px;
+		--track-height: var(--picker-indicator-size, 10px);
+		user-select: none;
+		-webkit-user-select: none;
+	}
+
+	.s {
+		top: calc(var(--pos-y) * (var(--picker-height, 200px) - var(--picker-indicator-size, 10px) - 4px) / 100 + 2px);
+		left: 2px;
+		--track-width: calc(var(--picker-width, 200px) - 4px);
+	}
+
+	.v {
+		top: 2px;
+		left: calc(var(--pos-x) * (var(--picker-width, 200px) - var(--picker-indicator-size, 10px) - 4px) / 100 + 2px);
+		--track-width: calc(var(--picker-height, 200px) - 4px);
 	}
 </style>

@@ -11,6 +11,7 @@
 	"license": "MIT",
 	"scripts": {
 		"dev": "vite dev --open --host",
+		"prebuild": "node scripts/index.js",
 		"build": "vite build",
 		"preview": "vite preview",
 		"check": "svelte-check --tsconfig ./tsconfig.json",
@@ -23,6 +24,7 @@
 		"colord": "^2.9.3"
 	},
 	"devDependencies": {
+		"svelte-awesome-slider": "link:../svelte-awesome-slider",
 		"@changesets/cli": "^2.26.0",
 		"@sveltejs/adapter-vercel": "^1.0.5",
 		"@sveltejs/kit": "^1.1.4",

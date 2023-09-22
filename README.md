@@ -1,3 +1,8 @@
+something different
+
+<div style="padding: 8px; background-color: {hex}">
+<main>
+
 # svelte-awesome-color-picker
 
 > _svelte-awesome-color-picker_ is a highly customizable color picker component library with
@@ -8,7 +13,8 @@
 - 🤯 and even works without javascript (fallback to browser default color input)
 - 🏇 it's compatible with form libraries
 - 🧩 fully customizable
-  The library uses [colord](https://www.npmjs.com/colord) internally because it's the lightest solution on the market at the time and supports a11y contrasts.
+
+<br/>
 
 The library uses [colord](https://www.npmjs.com/colord) internally because it's the lightest color conversion library on the market at the time and supports a11y contrasts.
 
@@ -21,11 +27,19 @@ The documentation can be seen on Github, the npm registry or on the documentatio
 - 🌴 [Npm repository](https://www.npmjs.com/package/svelte-awesome-color-picker)
 - 👌 [Changelog](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/CHANGELOG.md)
 
-![Example of the color picker](https://svelte-awesome-color-picker.vercel.app/examples.png)
-
 ## summary
 
+<!-- SUMMARY -->
+
 - [Links](#links)
+- [summary](#summary)
+- [Examples](#examples)
+  - [Default layout](#default-layout)
+  - [Chrome variant](#chrome-variant)
+  - [With a11y contrast, custom wrapper:](#with-a11y-contrast-custom-wrapper)
+  - [Color props](#color-props)
+  - [Always open version](#always-open-version)
+  - [Bind event '`on:input`'](#bind-event-oninput)
 - [install](#install)
 - [Usage](#usage)
 - [Api](#api)
@@ -45,8 +59,83 @@ The documentation can be seen on Github, the npm registry or on the documentatio
   - [Accessibility](#accessibility)
     - [The component itself](#the-component-itself)
     - [Accessibility notice](#accessibility-notice)
-  - [How to](#how-to)
-    - [fix overflow issues](#fix-overflow-issues)
+  - [How to](#how-to) - [Fix overflow issues](#fix-overflow-issues)
+  <!-- ¤SUMMARY -->
+
+## Examples
+
+<div class="example-wrapper">
+<div class="example-col">
+
+### Default layout
+
+<ColorPicker bind:hex bind:rgb bind:hsv open />
+
+### Chrome variant
+
+<ColorPicker bind:rgb bind:hsv bind:hex components={ChromeVariant} toRight />
+
+### With a11y contrast, custom wrapper:
+
+<ColorPicker
+components={ A11yVariant }
+bind:hex
+bind:rgb
+bind:hsv
+isAlpha
+isA11y
+isA11yOpen
+isA11yClosable={false}
+a11yColors={[
+{ hex: '#FFF', reverse: true, placeholder: 'background' },
+{ hex: '#FFF', placeholder: 'title', size: 'large' },
+{ hex: '#FFF', placeholder: 'text' },
+{ hex: '#EEE', placeholder: 'button' }
+]}
+/>
+
+</div>
+<div class="example-col">
+
+### Color props
+
+<pre class="language-javascript">{@html beautify(hex, "hex")}
+
+{@html beautify(rgb, "rgb")}
+
+{@html beautify(hsv, "hsv")}
+</pre>
+
+</div>
+</div>
+
+### Always open version
+
+<div class="center">
+    <ColorPicker bind:rgb bind:hsv bind:hex components={ChromeVariant} toRight isDialog={false} />
+</div>
+
+<div class="example-wrapper">
+
+<div class="example-col">
+
+### Bind event '`on:input`'
+
+<ColorPicker {rgb} on:input={v => {
+historyHex = [...historyHex, v.detail.hex]
+}} />
+
+On every event, the hex color is appended to the history array
+
+<button on:click={() => historyHex = [hex]}>Reset history</button>
+
+</div>
+
+<div class="example-col">
+<pre class="language-javascript" style:margin-top="48px">{@html beautify(historyHex, "history")}</pre>
+</div>
+
+</div>
 
 ## install
 
@@ -76,7 +165,7 @@ The default export of the library is the main ColorPicker. It has the following 
 | ------------------------ | ------------------ | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
 | label                    | `string`           | Choose a color         | Label of the component                                                                                                                     |
 | isAlpha                  | `boolean`          | `true`                 | The alpha slider is visible                                                                                                                |
-| isInput                  | `boolean`          | `true`                 | The input button is visible                                                                                                                |
+| isDialog                 | `boolean`          | `true`                 | The input button is visible                                                                                                                |
 | isTextInput              | `boolean`          | `true`                 | The textual hex / rgb / hsv input are visible                                                                                              |
 | canChangeMode            | `boolean`          | `true`                 | Show the button to change the color mode. If false, only the hex input is visible                                                          |
 | isA11y                   | `boolean`          | `true`                 | The accessibility contrast warnings are visible                                                                                            |
@@ -85,7 +174,7 @@ The default export of the library is the main ColorPicker. It has the following 
 | isA11yOpen               | `boolean`          | `false`                | The accessible panel is open by default                                                                                                    |
 | isA11yClosable           | `boolean`          | `true`                 | The accessible panel is closable                                                                                                           |
 | isOpen                   | `boolean`          | `false`                | The picker is open by default and cannot be closed                                                                                         |
-| isPopup                  | `boolean`          | `true`                 | whether the color picker is floating or not                                                                                                |
+| isDialog                 | `boolean`          | `true`                 | whether the color picker is floating or not                                                                                                |
 | disableCloseClickOutside | `boolean`          | `false`                | Disable the ability to close the color picker by clicking outside of it. The close button will be the only way to close it                 |
 | isDark                   | `boolean`          | `false`                | Indicates if the selected color is dark based on HSP representation                                                                        |
 | toRight                  | `boolean`          | `false`                | Sliders direction, if true, the direction is horizontal. This property must be used at the same time as the overwriting of the components. |
@@ -103,13 +192,13 @@ The default export of the library is the main ColorPicker. It has the following 
 
 ### css variables
 
-| Props            | Default Value                       | Usage                   |
-| ---------------- | ----------------------------------- | ----------------------- |
-| --picker-height  | `200px`                             | picker & sliders height |
-| --picker-width   | `200px` or `260px` (chrome variant) | picker width            |
-| --slider-width   | `12px` or `10px` (chrome variant)   | sliders width           |
-| --picker-z-index | `2`                                 | popup picker z-index    |
-| --focus-color    | `red`                               | focus color             |
+| Props            | Default Value | Usage                   |
+| ---------------- | ------------- | ----------------------- |
+| --picker-height  | `200px`       | picker & sliders height |
+| --picker-width   | `200px`       | picker width            |
+| --slider-width   | `30px`        | sliders width           |
+| --picker-z-index | `2`           | popup picker z-index    |
+| --focus-color    | `red`         | focus color             |
 
 ### components
 
@@ -273,11 +362,11 @@ Encapsulates the whole color picker
 
 Props:
 
-| Props   | Type             | Usage                                                          |
-| ------- | ---------------- | -------------------------------------------------------------- |
-| wrapper | `HTMLDivElement` | this property should be exported with the top most DOM element |
-| isOpen  | `boolean`        | whether the color picker is open or not                        |
-| isPopup | `boolean`        | whether the color picker is floating or not                    |
+| Props    | Type             | Usage                                                          |
+| -------- | ---------------- | -------------------------------------------------------------- |
+| wrapper  | `HTMLDivElement` | this property should be exported with the top most DOM element |
+| isOpen   | `boolean`        | whether the color picker is open or not                        |
+| isDialog | `boolean`        | whether the color picker is floating or not                    |
 
 ### Accessibility
 
@@ -293,12 +382,12 @@ The contrast between 2 colors is a value between 1 and 21.
 
 A contrast between 2 colors succeed if it follows the WCAG contrast guidelines:
 
-|                         | AA             | AAA            |
-| ----------------------- | -------------- | -------------- |
-| for small text (18.5px) | contrast > 4.5 | contrast > 7   |
-| for big text (24px)     | contrast > 3   | contrast > 4.5 |
+|                         | <span class="grade">AA</span> | <span class="grade">AAA</span> |
+| ----------------------- | ----------------------------- | ------------------------------ |
+| for small text (18.5px) | contrast > 4.5                | contrast > 7                   |
+| for big text (24px)     | contrast > 3                  | contrast > 4.5                 |
 
-In the default `A11ySingleNotice` component that renders the <span style="border-radius: 50px; padding: 2px 8px; background-color: green; color: white; font-weight: bold;">AA</span> and <span style="border-radius: 50px; padding: 2px 8px; background-color: green; color: white; font-weight: bold;">AAA</span> tags, the small text values are used (can be configured for each reference color with the `color` props).
+In the default `A11ySingleNotice` component that renders the <span class="grade">AA</span> and <span class="grade">AAA</span> tags, the small text values are used (can be configured for each reference color with the `color` props).
 
 See [the definition of the A11yColor type](#type-a11y-color) for more information.
 
@@ -309,3 +398,6 @@ See [the definition of the A11yColor type](#type-a11y-color) for more informatio
 If you use the ColorPicker component inside a container that is set with `overflow: auto` or `overflow: hidden`, the picker will be hidden outside of the wrapper.
 
 To fix this, you can override the `Wrapper` component and use [the svelte-portal library](https://github.com/romkor/svelte-portal) to render the picker outside of your container. An example of how to do that is presented in this [svelte-awesome-color-picker portal REPL](https://svelte.dev/repl/aab96e19ae3e4b96a592322497b232a7?version=3.59.1).
+
+</main>
+</div>
