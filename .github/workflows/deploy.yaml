@@ -41,6 +41,6 @@ jobs:
       - name: 🔨 build library
         run: pnpm package
       - name: 🔨 publish library
-        run: pnpm publish --tag beta
+        run: pnpm publish --tag beta --publish-branch v.3.0.0
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
