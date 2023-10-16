@@ -38,7 +38,9 @@ jobs:
             ${{ runner.os }}-pnpm-store-
       - name: 🔨 install dependencies
         run: pnpm install --frozen-lockfile
-      - name: 🔨 build library
+      - name: 🔨 build project
+        run: pnpm build
+      - name: 🔨 package library
         run: pnpm package
       - name: 🔨 publish library
         run: pnpm publish --tag beta --publish-branch v.3.0.0
