@@ -12,7 +12,7 @@
 	"scripts": {
 		"dev": "vite dev --open --host",
 		"prebuild": "node scripts/index.js",
-		"build": "pnpm prebuild && vite build",
+		"build": "vite build",
 		"preview": "vite preview",
 		"package": "svelte-package",
 		"check": "svelte-check --tsconfig ./tsconfig.json",
