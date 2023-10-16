@@ -62,7 +62,7 @@ function generate_component_props_docs(path, componentStr, componentDocParsed) {
 }
 
 function replace_content(path, startTag, endTag, str) {
-	console.log(path, startTag, endTag);
+	// console.log(path, startTag, endTag);
 	const file = readFileSync(path).toString();
 
 	writeFileSync(path, file.replace(new RegExp(`${startTag}.*${endTag}`, 's'), `${startTag}\n\n${str}\n\n${endTag}`));
@@ -71,8 +71,8 @@ function replace_content(path, startTag, endTag, str) {
 function generate_docs(path, componentName, componentDocParsed) {
 	const componentDocForComponent =
 		`| name | type | default value | usage |
-	| --- | --- | --- | --- |
-	` +
+| --- | --- | --- | --- |
+` +
 		componentDocParsed
 			.map(({ name, type, defaultValue, description }) => {
 				const _defaultValue = defaultValue ? `\`${defaultValue}\`` : '';
@@ -81,14 +81,19 @@ function generate_docs(path, componentName, componentDocParsed) {
 			.join('\n');
 
 	replace_content(
-		'src/routes/sections/60-Api.md',
+		path,
 		`<!-- PROPS_${componentName}.svelte -->`,
 		`<!-- ~PROPS_${componentName}.svelte -->`,
 		componentDocForComponent
 	);
 }
 
-export function generateProps() {
+/**
+ * parse any .svelte component in the lib folder and:
+ *   - replace the component doc (from "**Props**" to "-->")
+ *   - replace the lib doc (from "<!-- PROPS_${componentName}.svelte -->" to "<!-- ~PROPS_${componentName}.svelte -->")
+ */
+export function generateProps(documentationPath) {
 	read_files('./src/lib')
 		.filter((file) => file.endsWith('.svelte'))
 		.map((path) => ({
@@ -104,6 +109,6 @@ export function generateProps() {
 		}))
 		.map(({ path, componentName, componentStr, componentDocParsed }) => {
 			generate_component_props_docs(path, componentStr, componentDocParsed);
-			generate_docs(path, componentName, componentDocParsed);
+			generate_docs(documentationPath, componentName, componentDocParsed);
 		});
 }

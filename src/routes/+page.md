@@ -8,6 +8,7 @@
   import Examples from './sections/50-Examples.md';
   import Api from './sections/60-Api.md';
   import HowTo from './sections/70-HowTo.md';
+  import Migration from './sections/80-Migration.md';
 
   const Sections = [
     Introduction,
@@ -16,7 +17,8 @@
     Summary,
     Examples,
     Api,
-    HowTo
+    HowTo,
+    Migration
   ]
 </script>
 

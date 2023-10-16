@@ -127,6 +127,7 @@ N.A.
 		--thumb-background: none;
 		--thumb-border: none;
 		--thumb-size: 2px;
+		--margin-block: 0;
 		--track-height: var(--picker-indicator-size, 10px);
 		user-select: none;
 		-webkit-user-select: none;

@@ -23,40 +23,6 @@
 	/** input name, useful in a native form */
 	export let name: string | undefined = undefined;
 
-	/** if set to false, disables the alpha channel */
-	export let isAlpha: boolean = true;
-
-	/** if set to false, the input and the label will not be displayed and the ColorPicker will always be visible */
-	export let isDialog: boolean = true;
-
-	/** if set to false, hide the hex, rgb and hsv text inputs */
-	export let isTextInput: boolean = true;
-
-	/** configure which hex, rgb and hsv inputs will be visible and in which order. If overridden, it is necessary to provide at least one value */
-	export let textInputModes: Array<'hex' | 'rgb' | 'hsv'> = ['hex', 'rgb', 'hsv'];
-
-	/** used with the A11yVariant. Define the accessibility examples in the color picker */
-	export let a11yColors: Array<A11yColor> = [{ hex: '#ffffff' }];
-
-	/** used with the A11yVariant. Define the accessibility guidelines (HTML) */
-	export let a11yGuidelines: string =
-		'<p style="margin: 0; font-size: 12px;">Learn more at <a href="https://webaim.org/articles/contrast/" target="_blank">WebAIM contrast guide</a></p>';
-
-	/** used with the A11yVariant. If set to true, the accessibility panel will be shown by default */
-	export let isA11yOpen: boolean = false;
-
-	/** used with the A11yVariant. If set to false, the accessibility panel will always be shown */
-	export let isA11yClosable: boolean = true;
-
-	/** indicator of the popup state */
-	export let isOpen: boolean = !isDialog;
-
-	/** If set to "horizontal", the hue and alpha sliders will be displayed horizontally. It is necessary to set this props to "horizontal" for the ChromeVariant */
-	export let sliderDirection: 'horizontal' | 'vertical' = 'vertical';
-
-	/** If set to true, it will not be possible to close the color picker by clicking outside */
-	export let disableCloseClickOutside: boolean = false;
-
 	/** rgb color */
 	export let rgb: RgbaColor = { r: 255, g: 0, b: 0, a: 1 };
 
@@ -71,6 +37,40 @@
 
 	/** indicator whether the selected color is light or dark */
 	export let isDark: boolean = false;
+
+	/** if set to false, disables the alpha channel */
+	export let isAlpha: boolean = true;
+
+	/** if set to false, the input and the label will not be displayed and the ColorPicker will always be visible */
+	export let isDialog: boolean = true;
+
+	/** indicator of the popup state */
+	export let isOpen: boolean = !isDialog;
+
+	/** if set to false, hide the hex, rgb and hsv text inputs */
+	export let isTextInput: boolean = true;
+
+	/** configure which hex, rgb and hsv inputs will be visible and in which order. If overridden, it is necessary to provide at least one value */
+	export let textInputModes: Array<'hex' | 'rgb' | 'hsv'> = ['hex', 'rgb', 'hsv'];
+
+	/** If set to "horizontal", the hue and alpha sliders will be displayed horizontally. It is necessary to set this props to "horizontal" for the ChromeVariant */
+	export let sliderDirection: 'horizontal' | 'vertical' = 'vertical';
+
+	/** If set to true, it will not be possible to close the color picker by clicking outside */
+	export let disableCloseClickOutside: boolean = false;
+
+	/** used with the A11yVariant. Define the accessibility examples in the color picker */
+	export let a11yColors: Array<A11yColor> = [{ hex: '#ffffff' }];
+
+	/** used with the A11yVariant. Define the accessibility guidelines (HTML) */
+	export let a11yGuidelines: string =
+		'<p style="margin: 0; font-size: 12px;">Learn more at <a href="https://webaim.org/articles/contrast/" target="_blank">WebAIM contrast guide</a></p>';
+
+	/** used with the A11yVariant. If set to true, the accessibility panel will be shown by default */
+	export let isA11yOpen: boolean = false;
+
+	/** used with the A11yVariant. If set to false, the accessibility panel will always be shown */
+	export let isA11yClosable: boolean = true;
 
 	/**
 	 * Internal old values to trigger color conversion
@@ -282,6 +282,7 @@ import ColorPicker from 'svelte-awesome-color-picker';
 		--thumb-size: calc(var(--slider-width, 10px) - 3px);
 		--thumb-background: white;
 		--thumb-border: 1px solid black;
+		--margin-block: 0;
 
 		--gradient-direction: 0.5turn;
 	}
