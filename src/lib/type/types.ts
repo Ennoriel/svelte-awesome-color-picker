@@ -1,7 +1,7 @@
 import type TextInput from '../components/variant/default/TextInput.svelte';
-import type A11yNotice from '../components/variant/default/A11yNotice.svelte';
-import type A11ySingleNotice from '../components/variant/default/A11ySingleNotice.svelte';
-import type A11ySummary from '$lib/components/variant/default/A11ySummary.svelte';
+import type A11yNotice from '../components/variant/accessibility/A11yNotice.svelte';
+import type A11ySingleNotice from '../components/variant/accessibility/A11ySingleNotice.svelte';
+import type A11ySummary from '$lib/components/variant/accessibility/A11ySummary.svelte';
 import type Input from '../components/variant/default/Input.svelte';
 import type Wrapper from '../components/variant/default/Wrapper.svelte';
 import type PickerIndicator from '$lib/components/variant/default/PickerIndicator.svelte';

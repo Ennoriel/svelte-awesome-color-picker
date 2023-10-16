@@ -16,22 +16,23 @@ The library exports 4 different things:
 | components               | `Partial<Components>`                    | `{}`                             | customize the ColorPicker component parts. Can be used to display a Chrome variant or an Accessibility Notice                                             |
 | label                    | `string`                                 | `'Choose a color'`               | input label, hidden when the ColorPicker is always shown (prop `isDialog={false}`)                                                                        |
 | name                     | `string &#124; undefined`                | `undefined`                      | input name, useful in a native form                                                                                                                       |
-| isAlpha                  | `boolean`                                | `true`                           | if set to false, disables the alpha channel                                                                                                               |
-| isDialog                 | `boolean`                                | `true`                           | if set to false, the input and the label will not be displayed and the ColorPicker will always be visible                                                 |
-| isTextInput              | `boolean`                                | `true`                           | if set to false, hide the hex, rgb and hsv text inputs                                                                                                    |
-| textInputModes           | `Array<'hex' &#124; 'rgb' &#124; 'hsv'>` | `['hex', 'rgb', 'hsv']`          | configure which hex, rgb and hsv inputs will be visible and in which order. If overridden, it is necessary to provide at least one value                  |
-| a11yColors               | `Array<A11yColor>`                       | `[{ hex: '#ffffff' }]`           | used with the A11yVariant. Define the accessibility examples in the color picker                                                                          |
-| a11yGuidelines           | `string`                                 |                                  | used with the A11yVariant. Define the accessibility guidelines (HTML)                                                                                     |
-| isA11yOpen               | `boolean`                                | `false`                          | used with the A11yVariant. If set to true, the accessibility panel will be shown by default                                                               |
-| isA11yClosable           | `boolean`                                | `true`                           | used with the A11yVariant. If set to false, the accessibility panel will always be shown                                                                  |
-| isOpen                   | `boolean`                                | `!isDialog`                      | indicator of the popup state                                                                                                                              |
-| sliderDirection          | `'horizontal' &#124; 'vertical'`         | `'vertical'`                     | If set to "horizontal", the hue and alpha sliders will be displayed horizontally. It is necessary to set this props to "horizontal" for the ChromeVariant |
-| disableCloseClickOutside | `boolean`                                | `false`                          | If set to true, it will not be possible to close the color picker by clicking outside                                                                     |
 | rgb                      | `RgbaColor`                              | `{ r: 255, g: 0, b: 0, a: 1 }`   | rgb color                                                                                                                                                 |
 | hsv                      | `HsvaColor`                              | `{ h: 0, s: 100, v: 100, a: 1 }` | hsv color                                                                                                                                                 |
 | hex                      | `string`                                 | `'#ff0000'`                      | hex color                                                                                                                                                 |
 | color                    | `Colord &#124; undefined`                | `undefined`                      | Colord color                                                                                                                                              |
 | isDark                   | `boolean`                                | `false`                          | indicator whether the selected color is light or dark                                                                                                     |
+| isAlpha                  | `boolean`                                | `true`                           | if set to false, disables the alpha channel                                                                                                               |
+| isDialog                 | `boolean`                                | `true`                           | if set to false, the input and the label will not be displayed and the ColorPicker will always be visible                                                 |
+| isOpen                   | `boolean`                                | `!isDialog`                      | indicator of the popup state                                                                                                                              |
+| isTextInput              | `boolean`                                | `true`                           | if set to false, hide the hex, rgb and hsv text inputs                                                                                                    |
+| textInputModes           | `Array<'hex' &#124; 'rgb' &#124; 'hsv'>` | `['hex', 'rgb', 'hsv']`          | configure which hex, rgb and hsv inputs will be visible and in which order. If overridden, it is necessary to provide at least one value                  |
+| sliderDirection          | `'horizontal' &#124; 'vertical'`         | `'vertical'`                     | If set to "horizontal", the hue and alpha sliders will be displayed horizontally. It is necessary to set this props to "horizontal" for the ChromeVariant |
+| disableCloseClickOutside | `boolean`                                | `false`                          | If set to true, it will not be possible to close the color picker by clicking outside                                                                     |
+| a11yColors               | `Array<A11yColor>`                       | `[{ hex: '#ffffff' }]`           | used with the A11yVariant. Define the accessibility examples in the color picker                                                                          |
+| a11yLevel                | `'AA' &#124; 'AAA'`                      | `'AA'`                           | required WCAG contrast level                                                                                                                              |
+| a11yGuidelines           | `string`                                 |                                  | used with the A11yVariant. Define the accessibility guidelines (HTML)                                                                                     |
+| isA11yOpen               | `boolean`                                | `false`                          | used with the A11yVariant. If set to true, the accessibility panel will be shown by default                                                               |
+| isA11yClosable           | `boolean`                                | `true`                           | used with the A11yVariant. If set to false, the accessibility panel will always be shown                                                                  |
 
 <!-- ~PROPS_ColorPicker.svelte -->
 
@@ -180,6 +181,7 @@ Props:
 | hex            | `string`                  |               | hex color                                                                                                     |
 | color          | `Colord &#124; undefined` |               | Colord color                                                                                                  |
 | a11yColors     | `Array<A11yColor>`        |               | define the accessibility examples in the color picker                                                         |
+| a11yLevel      | `'AA' &#124; 'AAA'`       |               | required WCAG contrast level                                                                                  |
 | a11yGuidelines | `string`                  |               | define the accessibility guidelines (HTML)                                                                    |
 | isA11yOpen     | `boolean`                 |               | if set to true, the accessibility panel will be shown by default                                              |
 | isA11yClosable | `boolean`                 |               | if set to false, the accessibility panel will always be shown                                                 |
@@ -211,6 +213,7 @@ Props:
 | name       | type                       | default value | usage                                                                            |
 | ---------- | -------------------------- | ------------- | -------------------------------------------------------------------------------- |
 | a11yColors | `Array<A11yColorContract>` |               | used with the A11yVariant. Define the accessibility examples in the color picker |
+| a11yLevel  | `'AA' &#124; 'AAA'`        |               | required WCAG contrast level                                                     |
 
 <!-- ~PROPS_A11ySummary.svelte -->
 
@@ -226,6 +229,7 @@ Props:
 | ----------- | ------------------------------------------ | ------------- | ------------------------------------------------------------------- |
 | placeholder | `string &#124; undefined`                  | `undefined`   | placeholder, falls back to `Lorem Ipsum`                            |
 | size        | `'normal' &#124; 'large' &#124; undefined` | `undefined`   | size of the text                                                    |
+| a11yLevel   | `'AA' &#124; 'AAA'`                        |               | required WCAG contrast level                                        |
 | textColor   | `string`                                   |               | placeholder text color                                              |
 | bgColor     | `string`                                   |               | placeholder background color                                        |
 | contrast    | `number`                                   | `1`           | RGAA contrast between the text and its background. Between 1 and 21 |

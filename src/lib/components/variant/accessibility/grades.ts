@@ -19,9 +19,16 @@ export function isGradeAchieved(
 	return contrast >= grades[size][grade];
 }
 
-export function getNumberOfGradeFailed({ contrast, size }: A11yColorContract): number {
+export function getNumberOfGradeFailed({ contrast, size }: A11yColorContract, a11yLevel: 'AA' | 'AAA'): number {
 	if (!contrast) {
 		return 1;
 	}
-	return !isGradeAchieved(contrast, size, 'AA') ? 2 : !isGradeAchieved(contrast, size, 'AAA') ? 1 : 0;
+	const isAA = isGradeAchieved(contrast, size, 'AA');
+	if (a11yLevel === 'AA') {
+		return isAA ? 0 : 1;
+	} else if (!isAA) {
+		return 2;
+	}
+	const isAAA = isGradeAchieved(contrast, size, 'AAA');
+	return isAAA ? 0 : 1;
 }

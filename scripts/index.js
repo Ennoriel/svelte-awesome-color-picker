@@ -1,5 +1,5 @@
-import { generateProps } from './generate_props';
-import { generateSummary } from './generate_summary';
+import { generateProps } from './generate_props.js';
+import { generateSummary } from './generate_summary.js';
 
 generateSummary();
 generateProps('src/routes/sections/60-Api.md');

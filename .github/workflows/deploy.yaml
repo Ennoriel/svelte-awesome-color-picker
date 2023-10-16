@@ -10,16 +10,36 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2.2.2
+      - name: 🔨 checkout
+        uses: actions/checkout@v3
+      - name: 🔨 setup node 18
+        uses: actions/setup-node@v3
         with:
-          version: 7
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
+          node-version: 18
           registry-url: 'https://registry.npmjs.org'
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm package
-      - run: pnpm publish ./package
+      - name: 🔨 setup pnpm 8
+        uses: pnpm/action-setup@v2.2.2
+        id: pnpm-install
+        with:
+          version: 8
+          run_install: false
+      - name: 🔨 get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+      - name: 🔨 set pnpm store directory
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+      - name: 🔨 install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: 🔨 build library
+        run: pnpm package
+      - name: 🔨 publish library
+        run: pnpm publish --tag beta
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

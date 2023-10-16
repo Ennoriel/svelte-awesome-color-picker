@@ -1,4 +1,4 @@
-# svelte-awesome-color-picker
+<h1>svelte-awesome-color-picker</h1>
 
 > highly customizable color picker component library
 

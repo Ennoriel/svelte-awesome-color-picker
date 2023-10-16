@@ -16,6 +16,9 @@
 	/** define the accessibility examples in the color picker */
 	export let a11yColors: Array<A11yColor>;
 
+	/** required WCAG contrast level */
+	export let a11yLevel: 'AA' | 'AAA';
+
 	/** define the accessibility guidelines (HTML) */
 	export let a11yGuidelines: string;
 
@@ -36,13 +39,14 @@
 
 <details class="a11y-notice {closable ? 'not-closable' : ''}" open={isA11yOpen}>
 	<summary tabindex={closable ? -1 : undefined}>
-		<svelte:component this={components.a11ySummary} a11yColors={_a11yColors} />
+		<svelte:component this={components.a11ySummary} a11yColors={_a11yColors} {a11yLevel} />
 	</summary>
 	<div>
 		{#each _a11yColors as { contrast, hex: a11yHex, placeholder, reverse, size }}
 			<svelte:component
 				this={components.a11ySingleNotice}
 				{contrast}
+				{a11yLevel}
 				textColor={reverse ? a11yHex : hex}
 				bgColor={reverse ? hex : a11yHex}
 				{placeholder}
@@ -75,6 +79,7 @@ import { A11yVariant } from 'svelte-awesome-color-picker';
 @prop hex: string — hex color
 @prop color: Colord | undefined — Colord color
 @prop a11yColors: Array&lt;A11yColor&gt; — define the accessibility examples in the color picker
+@prop a11yLevel: 'AA' | 'AAA' — required WCAG contrast level
 @prop a11yGuidelines: string — define the accessibility guidelines (HTML)
 @prop isA11yOpen: boolean — if set to true, the accessibility panel will be shown by default
 @prop isA11yClosable: boolean — if set to false, the accessibility panel will always be shown

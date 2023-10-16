@@ -29,4 +29,6 @@
     - [Accessibility notice](#accessibility-notice)
 - [How to](#how-to)
   - [Fix overflow issues](#fix-overflow-issues)
+- [Migration](#migration)
+  - [update from v2 to v3](#update-from-v2-to-v3)
   <!-- ¤SUMMARY -->

@@ -62,6 +62,9 @@
 	/** used with the A11yVariant. Define the accessibility examples in the color picker */
 	export let a11yColors: Array<A11yColor> = [{ hex: '#ffffff' }];
 
+	/** required WCAG contrast level */
+	export let a11yLevel: 'AA' | 'AAA' = 'AA';
+
 	/** used with the A11yVariant. Define the accessibility guidelines (HTML) */
 	export let a11yGuidelines: string =
 		'<p style="margin: 0; font-size: 12px;">Learn more at <a href="https://webaim.org/articles/contrast/" target="_blank">WebAIM contrast guide</a></p>';
@@ -225,6 +228,7 @@
 				{a11yGuidelines}
 				{isA11yOpen}
 				{isA11yClosable}
+				{a11yLevel}
 			/>
 		{/if}
 	</svelte:component>
@@ -247,22 +251,23 @@ import ColorPicker from 'svelte-awesome-color-picker';
 @prop components: Partial&lt;Components&gt; = {} — customize the ColorPicker component parts. Can be used to display a Chrome variant or an Accessibility Notice
 @prop label: string = 'Choose a color' — input label, hidden when the ColorPicker is always shown (prop `isDialog={false}`)
 @prop name: string | undefined = undefined — input name, useful in a native form
-@prop isAlpha: boolean = true — if set to false, disables the alpha channel
-@prop isDialog: boolean = true — if set to false, the input and the label will not be displayed and the ColorPicker will always be visible
-@prop isTextInput: boolean = true — if set to false, hide the hex, rgb and hsv text inputs
-@prop textInputModes: Array&lt;'hex' | 'rgb' | 'hsv'&gt; = ['hex', 'rgb', 'hsv'] — configure which hex, rgb and hsv inputs will be visible and in which order. If overridden, it is necessary to provide at least one value
-@prop a11yColors: Array&lt;A11yColor&gt; = [{ hex: '#ffffff' }] — used with the A11yVariant. Define the accessibility examples in the color picker
-@prop a11yGuidelines: string — used with the A11yVariant. Define the accessibility guidelines (HTML)
-@prop isA11yOpen: boolean = false — used with the A11yVariant. If set to true, the accessibility panel will be shown by default
-@prop isA11yClosable: boolean = true — used with the A11yVariant. If set to false, the accessibility panel will always be shown
-@prop isOpen: boolean = !isDialog — indicator of the popup state
-@prop sliderDirection: 'horizontal' | 'vertical' = 'vertical' — If set to "horizontal", the hue and alpha sliders will be displayed horizontally. It is necessary to set this props to "horizontal" for the ChromeVariant
-@prop disableCloseClickOutside: boolean = false — If set to true, it will not be possible to close the color picker by clicking outside
 @prop rgb: RgbaColor = { r: 255, g: 0, b: 0, a: 1 } — rgb color
 @prop hsv: HsvaColor = { h: 0, s: 100, v: 100, a: 1 } — hsv color
 @prop hex: string = '#ff0000' — hex color
 @prop color: Colord | undefined = undefined — Colord color
 @prop isDark: boolean = false — indicator whether the selected color is light or dark
+@prop isAlpha: boolean = true — if set to false, disables the alpha channel
+@prop isDialog: boolean = true — if set to false, the input and the label will not be displayed and the ColorPicker will always be visible
+@prop isOpen: boolean = !isDialog — indicator of the popup state
+@prop isTextInput: boolean = true — if set to false, hide the hex, rgb and hsv text inputs
+@prop textInputModes: Array&lt;'hex' | 'rgb' | 'hsv'&gt; = ['hex', 'rgb', 'hsv'] — configure which hex, rgb and hsv inputs will be visible and in which order. If overridden, it is necessary to provide at least one value
+@prop sliderDirection: 'horizontal' | 'vertical' = 'vertical' — If set to "horizontal", the hue and alpha sliders will be displayed horizontally. It is necessary to set this props to "horizontal" for the ChromeVariant
+@prop disableCloseClickOutside: boolean = false — If set to true, it will not be possible to close the color picker by clicking outside
+@prop a11yColors: Array&lt;A11yColor&gt; = [{ hex: '#ffffff' }] — used with the A11yVariant. Define the accessibility examples in the color picker
+@prop a11yLevel: 'AA' | 'AAA' = 'AA' — required WCAG contrast level
+@prop a11yGuidelines: string — used with the A11yVariant. Define the accessibility guidelines (HTML)
+@prop isA11yOpen: boolean = false — used with the A11yVariant. If set to true, the accessibility panel will be shown by default
+@prop isA11yClosable: boolean = true — used with the A11yVariant. If set to false, the accessibility panel will always be shown
 -->
 <style>
 	span {
@@ -292,6 +297,9 @@ import ColorPicker from 'svelte-awesome-color-picker';
 
 		--gradient-direction: 0.25turn;
 		margin: 4px 6px;
+	}
+	.horizontal .h {
+		margin-top: 8px;
 	}
 	.vertical .h,
 	.vertical .a {

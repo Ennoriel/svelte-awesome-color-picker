@@ -7,6 +7,9 @@
 	/** size of the text */
 	export let size: 'normal' | 'large' | undefined = undefined;
 
+	/** required WCAG contrast level */
+	export let a11yLevel: 'AA' | 'AAA';
+
 	/** placeholder text color */
 	export let textColor: string;
 
@@ -24,7 +27,9 @@
 	<div class="score">
 		<p>contrast: {contrast >= 10 ? contrast.toFixed(1) : contrast}</p>
 		<span class="grade" class:grade-ok={isGradeAchieved(contrast, size, 'AA')}>AA</span>
-		<span class="grade" class:grade-ok={isGradeAchieved(contrast, size, 'AAA')}>AAA</span>
+		{#if a11yLevel === 'AAA'}
+			<span class="grade" class:grade-ok={isGradeAchieved(contrast, size, 'AAA')}>AAA</span>
+		{/if}
 	</div>
 </div>
 
@@ -44,6 +49,7 @@ import { A11yVariant } from 'svelte-awesome-color-picker';
 **Props**
 @prop placeholder: string | undefined = undefined — placeholder, falls back to `Lorem Ipsum`
 @prop size: 'normal' | 'large' | undefined = undefined — size of the text
+@prop a11yLevel: 'AA' | 'AAA' — required WCAG contrast level
 @prop textColor: string — placeholder text color
 @prop bgColor: string — placeholder background color
 @prop contrast: number = 1 — RGAA contrast between the text and its background. Between 1 and 21
