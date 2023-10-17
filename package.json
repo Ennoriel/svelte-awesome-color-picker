@@ -1,6 +1,6 @@
 {
 	"name": "svelte-awesome-color-picker",
-	"version": "3.0.0-beta.3",
+	"version": "3.0.0-beta.4",
 	"description": "A highly customizable color picker component library",
 	"homepage": "https://svelte-awesome-color-picker.vercel.app",
 	"repository": {
@@ -11,7 +11,7 @@
 	"license": "MIT",
 	"scripts": {
 		"dev": "vite dev --open --host",
-		"prebuild": "node scripts/index.js",
+		"prebuild": "node scripts/index.js && pnpm format",
 		"build": "vite build",
 		"preview": "vite preview",
 		"package": "svelte-package",

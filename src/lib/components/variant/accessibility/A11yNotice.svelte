@@ -92,6 +92,7 @@ import { A11yVariant } from 'svelte-awesome-color-picker';
 
 	button {
 		background: none;
+		border: none;
 		padding: 2px 8px;
 	}
 	button:disabled {
