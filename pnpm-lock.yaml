@@ -56,8 +56,8 @@ devDependencies:
     specifier: ^6.0.0
     version: 6.0.0
   svelte-awesome-slider:
-    specifier: ^0.0.4
-    version: 0.0.4(svelte@3.55.1)
+    specifier: ^0.0.5
+    version: 0.0.5(svelte@3.55.1)
   svelte-check:
     specifier: ^3.5.2
     version: 3.5.2(svelte@3.55.1)
@@ -3261,8 +3261,8 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /svelte-awesome-slider@0.0.4(svelte@3.55.1):
-    resolution: {integrity: sha512-znMOXskA48iMoGM+RHs8IaO2HZ1cBrHy7CMpCjwJQPIBfXZUb0iFHqnFXyzEIoAz01E5J7Bmy8Co21I4nk61hA==}
+  /svelte-awesome-slider@0.0.5(svelte@3.55.1):
+    resolution: {integrity: sha512-y+GmKLkgauUtUEowDpwgPiEitloNZORzS5PBOSEnt9to/KTZsJZULz3i+qXm9+cxpg5pM67fEPvflqGGCktG9A==}
     peerDependencies:
       svelte: ^3.54.0 || ^4.0.0
     dependencies:
