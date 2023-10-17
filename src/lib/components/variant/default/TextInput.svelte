@@ -50,7 +50,7 @@
 <div class="text-input">
 	{#if mode === 0}
 		<div class="input-container">
-			<input value={hex} on:input={updateHex} style="flex: 3" />
+			<input value={hex} on:input={updateHex} style:flex={3} />
 			{#if isAlpha}
 				<input
 					aria-label="hexadecimal color"

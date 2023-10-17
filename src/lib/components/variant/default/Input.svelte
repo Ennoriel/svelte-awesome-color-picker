@@ -23,7 +23,7 @@
 	<div class="container">
 		<input type="color" {name} value={hex} on:click|preventDefault={noop} aria-haspopup="dialog" />
 		<div class="alpha" />
-		<div class="color" style="background: {hex}" />
+		<div class="color" style:background={hex} />
 	</div>
 	{label}
 </label>

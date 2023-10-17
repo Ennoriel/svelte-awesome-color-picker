@@ -110,7 +110,7 @@
 	function keyup({ key, target }: KeyboardEvent) {
 		if (!isDialog) {
 			return;
-		} else if (key === 'Enter' && labelElement.isEqualNode(target as Node)) {
+		} else if (key === 'Enter' && labelElement.contains(target as Node)) {
 			isOpen = !isOpen;
 		} else if (key === 'Escape' && isOpen) {
 			isOpen = false;

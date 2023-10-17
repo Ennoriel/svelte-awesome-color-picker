@@ -80,7 +80,7 @@
 	on:touchstart={touch}
 	on:touchmove|preventDefault={touch}
 	on:touchend={touch}
-	style="--picker-color-bg: {pickerColorBg};"
+	style:--picker-color-bg={pickerColorBg}
 >
 	<svelte:component this={components.pickerIndicator} {pos} {isDark} />
 	<div class="s" style:--pos-y={pos.y}>

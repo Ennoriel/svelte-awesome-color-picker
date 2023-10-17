@@ -21,7 +21,7 @@
 </script>
 
 <div class="a11y-single-notice">
-	<p class="lorem {size === 'large' && 'large'}" style="color: {textColor}; background-color: {bgColor}">
+	<p class="lorem {size === 'large' && 'large'}" style:color={textColor} style:background-color={bgColor}>
 		{placeholder || 'Lorem Ipsum'}
 	</p>
 	<div class="score">
