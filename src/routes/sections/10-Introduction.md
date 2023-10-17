@@ -10,4 +10,4 @@
 - 🧩 fully customizable
 - 🔨 full typescript support
 
-The library uses [colord](https://www.npmjs.com/colord) internally because it's the lightest color conversion library on the market at the time and supports a11y contrasts.
+The library uses [colord](https://github.com/omgovich/colord) internally because it's the lightest color conversion library on the market at the time and supports a11y contrasts and [svelte-awesome-slider](https://github.com/Ennoriel/svelte-awesome-slider) to display sliders.

@@ -88,7 +88,6 @@ bind:hex
 bind:rgb
 bind:hsv
 isAlpha
-isA11yOpen
 isA11yClosable={false}
 a11yColors={[
 { hex: '#FFF', reverse: true, placeholder: 'background' },
@@ -111,8 +110,6 @@ a11yColors={[
 	bind:rgb
 	bind:hsv
 	isAlpha
-	isA11yOpen
-	isA11yClosable={false}
 	a11yColors={[
 		{ hex: '#FFF', reverse: true, placeholder: 'background' },
 		{ hex: '#FFF', placeholder: 'title', size: 'large' },

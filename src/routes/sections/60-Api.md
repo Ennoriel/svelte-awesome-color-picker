@@ -31,7 +31,6 @@ The library exports 4 different things:
 | a11yColors               | `Array<A11yColor>`                       | `[{ hex: '#ffffff' }]`           | used with the A11yVariant. Define the accessibility examples in the color picker                                                                          |
 | a11yLevel                | `'AA' &#124; 'AAA'`                      | `'AA'`                           | required WCAG contrast level                                                                                                                              |
 | a11yGuidelines           | `string`                                 |                                  | used with the A11yVariant. Define the accessibility guidelines (HTML)                                                                                     |
-| isA11yOpen               | `boolean`                                | `false`                          | used with the A11yVariant. If set to true, the accessibility panel will be shown by default                                                               |
 | isA11yClosable           | `boolean`                                | `true`                           | used with the A11yVariant. If set to false, the accessibility panel will always be shown                                                                  |
 
 <!-- ~PROPS_ColorPicker.svelte -->
@@ -183,7 +182,6 @@ Props:
 | a11yColors     | `Array<A11yColor>`        |               | define the accessibility examples in the color picker                                                         |
 | a11yLevel      | `'AA' &#124; 'AAA'`       |               | required WCAG contrast level                                                                                  |
 | a11yGuidelines | `string`                  |               | define the accessibility guidelines (HTML)                                                                    |
-| isA11yOpen     | `boolean`                 |               | if set to true, the accessibility panel will be shown by default                                              |
 | isA11yClosable | `boolean`                 |               | if set to false, the accessibility panel will always be shown                                                 |
 
 <!-- ~PROPS_A11yNotice.svelte -->

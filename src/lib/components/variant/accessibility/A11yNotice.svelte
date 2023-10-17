@@ -22,26 +22,28 @@
 	/** define the accessibility guidelines (HTML) */
 	export let a11yGuidelines: string;
 
-	/** if set to true, the accessibility panel will be shown by default */
-	export let isA11yOpen: boolean;
-
 	/** if set to false, the accessibility panel will always be shown */
 	export let isA11yClosable: boolean;
 
+	let open = true;
+
 	extend([a11yPlugin]);
 
-	$: closable = isA11yOpen && !isA11yClosable;
 	$: _a11yColors = a11yColors.map((a11yColor) => ({
 		...a11yColor,
 		contrast: color?.contrast(a11yColor.hex)
 	}));
 </script>
 
-<details class="a11y-notice {closable ? 'not-closable' : ''}" open={isA11yOpen}>
-	<summary tabindex={closable ? -1 : undefined}>
+<!-- https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/ -->
+<div class="a11y-notice">
+	<button on:click={() => (open = !open)} disabled={!isA11yClosable} aria-expanded={open ? 'true' : 'false'}>
+		{#if isA11yClosable}
+			{open ? '⯆' : '⯈'}&nbsp;
+		{/if}
 		<svelte:component this={components.a11ySummary} a11yColors={_a11yColors} {a11yLevel} />
-	</summary>
-	<div>
+	</button>
+	{#if open}
 		{#each _a11yColors as { contrast, hex: a11yHex, placeholder, reverse, size }}
 			<svelte:component
 				this={components.a11ySingleNotice}
@@ -58,8 +60,8 @@
 				{@html a11yGuidelines}
 			</span>
 		{/if}
-	</div>
-</details>
+	{/if}
+</div>
 
 <!-- 
 @component Accessibility notice — this component is meant to be used with the A11yVariant object as a variant to display the accessibility notice.
@@ -81,31 +83,20 @@ import { A11yVariant } from 'svelte-awesome-color-picker';
 @prop a11yColors: Array&lt;A11yColor&gt; — define the accessibility examples in the color picker
 @prop a11yLevel: 'AA' | 'AAA' — required WCAG contrast level
 @prop a11yGuidelines: string — define the accessibility guidelines (HTML)
-@prop isA11yOpen: boolean — if set to true, the accessibility panel will be shown by default
 @prop isA11yClosable: boolean — if set to false, the accessibility panel will always be shown
 -->
 <style>
-	details {
+	div {
 		width: 245px;
-		margin: 8px auto;
 	}
 
-	summary {
-		margin-bottom: 8px;
-		cursor: pointer;
-		transition: color 0.2s;
+	button {
+		background: none;
+		padding: 2px 8px;
 	}
-
-	summary:hover {
-		color: blue;
-	}
-
-	.not-closable summary {
-		pointer-events: none;
-	}
-
-	.not-closable summary {
-		list-style: none;
+	button:disabled {
+		color: inherit;
+		cursor: default;
 	}
 
 	:focus-visible,

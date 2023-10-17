@@ -72,6 +72,7 @@
 
 <svelte:window on:mouseup={mouseUp} on:mousedown={mouseDown} on:mousemove={mouseMove} />
 
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
 	class="picker"
 	bind:this={picker}

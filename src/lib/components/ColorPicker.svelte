@@ -69,9 +69,6 @@
 	export let a11yGuidelines: string =
 		'<p style="margin: 0; font-size: 12px;">Learn more at <a href="https://webaim.org/articles/contrast/" target="_blank">WebAIM contrast guide</a></p>';
 
-	/** used with the A11yVariant. If set to true, the accessibility panel will be shown by default */
-	export let isA11yOpen: boolean = false;
-
 	/** used with the A11yVariant. If set to false, the accessibility panel will always be shown */
 	export let isA11yClosable: boolean = true;
 
@@ -226,7 +223,6 @@
 				{color}
 				{hex}
 				{a11yGuidelines}
-				{isA11yOpen}
 				{isA11yClosable}
 				{a11yLevel}
 			/>
@@ -266,7 +262,6 @@ import ColorPicker from 'svelte-awesome-color-picker';
 @prop a11yColors: Array&lt;A11yColor&gt; = [{ hex: '#ffffff' }] — used with the A11yVariant. Define the accessibility examples in the color picker
 @prop a11yLevel: 'AA' | 'AAA' = 'AA' — required WCAG contrast level
 @prop a11yGuidelines: string — used with the A11yVariant. Define the accessibility guidelines (HTML)
-@prop isA11yOpen: boolean = false — used with the A11yVariant. If set to true, the accessibility panel will be shown by default
 @prop isA11yClosable: boolean = true — used with the A11yVariant. If set to false, the accessibility panel will always be shown
 -->
 <style>
