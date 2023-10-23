@@ -3,6 +3,7 @@
 	import type { RgbaColor, HsvaColor, Colord } from 'colord';
 	import { colord } from 'colord';
 	import type { A11yColor, Components } from '../type/types';
+	import { defaultTexts, type TextsPartial, type A11yTextsPartial } from '../texts';
 	import Picker from './Picker.svelte';
 	import { Slider } from 'svelte-awesome-slider';
 	import PickerIndicator from './variant/default/PickerIndicator.svelte';
@@ -65,12 +66,14 @@
 	/** required WCAG contrast level */
 	export let a11yLevel: 'AA' | 'AAA' = 'AA';
 
-	/** used with the A11yVariant. Define the accessibility guidelines (HTML) */
-	export let a11yGuidelines: string =
-		'<p style="margin: 0; font-size: 12px;">Learn more at <a href="https://webaim.org/articles/contrast/" target="_blank">WebAIM contrast guide</a></p>';
-
 	/** used with the A11yVariant. If set to false, the accessibility panel will always be shown */
 	export let isA11yClosable: boolean = true;
+
+	/** all translation tokens used in the library; can be partially overridden; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/texts.ts) */
+	export let texts: TextsPartial | undefined = undefined;
+
+	/** all a11y translation tokens used in the library; override with translations if necessary; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/texts.ts) */
+	export let a11yTexts: A11yTextsPartial | undefined = undefined;
 
 	/**
 	 * Internal old values to trigger color conversion
@@ -94,6 +97,20 @@
 		return {
 			...default_components,
 			...components
+		};
+	}
+
+	function getTexts() {
+		return {
+			label: {
+				...defaultTexts.label,
+				...texts?.label
+			},
+			color: {
+				...defaultTexts.color,
+				...texts?.color
+			},
+			changeTo: defaultTexts.changeTo ?? texts?.changeTo
 		};
 	}
 
@@ -198,6 +215,7 @@
 				bind:value={hsv.h}
 				direction={sliderDirection}
 				reverse={sliderDirection === 'vertical'}
+				ariaLabel={getTexts().label.h}
 			/>
 		</div>
 		{#if isAlpha}
@@ -209,11 +227,20 @@
 					bind:value={hsv.a}
 					direction={sliderDirection}
 					reverse={sliderDirection === 'vertical'}
+					ariaLabel={getTexts().label.a}
 				/>
 			</div>
 		{/if}
 		{#if isTextInput}
-			<svelte:component this={getComponents().textInput} bind:hex bind:rgb bind:hsv {isAlpha} {textInputModes} />
+			<svelte:component
+				this={getComponents().textInput}
+				bind:hex
+				bind:rgb
+				bind:hsv
+				{isAlpha}
+				{textInputModes}
+				texts={getTexts()}
+			/>
 		{/if}
 		{#if getComponents().a11yNotice}
 			<svelte:component
@@ -222,7 +249,7 @@
 				{a11yColors}
 				{color}
 				{hex}
-				{a11yGuidelines}
+				{a11yTexts}
 				{isA11yClosable}
 				{a11yLevel}
 			/>
@@ -261,8 +288,9 @@ import ColorPicker from 'svelte-awesome-color-picker';
 @prop disableCloseClickOutside: boolean = false — If set to true, it will not be possible to close the color picker by clicking outside
 @prop a11yColors: Array&lt;A11yColor&gt; = [{ hex: '#ffffff' }] — used with the A11yVariant. Define the accessibility examples in the color picker
 @prop a11yLevel: 'AA' | 'AAA' = 'AA' — required WCAG contrast level
-@prop a11yGuidelines: string — used with the A11yVariant. Define the accessibility guidelines (HTML)
 @prop isA11yClosable: boolean = true — used with the A11yVariant. If set to false, the accessibility panel will always be shown
+@prop texts: TextsPartial | undefined = undefined — all translation tokens used in the library; can be partially overridden; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/texts.ts)
+@prop a11yTexts: A11yTextsPartial | undefined = undefined — all a11y translation tokens used in the library; override with translations if necessary; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/texts.ts)
 -->
 <style>
 	span {

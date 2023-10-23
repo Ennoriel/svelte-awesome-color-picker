@@ -3,7 +3,6 @@ import { default as ChromeWrapper } from './components/variant/chrome-picker/Wra
 import { default as A11yHorizontalWrapper } from './components/variant/accessibility/A11yHorizontalWrapper.svelte';
 import { default as A11yNotice } from './components/variant/accessibility/A11yNotice.svelte';
 import { default as A11ySingleNotice } from './components/variant/accessibility/A11ySingleNotice.svelte';
-import { default as A11ySummary } from './components/variant/accessibility/A11ySummary.svelte';
 
 export default ColorPicker;
 
@@ -16,6 +15,5 @@ export const ChromeVariant = {
 export const A11yVariant = {
 	wrapper: A11yHorizontalWrapper,
 	a11yNotice: A11yNotice,
-	a11ySingleNotice: A11ySingleNotice,
-	a11ySummary: A11ySummary
+	a11ySingleNotice: A11ySingleNotice
 };

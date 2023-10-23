@@ -22,7 +22,6 @@
     - [Input](#input)
     - [wrapper](#wrapper)
     - [a11yNotice](#a11ynotice)
-    - [a11ySummary](#a11ysummary)
     - [a11ySingleNotice](#a11ysinglenotice)
   - [Accessibility](#accessibility)
     - [The component itself](#the-component-itself)
@@ -30,5 +29,5 @@
 - [How to](#how-to)
   - [Fix overflow issues](#fix-overflow-issues)
 - [Migration](#migration)
-  - [update from v2 to v3](#update-from-v2-to-v3)
+  - [upgrade from v2 to v3](#upgrade-from-v2-to-v3)
   <!-- ¤SUMMARY -->

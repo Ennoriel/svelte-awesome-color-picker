@@ -1,8 +1,10 @@
 <script lang="ts">
+	import { defaultA11yTexts, type A11yTextsPartial } from '$lib/texts';
 	import type { A11yColor } from '$lib/type/types';
 	import type { Components } from '$lib/type/types';
 	import { extend, type Colord } from 'colord';
 	import a11yPlugin from 'colord/plugins/a11y';
+	import { getNumberOfGradeFailed } from './grades';
 
 	/** customize the ColorPicker component parts. Can be used to display a Chrome variant or an Accessibility Notice */
 	export let components: Components;
@@ -19,20 +21,29 @@
 	/** required WCAG contrast level */
 	export let a11yLevel: 'AA' | 'AAA';
 
-	/** define the accessibility guidelines (HTML) */
-	export let a11yGuidelines: string;
-
 	/** if set to false, the accessibility panel will always be shown */
 	export let isA11yClosable: boolean;
+
+	/** all a11y translation tokens used in the library; override with translations if necessary; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/texts.ts) */
+	export let a11yTexts: A11yTextsPartial | undefined = undefined;
 
 	let open = true;
 
 	extend([a11yPlugin]);
 
+	function getTexts() {
+		return {
+			...defaultA11yTexts,
+			...a11yTexts
+		};
+	}
+
 	$: _a11yColors = a11yColors.map((a11yColor) => ({
 		...a11yColor,
 		contrast: color?.contrast(a11yColor.hex)
 	}));
+
+	$: count = _a11yColors.map((color) => getNumberOfGradeFailed(color, a11yLevel)).reduce((acc, c) => acc + c);
 </script>
 
 <!-- https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/ -->
@@ -41,7 +52,7 @@
 		{#if isA11yClosable}
 			{open ? '⯆' : '⯈'}&nbsp;
 		{/if}
-		<svelte:component this={components.a11ySummary} a11yColors={_a11yColors} {a11yLevel} />
+		{getTexts().nbGradeSummary(count)}
 	</button>
 	{#if open}
 		{#each _a11yColors as { contrast, hex: a11yHex, placeholder, reverse, size }}
@@ -53,11 +64,12 @@
 				bgColor={reverse ? hex : a11yHex}
 				{placeholder}
 				{size}
+				contrastText={getTexts().contrast}
 			/>
 		{/each}
-		{#if a11yGuidelines}
+		{#if getTexts().guidelines}
 			<span>
-				{@html a11yGuidelines}
+				{@html getTexts().guidelines}
 			</span>
 		{/if}
 	{/if}
@@ -82,8 +94,8 @@ import { A11yVariant } from 'svelte-awesome-color-picker';
 @prop color: Colord | undefined — Colord color
 @prop a11yColors: Array&lt;A11yColor&gt; — define the accessibility examples in the color picker
 @prop a11yLevel: 'AA' | 'AAA' — required WCAG contrast level
-@prop a11yGuidelines: string — define the accessibility guidelines (HTML)
 @prop isA11yClosable: boolean — if set to false, the accessibility panel will always be shown
+@prop a11yTexts: A11yTextsPartial | undefined = undefined — all a11y translation tokens used in the library; override with translations if necessary; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/texts.ts)
 -->
 <style>
 	div {
@@ -93,7 +105,9 @@ import { A11yVariant } from 'svelte-awesome-color-picker';
 	button {
 		background: none;
 		border: none;
-		padding: 2px 8px;
+		padding: 0 8px;
+		margin: 0;
+		line-height: 32px;
 	}
 	button:disabled {
 		color: inherit;

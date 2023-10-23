@@ -95,6 +95,9 @@ th {
 	border: 1px solid black;
 	padding: 8px;
 }
+th[scope='row'] {
+	text-align: left;
+}
 
 @media (min-width: 768px) {
 	.example-wrapper {
@@ -129,10 +132,8 @@ ul {
 	margin: 8px 0;
 }
 
-@media (max-width: 768px) {
-	li {
-		margin: 4px 0;
-	}
+li {
+	margin: 4px 0;
 }
 
 /** scoll stuff */

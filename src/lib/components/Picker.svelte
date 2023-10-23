@@ -84,10 +84,16 @@
 >
 	<svelte:component this={components.pickerIndicator} {pos} {isDark} />
 	<div class="s" style:--pos-y={pos.y}>
-		<Slider bind:value={s} keyboardOnly ariaValueText={(value) => `${value}%`} />
+		<Slider bind:value={s} keyboardOnly ariaValueText={(value) => `${value}%`} ariaLabel="saturation color" />
 	</div>
 	<div class="v" style:--pos-x={pos.x}>
-		<Slider bind:value={v} keyboardOnly ariaValueText={(value) => `${value}%`} direction="vertical" />
+		<Slider
+			bind:value={v}
+			keyboardOnly
+			ariaValueText={(value) => `${value}%`}
+			direction="vertical"
+			ariaLabel="brightness color"
+		/>
 	</div>
 </div>
 

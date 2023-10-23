@@ -1,4 +1,5 @@
 <script lang="ts">
+	import type { Texts } from '$lib/texts';
 	import type { RgbaColor, HsvaColor } from 'colord';
 
 	/** if set to false, disables the alpha channel */
@@ -15,6 +16,9 @@
 
 	/** configure which hex, rgb and hsv inputs will be visible and in which order. If overridden, it is necessary to provide at least one value */
 	export let textInputModes: Array<'hex' | 'rgb' | 'hsv'>;
+
+	/** all translation tokens used in the library; can be partially overridden; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/texts.ts) */
+	export let texts: Texts;
 
 	const HEX_COLOR_REGEX = /^#?([A-F0-9]{6}|[A-F0-9]{8})$/i;
 
@@ -48,61 +52,35 @@
 </script>
 
 <div class="text-input">
-	{#if mode === 0}
-		<div class="input-container">
-			<input value={hex} on:input={updateHex} style:flex={3} />
-			{#if isAlpha}
-				<input
-					aria-label="hexadecimal color"
-					value={a}
-					type="number"
-					min="0"
-					max="1"
-					step="0.01"
-					on:input={updateRgb('a')}
-				/>
-			{/if}
-		</div>
-	{:else if mode === 1}
-		<div class="input-container">
-			<input aria-label="red color" value={rgb.r} type="number" min="0" max="255" on:input={updateRgb('r')} />
-			<input aria-label="green color" value={rgb.g} type="number" min="0" max="255" on:input={updateRgb('g')} />
-			<input aria-label="blue color" value={rgb.b} type="number" min="0" max="255" on:input={updateRgb('b')} />
-			{#if isAlpha}
-				<input
-					aria-label="transparency color"
-					value={a}
-					type="number"
-					min="0"
-					max="1"
-					step="0.01"
-					on:input={updateRgb('a')}
-				/>
-			{/if}
-		</div>
-	{:else}
-		<div class="input-container">
-			<input aria-label="hue color" value={h} type="number" min="0" max="360" on:input={updateHsv('h')} />
-			<input aria-label="saturation color" value={s} type="number" min="0" max="100" on:input={updateHsv('s')} />
-			<input aria-label="brightness color" value={v} type="number" min="0" max="100" on:input={updateHsv('v')} />
-			{#if isAlpha}
-				<input
-					aria-label="transparency color"
-					value={a}
-					type="number"
-					min="0"
-					max="1"
-					step="0.01"
-					on:input={updateHsv('a')}
-				/>
-			{/if}
-		</div>
-	{/if}
+	<div class="input-container">
+		{#if mode === 0}
+			<input aria-label="hexadecimal color" value={hex} on:input={updateHex} style:flex={3} />
+		{:else if mode === 1}
+			<input aria-label={texts.label.r} value={rgb.r} type="number" min="0" max="255" on:input={updateRgb('r')} />
+			<input aria-label={texts.label.g} value={rgb.g} type="number" min="0" max="255" on:input={updateRgb('g')} />
+			<input aria-label={texts.label.b} value={rgb.b} type="number" min="0" max="255" on:input={updateRgb('b')} />
+		{:else}
+			<input aria-label={texts.label.h} value={h} type="number" min="0" max="360" on:input={updateHsv('h')} />
+			<input aria-label={texts.label.s} value={s} type="number" min="0" max="100" on:input={updateHsv('s')} />
+			<input aria-label={texts.label.v} value={v} type="number" min="0" max="100" on:input={updateHsv('v')} />
+		{/if}
+		{#if isAlpha}
+			<input
+				aria-label={texts.label.a}
+				value={a}
+				type="number"
+				min="0"
+				max="1"
+				step="0.01"
+				on:input={mode <= 1 ? updateRgb('a') : updateHsv('a')}
+			/>
+		{/if}
+	</div>
 
 	{#if textInputModes.length > 1}
-		<button aria-label="change inputs to {textInputModes[(mode + 1) % 3]}" on:click={() => (mode = (mode + 1) % 3)}>
-			<span class="disappear" aria-hidden="true">{textInputModes[mode]}</span>
-			<span class="appear">change to {textInputModes[(mode + 1) % 3]}</span>
+		<button on:click={() => (mode = (mode + 1) % 3)}>
+			<span class="disappear" aria-hidden="true">{texts.color[textInputModes[mode]]}</span>
+			<span class="appear">{texts.changeTo} {texts.color[textInputModes[(mode + 1) % 3]]}</span>
 		</button>
 	{/if}
 </div>
@@ -123,6 +101,7 @@ _N.A._
 @prop hsv: HsvaColor — hsv color
 @prop hex: string — hex color
 @prop textInputModes: Array&lt;'hex' | 'rgb' | 'hsv'&gt; — configure which hex, rgb and hsv inputs will be visible and in which order. If overridden, it is necessary to provide at least one value
+@prop texts: Texts — all translation tokens used in the library; can be partially overridden; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/texts.ts)
 -->
 <style>
 	.text-input {

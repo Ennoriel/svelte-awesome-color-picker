@@ -20,13 +20,13 @@ function get_component_content(path) {
 }
 
 function parse_component_props_docs(componentName, componentStr) {
-	const componentDocArray = componentStr.match(/(\/\*\*([^/]|\n|\r)*\*\/\r?\n\s*)?export (let|const).*/g);
+	const componentDocArray = componentStr.match(/(\/\*\*([^*]|\n|\r)*\*\/\r?\n\s*)?export (let|const).*/g);
 
 	if (!componentDocArray) return;
 
 	return componentDocArray.map((t) => {
 		const attrs = t.match(
-			/(?:\/\*\*(?<description>(?:[^/]|\n|\r)*)\*\/\r?\n\s*)?export (?:let|const) (?<name>\w+)(?:: (?<type>[^=;]*))?(?: ?= (?<def>[^;]*))?/m
+			/(?:\/\*\*(?<description>(?:[^*]|\n|\r)*)\*\/\r?\n\s*)?export (?:let|const) (?<name>\w+)(?:: (?<type>[^=;]*))?(?: ?= (?<def>[^;]*))?/m
 		);
 
 		const description = attrs.groups.description
@@ -71,7 +71,7 @@ function replace_content(path, startTag, endTag, str) {
 function generate_docs(path, componentName, componentDocParsed) {
 	const componentDocForComponent =
 		`| name | type | default value | usage |
-| --- | --- | --- | --- |
+| :-- | --- | --- | --- |
 ` +
 		componentDocParsed
 			.map(({ name, type, defaultValue, description }) => {

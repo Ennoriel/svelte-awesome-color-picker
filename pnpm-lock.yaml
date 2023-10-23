@@ -56,8 +56,8 @@ devDependencies:
     specifier: ^6.0.0
     version: 6.0.0
   svelte-awesome-slider:
-    specifier: ^0.0.5
-    version: 0.0.5(svelte@3.55.1)
+    specifier: ^0.0.6
+    version: 0.0.6(svelte@3.55.1)
   svelte-check:
     specifier: ^3.5.2
     version: 3.5.2(svelte@3.55.1)
@@ -566,8 +566,8 @@ packages:
     resolution: {integrity: sha512-eF2rxCRulEKXHTRiDrDy6erMYWqNw4LPdQ8UQA4huuxaQsVeRPFl2oM8oDGxMFhJUWZf9McpLtJasDDZb/Bpeg==}
     dev: true
 
-  /@jridgewell/trace-mapping@0.3.19:
-    resolution: {integrity: sha512-kf37QtfW+Hwx/buWGMPcR60iF9ziHa6r/CZJIHbmcm4+0qrXiVdxegAH0F6yddEVQ7zdkjcGCgCzUu+BcbhQxw==}
+  /@jridgewell/trace-mapping@0.3.20:
+    resolution: {integrity: sha512-R8LcPeWZol2zR8mmH3JeKQ6QRCFb7XgUhV9ZlGhHLGyg4wpPiPZNQOOWhFZhxKw8u//yTbNGI42Bx/3paXEQ+Q==}
     dependencies:
       '@jridgewell/resolve-uri': 3.1.1
       '@jridgewell/sourcemap-codec': 1.4.15
@@ -3261,8 +3261,8 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /svelte-awesome-slider@0.0.5(svelte@3.55.1):
-    resolution: {integrity: sha512-y+GmKLkgauUtUEowDpwgPiEitloNZORzS5PBOSEnt9to/KTZsJZULz3i+qXm9+cxpg5pM67fEPvflqGGCktG9A==}
+  /svelte-awesome-slider@0.0.6(svelte@3.55.1):
+    resolution: {integrity: sha512-ZH27IY+z4o81TnyAZZDqLtjN+HItVGBIUj27N/kPuS+5gxZqb5ccvUiUGYRX2lH/CZKlFiGsUFEp60ppp2MW4A==}
     peerDependencies:
       svelte: ^3.54.0 || ^4.0.0
     dependencies:
@@ -3275,7 +3275,7 @@ packages:
     peerDependencies:
       svelte: ^3.55.0 || ^4.0.0-next.0 || ^4.0.0
     dependencies:
-      '@jridgewell/trace-mapping': 0.3.19
+      '@jridgewell/trace-mapping': 0.3.20
       chokidar: 3.5.3
       fast-glob: 3.3.1
       import-fresh: 3.3.0

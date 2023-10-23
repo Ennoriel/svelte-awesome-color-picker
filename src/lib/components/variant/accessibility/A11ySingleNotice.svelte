@@ -18,6 +18,9 @@
 
 	/** RGAA contrast between the text and its background. Between 1 and 21 */
 	export let contrast: number = 1;
+
+	/** define the accessibility "contrast" text */
+	export let contrastText: string;
 </script>
 
 <div class="a11y-single-notice">
@@ -25,7 +28,7 @@
 		{placeholder || 'Lorem Ipsum'}
 	</p>
 	<div class="score">
-		<p>contrast: {contrast >= 10 ? contrast.toFixed(1) : contrast}</p>
+		<p>{contrastText}: {contrast >= 10 ? contrast.toFixed(1) : contrast}</p>
 		<span class="grade" class:grade-ok={isGradeAchieved(contrast, size, 'AA')}>AA</span>
 		{#if a11yLevel === 'AAA'}
 			<span class="grade" class:grade-ok={isGradeAchieved(contrast, size, 'AAA')}>AAA</span>
@@ -53,6 +56,7 @@ import { A11yVariant } from 'svelte-awesome-color-picker';
 @prop textColor: string — placeholder text color
 @prop bgColor: string — placeholder background color
 @prop contrast: number = 1 — RGAA contrast between the text and its background. Between 1 and 21
+@prop contrastText: string — define the accessibility "contrast" text
 -->
 <style>
 	.a11y-single-notice {

@@ -11,11 +11,11 @@
   $: historyHex = historyHex.length > 8 ? ['...', ...historyHex.slice(Math.max(0, historyHex.length - 8))] : historyHex
 
   function beautify(object, name) {
-    return `<span style="color: #ef3b7d;">let</span> ${name}<span style="color: #a77afe;"> = </span>` + JSON.stringify(object || {}, null, 2)
-    .replace(/("#\w+")/g, '<span style="color: #e6d06c;">$1</span>')
-    .replace(/("...")/g, '<span style="color: #e6d06c;">$1</span>')
-    .replace(/:\s(\d+\.?\d*)/g, ': <span style="color: #ef3b7d;">$1</span>')
-    .replace(/":/g, '"<span style="color: #a77afe;">:</span>');
+    return `<span class="token keyword">let</span> ${name}<span class="token operator"> = </span>` + JSON.stringify(object || {}, null, 2)
+    .replace(/("#\w+")/g, '<span class="token string">$1</span>')
+    .replace(/("...")/g, '<span class="token string">$1</span>')
+    .replace(/:\s(\d+\.?\d*)/g, ': <span class="token keyword">$1</span>')
+    .replace(/":/g, '"<span class="token operator">:</span>');
   }
 
   $: $bgColor = hex;

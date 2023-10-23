@@ -11,27 +11,28 @@ The library exports 4 different things:
 
 <!-- PROPS_ColorPicker.svelte -->
 
-| name                     | type                                     | default value                    | usage                                                                                                                                                     |
-| ------------------------ | ---------------------------------------- | -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| components               | `Partial<Components>`                    | `{}`                             | customize the ColorPicker component parts. Can be used to display a Chrome variant or an Accessibility Notice                                             |
-| label                    | `string`                                 | `'Choose a color'`               | input label, hidden when the ColorPicker is always shown (prop `isDialog={false}`)                                                                        |
-| name                     | `string &#124; undefined`                | `undefined`                      | input name, useful in a native form                                                                                                                       |
-| rgb                      | `RgbaColor`                              | `{ r: 255, g: 0, b: 0, a: 1 }`   | rgb color                                                                                                                                                 |
-| hsv                      | `HsvaColor`                              | `{ h: 0, s: 100, v: 100, a: 1 }` | hsv color                                                                                                                                                 |
-| hex                      | `string`                                 | `'#ff0000'`                      | hex color                                                                                                                                                 |
-| color                    | `Colord &#124; undefined`                | `undefined`                      | Colord color                                                                                                                                              |
-| isDark                   | `boolean`                                | `false`                          | indicator whether the selected color is light or dark                                                                                                     |
-| isAlpha                  | `boolean`                                | `true`                           | if set to false, disables the alpha channel                                                                                                               |
-| isDialog                 | `boolean`                                | `true`                           | if set to false, the input and the label will not be displayed and the ColorPicker will always be visible                                                 |
-| isOpen                   | `boolean`                                | `!isDialog`                      | indicator of the popup state                                                                                                                              |
-| isTextInput              | `boolean`                                | `true`                           | if set to false, hide the hex, rgb and hsv text inputs                                                                                                    |
-| textInputModes           | `Array<'hex' &#124; 'rgb' &#124; 'hsv'>` | `['hex', 'rgb', 'hsv']`          | configure which hex, rgb and hsv inputs will be visible and in which order. If overridden, it is necessary to provide at least one value                  |
-| sliderDirection          | `'horizontal' &#124; 'vertical'`         | `'vertical'`                     | If set to "horizontal", the hue and alpha sliders will be displayed horizontally. It is necessary to set this props to "horizontal" for the ChromeVariant |
-| disableCloseClickOutside | `boolean`                                | `false`                          | If set to true, it will not be possible to close the color picker by clicking outside                                                                     |
-| a11yColors               | `Array<A11yColor>`                       | `[{ hex: '#ffffff' }]`           | used with the A11yVariant. Define the accessibility examples in the color picker                                                                          |
-| a11yLevel                | `'AA' &#124; 'AAA'`                      | `'AA'`                           | required WCAG contrast level                                                                                                                              |
-| a11yGuidelines           | `string`                                 |                                  | used with the A11yVariant. Define the accessibility guidelines (HTML)                                                                                     |
-| isA11yClosable           | `boolean`                                | `true`                           | used with the A11yVariant. If set to false, the accessibility panel will always be shown                                                                  |
+| name                     | type                                     | default value                    | usage                                                                                                                                                                                                  |
+| :----------------------- | ---------------------------------------- | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| components               | `Partial<Components>`                    | `{}`                             | customize the ColorPicker component parts. Can be used to display a Chrome variant or an Accessibility Notice                                                                                          |
+| label                    | `string`                                 | `'Choose a color'`               | input label, hidden when the ColorPicker is always shown (prop `isDialog={false}`)                                                                                                                     |
+| name                     | `string &#124; undefined`                | `undefined`                      | input name, useful in a native form                                                                                                                                                                    |
+| rgb                      | `RgbaColor`                              | `{ r: 255, g: 0, b: 0, a: 1 }`   | rgb color                                                                                                                                                                                              |
+| hsv                      | `HsvaColor`                              | `{ h: 0, s: 100, v: 100, a: 1 }` | hsv color                                                                                                                                                                                              |
+| hex                      | `string`                                 | `'#ff0000'`                      | hex color                                                                                                                                                                                              |
+| color                    | `Colord &#124; undefined`                | `undefined`                      | Colord color                                                                                                                                                                                           |
+| isDark                   | `boolean`                                | `false`                          | indicator whether the selected color is light or dark                                                                                                                                                  |
+| isAlpha                  | `boolean`                                | `true`                           | if set to false, disables the alpha channel                                                                                                                                                            |
+| isDialog                 | `boolean`                                | `true`                           | if set to false, the input and the label will not be displayed and the ColorPicker will always be visible                                                                                              |
+| isOpen                   | `boolean`                                | `!isDialog`                      | indicator of the popup state                                                                                                                                                                           |
+| isTextInput              | `boolean`                                | `true`                           | if set to false, hide the hex, rgb and hsv text inputs                                                                                                                                                 |
+| textInputModes           | `Array<'hex' &#124; 'rgb' &#124; 'hsv'>` | `['hex', 'rgb', 'hsv']`          | configure which hex, rgb and hsv inputs will be visible and in which order. If overridden, it is necessary to provide at least one value                                                               |
+| sliderDirection          | `'horizontal' &#124; 'vertical'`         | `'vertical'`                     | If set to "horizontal", the hue and alpha sliders will be displayed horizontally. It is necessary to set this props to "horizontal" for the ChromeVariant                                              |
+| disableCloseClickOutside | `boolean`                                | `false`                          | If set to true, it will not be possible to close the color picker by clicking outside                                                                                                                  |
+| a11yColors               | `Array<A11yColor>`                       | `[{ hex: '#ffffff' }]`           | used with the A11yVariant. Define the accessibility examples in the color picker                                                                                                                       |
+| a11yLevel                | `'AA' &#124; 'AAA'`                      | `'AA'`                           | required WCAG contrast level                                                                                                                                                                           |
+| isA11yClosable           | `boolean`                                | `true`                           | used with the A11yVariant. If set to false, the accessibility panel will always be shown                                                                                                               |
+| texts                    | `TextsPartial &#124; undefined`          | `undefined`                      | all translation tokens used in the library; can be partially overridden; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/texts.ts)                  |
+| a11yTexts                | `A11yTextsPartial &#124; undefined`      | `undefined`                      | all a11y translation tokens used in the library; override with translations if necessary; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/texts.ts) |
 
 <!-- ~PROPS_ColorPicker.svelte -->
 
@@ -46,7 +47,7 @@ See the example [Bind event '`on:input`'](#bind-event-oninput).
 #### css variables
 
 | Props                   | Default Value                            | Usage                   |
-| ----------------------- | ---------------------------------------- | ----------------------- |
+| :---------------------- | ---------------------------------------- | ----------------------- |
 | --picker-height         | `200px`                                  | picker & sliders height |
 | --picker-width          | `200px` (`260px` for the Chrome variant) | picker width            |
 | --slider-width          | `30px`                                   | sliders width           |
@@ -89,12 +90,11 @@ The components that can be overridden are:
 - [input](#input)
 - [wrapper](#wrapper)
 - [a11yNotice](#a11ynotice)
-- [a11ySummary](#a11ysummary)
 - [a11ySingleNotice](#a11ysinglenotice)
 
-> The 3 components `a11yNotice`, `a11ySummary` and `a11ySingleNotice` are no longer included by default but can still be defined or passed through the a11yVariant object. This changed was made in version 3.0.0 to lighten the library for those who do not use it.
+The 3 components `a11yNotice`, `a11ySummary` and `a11ySingleNotice` are no longer included by default but can still be defined or passed through the a11yVariant object. This change was made in version 3.0.0 to lighten the library for those who do not use it.
 
-> Some components are no longer customizable in version 3.0.0: `pickerWrapper`, `sliderWrapper`, `alphaWrapper`, `sliderIndicator` and `alphaIndicator`. Instead you can either use the css variables or you can style them from the `wrapper` component
+Some components are no longer customizable in version 3.0.0: `pickerWrapper`, `sliderWrapper`, `alphaWrapper`, `sliderIndicator` and `alphaIndicator`. Instead you can either use the css variables or you can style them from the `wrapper` component.
 
 #### pickerIndicator
 
@@ -108,7 +108,7 @@ Props:
 <!-- PROPS_PickerIndicator.svelte -->
 
 | name   | type          | default value | usage                                                 |
-| ------ | ------------- | ------------- | ----------------------------------------------------- |
+| :----- | ------------- | ------------- | ----------------------------------------------------- |
 | pos    | `{ x: number` |               | indicator position in %                               |
 | isDark | `boolean`     |               | indicator whether the selected color is light or dark |
 
@@ -122,13 +122,14 @@ Props:
 
 <!-- PROPS_TextInput.svelte -->
 
-| name           | type                                     | default value | usage                                                                                                                                    |
-| -------------- | ---------------------------------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| isAlpha        | `boolean`                                |               | if set to false, disables the alpha channel                                                                                              |
-| rgb            | `RgbaColor`                              |               | rgb color                                                                                                                                |
-| hsv            | `HsvaColor`                              |               | hsv color                                                                                                                                |
-| hex            | `string`                                 |               | hex color                                                                                                                                |
-| textInputModes | `Array<'hex' &#124; 'rgb' &#124; 'hsv'>` |               | configure which hex, rgb and hsv inputs will be visible and in which order. If overridden, it is necessary to provide at least one value |
+| name           | type                                     | default value | usage                                                                                                                                                                                 |
+| :------------- | ---------------------------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| isAlpha        | `boolean`                                |               | if set to false, disables the alpha channel                                                                                                                                           |
+| rgb            | `RgbaColor`                              |               | rgb color                                                                                                                                                                             |
+| hsv            | `HsvaColor`                              |               | hsv color                                                                                                                                                                             |
+| hex            | `string`                                 |               | hex color                                                                                                                                                                             |
+| textInputModes | `Array<'hex' &#124; 'rgb' &#124; 'hsv'>` |               | configure which hex, rgb and hsv inputs will be visible and in which order. If overridden, it is necessary to provide at least one value                                              |
+| texts          | `Texts`                                  |               | all translation tokens used in the library; can be partially overridden; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/texts.ts) |
 
 <!-- ~PROPS_TextInput.svelte -->
 
@@ -141,7 +142,7 @@ Props:
 <!-- PROPS_Input.svelte -->
 
 | name         | type                      | default value | usage                               |
-| ------------ | ------------------------- | ------------- | ----------------------------------- |
+| :----------- | ------------------------- | ------------- | ----------------------------------- |
 | labelElement | `HTMLLabelElement`        |               | DOM element of the label wrapper    |
 | hex          | `string`                  |               | hex color                           |
 | label        | `string`                  |               | input label                         |
@@ -159,7 +160,7 @@ Props:
 <!-- PROPS_Wrapper.svelte -->
 
 | name     | type          | default value | usage                                                                                                  |
-| -------- | ------------- | ------------- | ------------------------------------------------------------------------------------------------------ |
+| :------- | ------------- | ------------- | ------------------------------------------------------------------------------------------------------ |
 | wrapper  | `HTMLElement` |               | DOM element of the wrapper element                                                                     |
 | isOpen   | `boolean`     |               | indicator of the popup state                                                                           |
 | isDialog | `boolean`     |               | if set to true, the wrapper should have a dialog role and be absolute. It should be relative otherwise |
@@ -174,15 +175,15 @@ Props:
 
 <!-- PROPS_A11yNotice.svelte -->
 
-| name           | type                      | default value | usage                                                                                                         |
-| -------------- | ------------------------- | ------------- | ------------------------------------------------------------------------------------------------------------- |
-| components     | `Components`              |               | customize the ColorPicker component parts. Can be used to display a Chrome variant or an Accessibility Notice |
-| hex            | `string`                  |               | hex color                                                                                                     |
-| color          | `Colord &#124; undefined` |               | Colord color                                                                                                  |
-| a11yColors     | `Array<A11yColor>`        |               | define the accessibility examples in the color picker                                                         |
-| a11yLevel      | `'AA' &#124; 'AAA'`       |               | required WCAG contrast level                                                                                  |
-| a11yGuidelines | `string`                  |               | define the accessibility guidelines (HTML)                                                                    |
-| isA11yClosable | `boolean`                 |               | if set to false, the accessibility panel will always be shown                                                 |
+| name           | type                                | default value | usage                                                                                                                                                                                                  |
+| :------------- | ----------------------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| components     | `Components`                        |               | customize the ColorPicker component parts. Can be used to display a Chrome variant or an Accessibility Notice                                                                                          |
+| hex            | `string`                            |               | hex color                                                                                                                                                                                              |
+| color          | `Colord &#124; undefined`           |               | Colord color                                                                                                                                                                                           |
+| a11yColors     | `Array<A11yColor>`                  |               | define the accessibility examples in the color picker                                                                                                                                                  |
+| a11yLevel      | `'AA' &#124; 'AAA'`                 |               | required WCAG contrast level                                                                                                                                                                           |
+| isA11yClosable | `boolean`                           |               | if set to false, the accessibility panel will always be shown                                                                                                                                          |
+| a11yTexts      | `A11yTextsPartial &#124; undefined` | `undefined`   | all a11y translation tokens used in the library; override with translations if necessary; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/texts.ts) |
 
 <!-- ~PROPS_A11yNotice.svelte -->
 
@@ -191,7 +192,7 @@ Props:
 Type A11yColor:
 
 | Attribute   | Type            | Usage                                                                         |
-| ----------- | --------------- | ----------------------------------------------------------------------------- |
+| :---------- | --------------- | ----------------------------------------------------------------------------- |
 | hex         | `string`        | The reference color                                                           |
 | reverse     | `boolean`       | if set to true, use the hex color as the text color instead of the background |
 | placeholder | `string`        | placeholder text, default to `Lorem Ipsum`                                    |
@@ -199,21 +200,6 @@ Type A11yColor:
 | contrast    | `string`        | color contrast between the current color and the hex reference color          |
 
 read more about this component accessibility in the [#a11y section](#accessibility).
-
-#### a11ySummary
-
-component displaying the content of the `<summary>` inside `<details>` tags.
-
-Props:
-
-<!-- PROPS_A11ySummary.svelte -->
-
-| name       | type                       | default value | usage                                                                            |
-| ---------- | -------------------------- | ------------- | -------------------------------------------------------------------------------- |
-| a11yColors | `Array<A11yColorContract>` |               | used with the A11yVariant. Define the accessibility examples in the color picker |
-| a11yLevel  | `'AA' &#124; 'AAA'`        |               | required WCAG contrast level                                                     |
-
-<!-- ~PROPS_A11ySummary.svelte -->
 
 #### a11ySingleNotice
 
@@ -223,14 +209,15 @@ Props:
 
 <!-- PROPS_A11ySingleNotice.svelte -->
 
-| name        | type                                       | default value | usage                                                               |
-| ----------- | ------------------------------------------ | ------------- | ------------------------------------------------------------------- |
-| placeholder | `string &#124; undefined`                  | `undefined`   | placeholder, falls back to `Lorem Ipsum`                            |
-| size        | `'normal' &#124; 'large' &#124; undefined` | `undefined`   | size of the text                                                    |
-| a11yLevel   | `'AA' &#124; 'AAA'`                        |               | required WCAG contrast level                                        |
-| textColor   | `string`                                   |               | placeholder text color                                              |
-| bgColor     | `string`                                   |               | placeholder background color                                        |
-| contrast    | `number`                                   | `1`           | RGAA contrast between the text and its background. Between 1 and 21 |
+| name         | type                                       | default value | usage                                                               |
+| :----------- | ------------------------------------------ | ------------- | ------------------------------------------------------------------- |
+| placeholder  | `string &#124; undefined`                  | `undefined`   | placeholder, falls back to `Lorem Ipsum`                            |
+| size         | `'normal' &#124; 'large' &#124; undefined` | `undefined`   | size of the text                                                    |
+| a11yLevel    | `'AA' &#124; 'AAA'`                        |               | required WCAG contrast level                                        |
+| textColor    | `string`                                   |               | placeholder text color                                              |
+| bgColor      | `string`                                   |               | placeholder background color                                        |
+| contrast     | `number`                                   | `1`           | RGAA contrast between the text and its background. Between 1 and 21 |
+| contrastText | `string`                                   |               | define the accessibility "contrast" text                            |
 
 <!-- ~PROPS_A11ySingleNotice.svelte -->
 
@@ -248,10 +235,10 @@ The contrast between 2 colors is a value between 1 and 21. It is computed with [
 
 A contrast between 2 colors succeed if it follows the WCAG contrast guidelines:
 
-|                         | <span class="grade">AA</span> | <span class="grade">AAA</span> |
-| ----------------------- | ----------------------------- | ------------------------------ |
-| for small text (18.5px) | contrast > 4.5                | contrast > 7                   |
-| for big text (24px)     | contrast > 3                  | contrast > 4.5                 |
+| Text size           | <span class="grade">AA</span> | <span class="grade">AAA</span> |
+| :------------------ | ----------------------------- | ------------------------------ |
+| small text (18.5px) | contrast > 4.5                | contrast > 7                   |
+| big text (24px)     | contrast > 3                  | contrast > 4.5                 |
 
 In the default `A11ySingleNotice` component that renders the <span class="grade">AA</span> and <span class="grade">AAA</span> tags, the small text values are used (can be configured for each reference color with the `color` props).
 
