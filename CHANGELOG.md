@@ -1,5 +1,11 @@
 # svelte-awesome-color-picker
 
+## 2.4.8
+
+### Patch Changes
+
+- Display info of v3 in beta
+
 ## 2.4.7
 
 ### Patch Changes

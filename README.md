@@ -12,6 +12,8 @@
 
 The library uses [colord](https://www.npmjs.com/colord) internally because it's the lightest color conversion library on the market at the time and supports a11y contrasts.
 
+> 🐈🐈🐈🐈🐈 _svelte-awesome-color-picker_ is going to be release in v3 soon (it fixes accessibility issues, it is lighter and smaller). If you plan to use _svelte-awesome-color-picker_, please, use the v3 beta version (`npm i -D svelte-awesome-color-picker@beta`). The [documentation is already online](https://svelte-awesome-color-picker-git-v300-ennoriel.vercel.app/).
+
 ## Links
 
 The documentation can be seen on Github, the npm registry or on the documentation site. I would suggest to visite the documentation site since it has interactive examples!
