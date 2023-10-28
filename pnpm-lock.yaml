@@ -11,6 +11,9 @@ dependencies:
   svelte:
     specifier: ^3.55.1 || ^4.0.0
     version: 3.55.1
+  svelte-awesome-slider:
+    specifier: ^0.0.6
+    version: 0.0.6(svelte@3.55.1)
 
 devDependencies:
   '@changesets/cli':
@@ -55,9 +58,6 @@ devDependencies:
   rehype-slug:
     specifier: ^6.0.0
     version: 6.0.0
-  svelte-awesome-slider:
-    specifier: ^0.0.6
-    version: 0.0.6(svelte@3.55.1)
   svelte-check:
     specifier: ^3.5.2
     version: 3.5.2(svelte@3.55.1)
@@ -3267,7 +3267,7 @@ packages:
       svelte: ^3.54.0 || ^4.0.0
     dependencies:
       svelte: 3.55.1
-    dev: true
+    dev: false
 
   /svelte-check@3.5.2(svelte@3.55.1):
     resolution: {integrity: sha512-5a/YWbiH4c+AqAUP+0VneiV5bP8YOk9JL3jwvN+k2PEPLgpu85bjQc5eE67+eIZBBwUEJzmO3I92OqKcqbp3fw==}
