@@ -56,6 +56,7 @@ import { A11yVariant } from 'svelte-awesome-color-picker';
 			grid-template:
 				'picker . . a11y'
 				'input input input a11y';
+			grid-template-rows: var(--picker-height, 200px) auto;
 		}
 	}
 

@@ -61,7 +61,7 @@
 	export let disableCloseClickOutside: boolean = false;
 
 	/** used with the A11yVariant. Define the accessibility examples in the color picker */
-	export let a11yColors: Array<A11yColor> = [{ hex: '#ffffff' }];
+	export let a11yColors: Array<A11yColor> = [{ bgHex: '#ffffff' }];
 
 	/** required WCAG contrast level */
 	export let a11yLevel: 'AA' | 'AAA' = 'AA';

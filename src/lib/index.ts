@@ -17,3 +17,5 @@ export const A11yVariant = {
 	a11yNotice: A11yNotice,
 	a11ySingleNotice: A11ySingleNotice
 };
+
+export { mix } from './utils';

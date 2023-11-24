@@ -83,8 +83,8 @@ import { A11yVariant } from 'svelte-awesome-color-picker';
 
 	.grade {
 		border-radius: 50px;
-		padding: 2px 8px;
-		background-color: orange;
+		padding: 0 8px 2px;
+		background-color: #ff6100;
 		font-weight: bold;
 	}
 

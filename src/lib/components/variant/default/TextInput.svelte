@@ -54,7 +54,7 @@
 <div class="text-input">
 	<div class="input-container">
 		{#if mode === 0}
-			<input aria-label="hexadecimal color" value={hex} on:input={updateHex} style:flex={3} />
+			<input aria-label={texts.label.hex} value={hex} on:input={updateHex} style:flex={3} />
 		{:else if mode === 1}
 			<input aria-label={texts.label.r} value={rgb.r} type="number" min="0" max="255" on:input={updateRgb('r')} />
 			<input aria-label={texts.label.g} value={rgb.g} type="number" min="0" max="255" on:input={updateRgb('g')} />

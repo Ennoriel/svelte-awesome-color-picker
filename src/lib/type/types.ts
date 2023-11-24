@@ -16,11 +16,19 @@ export type Components = {
 };
 
 export type A11yColor = {
-	hex: string;
-	reverse?: boolean;
 	placeholder?: string;
 	size?: 'normal' | 'large';
-};
+} & (
+	| {
+			textHex: string;
+			bgHex: string;
+			reverse: true;
+	  }
+	| {
+			bgHex: string;
+			reverse?: false;
+	  }
+);
 
 export type A11yColorContract = A11yColor & {
 	contrast?: number;

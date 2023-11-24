@@ -90,10 +90,10 @@ bind:hsv
 isAlpha
 isA11yClosable={false}
 a11yColors={[
-{ hex: '#FFF', reverse: true, placeholder: 'background' },
-{ hex: '#FFF', placeholder: 'title', size: 'large' },
-{ hex: '#FFF', placeholder: 'text' },
-{ hex: '#EEE', placeholder: 'button' }
+{ textHex: '#FFF', reverse: true, placeholder: 'background' },
+{ textHex: '#FFF', bgHex: "#FF0000", reverse: true, placeholder: 'background /w alpha' },
+{ bgHex: '#FFF', placeholder: 'title', size: 'large' },
+{ bgHex: '#7F7F7F', placeholder: 'button' }
 ]}
 />
 
@@ -111,10 +111,10 @@ a11yColors={[
 	bind:hsv
 	isAlpha
 	a11yColors={[
-		{ hex: '#FFF', reverse: true, placeholder: 'background' },
-		{ hex: '#FFF', placeholder: 'title', size: 'large' },
-		{ hex: '#FFF', placeholder: 'text' },
-		{ hex: '#EEE', placeholder: 'button' }
+		{ textHex: '#FFF', reverse: true, placeholder: 'background' },
+		{ textHex: '#FFF', bgHex: '#FF0000', reverse: true, placeholder: 'background' },
+		{ bgHex: '#FFF', placeholder: 'title', size: 'large' },
+		{ bgHex: '#7F7F7F', placeholder: 'button' }
 	]}
 />
 ```

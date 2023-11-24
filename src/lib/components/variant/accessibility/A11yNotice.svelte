@@ -2,18 +2,16 @@
 	import { defaultA11yTexts, type A11yTextsPartial } from '$lib/texts';
 	import type { A11yColor } from '$lib/type/types';
 	import type { Components } from '$lib/type/types';
-	import { extend, type Colord } from 'colord';
+	import { extend } from 'colord';
 	import a11yPlugin from 'colord/plugins/a11y';
 	import { getNumberOfGradeFailed } from './grades';
+	import { getContrast, mix } from '$lib/utils';
 
 	/** customize the ColorPicker component parts. Can be used to display a Chrome variant or an Accessibility Notice */
 	export let components: Components;
 
 	/** hex color */
 	export let hex: string;
-
-	/** Colord color */
-	export let color: Colord | undefined;
 
 	/** define the accessibility examples in the color picker */
 	export let a11yColors: Array<A11yColor>;
@@ -38,10 +36,10 @@
 		};
 	}
 
-	$: _a11yColors = a11yColors.map((a11yColor) => ({
-		...a11yColor,
-		contrast: color?.contrast(a11yColor.hex)
-	}));
+	$: _a11yColors = a11yColors
+		.map((a11yColor) => getContrast(a11yColor, hex))
+		.filter(Boolean)
+		.map((x) => x!);
 
 	$: count = _a11yColors.map((color) => getNumberOfGradeFailed(color, a11yLevel)).reduce((acc, c) => acc + c);
 </script>
@@ -55,15 +53,14 @@
 		{getTexts().nbGradeSummary(count)}
 	</button>
 	{#if open}
-		{#each _a11yColors as { contrast, hex: a11yHex, placeholder, reverse, size }}
+		{#each _a11yColors as { trueColors, contrast, placeholder, size }}
 			<svelte:component
 				this={components.a11ySingleNotice}
+				{...trueColors}
 				{contrast}
-				{a11yLevel}
-				textColor={reverse ? a11yHex : hex}
-				bgColor={reverse ? hex : a11yHex}
 				{placeholder}
 				{size}
+				{a11yLevel}
 				contrastText={getTexts().contrast}
 			/>
 		{/each}
