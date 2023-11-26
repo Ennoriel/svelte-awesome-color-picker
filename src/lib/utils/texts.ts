@@ -17,7 +17,7 @@ export const defaultTexts = {
 	changeTo: 'change to '
 };
 
-export let defaultA11yTexts = {
+export const defaultA11yTexts = {
 	contrast: 'contrast',
 	nbGradeSummary: (count: number) =>
 		count ? `⚠️ ${count} contrast grade${count && 's'} fail` : 'Contrast grade information',

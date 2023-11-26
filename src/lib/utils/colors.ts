@@ -1,5 +1,5 @@
 import { colord } from 'colord';
-import type { A11yColor } from './type/types';
+import type { A11yColor } from '../type/types';
 
 /**
  * compute the resulting color of hexA over hexB. If hexB has transparency, computes it over a white background
@@ -20,31 +20,6 @@ export function mix(hexA: string, hexB: string = '#FFFFFF') {
 
 	return '#' + r + g + b;
 }
-
-// export function mix2(...hexes: Array<string>) {
-// 	const rgbs = hexes.map(colord).map((c) => c.toRgb());
-
-// 	if (!rgbs.length) return '#FFFFFF';
-
-// 	if (rgbs.length === 1) rgbs.push({ r: 255, g: 255, b: 255, a: 255 });
-
-// 	const result = rgbs.pop()!;
-
-// 	while (rgbs.length) {
-// 		const current = rgbs.pop();
-
-// 		const { r: rA, g: gA, b: bA, a: alpha = 255 } = current!;
-// 		const { r: rB, g: gB, b: bB } = result;
-
-// 		result.r = average(rA, rB, alpha);
-// 		result.g = average(gA, gB, alpha);
-// 		result.b = average(bA, bB, alpha);
-// 	}
-
-// 	const { r, g, b } = result;
-
-// 	return '#' + r.toString(16).padStart(2, '0') + g.toString(16).padStart(2, '0') + b.toString(16).padStart(2, '0');
-// }
 
 function average(a: number, b: number, alpha: number) {
 	return Math.round(b + (a - b) * alpha)

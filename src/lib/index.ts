@@ -18,4 +18,4 @@ export const A11yVariant = {
 	a11ySingleNotice: A11ySingleNotice
 };
 
-export { mix } from './utils';
+export { mix } from './utils/colors';

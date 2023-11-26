@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { defaultA11yTexts, type A11yTextsPartial } from '$lib/texts';
+	import { defaultA11yTexts, type A11yTextsPartial } from '$lib/utils/texts';
 	import type { A11yColor } from '$lib/type/types';
 	import type { Components } from '$lib/type/types';
 	import { extend } from 'colord';
 	import a11yPlugin from 'colord/plugins/a11y';
 	import { getNumberOfGradeFailed } from './grades';
-	import { getContrast, mix } from '$lib/utils';
+	import { getContrast } from '$lib/utils/colors';
 
 	/** customize the ColorPicker component parts. Can be used to display a Chrome variant or an Accessibility Notice */
 	export let components: Components;
@@ -88,7 +88,6 @@ import { A11yVariant } from 'svelte-awesome-color-picker';
 **Props**
 @prop components: Components — customize the ColorPicker component parts. Can be used to display a Chrome variant or an Accessibility Notice
 @prop hex: string — hex color
-@prop color: Colord | undefined — Colord color
 @prop a11yColors: Array&lt;A11yColor&gt; — define the accessibility examples in the color picker
 @prop a11yLevel: 'AA' | 'AAA' — required WCAG contrast level
 @prop isA11yClosable: boolean — if set to false, the accessibility panel will always be shown

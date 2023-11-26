@@ -1,15 +1,15 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import type { RgbaColor, HsvaColor, Colord } from 'colord';
-	import { colord } from 'colord';
-	import type { A11yColor, Components } from '../type/types';
-	import { defaultTexts, type TextsPartial, type A11yTextsPartial } from '../texts';
+	import { type RgbaColor, type HsvaColor, type Colord, colord } from 'colord';
 	import Picker from './Picker.svelte';
 	import { Slider } from 'svelte-awesome-slider';
 	import PickerIndicator from './variant/default/PickerIndicator.svelte';
 	import TextInput from './variant/default/TextInput.svelte';
 	import Input from './variant/default/Input.svelte';
 	import Wrapper from './variant/default/Wrapper.svelte';
+	import type { A11yColor, Components } from '$lib/type/types';
+	import { defaultTexts, type TextsPartial, type A11yTextsPartial } from '$lib/utils/texts';
+	import { trapFocus, type Trap } from '$lib/utils/trapFocus';
 
 	const dispatch = createEventDispatcher<{
 		input: { hsv: HsvaColor; rgb: RgbaColor; hex: string; color: Colord | undefined };
@@ -85,6 +85,13 @@
 	let spanElement: HTMLSpanElement;
 	let labelElement: HTMLLabelElement;
 	let wrapper: HTMLElement;
+	let sSlider: HTMLDivElement;
+
+	/**
+	 * Parent element of the focus trap when the picker is opened with the keyboard
+	 */
+	let divElement: HTMLDivElement;
+	let trap: Trap | undefined = undefined;
 
 	const default_components: Components = {
 		pickerIndicator: PickerIndicator,
@@ -129,10 +136,15 @@
 			return;
 		} else if (key === 'Enter' && labelElement.contains(target as Node)) {
 			isOpen = !isOpen;
+			setTimeout(() => {
+				sSlider.focus();
+				trap = trapFocus(divElement);
+			});
 		} else if (key === 'Escape' && isOpen) {
 			isOpen = false;
 			if (spanElement.contains(target as Node)) {
 				labelElement?.focus();
+				trap?.destroy();
 			}
 		}
 	}
@@ -204,57 +216,57 @@
 	{:else if name}
 		<input type="hidden" value={hex} {name} />
 	{/if}
-
-	<svelte:component this={getComponents().wrapper} bind:wrapper {isOpen} {isDialog}>
-		<Picker components={getComponents()} h={hsv.h} bind:s={hsv.s} bind:v={hsv.v} {isDark} />
-		<div class="h">
-			<Slider
-				min={0}
-				max={360}
-				step={1}
-				bind:value={hsv.h}
-				direction={sliderDirection}
-				reverse={sliderDirection === 'vertical'}
-				ariaLabel={getTexts().label.h}
-			/>
-		</div>
-		{#if isAlpha}
-			<div class="a">
+	<div bind:this={divElement}>
+		<svelte:component this={getComponents().wrapper} bind:wrapper {isOpen} {isDialog}>
+			<Picker components={getComponents()} bind:sSlider h={hsv.h} bind:s={hsv.s} bind:v={hsv.v} {isDark} />
+			<div class="h">
 				<Slider
 					min={0}
-					max={1}
-					step={0.01}
-					bind:value={hsv.a}
+					max={360}
+					step={1}
+					bind:value={hsv.h}
 					direction={sliderDirection}
 					reverse={sliderDirection === 'vertical'}
-					ariaLabel={getTexts().label.a}
+					ariaLabel={getTexts().label.h}
 				/>
 			</div>
-		{/if}
-		{#if isTextInput}
-			<svelte:component
-				this={getComponents().textInput}
-				bind:hex
-				bind:rgb
-				bind:hsv
-				{isAlpha}
-				{textInputModes}
-				texts={getTexts()}
-			/>
-		{/if}
-		{#if getComponents().a11yNotice}
-			<svelte:component
-				this={getComponents().a11yNotice}
-				components={getComponents()}
-				{a11yColors}
-				{color}
-				{hex}
-				{a11yTexts}
-				{isA11yClosable}
-				{a11yLevel}
-			/>
-		{/if}
-	</svelte:component>
+			{#if isAlpha}
+				<div class="a">
+					<Slider
+						min={0}
+						max={1}
+						step={0.01}
+						bind:value={hsv.a}
+						direction={sliderDirection}
+						reverse={sliderDirection === 'vertical'}
+						ariaLabel={getTexts().label.a}
+					/>
+				</div>
+			{/if}
+			{#if isTextInput}
+				<svelte:component
+					this={getComponents().textInput}
+					bind:hex
+					bind:rgb
+					bind:hsv
+					{isAlpha}
+					{textInputModes}
+					texts={getTexts()}
+				/>
+			{/if}
+			{#if getComponents().a11yNotice}
+				<svelte:component
+					this={getComponents().a11yNotice}
+					components={getComponents()}
+					{a11yColors}
+					{hex}
+					{a11yTexts}
+					{isA11yClosable}
+					{a11yLevel}
+				/>
+			{/if}
+		</svelte:component>
+	</div>
 </span>
 
 <!-- 
@@ -286,7 +298,7 @@ import ColorPicker from 'svelte-awesome-color-picker';
 @prop textInputModes: Array&lt;'hex' | 'rgb' | 'hsv'&gt; = ['hex', 'rgb', 'hsv'] — configure which hex, rgb and hsv inputs will be visible and in which order. If overridden, it is necessary to provide at least one value
 @prop sliderDirection: 'horizontal' | 'vertical' = 'vertical' — If set to "horizontal", the hue and alpha sliders will be displayed horizontally. It is necessary to set this props to "horizontal" for the ChromeVariant
 @prop disableCloseClickOutside: boolean = false — If set to true, it will not be possible to close the color picker by clicking outside
-@prop a11yColors: Array&lt;A11yColor&gt; = [{ hex: '#ffffff' }] — used with the A11yVariant. Define the accessibility examples in the color picker
+@prop a11yColors: Array&lt;A11yColor&gt; = [{ bgHex: '#ffffff' }] — used with the A11yVariant. Define the accessibility examples in the color picker
 @prop a11yLevel: 'AA' | 'AAA' = 'AA' — required WCAG contrast level
 @prop isA11yClosable: boolean = true — used with the A11yVariant. If set to false, the accessibility panel will always be shown
 @prop texts: TextsPartial | undefined = undefined — all translation tokens used in the library; can be partially overridden; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/texts.ts)

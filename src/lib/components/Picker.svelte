@@ -18,7 +18,11 @@
 	/** indicator whether the selected color is light or dark */
 	export let isDark: boolean;
 
+	/** saturation slider div element */
+	export let sSlider: HTMLDivElement;
+
 	let picker: HTMLDivElement;
+
 	let isMouseDown = false;
 	let focused = false;
 
@@ -84,7 +88,13 @@
 >
 	<svelte:component this={components.pickerIndicator} {pos} {isDark} />
 	<div class="s" style:--pos-y={pos.y}>
-		<Slider bind:value={s} keyboardOnly ariaValueText={(value) => `${value}%`} ariaLabel="saturation color" />
+		<Slider
+			bind:value={s}
+			bind:slider={sSlider}
+			keyboardOnly
+			ariaValueText={(value) => `${value}%`}
+			ariaLabel="saturation color"
+		/>
 	</div>
 	<div class="v" style:--pos-x={pos.x}>
 		<Slider
@@ -112,6 +122,7 @@ N.A.
 @prop s: number — saturation value
 @prop v: number — vibrance value
 @prop isDark: boolean — indicator whether the selected color is light or dark
+@prop sSlider: HTMLDivElement — saturation slider div element
 -->
 <style>
 	.picker {
