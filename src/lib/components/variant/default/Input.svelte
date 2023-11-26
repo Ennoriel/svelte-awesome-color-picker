@@ -94,6 +94,6 @@ _N.A._
 
 	input:focus-visible {
 		outline: 2px solid var(--focus-color, red);
-		outline-offset: 15px;
+		outline-offset: calc(var(--input-size, 25px) / 2 + 2px);
 	}
 </style>

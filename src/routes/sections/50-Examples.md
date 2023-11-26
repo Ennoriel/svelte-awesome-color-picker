@@ -25,11 +25,11 @@
 
 ### Default layout
 
-<ColorPicker bind:hex bind:rgb bind:hsv open />
+<ColorPicker bind:hex bind:rgb bind:hsv />
 
 <!-- README-LESS -->
 <div class="example-wrapper">
-<div>
+<div class="overflow">
 <!-- ~README-LESS -->
 
 **Source code**
@@ -45,7 +45,6 @@
 	bind:rgb
 	bind:hsv
 	bind:color
-	open
 />
 ```
 
@@ -125,7 +124,7 @@ a11yColors={[
   <div class="center">
     <ColorPicker bind:rgb bind:hsv bind:hex components={ChromeVariant} sliderDirection="horizontal" isDialog={false} />
   </div>
-  <div>
+  <div class="overflow">
 
 **Source code**
 
@@ -173,7 +172,7 @@ In this example, the color is appended to the history at each event.
 ```
 
 </div>
-<div>
+<div class="overflow">
 
 **history variable**
 
@@ -199,7 +198,7 @@ In this example, the color is appended to the history at each event.
 		--focus-color="green"
 	/>
   </div>
-  <div>
+  <div class="overflow">
 
 **Source code**
 

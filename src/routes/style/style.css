@@ -105,7 +105,7 @@ th[scope='row'] {
 		grid-template-columns: 1fr 1fr;
 		gap: 16px;
 	}
-	.example-wrapper > div {
+	.overflow {
 		overflow: auto;
 	}
 }

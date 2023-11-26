@@ -190,13 +190,39 @@ Props:
 
 Type A11yColor:
 
-| Attribute   | Type            | Usage                                                                         |
-| :---------- | --------------- | ----------------------------------------------------------------------------- |
-| hex         | `string`        | The reference color                                                           |
-| reverse     | `boolean`       | if set to true, use the hex color as the text color instead of the background |
-| placeholder | `string`        | placeholder text, default to `Lorem Ipsum`                                    |
-| size        | `normal, large` | used to check the contrast guidelines                                         |
-| contrast    | `string`        | color contrast between the current color and the hex reference color          |
+<div class="example-wrapper">
+<div style:margin-top="-15px">
+
+```ts
+type A11yColor = {
+	placeholder?: string;
+	size?: 'normal' | 'large';
+} & (
+	| {
+			textHex: string;
+			bgHex: string;
+			reverse: true;
+	  }
+	| {
+			bgHex: string;
+			reverse?: false;
+	  }
+);
+```
+
+</div>
+<div>
+
+| Attribute   | Type            | Usage                                                                                                                                             |
+| :---------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| placeholder | `string`        | placeholder text, default to `Lorem Ipsum`                                                                                                        |
+| size        | `normal, large` | used to check the contrast guidelines                                                                                                             |
+| reverse     | `boolean`       | set to true if the color picker is used to chose a background color                                                                               |
+| textHex     | `string`        | when choosing the background color, defines the text color                                                                                        |
+| bgHex       | `string`        | when choosing the text color, defines the background color ; hen choosing th background color, defines the color behind (in case of transparency) |
+
+</div>
+</div>
 
 read more about this component accessibility in the [#a11y section](#accessibility).
 
@@ -228,7 +254,7 @@ In progress
 
 #### Accessibility notice
 
-The component can display an accessibility notice that updates the WCAG contrast grades by using the `a11yVariant` component override and the `isA11y` props.
+The component can display an accessibility notice that updates the WCAG contrast grades by using the `a11yVariant` component override.
 
 The contrast between 2 colors is a value between 1 and 21. It is computed with [the colord a11y plugin library](https://github.com/omgovich/colord) based on [WCAG 2.0 guidelines for contrast accessibility](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html).
 
