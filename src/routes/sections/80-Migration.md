@@ -8,4 +8,4 @@ The major version 3 has been released to remove accessibility issues (see [issue
 - props `isA11y` has been removed. The accessibility display is now a variant: `<ColorPicker components={A11yVariant} />`. This change has been made to reduce the library bundle size.
 - props `isInput` and `isPopup` have been merged and renamed as `isDialog`.
 - props `isRight` has been replaced by `sliderDirection="horizontal"`.
-- props `isA11yOpen` has been removed.
+- props `isA11yOpen` and `isA11yClosable` have been removed.

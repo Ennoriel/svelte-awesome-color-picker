@@ -19,13 +19,8 @@
 	/** required WCAG contrast level */
 	export let a11yLevel: 'AA' | 'AAA';
 
-	/** if set to false, the accessibility panel will always be shown */
-	export let isA11yClosable: boolean;
-
 	/** all a11y translation tokens used in the library; override with translations if necessary; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/texts.ts) */
 	export let a11yTexts: A11yTextsPartial | undefined = undefined;
-
-	let open = true;
 
 	extend([a11yPlugin]);
 
@@ -44,31 +39,25 @@
 	$: count = _a11yColors.map((color) => getNumberOfGradeFailed(color, a11yLevel)).reduce((acc, c) => acc + c);
 </script>
 
-<!-- https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/ -->
 <div class="a11y-notice">
-	<button on:click={() => (open = !open)} disabled={!isA11yClosable} aria-expanded={open ? 'true' : 'false'}>
-		{#if isA11yClosable}
-			{open ? '⯆' : '⯈'}&nbsp;
-		{/if}
+	<span class="title">
 		{getTexts().nbGradeSummary(count)}
-	</button>
-	{#if open}
-		{#each _a11yColors as { trueColors, contrast, placeholder, size }}
-			<svelte:component
-				this={components.a11ySingleNotice}
-				{...trueColors}
-				{contrast}
-				{placeholder}
-				{size}
-				{a11yLevel}
-				contrastText={getTexts().contrast}
-			/>
-		{/each}
-		{#if getTexts().guidelines}
-			<span>
-				{@html getTexts().guidelines}
-			</span>
-		{/if}
+	</span>
+	{#each _a11yColors as { trueColors, contrast, placeholder, size }}
+		<svelte:component
+			this={components.a11ySingleNotice}
+			{...trueColors}
+			{contrast}
+			{placeholder}
+			{size}
+			{a11yLevel}
+			contrastText={getTexts().contrast}
+		/>
+	{/each}
+	{#if getTexts().guidelines}
+		<span class="guidelines">
+			{@html getTexts().guidelines}
+		</span>
 	{/if}
 </div>
 
@@ -90,28 +79,40 @@ import { A11yVariant } from 'svelte-awesome-color-picker';
 @prop hex: string — hex color
 @prop a11yColors: Array&lt;A11yColor&gt; — define the accessibility examples in the color picker
 @prop a11yLevel: 'AA' | 'AAA' — required WCAG contrast level
-@prop isA11yClosable: boolean — if set to false, the accessibility panel will always be shown
 @prop a11yTexts: A11yTextsPartial | undefined = undefined — all a11y translation tokens used in the library; override with translations if necessary; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/texts.ts)
 -->
 <style>
-	div {
-		width: 245px;
+	.a11y-notice {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		grid-template-rows: auto repeat(4, 1fr) auto;
+		justify-items: stretch;
+		align-items: center;
+		gap: 0 12px;
 	}
-
-	button {
+	.title {
+		margin: 12px 0 0;
+		grid-column: 1 / 3;
 		background: none;
 		border: none;
 		padding: 0 8px;
-		margin: 0;
-		line-height: 32px;
+		line-height: 24px;
 	}
-	button:disabled {
-		color: inherit;
-		cursor: default;
+
+	@media (min-width: 768px) {
+		.title {
+			margin: 0;
+		}
+	}
+
+	.guidelines {
+		grid-column: 1 / 3;
+		margin-top: 10px;
+		font-size: 12px;
 	}
 
 	:focus-visible,
-	span :global(:focus-visible) {
+	.guidelines :global(:focus-visible) {
 		border-radius: 2px;
 		outline: 2px solid var(--focus-color, red);
 		outline-offset: 2px;

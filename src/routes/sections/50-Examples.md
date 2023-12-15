@@ -87,7 +87,6 @@ bind:hex
 bind:rgb
 bind:hsv
 isAlpha
-isA11yClosable={false}
 a11yColors={[
 { textHex: '#FFF', reverse: true, placeholder: 'background' },
 { textHex: '#FFF', bgHex: "#FF0000", reverse: true, placeholder: 'background /w alpha' },

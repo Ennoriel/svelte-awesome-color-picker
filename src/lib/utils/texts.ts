@@ -18,10 +18,10 @@ export const defaultTexts = {
 };
 
 export const defaultA11yTexts = {
-	contrast: 'contrast',
+	contrast: 'contrast :',
 	nbGradeSummary: (count: number) =>
 		count ? `⚠️ ${count} contrast grade${count && 's'} fail` : 'Contrast grade information',
-	guidelines: `<p style="margin: 0; font-size: 12px;">Learn more at <a href="https://webaim.org/articles/contrast/" target="_blank">WebAIM contrast guide</a></p>`
+	guidelines: `Learn more at <a href="https://webaim.org/articles/contrast/" target="_blank">WebAIM contrast guide</a>`
 };
 
 export type Texts = typeof defaultTexts;

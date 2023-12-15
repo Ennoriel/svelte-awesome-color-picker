@@ -23,18 +23,19 @@
 	export let contrastText: string;
 </script>
 
-<div class="a11y-single-notice">
-	<p class="lorem {size === 'large' && 'large'}" style:color={textColor} style:background-color={bgColor}>
-		{placeholder || 'Lorem Ipsum'}
-	</p>
-	<div class="score">
-		<p>{contrastText}: {contrast >= 10 ? contrast.toFixed(1) : contrast}</p>
-		<span class="grade" class:grade-ok={isGradeAchieved(contrast, size, 'AA')}>AA</span>
-		{#if a11yLevel === 'AAA'}
-			<span class="grade" class:grade-ok={isGradeAchieved(contrast, size, 'AAA')}>AAA</span>
-		{/if}
-	</div>
+<!-- <div class="a11y-single-notice"> -->
+<p class="lorem" class:large={size === 'large'} style:color={textColor} style:background-color={bgColor}>
+	{placeholder || 'Lorem Ipsum'}
+</p>
+<div class="score">
+	<p>{contrastText} {contrast >= 10 ? contrast.toFixed(1) : contrast}</p>
+	<span class="grade" class:grade-ok={isGradeAchieved(contrast, size, 'AA')}>AA</span>
+	{#if a11yLevel === 'AAA'}
+		<span class="grade" class:grade-ok={isGradeAchieved(contrast, size, 'AAA')}>AAA</span>
+	{/if}
 </div>
+
+<!-- </div> -->
 
 <!-- 
 @component accessibility notice for a single color — this component is meant to be used with the A11yVariant object as a variant to display the accessibility notice.
@@ -66,19 +67,21 @@ import { A11yVariant } from 'svelte-awesome-color-picker';
 		gap: 12px;
 		height: 48px;
 	}
+	.lorem {
+		flex: 1;
+		text-align: center;
+		padding: 4px 8px;
+		margin-top: 10px;
+		border-radius: 4px;
+		border: 1px solid black;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+	}
 
 	.large {
 		font-size: 22px;
-	}
-
-	.score {
-		width: 95px;
-		flex-shrink: 0;
-		margin-bottom: 10px;
-	}
-
-	.score p {
-		margin-bottom: 2px;
+		padding: 2px 8px;
 	}
 
 	.grade {
@@ -95,16 +98,5 @@ import { A11yVariant } from 'svelte-awesome-color-picker';
 
 	p {
 		margin: 0;
-	}
-
-	.lorem {
-		flex: 1;
-		text-align: center;
-		padding: 4px 8px;
-		border-radius: 4px;
-		border: 1px solid black;
-		white-space: nowrap;
-		text-overflow: ellipsis;
-		overflow: hidden;
 	}
 </style>
