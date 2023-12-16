@@ -43,17 +43,21 @@
 	<span class="title">
 		{getTexts().nbGradeSummary(count)}
 	</span>
-	{#each _a11yColors as { trueColors, contrast, placeholder, size }}
-		<svelte:component
-			this={components.a11ySingleNotice}
-			{...trueColors}
-			{contrast}
-			{placeholder}
-			{size}
-			{a11yLevel}
-			contrastText={getTexts().contrast}
-		/>
-	{/each}
+	<ul>
+		{#each _a11yColors as { trueColors, contrast, placeholder, size }}
+			<li>
+				<svelte:component
+					this={components.a11ySingleNotice}
+					{...trueColors}
+					{contrast}
+					{placeholder}
+					{size}
+					{a11yLevel}
+					contrastText={getTexts().contrast}
+				/>
+			</li>
+		{/each}
+	</ul>
 	{#if getTexts().guidelines}
 		<span class="guidelines">
 			{@html getTexts().guidelines}

@@ -84,10 +84,6 @@
 	let wrapper: HTMLElement;
 	let sSlider: HTMLDivElement;
 
-	/**
-	 * Parent element of the focus trap when the picker is opened with the keyboard
-	 */
-	let divElement: HTMLDivElement;
 	let trap: Trap | undefined = undefined;
 
 	const default_components: Components = {
@@ -135,7 +131,7 @@
 			isOpen = !isOpen;
 			setTimeout(() => {
 				sSlider.focus();
-				trap = trapFocus(divElement);
+				trap = trapFocus(wrapper);
 			});
 		} else if (key === 'Escape' && isOpen) {
 			isOpen = false;
@@ -209,60 +205,58 @@
 
 <span bind:this={spanElement} class="color-picker {sliderDirection}" style:--alphaless-color={hex?.substring(0, 7)}>
 	{#if isDialog}
-		<svelte:component this={getComponents().input} bind:labelElement bind:isOpen {hex} {label} {name} />
+		<svelte:component this={getComponents().input} bind:labelElement isOpen {hex} {label} {name} />
 	{:else if name}
 		<input type="hidden" value={hex} {name} />
 	{/if}
-	<div bind:this={divElement}>
-		<svelte:component this={getComponents().wrapper} bind:wrapper {isOpen} {isDialog}>
-			<Picker components={getComponents()} bind:sSlider h={hsv.h} bind:s={hsv.s} bind:v={hsv.v} {isDark} />
-			<div class="h">
+	<svelte:component this={getComponents().wrapper} bind:wrapper {isOpen} {isDialog}>
+		<Picker components={getComponents()} bind:sSlider h={hsv.h} bind:s={hsv.s} bind:v={hsv.v} {isDark} />
+		<div class="h">
+			<Slider
+				min={0}
+				max={360}
+				step={1}
+				bind:value={hsv.h}
+				direction={sliderDirection}
+				reverse={sliderDirection === 'vertical'}
+				ariaLabel={getTexts().label.h}
+			/>
+		</div>
+		{#if isAlpha}
+			<div class="a">
 				<Slider
 					min={0}
-					max={360}
-					step={1}
-					bind:value={hsv.h}
+					max={1}
+					step={0.01}
+					bind:value={hsv.a}
 					direction={sliderDirection}
 					reverse={sliderDirection === 'vertical'}
-					ariaLabel={getTexts().label.h}
+					ariaLabel={getTexts().label.a}
 				/>
 			</div>
-			{#if isAlpha}
-				<div class="a">
-					<Slider
-						min={0}
-						max={1}
-						step={0.01}
-						bind:value={hsv.a}
-						direction={sliderDirection}
-						reverse={sliderDirection === 'vertical'}
-						ariaLabel={getTexts().label.a}
-					/>
-				</div>
-			{/if}
-			{#if isTextInput}
-				<svelte:component
-					this={getComponents().textInput}
-					bind:hex
-					bind:rgb
-					bind:hsv
-					{isAlpha}
-					{textInputModes}
-					texts={getTexts()}
-				/>
-			{/if}
-			{#if getComponents().a11yNotice}
-				<svelte:component
-					this={getComponents().a11yNotice}
-					components={getComponents()}
-					{a11yColors}
-					{hex}
-					{a11yTexts}
-					{a11yLevel}
-				/>
-			{/if}
-		</svelte:component>
-	</div>
+		{/if}
+		{#if isTextInput}
+			<svelte:component
+				this={getComponents().textInput}
+				bind:hex
+				bind:rgb
+				bind:hsv
+				{isAlpha}
+				{textInputModes}
+				texts={getTexts()}
+			/>
+		{/if}
+		{#if getComponents().a11yNotice}
+			<svelte:component
+				this={getComponents().a11yNotice}
+				components={getComponents()}
+				{a11yColors}
+				{hex}
+				{a11yTexts}
+				{a11yLevel}
+			/>
+		{/if}
+	</svelte:component>
 </span>
 
 <!-- 

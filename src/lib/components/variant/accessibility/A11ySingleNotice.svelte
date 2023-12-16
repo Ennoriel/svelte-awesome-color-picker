@@ -23,7 +23,6 @@
 	export let contrastText: string;
 </script>
 
-<!-- <div class="a11y-single-notice"> -->
 <p class="lorem" class:large={size === 'large'} style:color={textColor} style:background-color={bgColor}>
 	{placeholder || 'Lorem Ipsum'}
 </p>
@@ -34,8 +33,6 @@
 		<span class="grade" class:grade-ok={isGradeAchieved(contrast, size, 'AAA')}>AAA</span>
 	{/if}
 </div>
-
-<!-- </div> -->
 
 <!-- 
 @component accessibility notice for a single color — this component is meant to be used with the A11yVariant object as a variant to display the accessibility notice.
@@ -60,13 +57,6 @@ import { A11yVariant } from 'svelte-awesome-color-picker';
 @prop contrastText: string — define the accessibility "contrast" text
 -->
 <style>
-	.a11y-single-notice {
-		display: flex;
-		align-items: center;
-		margin: 4px 0;
-		gap: 12px;
-		height: 48px;
-	}
 	.lorem {
 		flex: 1;
 		text-align: center;
