@@ -21,11 +21,11 @@ export type A11yColor = {
 } & (
 	| {
 			textHex: string;
-			bgHex: string;
+			bgHex?: string;
 			reverse: true;
 	  }
 	| {
-			bgHex: string;
+			bgHex?: string;
 			reverse?: false;
 	  }
 );

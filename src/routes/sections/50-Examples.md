@@ -89,7 +89,7 @@ bind:hsv
 isAlpha
 a11yColors={[
 { textHex: '#FFF', reverse: true, placeholder: 'background' },
-{ textHex: '#FFF', bgHex: "#FF0000", reverse: true, placeholder: 'background /w alpha' },
+{ textHex: '#FFF', bgHex: "#FF0000", reverse: true, placeholder: 'background' },
 { bgHex: '#FFF', placeholder: 'title', size: 'large' },
 { bgHex: '#7F7F7F', placeholder: 'button' }
 ]}
@@ -116,6 +116,9 @@ a11yColors={[
 	]}
 />
 ```
+
+Note: set both attributes `resverse` and `bgHex` when you are chosing a transparency background color over a non white background.
+
 
 ### Always open version
 

@@ -26,7 +26,7 @@
 <p class="lorem" class:large={size === 'large'} style:color={textColor} style:background-color={bgColor}>
 	{placeholder || 'Lorem Ipsum'}
 </p>
-<div class="score">
+<div>
 	<p>{contrastText} {contrast >= 10 ? contrast.toFixed(1) : contrast}</p>
 	<span class="grade" class:grade-ok={isGradeAchieved(contrast, size, 'AA')}>AA</span>
 	{#if a11yLevel === 'AAA'}

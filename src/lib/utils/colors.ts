@@ -30,7 +30,7 @@ function average(a: number, b: number, alpha: number) {
 export function getContrast(a11yColor: A11yColor, hex: string | undefined) {
 	if (!hex) return;
 	if (a11yColor.reverse) {
-		const bgOverWhiteBg = mix(a11yColor.bgHex);
+		const bgOverWhiteBg = mix(a11yColor.bgHex ?? '#FFFFFF');
 		const bg = mix(hex, bgOverWhiteBg);
 		const ft = mix(a11yColor.textHex, bg);
 		if (!ft) return;

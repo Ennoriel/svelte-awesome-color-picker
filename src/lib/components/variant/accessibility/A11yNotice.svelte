@@ -39,25 +39,21 @@
 	$: count = _a11yColors.map((color) => getNumberOfGradeFailed(color, a11yLevel)).reduce((acc, c) => acc + c);
 </script>
 
-<div class="a11y-notice">
+<div class="a11y-notice" style:--item-count={_a11yColors.length}>
 	<span class="title">
 		{getTexts().nbGradeSummary(count)}
 	</span>
-	<ul>
-		{#each _a11yColors as { trueColors, contrast, placeholder, size }}
-			<li>
-				<svelte:component
-					this={components.a11ySingleNotice}
-					{...trueColors}
-					{contrast}
-					{placeholder}
-					{size}
-					{a11yLevel}
-					contrastText={getTexts().contrast}
-				/>
-			</li>
-		{/each}
-	</ul>
+	{#each _a11yColors as { trueColors, contrast, placeholder, size }}
+		<svelte:component
+			this={components.a11ySingleNotice}
+			{...trueColors}
+			{contrast}
+			{placeholder}
+			{size}
+			{a11yLevel}
+			contrastText={getTexts().contrast}
+		/>
+	{/each}
 	{#if getTexts().guidelines}
 		<span class="guidelines">
 			{@html getTexts().guidelines}
@@ -89,10 +85,11 @@ import { A11yVariant } from 'svelte-awesome-color-picker';
 	.a11y-notice {
 		display: grid;
 		grid-template-columns: auto 1fr;
-		grid-template-rows: auto repeat(4, 1fr) auto;
+		grid-template-rows: auto repeat(var(--item-count), 1fr) auto;
 		justify-items: stretch;
 		align-items: center;
 		gap: 0 12px;
+		width: max-content;
 	}
 	.title {
 		margin: 12px 0 0;
