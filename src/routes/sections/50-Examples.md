@@ -119,7 +119,6 @@ a11yColors={[
 
 Note: set both attributes `resverse` and `bgHex` when you are chosing a transparency background color over a non white background.
 
-
 ### Always open version
 
 <div class="example-wrapper">
