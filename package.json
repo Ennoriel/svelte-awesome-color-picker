@@ -32,7 +32,7 @@
 	],
 	"dependencies": {
 		"colord": "^2.9.3",
-		"svelte-awesome-slider": "^0.0.10"
+		"svelte-awesome-slider": "^0.0.11"
 	},
 	"peerDependencies": {
 		"svelte": "^3.55.1 || ^4.0.0"

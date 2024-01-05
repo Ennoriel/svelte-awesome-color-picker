@@ -81,9 +81,9 @@
 	class="picker"
 	bind:this={picker}
 	on:mousedown|preventDefault={pickerMousedown}
-	on:touchstart={touch}
-	on:touchmove|preventDefault={touch}
-	on:touchend={touch}
+	on:touchstart|nonpassive={touch}
+	on:touchmove|nonpassive|preventDefault={touch}
+	on:touchend|nonpassive={touch}
 	style:--picker-color-bg={pickerColorBg}
 >
 	<svelte:component this={components.pickerIndicator} {pos} {isDark} />
