@@ -2,6 +2,14 @@
 	import { colord } from 'colord';
 	import type { Components } from '$lib/type/types';
 	import { Slider } from 'svelte-awesome-slider';
+	import { createEventDispatcher } from 'svelte';
+
+	const dispatch = createEventDispatcher<{
+		input: {
+			s: number;
+			v: number;
+		};
+	}>();
 
 	/** customize the ColorPicker component parts. Can be used to display a Chrome variant or an Accessibility Notice */
 	export let components: Components;
@@ -69,6 +77,8 @@
 			x: s,
 			y: 100 - v
 		};
+
+	$: dispatch('input', { s, v });
 </script>
 
 <svelte:window on:mouseup={mouseUp} on:mousedown={mouseDown} on:mousemove={mouseMove} />
@@ -113,7 +123,6 @@ N.A.
 @prop s: number — saturation value
 @prop v: number — vibrance value
 @prop isDark: boolean — indicator whether the selected color is light or dark
-@prop sSlider: HTMLDivElement — saturation slider div element
 -->
 <style>
 	.picker {

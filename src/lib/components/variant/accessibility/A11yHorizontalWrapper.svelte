@@ -54,9 +54,10 @@ import { A11yVariant } from 'svelte-awesome-color-picker';
 			display: grid;
 			gap: 5px;
 			grid-template:
-				'picker . . a11y'
+				'nullable . . .'
+				'picker hue alpha a11y'
 				'input input input a11y';
-			grid-template-rows: var(--picker-height, 200px) auto;
+			grid-template-rows: auto var(--picker-height, 200px) auto;
 		}
 	}
 

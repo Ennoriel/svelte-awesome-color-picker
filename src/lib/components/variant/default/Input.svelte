@@ -3,7 +3,7 @@
 	export let labelElement: HTMLLabelElement;
 
 	/** hex color */
-	export let hex: string;
+	export let hex: string | undefined;
 
 	/** input label */
 	export let label: string;
@@ -41,7 +41,7 @@ _N.A._
 
 **Props**
 @prop labelElement: HTMLLabelElement — DOM element of the label wrapper
-@prop hex: string — hex color
+@prop hex: string | undefined — hex color
 @prop label: string — input label
 @prop name: string | undefined = undefined — input name, useful in a native form
 @prop isOpen: boolean — indicator of the popup state
@@ -73,9 +73,7 @@ _N.A._
 		width: 1px;
 		height: 1px;
 		flex-shrink: 0;
-		cursor: pointer;
-		border-radius: 50%;
-		margin: 0 12px;
+		opacity: 0;
 	}
 
 	.alpha {
@@ -92,8 +90,8 @@ _N.A._
 		user-select: none;
 	}
 
-	input:focus-visible {
+	input:focus-visible ~ .color {
 		outline: 2px solid var(--focus-color, red);
-		outline-offset: calc(var(--input-size, 25px) / 2 + 2px);
+		outline-offset: 2px;
 	}
 </style>

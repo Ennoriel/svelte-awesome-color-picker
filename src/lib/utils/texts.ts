@@ -7,7 +7,8 @@ export const defaultTexts = {
 		g: 'green channel',
 		b: 'blue channel',
 		a: 'alpha channel',
-		hex: 'hex color'
+		hex: 'hex color',
+		withoutColor: 'without color'
 	},
 	color: {
 		rgb: 'rgb',

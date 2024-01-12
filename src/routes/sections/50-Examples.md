@@ -11,11 +11,11 @@
   $: historyHex = historyHex.length > 8 ? ['...', ...historyHex.slice(Math.max(0, historyHex.length - 8))] : historyHex
 
   function beautify(object, name) {
-    return `<span class="token keyword">let</span> ${name}<span class="token operator"> = </span>` + JSON.stringify(object || {}, null, 2)
+    return `<span class="token keyword">let</span> ${name}<span class="token operator"> = </span>` + (object ? JSON.stringify(object, null, 2)
     .replace(/("#\w+")/g, '<span class="token string">$1</span>')
     .replace(/("...")/g, '<span class="token string">$1</span>')
     .replace(/:\s(\d+\.?\d*)/g, ': <span class="token keyword">$1</span>')
-    .replace(/":/g, '"<span class="token operator">:</span>');
+    .replace(/":/g, '"<span class="token operator">:</span>') : `<span class="token keyword">undefined</span>;`);
   }
 
   $: $bgColor = hex;
@@ -27,10 +27,8 @@
 
 <ColorPicker bind:hex bind:rgb bind:hsv />
 
-<!-- README-LESS -->
 <div class="example-wrapper">
 <div class="overflow">
-<!-- ~README-LESS -->
 
 **Source code**
 
@@ -118,6 +116,27 @@ a11yColors={[
 ```
 
 Note: set both attributes `resverse` and `bgHex` when you are chosing a transparency background color over a non white background.
+
+### Nullable version
+
+<ColorPicker bind:hex bind:rgb bind:hsv nullable />
+
+**Source code**
+
+<!-- prettier-ignore -->
+```svelte
+<script>
+	import ColorPicker from 'svelte-awesome-color-picker';
+</script>
+
+<ColorPicker
+	bind:hex
+	bind:rgb
+	bind:hsv
+	bind:color
+	nullable
+/>
+```
 
 ### Always open version
 

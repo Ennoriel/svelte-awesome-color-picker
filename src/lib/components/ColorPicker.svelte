@@ -10,9 +10,15 @@
 	import type { A11yColor, Components } from '$lib/type/types';
 	import { defaultTexts, type TextsPartial, type A11yTextsPartial } from '$lib/utils/texts';
 	import { trapFocus, type Trap } from '$lib/utils/trapFocus';
+	import NullabilityCheckbox from './variant/default/NullabilityCheckbox.svelte';
 
 	const dispatch = createEventDispatcher<{
-		input: { hsv: HsvaColor; rgb: RgbaColor; hex: string; color: Colord | undefined };
+		input: {
+			hsv: HsvaColor | undefined;
+			rgb: RgbaColor | undefined;
+			hex: string | undefined;
+			color: Colord | undefined;
+		};
 	}>();
 
 	/** customize the ColorPicker component parts. Can be used to display a Chrome variant or an Accessibility Notice */
@@ -24,14 +30,17 @@
 	/** input name, useful in a native form */
 	export let name: string | undefined = undefined;
 
+	/** if set to true, the color picker becomes nullable (rgb, hsv and hex set to undefined) */
+	export let nullable: boolean = false;
+
 	/** rgb color */
-	export let rgb: RgbaColor = { r: 255, g: 0, b: 0, a: 1 };
+	export let rgb: RgbaColor | undefined = nullable ? undefined : { r: 255, g: 0, b: 0, a: 1 };
 
 	/** hsv color */
-	export let hsv: HsvaColor = { h: 0, s: 100, v: 100, a: 1 };
+	export let hsv: HsvaColor | undefined = nullable ? undefined : { h: 0, s: 100, v: 100, a: 1 };
 
 	/** hex color */
-	export let hex: string = '#ff0000';
+	export let hex: string | undefined = nullable ? undefined : '#ff0000';
 
 	/** Colord color */
 	export let color: Colord | undefined = undefined;
@@ -77,7 +86,10 @@
 	 */
 	let _rgb: RgbaColor = { r: 255, g: 0, b: 0, a: 1 };
 	let _hsv: HsvaColor = { h: 0, s: 100, v: 100, a: 1 };
-	let _hex = '#ff0000';
+	let _hex: string = '#ff0000';
+
+	let isUndefined = false;
+	let _isUndefined = false;
 
 	let spanElement: HTMLSpanElement;
 	let labelElement: HTMLLabelElement;
@@ -89,6 +101,7 @@
 		pickerIndicator: PickerIndicator,
 		textInput: TextInput,
 		input: Input,
+		nullabilityCheckbox: NullabilityCheckbox,
 		wrapper: Wrapper
 	};
 
@@ -145,7 +158,27 @@
 	 * and not just after the hsv change
 	 */
 	function updateColor() {
+		if (isUndefined && !_isUndefined) {
+			_isUndefined = true;
+			hsv = rgb = hex = undefined;
+			dispatch('input', { color, hsv, rgb, hex });
+			return;
+		} else if (_isUndefined && !isUndefined) {
+			_isUndefined = false;
+			hsv = _hsv;
+			rgb = _rgb;
+			hex = _hex;
+			dispatch('input', { color, hsv, rgb, hex });
+			return;
+		}
+		if (!hsv && !rgb && !hex) {
+			isUndefined = true;
+			dispatch('input', { color: undefined, hsv, rgb, hex });
+			return;
+		}
 		if (
+			hsv &&
+			rgb &&
 			hsv.h === _hsv.h &&
 			hsv.s === _hsv.s &&
 			hsv.v === _hsv.v &&
@@ -159,24 +192,26 @@
 			return;
 		}
 
+		isUndefined = false;
+
 		// reinitialize empty alpha values
-		if (hsv.a === undefined) hsv.a = 1;
+		if (hsv && hsv.a === undefined) hsv.a = 1;
 		if (_hsv.a === undefined) _hsv.a = 1;
-		if (rgb.a === undefined) rgb.a = 1;
+		if (rgb && rgb.a === undefined) rgb.a = 1;
 		if (_rgb.a === undefined) _rgb.a = 1;
 		if (hex?.substring(7) === 'ff') hex = hex.substring(0, 7);
 		if (hex?.substring(7) === 'ff') hex = hex.substring(0, 7);
 
 		// check which color format changed and updates the others accordingly
-		if (hsv.h !== _hsv.h || hsv.s !== _hsv.s || hsv.v !== _hsv.v || hsv.a !== _hsv.a) {
+		if (hsv && (hsv.h !== _hsv.h || hsv.s !== _hsv.s || hsv.v !== _hsv.v || hsv.a !== _hsv.a)) {
 			color = colord(hsv);
 			rgb = color.toRgb();
 			hex = color.toHex();
-		} else if (rgb.r !== _rgb.r || rgb.g !== _rgb.g || rgb.b !== _rgb.b || rgb.a !== _rgb.a) {
+		} else if (rgb && (rgb.r !== _rgb.r || rgb.g !== _rgb.g || rgb.b !== _rgb.b || rgb.a !== _rgb.a)) {
 			color = colord(rgb);
 			hex = color.toHex();
 			hsv = color.toHsv();
-		} else if (hex !== _hex) {
+		} else if (hex && hex !== _hex) {
 			color = colord(hex);
 			rgb = color.toRgb();
 			hsv = color.toHsv();
@@ -186,10 +221,13 @@
 			isDark = color.isDark();
 		}
 
+		if (!hex) return;
+
 		// update old colors
 		_hsv = Object.assign({}, hsv);
 		_rgb = Object.assign({}, rgb);
 		_hex = hex;
+		_isUndefined = isUndefined;
 
 		dispatch('input', { color, hsv, rgb, hex });
 	}
@@ -197,24 +235,57 @@
 	$: if (hsv || rgb || hex) {
 		updateColor();
 	}
+
+	$: isUndefined, updateColor();
+
+	function updateLetter(letter: 'h' | 'a') {
+		return (e: { detail: number }) => {
+			if (!hsv) hsv = { ..._hsv };
+			hsv[letter] = e.detail;
+		};
+	}
+
+	function updateLetters<T extends Array<'h' | 's' | 'v'>>(letters: T) {
+		return (e: { detail: Pick<HsvaColor, T[number]> }) => {
+			if (!hsv) hsv = { ..._hsv };
+			letters.forEach((letter: T[number]) => {
+				if (hsv) hsv[letter] = e.detail[letter];
+			});
+		};
+	}
 </script>
 
 <svelte:window on:mousedown={mousedown} on:keyup={keyup} />
 
-<span bind:this={spanElement} class="color-picker {sliderDirection}" style:--alphaless-color={hex?.substring(0, 7)}>
+<span
+	bind:this={spanElement}
+	class="color-picker {sliderDirection}"
+	style:--alphaless-color={(hex ? hex : _hex).substring(0, 7)}
+>
 	{#if isDialog}
 		<svelte:component this={getComponents().input} bind:labelElement isOpen {hex} {label} {name} />
 	{:else if name}
 		<input type="hidden" value={hex} {name} />
 	{/if}
 	<svelte:component this={getComponents().wrapper} bind:wrapper {isOpen} {isDialog}>
-		<Picker components={getComponents()} h={hsv.h} bind:s={hsv.s} bind:v={hsv.v} {isDark} />
+		{#if nullable}
+			<svelte:component this={getComponents().nullabilityCheckbox} bind:isUndefined texts={getTexts()} />
+		{/if}
+		<Picker
+			components={getComponents()}
+			h={hsv?.h ?? _hsv.h}
+			s={hsv?.s ?? _hsv.s}
+			v={hsv?.v ?? _hsv.v}
+			on:input={updateLetters(['s', 'v'])}
+			{isDark}
+		/>
 		<div class="h">
 			<Slider
 				min={0}
 				max={360}
 				step={1}
-				bind:value={hsv.h}
+				value={hsv?.h ?? _hsv.h}
+				on:input={updateLetter('h')}
 				direction={sliderDirection}
 				reverse={sliderDirection === 'vertical'}
 				ariaLabel={getTexts().label.h}
@@ -226,7 +297,8 @@
 					min={0}
 					max={1}
 					step={0.01}
-					bind:value={hsv.a}
+					value={hsv?.a ?? _hsv.a}
+					on:input={updateLetter('a')}
 					direction={sliderDirection}
 					reverse={sliderDirection === 'vertical'}
 					ariaLabel={getTexts().label.a}
@@ -236,9 +308,18 @@
 		{#if isTextInput}
 			<svelte:component
 				this={getComponents().textInput}
-				bind:hex
-				bind:rgb
-				bind:hsv
+				hex={hex ?? _hex}
+				rgb={rgb ?? _rgb}
+				hsv={hsv ?? _hsv}
+				on:input={({ detail }) => {
+					if (detail.hsv) {
+						hsv = detail.hsv;
+					} else if (detail.rgb) {
+						rgb = detail.rgb;
+					} else if (detail.hex) {
+						hex = detail.hex;
+					}
+				}}
 				{isAlpha}
 				{textInputModes}
 				texts={getTexts()}
@@ -249,7 +330,7 @@
 				this={getComponents().a11yNotice}
 				components={getComponents()}
 				{a11yColors}
-				{hex}
+				hex={hex || '#00000000'}
 				{a11yTexts}
 				{a11yLevel}
 			/>
@@ -274,9 +355,10 @@ import ColorPicker from 'svelte-awesome-color-picker';
 @prop components: Partial&lt;Components&gt; = {} — customize the ColorPicker component parts. Can be used to display a Chrome variant or an Accessibility Notice
 @prop label: string = 'Choose a color' — input label, hidden when the ColorPicker is always shown (prop `isDialog={false}`)
 @prop name: string | undefined = undefined — input name, useful in a native form
-@prop rgb: RgbaColor = { r: 255, g: 0, b: 0, a: 1 } — rgb color
-@prop hsv: HsvaColor = { h: 0, s: 100, v: 100, a: 1 } — hsv color
-@prop hex: string = '#ff0000' — hex color
+@prop nullable: boolean = false — if set to true, the color picker becomes nullable (rgb, hsv and hex set to undefined)
+@prop rgb: RgbaColor | undefined = nullable ? undefined : { r: 255, g: 0, b: 0, a: 1 } — rgb color
+@prop hsv: HsvaColor | undefined = nullable ? undefined : { h: 0, s: 100, v: 100, a: 1 } — hsv color
+@prop hex: string | undefined = nullable ? undefined : '#ff0000' — hex color
 @prop color: Colord | undefined = undefined — Colord color
 @prop isDark: boolean = false — indicator whether the selected color is light or dark
 @prop isAlpha: boolean = true — if set to false, disables the alpha channel
@@ -329,12 +411,15 @@ import ColorPicker from 'svelte-awesome-color-picker';
 	}
 
 	.h {
+		grid-area: hue;
+
 		--gradient-hue: #ff1500fb, #ffff00 17.2%, #ffff00 18.2%, #00ff00 33.3%, #00ffff 49.5%, #00ffff 51.5%, #0000ff 67.7%,
 			#ff00ff 83.3%, #ff0000;
 		--track-background: linear-gradient(var(--gradient-direction), var(--gradient-hue));
 	}
 
 	.a {
+		grid-area: alpha;
 		margin-top: 2px;
 
 		--track-background: linear-gradient(var(--gradient-direction), rgba(0, 0, 0, 0), var(--alphaless-color)),

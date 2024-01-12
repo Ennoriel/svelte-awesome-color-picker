@@ -1,6 +1,11 @@
 <script lang="ts">
-	import type { Texts } from '$lib/texts';
+	import type { Texts } from '$lib/utils/texts';
 	import type { RgbaColor, HsvaColor } from 'colord';
+	import { createEventDispatcher } from 'svelte';
+
+	const dispatch = createEventDispatcher<{
+		input: { hsv?: HsvaColor; rgb?: RgbaColor; hex?: string };
+	}>();
 
 	/** if set to false, disables the alpha channel */
 	export let isAlpha: boolean;
@@ -35,18 +40,21 @@
 		const target = e.target as HTMLInputElement;
 		if (HEX_COLOR_REGEX.test(target.value)) {
 			hex = target.value;
+			dispatch('input', { hex });
 		}
 	}
 
 	function updateRgb(property: string) {
 		return function (e: InputEvent) {
 			rgb = { ...rgb, [property]: parseFloat((e.target as HTMLInputElement).value) };
+			dispatch('input', { rgb });
 		};
 	}
 
 	function updateHsv(property: string) {
 		return function (e: InputEvent) {
 			hsv = { ...hsv, [property]: parseFloat((e.target as HTMLInputElement).value) };
+			dispatch('input', { hsv });
 		};
 	}
 </script>
