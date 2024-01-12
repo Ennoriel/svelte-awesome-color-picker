@@ -1,45 +1,66 @@
 <script lang="ts">
+	/** DOM element of the wrapper element */
 	export let wrapper: HTMLElement;
+
+	/** indicator of the popup state */
 	export let isOpen: boolean;
-	export let isPopup: boolean;
-	/* svelte-ignore unused-export-let */
-	export let toRight: boolean;
+
+	/** if set to true, the wrapper should have a dialog role and be absolute. It should be relative otherwise */
+	export let isDialog: boolean;
 </script>
 
 <div
 	class="wrapper"
 	bind:this={wrapper}
-	class:isOpen
-	class:isPopup
-	role={isPopup ? 'dialog' : undefined}
+	class:is-open={isOpen}
+	role={isDialog ? 'dialog' : undefined}
 	aria-label="color picker"
 >
 	<slot />
 </div>
 
+<!-- 
+@component Chrome variant wrapper — this component is meant to be used with the ChromeVariant object to display a Chrome like variant.
+
+**Import**
+```js
+import { ChromeVariant } from 'svelte-awesome-color-picker';
+```
+
+**Use**
+```svelte
+<ColorPicker bind:hex components={ChromeVariant} />
+```
+
+**Props**
+@prop wrapper: HTMLElement — DOM element of the wrapper element
+@prop isOpen: boolean — indicator of the popup state
+@prop isDialog: boolean — if set to true, the wrapper should have a dialog role and be absolute. It should be relative otherwise
+-->
 <style>
 	div {
-		background-color: white;
+		background-color: var(--cp-bg-color, white);
 		margin: 0 10px 15px;
-		padding-bottom: 3px;
-		border: 1px solid black;
+		border: 1px solid var(--cp-border-color, black);
 		border-radius: 8px;
 		display: none;
+
+		--text-input-margin: 5px 5px 6px;
+		--picker-radius: 8px 8px 0 0;
+		--picker-width: 260px;
 	}
-	.isOpen {
+	.is-open {
 		display: flex;
 		flex-direction: column;
 	}
-	.isPopup {
+	[role='dialog'] {
 		position: absolute;
-		top: 15px;
+		top: calc(var(--input-size, 25px) + 12px);
+		left: 0;
 		z-index: var(--picker-z-index, 2);
 	}
-	div:not(.isPopup) {
+	div:not([role='dialog']) {
 		display: inline-flex;
 		flex-direction: column;
-	}
-	div :global(.text-input) {
-		margin: 5px;
 	}
 </style>

@@ -1,0 +1,194 @@
+html {
+	font-family: 'Segoe UI', sans-serif;
+	font-size: 14px;
+	letter-spacing: 0.04em;
+	--bg-color: white;
+	color: #333;
+	line-height: 1.5;
+}
+
+body {
+	margin: 0;
+}
+
+.section {
+	max-width: 1000px;
+	margin: 16px auto;
+	padding: 16px;
+	background-color: white;
+}
+
+.dark {
+	background-color: black;
+	height: 400px;
+	padding: 12px;
+
+	--cp-bg-color: #333;
+	--cp-border-color: white;
+	--cp-input-color: #555;
+	--cp-button-hover-color: #777;
+}
+
+button {
+	cursor: pointer;
+	border: none;
+	padding: 8px 16px;
+	margin: 8px 0;
+	border-radius: 4px;
+	transition: all 0.2s;
+	background-color: #ddd;
+}
+
+button:hover {
+	background-color: #bbb;
+}
+
+a,
+a:visited {
+	color: hsl(12, 93%, 43%);
+}
+
+h1 {
+	text-align: center;
+	margin-bottom: -8px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	font-weight: normal;
+	margin-left: 0;
+}
+
+h3 {
+	margin-top: 10rem;
+}
+
+h4 {
+	margin-top: 4rem;
+}
+
+h4 {
+	font-weight: bold;
+}
+
+h1 + h2,
+h2 + h3,
+h3 + h4,
+#default-layout {
+	margin-top: 0;
+}
+
+@media (min-width: 768px) {
+	#color-props {
+		margin-top: 0;
+	}
+}
+
+h1 + blockquote {
+	margin: 0 auto 4rem;
+	max-width: 400px;
+	text-align: center;
+	font-style: italic;
+}
+
+/** table */
+table {
+	border-collapse: collapse;
+	display: block;
+	overflow: auto;
+	max-width: fit-content;
+}
+
+td,
+th {
+	border: 1px solid black;
+	padding: 8px;
+}
+
+th[scope='row'] {
+	text-align: left;
+}
+
+@media (min-width: 768px) {
+	.example-wrapper {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 16px;
+	}
+
+	.overflow {
+		overflow: auto;
+	}
+}
+
+:global(body) {
+	background-color: var(--bg-color);
+}
+
+.grade {
+	border-radius: 50px;
+	padding: 0 8px 2px;
+	background-color: green;
+	color: white;
+	font-weight: bold;
+}
+
+.center {
+	text-align: center;
+	margin-top: 8px;
+}
+
+ul {
+	padding-left: 32px;
+	margin: 8px 0;
+}
+
+li {
+	margin: 7px 0;
+}
+
+/** scoll stuff */
+* {
+	--dark: #ccc;
+	--light: var(--bg-color);
+	scrollbar-width: thin;
+	scrollbar-color: var(--dark) var(--light);
+	scroll-behavior: smooth;
+}
+
+*::-webkit-scrollbar-track {
+	background: var(--light);
+}
+
+*::-webkit-scrollbar-thumb {
+	background-color: var(--dark);
+}
+
+*::-webkit-scrollbar {
+	width: 7px;
+}
+
+/** Rehype link styling */
+
+.icon-link {
+	position: relative;
+	color: #bbb;
+}
+
+.icon-link::before {
+	content: '#';
+	position: absolute;
+	left: -1.7ch;
+	top: -5px;
+	opacity: 0;
+	padding: 5px;
+}
+
+h1:hover .icon-link::before,
+h2:hover .icon-link::before,
+h3:hover .icon-link::before,
+h4:hover .icon-link::before {
+	opacity: 1;
+}

@@ -1,28 +1,30 @@
 <script lang="ts">
+	/** indicator position in % */
 	export let pos: { x: number; y: number };
-	/* svelte-ignore unused-export-let */
-	export let hex: string;
-	export let isDark: boolean;
 
-	$: left = `calc(${pos.x} * (var(--picker-width, 200px) - 14px) / 100 + 2px)`;
-	$: top = `calc(${pos.y} * (var(--picker-height, 200px) - 14px) / 100 + 2px)`;
+	/** indicator whether the selected color is light or dark */
+	export let isDark: boolean;
 </script>
 
-<div
-	class="picker-indicator"
-	style={`left: ${left}; top: ${top}; box-shadow: 0 0 4px ${isDark ? 'white' : 'black'};`}
-/>
+<div class="picker-indicator" class:is-dark={isDark} style:--pos-x={pos.x} style:--pos-y={pos.y} />
 
 <style>
 	div {
 		position: absolute;
-		width: 10px;
-		height: 10px;
+		left: calc(var(--pos-x) * (var(--picker-width, 200px) - var(--picker-indicator-size, 10px) - 4px) / 100 + 2px);
+		top: calc(var(--pos-y) * (var(--picker-height, 200px) - var(--picker-indicator-size, 10px) - 4px) / 100 + 2px);
+
+		width: var(--picker-indicator-size, 10px);
+		height: var(--picker-indicator-size, 10px);
 		background-color: white;
-		border-radius: 5px;
+		box-shadow: 0 0 4px black;
+		border-radius: 50%;
 
 		pointer-events: none;
 		z-index: 1;
 		transition: box-shadow 0.2s;
+	}
+	.is-dark {
+		box-shadow: 0 0 4px white;
 	}
 </style>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	/** DOM element of the wrapper element */
+	/** DOM element of the Color Picker popup wrapper */
 	export let wrapper: HTMLElement;
 
 	/** indicator of the popup state */
@@ -10,8 +10,8 @@
 </script>
 
 <div
-	bind:this={wrapper}
 	class="wrapper"
+	bind:this={wrapper}
 	class:is-open={isOpen}
 	role={isDialog ? 'dialog' : undefined}
 	aria-label="color picker"
@@ -20,22 +20,26 @@
 </div>
 
 <!-- 
-@component Default variant wrapper
+@component Accessibility horizontal wrapper — this component is meant to be used with the A11yVariant object as a variant to display the accessibility notice.
 
 **Import**
-this component is the default variant and cannot be imported
+```js
+import { A11yVariant } from 'svelte-awesome-color-picker';
+```
 
 **Use**
-N.A.
+```svelte
+<ColorPicker bind:hex components={A11yVariant} />
+```
 
 **Props**
-@prop wrapper: HTMLElement — DOM element of the wrapper element
+@prop wrapper: HTMLElement — DOM element of the Color Picker popup wrapper
 @prop isOpen: boolean — indicator of the popup state
 @prop isDialog: boolean — if set to true, the wrapper should have a dialog role and be absolute. It should be relative otherwise
 -->
 <style>
 	div {
-		padding: 8px;
+		padding: 6px;
 		background-color: var(--cp-bg-color, white);
 		margin: 0 10px 10px;
 		border: 1px solid var(--cp-border-color, black);
@@ -44,8 +48,33 @@ N.A.
 		width: max-content;
 	}
 	.is-open {
-		display: inline-block;
+		display: block;
 	}
+	@media (min-width: 768px) {
+		.is-open {
+			display: grid;
+			gap: 5px;
+			grid-template:
+				'nullable . . .'
+				'picker hue alpha a11y'
+				'input input input a11y';
+			grid-template-rows: auto var(--picker-height, 200px) auto;
+		}
+	}
+
+	div :global(.picker) {
+		grid-area: picker;
+	}
+
+	div :global(.text-input) {
+		grid-area: input;
+	}
+
+	div :global(.a11y-notice) {
+		grid-area: a11y;
+		margin: 0 4px 0 6px;
+	}
+
 	[role='dialog'] {
 		position: absolute;
 		top: calc(var(--input-size, 25px) + 12px);
