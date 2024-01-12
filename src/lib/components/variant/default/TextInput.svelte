@@ -134,6 +134,7 @@ _N.A._
 	}
 	input {
 		width: 5px;
+		font-family: inherit;
 	}
 
 	button {
@@ -144,6 +145,7 @@ _N.A._
 		width: 100%;
 		transition: background-color 0.2s;
 		cursor: pointer;
+		font-family: inherit;
 	}
 
 	.appear,
