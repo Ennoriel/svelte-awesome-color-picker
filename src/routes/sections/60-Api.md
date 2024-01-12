@@ -57,8 +57,8 @@ See the example [Bind event '`on:input`'](#bind-event-oninput).
 | --focus-color           | `red`                                    | focus color                            |
 | --cp-bg-color           | `white`                                  | background color                       |
 | --cp-border-color       | `black`                                  | border color                           |
-| --cp-input-color        | `#eee`                                  | background color of the inputs         |
-| --cp-button-hover-color | `#ccc`                                  | background color of the hovered button |
+| --cp-input-color        | `#eee`                                   | background color of the inputs         |
+| --cp-button-hover-color | `#ccc`                                   | background color of the hovered button |
 
 See the example [Override the css variables'](#override-the-css-variables).
 
