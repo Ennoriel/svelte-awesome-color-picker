@@ -62,9 +62,9 @@ h4 {
 	font-weight: bold;
 }
 
-h1 + h2,
-h2 + h3,
-h3 + h4,
+h1+h2,
+h2+h3,
+h3+h4,
 #default-layout {
 	margin-top: 0;
 }
@@ -75,7 +75,7 @@ h3 + h4,
 	}
 }
 
-h1 + blockquote {
+h1+blockquote {
 	margin: 0 auto 4rem;
 	max-width: 400px;
 	text-align: center;
@@ -95,6 +95,7 @@ th {
 	border: 1px solid black;
 	padding: 8px;
 }
+
 th[scope='row'] {
 	text-align: left;
 }
@@ -105,6 +106,7 @@ th[scope='row'] {
 		grid-template-columns: 1fr 1fr;
 		gap: 16px;
 	}
+
 	.overflow {
 		overflow: auto;
 	}
@@ -133,7 +135,7 @@ ul {
 }
 
 li {
-	margin: 4px 0;
+	margin: 7px 0;
 }
 
 /** scoll stuff */
@@ -144,12 +146,15 @@ li {
 	scrollbar-color: var(--dark) var(--light);
 	scroll-behavior: smooth;
 }
+
 *::-webkit-scrollbar-track {
 	background: var(--light);
 }
+
 *::-webkit-scrollbar-thumb {
 	background-color: var(--dark);
 }
+
 *::-webkit-scrollbar {
 	width: 7px;
 }
