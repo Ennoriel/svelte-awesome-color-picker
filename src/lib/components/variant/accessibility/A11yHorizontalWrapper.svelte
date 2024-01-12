@@ -76,7 +76,8 @@ import { A11yVariant } from 'svelte-awesome-color-picker';
 
 	[role='dialog'] {
 		position: absolute;
-		top: 30px;
+		top: calc(var(--input-size, 25px) + 12px);
+		left: 0;
 		z-index: var(--picker-z-index, 2);
 	}
 </style>

@@ -48,13 +48,14 @@ _N.A._
 -->
 <style>
 	label {
-		display: flex;
+		display: inline-flex;
 		align-items: center;
 		gap: 8px;
 		cursor: pointer;
 		border-radius: 3px;
 		margin: 4px;
 		height: var(--input-size, 25px);
+		user-select: none;
 	}
 
 	.container {
