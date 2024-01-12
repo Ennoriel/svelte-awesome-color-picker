@@ -1,6 +1,6 @@
 {
 	"name": "svelte-awesome-color-picker",
-	"version": "3.0.0",
+	"version": "3.0.1",
 	"description": "A highly customizable color picker component library",
 	"homepage": "https://svelte-awesome-color-picker.vercel.app",
 	"repository": {

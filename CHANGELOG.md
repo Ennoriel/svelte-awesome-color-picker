@@ -1,5 +1,11 @@
 # svelte-awesome-color-picker
 
+## 3.0.1
+
+### Patch Changes
+
+- Remove info of v3 in beta
+
 ## 3.0.0
 
 ### Major Changes
