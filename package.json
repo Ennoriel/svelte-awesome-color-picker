@@ -32,7 +32,7 @@
 	],
 	"dependencies": {
 		"colord": "^2.9.3",
-		"svelte-awesome-slider": "^0.0.11"
+		"svelte-awesome-slider": "^1.1.0"
 	},
 	"peerDependencies": {
 		"svelte": "^3.55.1 || ^4.0.0"
@@ -40,11 +40,11 @@
 	"devDependencies": {
 		"@changesets/cli": "^2.27.1",
 		"@sveltejs/adapter-vercel": "^4.0.4",
-		"@sveltejs/kit": "^2.0.6",
+		"@sveltejs/kit": "^2.3.0",
 		"@sveltejs/package": "2.2.5",
 		"@sveltejs/vite-plugin-svelte": "^3.0.1",
-		"@typescript-eslint/eslint-plugin": "^6.17.0",
-		"@typescript-eslint/parser": "^6.17.0",
+		"@typescript-eslint/eslint-plugin": "^6.18.1",
+		"@typescript-eslint/parser": "^6.18.1",
 		"eslint": "^8.56.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.35.1",
@@ -59,7 +59,7 @@
 		"svelte2tsx": "^0.6.27",
 		"tslib": "^2.6.2",
 		"typescript": "^5.3.3",
-		"vite": "^5.0.10"
+		"vite": "^5.0.11"
 	},
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",
