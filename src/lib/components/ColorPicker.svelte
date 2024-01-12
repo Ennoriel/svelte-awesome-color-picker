@@ -257,11 +257,7 @@
 
 <svelte:window on:mousedown={mousedown} on:keyup={keyup} />
 
-<span
-	bind:this={spanElement}
-	class="color-picker {sliderDirection}"
-	style:--alphaless-color={(hex ? hex : _hex).substring(0, 7)}
->
+<span bind:this={spanElement} class="color-picker {sliderDirection}">
 	{#if isDialog}
 		<svelte:component this={getComponents().input} bind:labelElement isOpen {hex} {label} {name} />
 	{:else if name}
@@ -292,7 +288,7 @@
 			/>
 		</div>
 		{#if isAlpha}
-			<div class="a">
+			<div class="a" style:--alphaless-color={(hex ? hex : _hex).substring(0, 7)}>
 				<Slider
 					min={0}
 					max={1}
