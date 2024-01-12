@@ -1,5 +1,14 @@
 # svelte-awesome-color-picker
 
+## 3.0.0
+
+### Major Changes
+
+- remove accessibility issues ([issue #43](https://github.com/Ennoriel/svelte-awesome-color-picker/issues/43))
+- add nullable props to make the color picker nullable ([issue #56](https://github.com/Ennoriel/svelte-awesome-color-picker/issues/56))
+- add dark theme support ([issue #59](https://github.com/Ennoriel/svelte-awesome-color-picker/issues/59))
+- simplify lots of small things (removed some useless props) (see [the migration guide](https://svelte-awesome-color-picker.vercel.app/#upgrade-from-v2-to-v3))
+
 ## 2.4.7
 
 ### Patch Changes
