@@ -36,9 +36,9 @@ N.A.
 <style>
 	div {
 		padding: 8px;
-		background-color: white;
+		background-color: var(--cp-bg-color, white);
 		margin: 0 10px 10px;
-		border: 1px solid black;
+		border: 1px solid var(--cp-border-color, black);
 		border-radius: 12px;
 		display: none;
 		width: max-content;

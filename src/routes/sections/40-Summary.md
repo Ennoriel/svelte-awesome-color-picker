@@ -13,6 +13,7 @@
   - [Always open version](#always-open-version)
   - [Bind event '`on:input`'](#bind-event-oninput)
   - [Override the css variables](#override-the-css-variables)
+  - [Dark theme](#dark-theme)
 - [Api](#api)
   - [Color picker](#color-picker)
     - [events](#events)

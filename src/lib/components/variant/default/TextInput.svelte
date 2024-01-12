@@ -124,7 +124,8 @@ _N.A._
 	button {
 		flex: 1;
 		border: none;
-		background-color: #eee;
+		background-color: var(--cp-input-color, #eee);
+		color: var(--cp-border-color);
 		padding: 0;
 		border-radius: 5px;
 		height: 30px;
@@ -165,7 +166,7 @@ _N.A._
 	}
 
 	button:hover {
-		background-color: #ccc;
+		background-color: var(--cp-button-hover-color, #ccc);
 	}
 
 	input:focus,

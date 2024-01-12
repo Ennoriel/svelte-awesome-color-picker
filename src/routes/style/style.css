@@ -18,6 +18,17 @@ body {
 	background-color: white;
 }
 
+.dark {
+	background-color: black;
+	height: 400px;
+	padding: 12px;
+
+	--cp-bg-color: #333;
+	--cp-border-color: white;
+	--cp-input-color: #555;
+	--cp-button-hover-color: #777;
+}
+
 button {
 	cursor: pointer;
 	border: none;

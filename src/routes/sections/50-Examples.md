@@ -204,7 +204,7 @@ In this example, the color is appended to the history at each event.
 ### Override the css variables
 
 <div class="example-wrapper">
-  <div class="center">
+  <div>
 	<ColorPicker
 		bind:rgb
 		bind:hsv
@@ -236,6 +236,38 @@ In this example, the color is appended to the history at each event.
 	--input-size="100px"
 	--focus-color="green"
 />
+```
+
+</div>
+</div>
+
+### Dark theme
+
+<div class="example-wrapper">
+  <div>
+	<div class="dark">
+		<ColorPicker bind:hex bind:rgb bind:hsv />
+	</div>
+  </div>
+  <div class="overflow">
+
+**Source code**
+
+<!-- prettier-ignore -->
+```svelte
+<script>
+	import ColorPicker from 'svelte-awesome-color-picker';
+</script>
+
+<ColorPicker />
+
+<style>
+	.dark {
+		--cp-bg-color: #333;
+		--cp-border-color: white;
+		--cp-input-color: #555;
+		--cp-button-hover-color: #777;
+	}</style>
 ```
 
 </div>

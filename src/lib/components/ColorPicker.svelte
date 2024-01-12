@@ -376,6 +376,7 @@ import ColorPicker from 'svelte-awesome-color-picker';
 <style>
 	span {
 		position: relative;
+		color: var(--cp-border-color, black);
 
 		--alpha-grid-bg: linear-gradient(45deg, #eee 25%, #0000 25%, #0000 75%, #eee 75%) 0 0 / 10px 10px,
 			linear-gradient(45deg, #eee 25%, #0000 25%, #0000 75%, #eee 75%) 5px 5px / 10px 10px;
