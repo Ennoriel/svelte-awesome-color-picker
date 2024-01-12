@@ -82,7 +82,6 @@
 	let spanElement: HTMLSpanElement;
 	let labelElement: HTMLLabelElement;
 	let wrapper: HTMLElement;
-	let sSlider: HTMLDivElement;
 
 	let trap: Trap | undefined = undefined;
 
@@ -130,7 +129,6 @@
 		} else if (key === 'Enter' && labelElement.contains(target as Node)) {
 			isOpen = !isOpen;
 			setTimeout(() => {
-				sSlider.focus();
 				trap = trapFocus(wrapper);
 			});
 		} else if (key === 'Escape' && isOpen) {
@@ -210,7 +208,7 @@
 		<input type="hidden" value={hex} {name} />
 	{/if}
 	<svelte:component this={getComponents().wrapper} bind:wrapper {isOpen} {isDialog}>
-		<Picker components={getComponents()} bind:sSlider h={hsv.h} bind:s={hsv.s} bind:v={hsv.v} {isDark} />
+		<Picker components={getComponents()} h={hsv.h} bind:s={hsv.s} bind:v={hsv.v} {isDark} />
 		<div class="h">
 			<Slider
 				min={0}

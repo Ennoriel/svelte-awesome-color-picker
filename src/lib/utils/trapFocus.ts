@@ -38,6 +38,9 @@ function trapFocusListener(trapFocusElement: HTMLElement) {
 }
 
 export const trapFocus = (node: HTMLElement) => {
+	const first: HTMLElement | null = node.querySelector(FOCUSABLE_ELEMENTS);
+	if (first) first.focus();
+
 	const listener = trapFocusListener(node);
 	document.addEventListener('keydown', listener);
 	return {
