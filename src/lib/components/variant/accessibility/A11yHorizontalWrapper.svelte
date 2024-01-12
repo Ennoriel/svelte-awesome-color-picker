@@ -45,6 +45,7 @@ import { A11yVariant } from 'svelte-awesome-color-picker';
 		border: 1px solid var(--cp-border-color, black);
 		border-radius: 12px;
 		display: none;
+		width: max-content;
 	}
 	.is-open {
 		display: block;
