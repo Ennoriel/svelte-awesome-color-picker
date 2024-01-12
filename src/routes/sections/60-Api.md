@@ -46,15 +46,19 @@ See the example [Bind event '`on:input`'](#bind-event-oninput).
 
 #### css variables
 
-| Props                   | Default Value                            | Usage                   |
-| :---------------------- | ---------------------------------------- | ----------------------- |
-| --picker-height         | `200px`                                  | picker & sliders height |
-| --picker-width          | `200px` (`260px` for the Chrome variant) | picker width            |
-| --slider-width          | `30px`                                   | sliders width           |
-| --picker-indicator-size | `10px`                                   | picker indicator size   |
-| --picker-z-index        | `2`                                      | popup picker z-index    |
-| --input-size            | `25px`                                   | color circle size       |
-| --focus-color           | `red`                                    | focus color             |
+| Props                   | Default Value                            | Usage                                  |
+| :---------------------- | ---------------------------------------- | -------------------------------------- |
+| --picker-height         | `200px`                                  | picker & sliders height                |
+| --picker-width          | `200px` (`260px` for the Chrome variant) | picker width                           |
+| --slider-width          | `30px`                                   | sliders width                          |
+| --picker-indicator-size | `10px`                                   | picker indicator size                  |
+| --picker-z-index        | `2`                                      | popup picker z-index                   |
+| --input-size            | `25px`                                   | color circle size                      |
+| --focus-color           | `red`                                    | focus color                            |
+| --cp-bg-color           | `white`                                  | background color                       |
+| --cp-border-color       | `black`                                  | border color                           |
+| --cp-input-color        | `#eee`                                  | background color of the inputs         |
+| --cp-button-hover-color | `#ccc`                                  | background color of the hovered button |
 
 See the example [Override the css variables'](#override-the-css-variables).
 
@@ -145,7 +149,7 @@ Props:
 | name         | type                      | default value | usage                               |
 | :----------- | ------------------------- | ------------- | ----------------------------------- |
 | labelElement | `HTMLLabelElement`        |               | DOM element of the label wrapper    |
-| hex          | `string`                  |               | hex color                           |
+| hex          | `string &#124; undefined` |               | hex color                           |
 | label        | `string`                  |               | input label                         |
 | name         | `string &#124; undefined` | `undefined`   | input name, useful in a native form |
 | isOpen       | `boolean`                 |               | indicator of the popup state        |
@@ -265,7 +269,9 @@ Props:
 
 #### The component itself
 
-In progress
+The svelte-awesome-color-picker uses [svelte-awesome-slider](https://github.com/Ennoriel/svelte-awesome-slider) (also made by me) to display the sliders. This library follows the [W3c slider component accessibility guidelines](https://www.w3.org/WAI/ARIA/apg/patterns/slider/).
+
+The color picker follows the [W3c component dialog combobox accessibility guidelines](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/).
 
 #### Accessibility notice
 
