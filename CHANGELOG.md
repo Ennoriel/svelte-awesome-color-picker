@@ -1,5 +1,11 @@
 # svelte-awesome-color-picker
 
+## 3.0.2
+
+### Patch Changes
+
+- Prvent native iOS color picker to open (fix #62)
+
 ## 3.0.1
 
 ### Patch Changes
