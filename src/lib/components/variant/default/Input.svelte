@@ -19,9 +19,17 @@
 	}
 </script>
 
-<label bind:this={labelElement}>
+<!-- svelte-ignore a11y-no-noninteractive-element-interactions a11y-click-events-have-key-events -->
+<label bind:this={labelElement} on:click|preventDefault={noop} on:mousedown|preventDefault={noop}>
 	<div class="container">
-		<input type="color" {name} value={hex} on:click|preventDefault={noop} aria-haspopup="dialog" />
+		<input
+			type="color"
+			{name}
+			value={hex}
+			on:click|preventDefault={noop}
+			on:mousedown|preventDefault={noop}
+			aria-haspopup="dialog"
+		/>
 		<div class="alpha" />
 		<div class="color" style:background={hex} />
 	</div>
