@@ -1,5 +1,11 @@
 # svelte-awesome-color-picker
 
+## 3.0.3
+
+### Patch Changes
+
+- Fix color picker being stuck when the color is initialized to undefined (fix #64)
+
 ## 3.0.2
 
 ### Patch Changes

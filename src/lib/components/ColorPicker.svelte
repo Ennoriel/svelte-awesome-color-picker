@@ -89,7 +89,7 @@
 	let _hex: string = '#ff0000';
 
 	let isUndefined = false;
-	let _isUndefined = false;
+	let _isUndefined = isUndefined;
 
 	let spanElement: HTMLSpanElement;
 	let labelElement: HTMLLabelElement;
@@ -173,6 +173,7 @@
 		}
 		if (!hsv && !rgb && !hex) {
 			isUndefined = true;
+			_isUndefined = true;
 			dispatch('input', { color: undefined, hsv, rgb, hex });
 			return;
 		}
