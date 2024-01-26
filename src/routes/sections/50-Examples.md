@@ -272,3 +272,71 @@ In this example, the color is appended to the history at each event.
 
 </div>
 </div>
+
+### Override the css variables
+
+Note: the `texts` props can be **partially** overridden. It's mostly used to translate the component. Most texts are used for accessibility aria-labels.
+
+<div class="example-wrapper">
+  <div>
+	<ColorPicker
+		bind:rgb
+		bind:hsv
+		bind:hex
+		label="Choisir une couleur"
+		texts={{
+			label: {
+				h: 'teinte',
+				s: 'saturation',
+				v: 'luminosité',
+				r: 'rouge',
+				g: 'vert',
+				b: 'bleu',
+				a: 'transparence',
+				hex: 'couleur hexadécimale',
+				withoutColor: 'sans couleur'
+			},
+			color: {
+				rgb: 'rgb',
+				hsv: 'hsv',
+				hex: 'hex'
+			},
+			changeTo: 'changer à '
+		}}
+	/>
+  </div>
+  <div class="overflow">
+
+**Source code**
+
+<!-- prettier-ignore -->
+```svelte
+<ColorPicker
+	bind:rgb
+	bind:hsv
+	bind:hex
+	label="Choisir une couleur"
+	texts={{
+		label: {
+			h: 'teinte',
+			s: 'saturation',
+			v: 'luminosité',
+			r: 'rouge',
+			g: 'vert',
+			b: 'bleu',
+			a: 'transparence',
+			hex: 'couleur hexadécimale',
+			withoutColor: 'sans couleur'
+		},
+		color: {
+			rgb: 'rgb',
+			hsv: 'hsv',
+			hex: 'hex'
+		},
+		changeTo: 'changer à '
+	}}
+/>
+```
+
+</div>
+</div>

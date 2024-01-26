@@ -1,5 +1,11 @@
 # svelte-awesome-color-picker
 
+## 3.0.4
+
+### Patch Changes
+
+- Fix how the changeTo label is overriden (related to #65)
+
 ## 3.0.3
 
 ### Patch Changes

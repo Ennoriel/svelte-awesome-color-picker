@@ -4,7 +4,7 @@
 	/** whether the color picker is undefined */
 	export let isUndefined: boolean;
 
-	/** all translation tokens used in the library; can be partially overridden; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/texts.ts) */
+	/** all translation tokens used in the library; can be partially overridden; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/utils/texts.ts) */
 	export let texts: Texts;
 </script>
 

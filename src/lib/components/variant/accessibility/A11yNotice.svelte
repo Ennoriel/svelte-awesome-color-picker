@@ -19,7 +19,7 @@
 	/** required WCAG contrast level */
 	export let a11yLevel: 'AA' | 'AAA';
 
-	/** all a11y translation tokens used in the library; override with translations if necessary; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/texts.ts) */
+	/** all a11y translation tokens used in the library; override with translations if necessary; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/utils/texts.ts) */
 	export let a11yTexts: A11yTextsPartial | undefined = undefined;
 
 	extend([a11yPlugin]);
@@ -79,7 +79,7 @@ import { A11yVariant } from 'svelte-awesome-color-picker';
 @prop hex: string — hex color
 @prop a11yColors: Array&lt;A11yColor&gt; — define the accessibility examples in the color picker
 @prop a11yLevel: 'AA' | 'AAA' — required WCAG contrast level
-@prop a11yTexts: A11yTextsPartial | undefined = undefined — all a11y translation tokens used in the library; override with translations if necessary; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/texts.ts)
+@prop a11yTexts: A11yTextsPartial | undefined = undefined — all a11y translation tokens used in the library; override with translations if necessary; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/utils/texts.ts)
 -->
 <style>
 	.a11y-notice {

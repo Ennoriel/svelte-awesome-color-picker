@@ -75,10 +75,10 @@
 	/** required WCAG contrast level */
 	export let a11yLevel: 'AA' | 'AAA' = 'AA';
 
-	/** all translation tokens used in the library; can be partially overridden; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/texts.ts) */
+	/** all translation tokens used in the library; can be partially overridden; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/utils/texts.ts) */
 	export let texts: TextsPartial | undefined = undefined;
 
-	/** all a11y translation tokens used in the library; override with translations if necessary; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/texts.ts) */
+	/** all a11y translation tokens used in the library; override with translations if necessary; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/utils/texts.ts) */
 	export let a11yTexts: A11yTextsPartial | undefined = undefined;
 
 	/**
@@ -122,7 +122,7 @@
 				...defaultTexts.color,
 				...texts?.color
 			},
-			changeTo: defaultTexts.changeTo ?? texts?.changeTo
+			changeTo: texts?.changeTo ?? defaultTexts.changeTo
 		};
 	}
 
@@ -367,8 +367,8 @@ import ColorPicker from 'svelte-awesome-color-picker';
 @prop disableCloseClickOutside: boolean = false — If set to true, it will not be possible to close the color picker by clicking outside
 @prop a11yColors: Array&lt;A11yColor&gt; = [{ bgHex: '#ffffff' }] — used with the A11yVariant. Define the accessibility examples in the color picker
 @prop a11yLevel: 'AA' | 'AAA' = 'AA' — required WCAG contrast level
-@prop texts: TextsPartial | undefined = undefined — all translation tokens used in the library; can be partially overridden; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/texts.ts)
-@prop a11yTexts: A11yTextsPartial | undefined = undefined — all a11y translation tokens used in the library; override with translations if necessary; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/texts.ts)
+@prop texts: TextsPartial | undefined = undefined — all translation tokens used in the library; can be partially overridden; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/utils/texts.ts)
+@prop a11yTexts: A11yTextsPartial | undefined = undefined — all a11y translation tokens used in the library; override with translations if necessary; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/utils/texts.ts)
 -->
 <style>
 	span {
