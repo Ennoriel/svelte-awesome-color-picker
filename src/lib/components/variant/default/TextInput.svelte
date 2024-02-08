@@ -27,7 +27,9 @@
 
 	const HEX_COLOR_REGEX = /^#?([A-F0-9]{6}|[A-F0-9]{8})$/i;
 
-	let mode = 0;
+	let mode: 'hex' | 'rgb' | 'hsv' = textInputModes[0] || 'hex';
+
+	$: nextMode = textInputModes[(textInputModes.indexOf(mode) + 1) % textInputModes.length];
 
 	$: h = Math.round(hsv.h);
 	$: s = Math.round(hsv.s);
@@ -61,9 +63,9 @@
 
 <div class="text-input">
 	<div class="input-container">
-		{#if mode === 0}
+		{#if mode === 'hex'}
 			<input aria-label={texts.label.hex} value={hex} on:input={updateHex} style:flex={3} />
-		{:else if mode === 1}
+		{:else if mode === 'rgb'}
 			<input aria-label={texts.label.r} value={rgb.r} type="number" min="0" max="255" on:input={updateRgb('r')} />
 			<input aria-label={texts.label.g} value={rgb.g} type="number" min="0" max="255" on:input={updateRgb('g')} />
 			<input aria-label={texts.label.b} value={rgb.b} type="number" min="0" max="255" on:input={updateRgb('b')} />
@@ -80,15 +82,15 @@
 				min="0"
 				max="1"
 				step="0.01"
-				on:input={mode <= 1 ? updateRgb('a') : updateHsv('a')}
+				on:input={mode === 'hsv' ? updateHsv('a') : updateRgb('a')}
 			/>
 		{/if}
 	</div>
 
 	{#if textInputModes.length > 1}
-		<button on:click={() => (mode = (mode + 1) % 3)}>
-			<span class="disappear" aria-hidden="true">{texts.color[textInputModes[mode]]}</span>
-			<span class="appear">{texts.changeTo} {texts.color[textInputModes[(mode + 1) % 3]]}</span>
+		<button on:click={() => (mode = nextMode)}>
+			<span class="disappear" aria-hidden="true">{texts.color[mode]}</span>
+			<span class="appear">{texts.changeTo} {nextMode}</span>
 		</button>
 	{/if}
 </div>

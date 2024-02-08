@@ -1,5 +1,9 @@
 # svelte-awesome-color-picker
 
+## 3.0.5
+
+- Fix bug occurring when limiting the amount of textModeInputs or changing the order of textModeInputs
+
 ## 3.0.4
 
 ### Patch Changes
