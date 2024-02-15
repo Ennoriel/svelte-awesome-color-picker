@@ -92,6 +92,8 @@
 			<span class="disappear" aria-hidden="true">{texts.color[mode]}</span>
 			<span class="appear">{texts.changeTo} {nextMode}</span>
 		</button>
+	{:else}
+		<div class="button-like">{texts.color[mode]}</div>
 	{/if}
 </div>
 
@@ -123,7 +125,8 @@ _N.A._
 		gap: 10px;
 	}
 	input,
-	button {
+	button,
+	.button-like {
 		flex: 1;
 		border: none;
 		background-color: var(--cp-input-color, #eee);
@@ -139,7 +142,8 @@ _N.A._
 		font-family: inherit;
 	}
 
-	button {
+	button,
+	.button-like {
 		position: relative;
 		flex: 1;
 		margin: 8px 0 0;
@@ -148,6 +152,10 @@ _N.A._
 		transition: background-color 0.2s;
 		cursor: pointer;
 		font-family: inherit;
+	}
+
+	.button-like {
+		cursor: default;
 	}
 
 	.appear,
