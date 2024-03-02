@@ -25,8 +25,9 @@
 
 ### Default layout
 
+<form action="post">
 <ColorPicker bind:hex bind:rgb bind:hsv />
-
+</form>
 <div class="example-wrapper">
 <div class="overflow">
 

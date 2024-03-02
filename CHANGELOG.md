@@ -1,5 +1,11 @@
 # svelte-awesome-color-picker
 
+## 3.0.6
+
+### Patch Changes
+
+- prevent button to trigger form (fix #70)
+
 ## 3.0.5
 
 - Fix bug occurring when limiting the amount of textModeInputs or changing the order of textModeInputs (thanks to [al-soup](https://github.com/al-soup))

@@ -88,7 +88,7 @@
 	</div>
 
 	{#if textInputModes.length > 1}
-		<button on:click={() => (mode = nextMode)}>
+		<button type="button" on:click={() => (mode = nextMode)}>
 			<span class="disappear" aria-hidden="true">{texts.color[mode]}</span>
 			<span class="appear">{texts.changeTo} {nextMode}</span>
 		</button>
