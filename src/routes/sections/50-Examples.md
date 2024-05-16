@@ -1,4 +1,3 @@
-<!-- README-LESS -->
 <script lang="ts">
   import ColorPicker, { ChromeVariant, A11yVariant } from '$lib';
   import { bgColor } from '../store';
@@ -260,12 +259,15 @@ In this example, the color is appended to the history at each event.
 	import ColorPicker from 'svelte-awesome-color-picker';
 </script>
 
-<ColorPicker />
+<div class="dark">
+	<ColorPicker />
+</div>
 
 <style>
 	.dark {
 		--cp-bg-color: #333;
 		--cp-border-color: white;
+		--cp-text-color: white;
 		--cp-input-color: #555;
 		--cp-button-hover-color: #777;
 	}</style>

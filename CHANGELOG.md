@@ -1,5 +1,11 @@
 # svelte-awesome-color-picker
 
+## 3.1.0
+
+### Minor Changes
+
+- 89fc763: Create a css variable --cp-text-color instead of using --cp-border-color (fix #72)
+
 ## 3.0.6
 
 ### Patch Changes

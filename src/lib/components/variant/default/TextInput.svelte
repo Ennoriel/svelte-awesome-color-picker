@@ -130,7 +130,7 @@ _N.A._
 		flex: 1;
 		border: none;
 		background-color: var(--cp-input-color, #eee);
-		color: var(--cp-border-color);
+		color: var(--cp-text-color, var(--cp-border-color));
 		padding: 0;
 		border-radius: 5px;
 		height: 30px;

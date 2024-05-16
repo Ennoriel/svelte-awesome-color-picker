@@ -17,6 +17,7 @@
   - [Override the css variables](#override-the-css-variables)
 - [Api](#api)
   - [Color picker](#color-picker)
+    - [props](#props)
     - [events](#events)
     - [css variables](#css-variables)
   - [components](#components)
@@ -32,6 +33,7 @@
     - [Accessibility notice](#accessibility-notice)
 - [How to](#how-to)
   - [Fix overflow issues](#fix-overflow-issues)
+- [Use the color of the document](#use-the-color-of-the-document)
 - [Migration](#migration)
   - [upgrade from v2 to v3](#upgrade-from-v2-to-v3)
   <!-- ¤SUMMARY -->

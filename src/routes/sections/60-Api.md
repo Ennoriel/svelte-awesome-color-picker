@@ -9,6 +9,8 @@ The library exports 4 different things:
 
 ### Color picker
 
+#### props
+
 <!-- PROPS_ColorPicker.svelte -->
 
 | name                     | type                                     | default value                                           | usage                                                                                                                                                                                                        |
@@ -57,6 +59,7 @@ See the example [Bind event '`on:input`'](#bind-event-oninput).
 | --focus-color           | `red`                                    | focus color                            |
 | --cp-bg-color           | `white`                                  | background color                       |
 | --cp-border-color       | `black`                                  | border color                           |
+| --cp-text-color         | `--cp-border-color`                      | text color                             |
 | --cp-input-color        | `#eee`                                   | background color of the inputs         |
 | --cp-button-hover-color | `#ccc`                                   | background color of the hovered button |
 
@@ -89,13 +92,22 @@ A **Chrome** variant and an **accessibility** variant are available. **To use th
 
 The components that can be overridden are:
 
-- [pickerIndicator](#pickerindicator)
-- [textInput](#textinput)
-- [input](#input)
-- [wrapper](#wrapper)
-- [nullabilityCheckbox](#nullabilitycheckbox)
-- [a11yNotice](#a11ynotice)
-- [a11ySingleNotice](#a11ysinglenotice)
+- [Api](#api)
+  - [Color picker](#color-picker)
+    - [props](#props)
+    - [events](#events)
+    - [css variables](#css-variables)
+  - [components](#components)
+    - [pickerIndicator](#pickerindicator)
+    - [textInput](#textinput)
+    - [Input](#input)
+    - [wrapper](#wrapper)
+    - [nullabilityCheckbox](#nullabilitycheckbox)
+    - [a11yNotice](#a11ynotice)
+    - [a11ySingleNotice](#a11ysinglenotice)
+  - [Accessibility](#accessibility)
+    - [The component itself](#the-component-itself)
+    - [Accessibility notice](#accessibility-notice)
 
 The 3 components `a11yNotice`, `a11ySummary` and `a11ySingleNotice` are no longer included by default but can still be defined or passed through the a11yVariant object. This change was made in version 3.0.0 to lighten the library for those who do not use it.
 
