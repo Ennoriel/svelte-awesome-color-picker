@@ -3,6 +3,7 @@
 	import type { Components } from '$lib/type/types';
 	import { Slider } from 'svelte-awesome-slider';
 	import { createEventDispatcher } from 'svelte';
+	import type { Texts } from '$lib/utils/texts';
 
 	const dispatch = createEventDispatcher<{
 		input: {
@@ -26,6 +27,9 @@
 	/** indicator whether the selected color is light or dark */
 	export let isDark: boolean;
 
+	/** all translation tokens used in the library; can be partially overridden; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/utils/texts.ts) */
+	export let texts: Texts;
+
 	let picker: HTMLDivElement;
 
 	let isMouseDown = false;
@@ -42,7 +46,10 @@
 
 	function onClick(e: { clientX: number; clientY: number }) {
 		const { width, left, height, top } = picker.getBoundingClientRect();
-		const mouse = { x: clamp(e.clientX - left, 0, width), y: clamp(e.clientY - top, 0, height) };
+		const mouse = {
+			x: clamp(e.clientX - left, 0, width),
+			y: clamp(e.clientY - top, 0, height)
+		};
 
 		s = clamp(mouse.x / width, 0, 1) * 100;
 		v = clamp((height - mouse.y) / height, 0, 1) * 100;
@@ -95,7 +102,7 @@
 >
 	<svelte:component this={components.pickerIndicator} {pos} {isDark} />
 	<div class="s" style:--pos-y={pos.y}>
-		<Slider bind:value={s} keyboardOnly ariaValueText={(value) => `${value}%`} ariaLabel="saturation color" />
+		<Slider bind:value={s} keyboardOnly ariaValueText={(value) => `${value}%`} ariaLabel={texts.label.s} />
 	</div>
 	<div class="v" style:--pos-x={pos.x}>
 		<Slider
@@ -103,7 +110,7 @@
 			keyboardOnly
 			ariaValueText={(value) => `${value}%`}
 			direction="vertical"
-			ariaLabel="brightness color"
+			ariaLabel={texts.label.v}
 		/>
 	</div>
 </div>
@@ -123,6 +130,7 @@ N.A.
 @prop s: number — saturation value
 @prop v: number — vibrance value
 @prop isDark: boolean — indicator whether the selected color is light or dark
+@prop texts: Texts — all translation tokens used in the library; can be partially overridden; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/utils/texts.ts)
 -->
 <style>
 	.picker {
