@@ -276,7 +276,7 @@ In this example, the color is appended to the history at each event.
 </div>
 </div>
 
-### Override the css variables
+### Translate the color picker
 
 Note: the `texts` props can be **partially** overridden. It's mostly used to translate the component. Most texts are used for accessibility aria-labels.
 
