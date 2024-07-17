@@ -57,6 +57,9 @@
 	/** indicator of the popup state */
 	export let isOpen: boolean = !isDialog;
 
+	/** configure the popup behavior */
+	export let position: 'fixed' | 'responsive' | 'responsive-x' | 'responsive-y' = 'fixed';
+
 	/** if set to false, hide the hex, rgb and hsv text inputs */
 	export let isTextInput: boolean = true;
 
@@ -96,6 +99,10 @@
 	let wrapper: HTMLElement;
 
 	let trap: Trap | undefined = undefined;
+
+	let innerWidth: number;
+	let innerHeight: number;
+	const wrapperPaddingY: number = 12;
 
 	const default_components: Components = {
 		pickerIndicator: PickerIndicator,
@@ -254,9 +261,43 @@
 			});
 		};
 	}
+
+	function wrapperBoundaryCheck() {
+		if (position !== 'fixed' && isOpen && isDialog && labelElement && wrapper) {
+			const rect = wrapper.getBoundingClientRect();
+			const labelRect = labelElement.getBoundingClientRect();
+
+			if (position === 'responsive' || position === 'responsive-y') {
+				if (labelRect.top + rect.height + wrapperPaddingY > innerHeight) {
+					wrapper.style.top = `-${rect.height + wrapperPaddingY}px`;
+				} else {
+					wrapper.style.top = `${labelRect.height + wrapperPaddingY}px`;
+				}
+			}
+
+			if (position === 'responsive' || position === 'responsive-x') {
+				if (labelRect.left + rect.width + wrapperPaddingY > innerWidth) {
+					wrapper.style.left = `-${rect.width - labelRect.width}px`;
+				} else {
+					wrapper.style.left = '0';
+				}
+			}
+		}
+	}
+
+	$: {
+		innerWidth, innerHeight;
+		wrapperBoundaryCheck();
+	}
 </script>
 
-<svelte:window on:mousedown={mousedown} on:keyup={keyup} />
+<svelte:window
+	on:mousedown={mousedown}
+	on:keyup={keyup}
+	on:scroll={wrapperBoundaryCheck}
+	bind:innerWidth
+	bind:innerHeight
+/>
 
 <span bind:this={spanElement} class="color-picker {sliderDirection}">
 	{#if isDialog}
