@@ -25,7 +25,7 @@
 ### Default layout
 
 <form action="post">
-<ColorPicker bind:hex bind:rgb bind:hsv />
+<ColorPicker bind:hex bind:rgb bind:hsv position="responsive"/>
 </form>
 <div class="example-wrapper">
 <div class="overflow">
@@ -43,6 +43,7 @@
 	bind:rgb
 	bind:hsv
 	bind:color
+  position="responsive"
 />
 ```
 
