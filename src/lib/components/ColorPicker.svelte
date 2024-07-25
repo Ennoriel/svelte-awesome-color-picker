@@ -275,6 +275,7 @@
 			v={hsv?.v ?? _hsv.v}
 			on:input={updateLetters(['s', 'v'])}
 			{isDark}
+			texts={getTexts()}
 		/>
 		<div class="h">
 			<Slider
