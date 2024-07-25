@@ -210,16 +210,19 @@
 		if (hex?.substring(7) === 'ff') hex = hex.substring(0, 7);
 		if (hex?.substring(7) === 'ff') hex = hex.substring(0, 7);
 
-		// check which color format changed and updates the others accordingly
-		if (hsv && (hsv.h !== _hsv.h || hsv.s !== _hsv.s || hsv.v !== _hsv.v || hsv.a !== _hsv.a)) {
+		// triggers color computation from the color that changed or if it is the only color defined
+		if (hsv && (hsv.h !== _hsv.h || hsv.s !== _hsv.s || hsv.v !== _hsv.v || hsv.a !== _hsv.a || (!rgb && !hex))) {
 			color = colord(hsv);
 			rgb = color.toRgb();
 			hex = color.toHex();
-		} else if (rgb && (rgb.r !== _rgb.r || rgb.g !== _rgb.g || rgb.b !== _rgb.b || rgb.a !== _rgb.a)) {
+		} else if (
+			rgb &&
+			(rgb.r !== _rgb.r || rgb.g !== _rgb.g || rgb.b !== _rgb.b || rgb.a !== _rgb.a || (!hsv && !hex))
+		) {
 			color = colord(rgb);
 			hex = color.toHex();
 			hsv = color.toHsv();
-		} else if (hex && hex !== _hex) {
+		} else if (hex && (hex !== _hex || (!hsv && !rgb))) {
 			color = colord(hex);
 			rgb = color.toRgb();
 			hsv = color.toHsv();
