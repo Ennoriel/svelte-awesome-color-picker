@@ -1,5 +1,13 @@
 # svelte-awesome-color-picker
 
+## 3.1.1
+
+### Patch Changes
+
+- ffd3e01: set CI node version to 20 and update actions version
+- 190e932: fix doc title 'translate the color picker'
+- 2938a06: use translations on the keyboard controlled sliders aria-label
+
 ## 3.1.0
 
 ### Minor Changes
