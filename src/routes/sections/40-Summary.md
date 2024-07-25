@@ -32,8 +32,10 @@
     - [The component itself](#the-component-itself)
     - [Accessibility notice](#accessibility-notice)
 - [How to](#how-to)
-  - [Fix overflow issues](#fix-overflow-issues)
-- [Use the color of the document](#use-the-color-of-the-document)
+  - [Fix overflow issues inside a container](#fix-overflow-issues-inside-a-container)
+  - [Fix overflow issues in the window](#fix-overflow-issues-in-the-window)
+  - [Use the color of the document](#use-the-color-of-the-document)
+- [Contributing](#contributing)
 - [Migration](#migration)
   - [upgrade from v2 to v3](#upgrade-from-v2-to-v3)
   <!-- ¤SUMMARY -->

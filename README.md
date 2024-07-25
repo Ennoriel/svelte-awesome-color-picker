@@ -26,3 +26,7 @@ Please read the documentation on the documentation site!
 ## Example
 
 ![Example of the color picker](https://svelte-awesome-color-picker.vercel.app/examples.png)
+
+## contributing
+
+Please see the [contributing file](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/contributing.md)
