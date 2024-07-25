@@ -1,5 +1,13 @@
 # svelte-awesome-color-picker
 
+## 3.1.2
+
+### Patch Changes
+
+- e36c45d: add contributing guide
+- b46d0ae: compute color change if only one of hsv, rgb, hex is set (fix #80)
+- 086c20a: add `position` props to adjust its position to always be visible on screen ([issue #82](https://github.com/Ennoriel/svelte-awesome-color-picker/issues/82) - thanks to [LeonHeidelbach](https://github.com/LeonHeidelbach))
+
 ## 3.1.1
 
 ### Patch Changes
