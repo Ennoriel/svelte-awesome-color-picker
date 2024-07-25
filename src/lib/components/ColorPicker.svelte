@@ -57,7 +57,7 @@
 	/** indicator of the popup state */
 	export let isOpen: boolean = !isDialog;
 
-	/** configure the popup behavior */
+	/** if set to "responsive", the popup will adjust its x and y position depending on the available window space, "responsive-x" and "responsive-y" limit the behavior to either the x or y axis. The value 'responsive' will become the default in the next major release */
 	export let position: 'fixed' | 'responsive' | 'responsive-x' | 'responsive-y' = 'fixed';
 
 	/** if set to false, hide the hex, rgb and hsv text inputs */
@@ -403,6 +403,7 @@ import ColorPicker from 'svelte-awesome-color-picker';
 @prop isAlpha: boolean = true — if set to false, disables the alpha channel
 @prop isDialog: boolean = true — if set to false, the input and the label will not be displayed and the ColorPicker will always be visible
 @prop isOpen: boolean = !isDialog — indicator of the popup state
+@prop position: 'fixed' | 'responsive' | 'responsive-x' | 'responsive-y' = 'fixed' — if set to "responsive", the popup will adjust its x and y position depending on the available window space, "responsive-x" and "responsive-y" limit the behavior to either the x or y axis. The value 'responsive' will become the default in the next major release
 @prop isTextInput: boolean = true — if set to false, hide the hex, rgb and hsv text inputs
 @prop textInputModes: Array&lt;'hex' | 'rgb' | 'hsv'&gt; = ['hex', 'rgb', 'hsv'] — configure which hex, rgb and hsv inputs will be visible and in which order. If overridden, it is necessary to provide at least one value
 @prop sliderDirection: 'horizontal' | 'vertical' = 'vertical' — If set to "horizontal", the hue and alpha sliders will be displayed horizontally. It is necessary to set this props to "horizontal" for the ChromeVariant

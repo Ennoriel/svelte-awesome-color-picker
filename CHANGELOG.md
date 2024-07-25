@@ -1,11 +1,5 @@
 # svelte-awesome-color-picker
 
-## 3.1.2
-
-### Patch Changes
-
-- 639fe95: make dialog popup responsive
-
 ## 3.1.1
 
 ### Patch Changes
