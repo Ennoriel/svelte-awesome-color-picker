@@ -1,5 +1,11 @@
 # svelte-awesome-color-picker
 
+## 3.1.3
+
+### Patch Changes
+
+- d8ebead: bump svelte-awesome-slider to 1.1.1 (fix #81)
+
 ## 3.1.2
 
 ### Patch Changes
