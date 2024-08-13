@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
+	import { createEventDispatcher, tick } from 'svelte';
 	import { type RgbaColor, type HsvaColor, type Colord, colord } from 'colord';
 	import Picker from './Picker.svelte';
 	import { Slider } from 'svelte-awesome-slider';
@@ -102,7 +102,7 @@
 
 	let innerWidth: number;
 	let innerHeight: number;
-	const wrapperPaddingY: number = 12;
+	const wrapperPadding: number = 12;
 
 	const default_components: Components = {
 		pickerIndicator: PickerIndicator,
@@ -265,33 +265,32 @@
 		};
 	}
 
-	function wrapperBoundaryCheck() {
+	async function wrapperBoundaryCheck() {
+		await tick();
+
 		if (position !== 'fixed' && isOpen && isDialog && labelElement && wrapper) {
 			const rect = wrapper.getBoundingClientRect();
 			const labelRect = labelElement.getBoundingClientRect();
 
 			if (position === 'responsive' || position === 'responsive-y') {
-				if (labelRect.top + rect.height + wrapperPaddingY > innerHeight) {
-					wrapper.style.top = `-${rect.height + wrapperPaddingY}px`;
+				if (labelRect.top + rect.height + wrapperPadding > innerHeight) {
+					wrapper.style.top = `-${rect.height + wrapperPadding}px`;
 				} else {
-					wrapper.style.top = `${labelRect.height + wrapperPaddingY}px`;
+					wrapper.style.top = `${labelRect.height + wrapperPadding}px`;
 				}
 			}
 
 			if (position === 'responsive' || position === 'responsive-x') {
-				if (labelRect.left + rect.width + wrapperPaddingY > innerWidth) {
-					wrapper.style.left = `-${rect.width - labelRect.width}px`;
+				if (labelRect.left + rect.width + wrapperPadding > innerWidth) {
+					wrapper.style.left = `-${rect.width - labelRect.width + wrapperPadding}px`;
 				} else {
-					wrapper.style.left = '0';
+					wrapper.style.left = `${wrapperPadding}px`;
 				}
 			}
 		}
 	}
 
-	$: {
-		innerWidth, innerHeight;
-		wrapperBoundaryCheck();
-	}
+	$: innerWidth, innerHeight, isOpen, wrapperBoundaryCheck();
 </script>
 
 <svelte:window
