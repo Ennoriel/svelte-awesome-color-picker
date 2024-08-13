@@ -1,5 +1,13 @@
 # svelte-awesome-color-picker
 
+## 3.1.4
+
+### Patch Changes
+
+- d005b46: fix auto-positionning when the popup is outside of the viewport (fix #82)
+- 1efb3d5: add svelte 5 peer dependency (fix #84)
+- a17d991: bump dependencies
+
 ## 3.1.3
 
 ### Patch Changes
