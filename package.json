@@ -35,7 +35,7 @@
 		"svelte-awesome-slider": "^1.1.1"
 	},
 	"peerDependencies": {
-		"svelte": "^3.55.1 || ^4.0.0"
+		"svelte": "^3.55.1 || ^4.0.0 || ^5.0.0"
 	},
 	"devDependencies": {
 		"@changesets/cli": "^2.27.1",
