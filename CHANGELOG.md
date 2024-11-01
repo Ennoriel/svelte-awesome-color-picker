@@ -4,22 +4,22 @@
 
 ### Patch Changes
 
-- d005b46: fix auto-positionning when the popup is outside of the viewport (fix #82)
-- 1efb3d5: add svelte 5 peer dependency (fix #84)
+- d005b46: fix auto-positionning when the popup is outside of the viewport (fix [issue #82](https://github.com/Ennoriel/svelte-awesome-color-picker/issues/82))
+- 1efb3d5: add svelte 5 peer dependency (fix [issue #84](https://github.com/Ennoriel/svelte-awesome-color-picker/issues/84))
 - a17d991: bump dependencies
 
 ## 3.1.3
 
 ### Patch Changes
 
-- d8ebead: bump svelte-awesome-slider to 1.1.1 (fix #81)
+- d8ebead: bump svelte-awesome-slider to 1.1.1 (fix [issue #81](https://github.com/Ennoriel/svelte-awesome-color-picker/issues/81))
 
 ## 3.1.2
 
 ### Patch Changes
 
 - e36c45d: add contributing guide
-- b46d0ae: compute color change if only one of hsv, rgb, hex is set (fix #80)
+- b46d0ae: compute color change if only one of hsv, rgb, hex is set (fix [issue #80](https://github.com/Ennoriel/svelte-awesome-color-picker/issues/80))
 - 086c20a: add `position` props to adjust its position to always be visible on screen ([issue #82](https://github.com/Ennoriel/svelte-awesome-color-picker/issues/82) - thanks to [LeonHeidelbach](https://github.com/LeonHeidelbach))
 
 ## 3.1.1
@@ -34,13 +34,13 @@
 
 ### Minor Changes
 
-- 89fc763: Create a css variable --cp-text-color instead of using --cp-border-color (fix #72)
+- 89fc763: Create a css variable --cp-text-color instead of using --cp-border-color (fix [issue #72](https://github.com/Ennoriel/svelte-awesome-color-picker/issues/72))
 
 ## 3.0.6
 
 ### Patch Changes
 
-- prevent button to trigger form (fix #70)
+- prevent button to trigger form (fix [issue #70](https://github.com/Ennoriel/svelte-awesome-color-picker/issues/70))
 
 ## 3.0.5
 
@@ -56,13 +56,13 @@
 
 ### Patch Changes
 
-- Fix color picker being stuck when the color is initialized to undefined (fix #64)
+- Fix color picker being stuck when the color is initialized to undefined (fix [issue #64](https://github.com/Ennoriel/svelte-awesome-color-picker/issues/64))
 
 ## 3.0.2
 
 ### Patch Changes
 
-- Prvent native iOS color picker to open (fix #62)
+- Prvent native iOS color picker to open (fix [issue #62](https://github.com/Ennoriel/svelte-awesome-color-picker/issues/62))
 
 ## 3.0.1
 
@@ -171,7 +171,7 @@
 
 ### Patch Changes
 
-- fix issue #18: prevent default color input picker to open on safari
+- fix [issue #18](https://github.com/Ennoriel/svelte-awesome-color-picker/issues/18): prevent default color input picker to open on safari
 
 ## 2.2.1
 
