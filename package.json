@@ -5,7 +5,7 @@
 	"homepage": "https://svelte-awesome-color-picker.vercel.app",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Ennoriel/svelte-awesome-color-picker"
+		"url": "git+https://github.com/Ennoriel/svelte-awesome-color-picker.git"
 	},
 	"author": "Maxime Dupont <m.dupont103@gmail.com>",
 	"license": "MIT",

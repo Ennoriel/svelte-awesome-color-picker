@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { isGradeAchieved } from './grades.js';
 
-	interface Props {
+	export interface Props {
 		/** placeholder, falls back to `Lorem Ipsum` */
 		placeholder?: string | undefined;
 		/** size of the text */

@@ -1,4 +1,4 @@
-import type { A11yColorContract } from '$lib/type/types';
+import type { A11yColorContract } from '$lib/type/types.js';
 
 export const grades = {
 	normal: {

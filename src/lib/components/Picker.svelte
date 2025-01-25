@@ -26,7 +26,6 @@
 	let picker: HTMLDivElement | undefined = $state();
 
 	let isMouseDown = false;
-	let focused = false;
 
 	let pos = $state({ x: 100, y: 0 });
 	let pickerColorBg = $derived(colord({ h, s: 100, v: 100, a: 1 }).toHex());
@@ -66,10 +65,6 @@
 		if (isMouseDown) onClick(e);
 	}
 
-	function mouseDown(e: MouseEvent) {
-		if (!picker || !(e.target as HTMLElement).isSameNode(picker)) focused = false;
-	}
-
 	function touch(e: TouchEvent) {
 		e.preventDefault();
 		onClick(e.changedTouches[0]);
@@ -88,7 +83,7 @@
 	}
 </script>
 
-<svelte:window onmouseup={mouseUp} onmousedown={mouseDown} onmousemove={mouseMove} />
+<svelte:window onmouseup={mouseUp} onmousemove={mouseMove} />
 
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <div

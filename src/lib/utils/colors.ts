@@ -1,5 +1,5 @@
 import { colord } from 'colord';
-import type { A11yColor } from '../type/types';
+import type { A11yColor } from '../type/types.js';
 
 /**
  * compute the resulting color of hexA over hexB. If hexB has transparency, computes it over a white background
