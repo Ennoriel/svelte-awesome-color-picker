@@ -10,9 +10,9 @@
 - 🧩 fully customizable
 - 🔨 full typescript support
 
-## v3
+## v4
 
-The major version 3 has been released to remove accessibility issues (see [issue #43](https://github.com/Ennoriel/svelte-awesome-color-picker/issues/43)). The library has also been made simpler and lighter. This comes with [some breaking changes](https://svelte-awesome-color-picker.vercel.app/#update-from-v2-to-v3)
+The major version 4 has been released to work with Svelte 5 (see [issue #92(https://github.com/Ennoriel/svelte-awesome-color-picker/issues/92)). It has been rewritten in Svelte 5. This comes with [some breaking changes](https://svelte-awesome-color-picker.vercel.app/#update-from-v3-to-v4)
 
 ## Links
 

@@ -1,26 +1,25 @@
 <script lang="ts">
-	import { defaultA11yTexts, type A11yTextsPartial } from '$lib/utils/texts';
-	import type { A11yColor } from '$lib/type/types';
-	import type { Components } from '$lib/type/types';
+	import { defaultA11yTexts, type A11yTextsPartial } from '$lib/utils/texts.js';
+	import type { A11yColor, Components } from '$lib/type/types.js';
 	import { extend } from 'colord';
 	import a11yPlugin from 'colord/plugins/a11y';
-	import { getNumberOfGradeFailed } from './grades';
-	import { getContrast } from '$lib/utils/colors';
+	import { getNumberOfGradeFailed } from './grades.js';
+	import { getContrast } from '$lib/utils/colors.js';
 
-	/** customize the ColorPicker component parts. Can be used to display a Chrome variant or an Accessibility Notice */
-	export let components: Components;
+	interface Props {
+		/** customize the ColorPicker component parts. Can be used to display a Chrome variant or an Accessibility Notice */
+		components: Components;
+		/** hex color */
+		hex: string;
+		/** define the accessibility examples in the color picker */
+		a11yColors: Array<A11yColor>;
+		/** required WCAG contrast level */
+		a11yLevel: 'AA' | 'AAA';
+		/** all a11y translation tokens used in the library; override with translations if necessary; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/utils/texts.ts) */
+		a11yTexts?: A11yTextsPartial | undefined;
+	}
 
-	/** hex color */
-	export let hex: string;
-
-	/** define the accessibility examples in the color picker */
-	export let a11yColors: Array<A11yColor>;
-
-	/** required WCAG contrast level */
-	export let a11yLevel: 'AA' | 'AAA';
-
-	/** all a11y translation tokens used in the library; override with translations if necessary; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/utils/texts.ts) */
-	export let a11yTexts: A11yTextsPartial | undefined = undefined;
+	let { components, hex, a11yColors, a11yLevel, a11yTexts = undefined }: Props = $props();
 
 	extend([a11yPlugin]);
 
@@ -31,12 +30,16 @@
 		};
 	}
 
-	$: _a11yColors = a11yColors
-		.map((a11yColor) => getContrast(a11yColor, hex))
-		.filter(Boolean)
-		.map((x) => x!);
+	let _a11yColors = $derived(
+		a11yColors
+			.map((a11yColor) => getContrast(a11yColor, hex))
+			.filter(Boolean)
+			.map((x) => x!)
+	);
 
-	$: count = _a11yColors.map((color) => getNumberOfGradeFailed(color, a11yLevel)).reduce((acc, c) => acc + c);
+	let count = $derived(
+		_a11yColors.map((color) => getNumberOfGradeFailed(color, a11yLevel)).reduce((acc, c) => acc + c)
+	);
 </script>
 
 <div class="a11y-notice" style:--item-count={_a11yColors.length}>
@@ -44,8 +47,7 @@
 		{getTexts().nbGradeSummary(count)}
 	</span>
 	{#each _a11yColors as { trueColors, contrast, placeholder, size }}
-		<svelte:component
-			this={components.a11ySingleNotice}
+		<components.a11ySingleNotice
 			{...trueColors}
 			{contrast}
 			{placeholder}

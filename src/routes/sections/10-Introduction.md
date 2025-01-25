@@ -18,6 +18,6 @@ The library uses 2 libraries:
 
 <div style="background-color: #CCFFCC; padding: 16px 0; margin-top: 32px;" >
 
-> This documentation is the documentation of svelte-awesome-color-picker v3. If you are looking to upgrate to v3, see the section [upgrade from v2 to v3](#upgrade-from-v2-to-v3). If you are looking for the v2 documentation, see [the v2 documentation](https://github.com/Ennoriel/svelte-awesome-color-picker/tree/v2.x.x).
+> This documentation is the documentation of svelte-awesome-color-picker v4, rewritten in Svelte 5. If you are looking to upgrate to v4, see the section [upgrade from v3 to v4](#upgrade-from-v3-to-v4). If you are looking for the v3 documentation, you may go through the markdown [files of the repo](https://github.com/Ennoriel/svelte-awesome-color-picker/tree/master/src/routes/sections).
 
 </div>

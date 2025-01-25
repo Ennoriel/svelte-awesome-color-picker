@@ -20,4 +20,4 @@ body {
 }
 ```
 
-If you have a dark theme, make sure to handles it correctly.
+If you have a dark theme, make sure to handle it correctly.

@@ -1,12 +1,16 @@
 <script lang="ts">
-	/** DOM element of the Color Picker popup wrapper */
-	export let wrapper: HTMLElement;
+	interface Props {
+		/** DOM element of the Color Picker popup wrapper */
+		wrapper: HTMLElement;
+		/** indicator of the popup state */
+		isOpen: boolean;
+		/** if set to true, the wrapper should have a dialog role and be absolute. It should be relative otherwise */
+		isDialog: boolean;
+		/** children */
+		children: import('svelte').Snippet;
+	}
 
-	/** indicator of the popup state */
-	export let isOpen: boolean;
-
-	/** if set to true, the wrapper should have a dialog role and be absolute. It should be relative otherwise */
-	export let isDialog: boolean;
+	let { wrapper = $bindable(), isOpen, isDialog, children }: Props = $props();
 </script>
 
 <div
@@ -16,7 +20,7 @@
 	role={isDialog ? 'dialog' : undefined}
 	aria-label="color picker"
 >
-	<slot />
+	{@render children()}
 </div>
 
 <!-- 
@@ -36,6 +40,7 @@ import { A11yVariant } from 'svelte-awesome-color-picker';
 @prop wrapper: HTMLElement — DOM element of the Color Picker popup wrapper
 @prop isOpen: boolean — indicator of the popup state
 @prop isDialog: boolean — if set to true, the wrapper should have a dialog role and be absolute. It should be relative otherwise
+@prop children: import('svelte').Snippet — children
 -->
 <style>
 	div {

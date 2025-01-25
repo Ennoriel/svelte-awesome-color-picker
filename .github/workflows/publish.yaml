@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - release
   workflow_dispatch:
 
 jobs:
@@ -13,16 +14,16 @@ jobs:
       - name: 🔨 checkout
         uses: actions/checkout@v4
 
-      - name: 🔨 Setup node 20
+      - name: 🔨 Setup node 22
         uses: actions/setup-node@v3
         with:
-          node-version: 20
+          node-version: 22
           registry-url: 'https://registry.npmjs.org'
 
       - name: 🔨 Install pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9
           run_install: false
 
       - name: 🔨 Get pnpm store directory
@@ -48,6 +49,6 @@ jobs:
         run: pnpm package
 
       - name: 🔨 Publish library
-        run: pnpm publish
+        run: pnpm publish --no-git-checks --tag beta
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

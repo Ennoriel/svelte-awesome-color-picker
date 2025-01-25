@@ -1,5 +1,13 @@
 ## Migration
 
+### upgrade from v3 to v4
+
+The major version 4 have been released with a rewrite in Svelte 5. From now on, the library will only be compatible with Svelte 5. This comes with some breaking changes:
+
+- drop Svelte &amp;lt; 5 support
+- color props can be `null` and can no longer be `undefined`
+- event dispatch has been replaced with event props named `on<event_name>`
+
 ### upgrade from v2 to v3
 
 The major version 3 has been released to remove accessibility issues (see [issue #43](https://github.com/Ennoriel/svelte-awesome-color-picker/issues/43)). The library now comes with the possibility to deselect a color and it is also possible to theme the picker for dark themes. The library has also been made simpler and lighter. This comes with some breaking changes:

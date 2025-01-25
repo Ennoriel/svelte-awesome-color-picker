@@ -1,40 +1,44 @@
 <script lang="ts">
-	import type { Texts } from '$lib/utils/texts';
+	import type { Texts } from '$lib/utils/texts.js';
 	import type { RgbaColor, HsvaColor } from 'colord';
-	import { createEventDispatcher } from 'svelte';
 
-	const dispatch = createEventDispatcher<{
-		input: { hsv?: HsvaColor; rgb?: RgbaColor; hex?: string };
-	}>();
+	interface Props {
+		/** if set to false, disables the alpha channel */
+		isAlpha: boolean;
+		/** rgb color */
+		rgb: RgbaColor;
+		/** hsv color */
+		hsv: HsvaColor;
+		/** hex color */
+		hex: string;
+		/** configure which hex, rgb and hsv inputs will be visible and in which order. If overridden, it is necessary to provide at least one value */
+		textInputModes: Array<'hex' | 'rgb' | 'hsv'>;
+		/** all translation tokens used in the library; can be partially overridden; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/utils/texts.ts) */
+		texts: Texts;
+		/** listener, dispatch an event when one of the color changes */
+		onInput: (color: { hsv?: HsvaColor; rgb?: RgbaColor; hex?: string }) => void;
+	}
 
-	/** if set to false, disables the alpha channel */
-	export let isAlpha: boolean;
-
-	/** rgb color */
-	export let rgb: RgbaColor;
-
-	/** hsv color */
-	export let hsv: HsvaColor;
-
-	/** hex color */
-	export let hex: string;
-
-	/** configure which hex, rgb and hsv inputs will be visible and in which order. If overridden, it is necessary to provide at least one value */
-	export let textInputModes: Array<'hex' | 'rgb' | 'hsv'>;
-
-	/** all translation tokens used in the library; can be partially overridden; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/utils/texts.ts) */
-	export let texts: Texts;
+	let {
+		isAlpha,
+		rgb = $bindable(),
+		hsv = $bindable(),
+		hex = $bindable(),
+		textInputModes,
+		texts,
+		onInput
+	}: Props = $props();
 
 	const HEX_COLOR_REGEX = /^#?([A-F0-9]{6}|[A-F0-9]{8})$/i;
 
-	let mode: 'hex' | 'rgb' | 'hsv' = textInputModes[0] || 'hex';
+	let mode: 'hex' | 'rgb' | 'hsv' = $state(textInputModes[0] || 'hex');
 
-	$: nextMode = textInputModes[(textInputModes.indexOf(mode) + 1) % textInputModes.length];
+	let nextMode = $derived(textInputModes[(textInputModes.indexOf(mode) + 1) % textInputModes.length]);
 
-	$: h = Math.round(hsv.h);
-	$: s = Math.round(hsv.s);
-	$: v = Math.round(hsv.v);
-	$: a = hsv.a === undefined ? 1 : Math.round(hsv.a * 100) / 100;
+	let h = $derived(Math.round(hsv.h));
+	let s = $derived(Math.round(hsv.s));
+	let v = $derived(Math.round(hsv.v));
+	let a = $derived(hsv.a === undefined ? 1 : Math.round(hsv.a * 100) / 100);
 
 	type InputEvent = Event & { currentTarget: EventTarget & HTMLInputElement };
 
@@ -42,21 +46,21 @@
 		const target = e.target as HTMLInputElement;
 		if (HEX_COLOR_REGEX.test(target.value)) {
 			hex = target.value;
-			dispatch('input', { hex });
+			onInput({ hex });
 		}
 	}
 
 	function updateRgb(property: string) {
 		return function (e: InputEvent) {
 			rgb = { ...rgb, [property]: parseFloat((e.target as HTMLInputElement).value) };
-			dispatch('input', { rgb });
+			onInput({ rgb });
 		};
 	}
 
 	function updateHsv(property: string) {
 		return function (e: InputEvent) {
 			hsv = { ...hsv, [property]: parseFloat((e.target as HTMLInputElement).value) };
-			dispatch('input', { hsv });
+			onInput({ hsv });
 		};
 	}
 </script>
@@ -64,15 +68,15 @@
 <div class="text-input">
 	<div class="input-container">
 		{#if mode === 'hex'}
-			<input aria-label={texts.label.hex} value={hex} on:input={updateHex} style:flex={3} />
+			<input aria-label={texts.label.hex} value={hex} oninput={updateHex} style:flex={3} />
 		{:else if mode === 'rgb'}
-			<input aria-label={texts.label.r} value={rgb.r} type="number" min="0" max="255" on:input={updateRgb('r')} />
-			<input aria-label={texts.label.g} value={rgb.g} type="number" min="0" max="255" on:input={updateRgb('g')} />
-			<input aria-label={texts.label.b} value={rgb.b} type="number" min="0" max="255" on:input={updateRgb('b')} />
+			<input aria-label={texts.label.r} value={rgb.r} type="number" min="0" max="255" oninput={updateRgb('r')} />
+			<input aria-label={texts.label.g} value={rgb.g} type="number" min="0" max="255" oninput={updateRgb('g')} />
+			<input aria-label={texts.label.b} value={rgb.b} type="number" min="0" max="255" oninput={updateRgb('b')} />
 		{:else}
-			<input aria-label={texts.label.h} value={h} type="number" min="0" max="360" on:input={updateHsv('h')} />
-			<input aria-label={texts.label.s} value={s} type="number" min="0" max="100" on:input={updateHsv('s')} />
-			<input aria-label={texts.label.v} value={v} type="number" min="0" max="100" on:input={updateHsv('v')} />
+			<input aria-label={texts.label.h} value={h} type="number" min="0" max="360" oninput={updateHsv('h')} />
+			<input aria-label={texts.label.s} value={s} type="number" min="0" max="100" oninput={updateHsv('s')} />
+			<input aria-label={texts.label.v} value={v} type="number" min="0" max="100" oninput={updateHsv('v')} />
 		{/if}
 		{#if isAlpha}
 			<input
@@ -82,13 +86,13 @@
 				min="0"
 				max="1"
 				step="0.01"
-				on:input={mode === 'hsv' ? updateHsv('a') : updateRgb('a')}
+				oninput={mode === 'hsv' ? updateHsv('a') : updateRgb('a')}
 			/>
 		{/if}
 	</div>
 
 	{#if textInputModes.length > 1}
-		<button type="button" on:click={() => (mode = nextMode)}>
+		<button type="button" onclick={() => (mode = nextMode)}>
 			<span class="disappear" aria-hidden="true">{texts.color[mode]}</span>
 			<span class="appear">{texts.changeTo} {nextMode}</span>
 		</button>
@@ -114,6 +118,7 @@ _N.A._
 @prop hex: string — hex color
 @prop textInputModes: Array&lt;'hex' | 'rgb' | 'hsv'&gt; — configure which hex, rgb and hsv inputs will be visible and in which order. If overridden, it is necessary to provide at least one value
 @prop texts: Texts — all translation tokens used in the library; can be partially overridden; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/utils/texts.ts)
+@prop onInput: (color: { hsv?: HsvaColor; rgb?: RgbaColor; hex?: string }) =&gt; void — listener, dispatch an event when one of the color changes
 -->
 <style>
 	.text-input {

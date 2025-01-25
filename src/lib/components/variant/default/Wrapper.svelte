@@ -1,12 +1,16 @@
 <script lang="ts">
-	/** DOM element of the wrapper element */
-	export let wrapper: HTMLElement;
+	interface Props {
+		/** DOM element of the wrapper element */
+		wrapper: HTMLElement | undefined;
+		/** indicator of the popup state */
+		isOpen: boolean;
+		/** if set to true, the wrapper should have a dialog role and be absolute. It should be relative otherwise */
+		isDialog: boolean;
+		/** children */
+		children: import('svelte').Snippet;
+	}
 
-	/** indicator of the popup state */
-	export let isOpen: boolean;
-
-	/** if set to true, the wrapper should have a dialog role and be absolute. It should be relative otherwise */
-	export let isDialog: boolean;
+	let { wrapper = $bindable(), isOpen, isDialog, children }: Props = $props();
 </script>
 
 <div
@@ -16,7 +20,7 @@
 	role={isDialog ? 'dialog' : undefined}
 	aria-label="color picker"
 >
-	<slot />
+	{@render children()}
 </div>
 
 <!-- 
@@ -29,9 +33,10 @@ this component is the default variant and cannot be imported
 N.A.
 
 **Props**
-@prop wrapper: HTMLElement — DOM element of the wrapper element
+@prop wrapper: HTMLElement | undefined — DOM element of the wrapper element
 @prop isOpen: boolean — indicator of the popup state
 @prop isDialog: boolean — if set to true, the wrapper should have a dialog role and be absolute. It should be relative otherwise
+@prop children: import('svelte').Snippet — children
 -->
 <style>
 	div {

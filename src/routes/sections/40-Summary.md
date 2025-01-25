@@ -11,7 +11,7 @@
   - [Accessibility notice variant](#accessibility-notice-variant)
   - [Nullable version](#nullable-version)
   - [Always open version](#always-open-version)
-  - [Bind event '`on:input`'](#bind-event-oninput)
+  - [Bind event '`onInput`'](#bind-event-oninput)
   - [Override the css variables](#override-the-css-variables)
   - [Dark theme](#dark-theme)
   - [Translate the color picker](#translate-the-color-picker)
@@ -37,5 +37,6 @@
   - [Use the color of the document](#use-the-color-of-the-document)
 - [Contributing](#contributing)
 - [Migration](#migration)
+  - [upgrade from v3 to v4](#upgrade-from-v3-to-v4)
   - [upgrade from v2 to v3](#upgrade-from-v2-to-v3)
   <!-- ¤SUMMARY -->

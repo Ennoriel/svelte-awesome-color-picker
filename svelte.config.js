@@ -1,15 +1,15 @@
-import preprocess from 'svelte-preprocess';
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { mdsvex } from 'mdsvex';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import vercel from '@sveltejs/adapter-vercel';
 
+/** @type {import('@sveltejs/kit').Config} */
 const config = {
 	preprocess: [
-		preprocess(),
+		vitePreprocess(),
 		mdsvex({
 			extensions: ['.md'],
-			layout: './src/routes/mdsvex/Layout.svelte',
 			rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
 			smartypants: {
 				dashes: false

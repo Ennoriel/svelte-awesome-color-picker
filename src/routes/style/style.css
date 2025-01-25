@@ -97,9 +97,8 @@ h1 + blockquote {
 /** table */
 table {
 	border-collapse: collapse;
-	display: block;
 	overflow: auto;
-	max-width: fit-content;
+	width: 100%;
 }
 
 td,

@@ -1,26 +1,32 @@
 <script lang="ts">
-	import { isGradeAchieved } from './grades';
+	import { isGradeAchieved } from './grades.js';
 
-	/** placeholder, falls back to `Lorem Ipsum` */
-	export let placeholder: string | undefined = undefined;
+	interface Props {
+		/** placeholder, falls back to `Lorem Ipsum` */
+		placeholder?: string | undefined;
+		/** size of the text */
+		size?: 'normal' | 'large' | undefined;
+		/** required WCAG contrast level */
+		a11yLevel: 'AA' | 'AAA';
+		/** placeholder text color */
+		textColor: string;
+		/** placeholder background color */
+		bgColor: string;
+		/** RGAA contrast between the text and its background. Between 1 and 21 */
+		contrast?: number;
+		/** define the accessibility "contrast" text */
+		contrastText: string;
+	}
 
-	/** size of the text */
-	export let size: 'normal' | 'large' | undefined = undefined;
-
-	/** required WCAG contrast level */
-	export let a11yLevel: 'AA' | 'AAA';
-
-	/** placeholder text color */
-	export let textColor: string;
-
-	/** placeholder background color */
-	export let bgColor: string;
-
-	/** RGAA contrast between the text and its background. Between 1 and 21 */
-	export let contrast: number = 1;
-
-	/** define the accessibility "contrast" text */
-	export let contrastText: string;
+	let {
+		placeholder = undefined,
+		size = undefined,
+		a11yLevel,
+		textColor,
+		bgColor,
+		contrast = 1,
+		contrastText
+	}: Props = $props();
 </script>
 
 <p class="lorem" class:large={size === 'large'} style:color={textColor} style:background-color={bgColor}>

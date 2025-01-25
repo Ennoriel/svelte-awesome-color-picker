@@ -2,12 +2,11 @@
   import ColorPicker, { ChromeVariant, A11yVariant } from '$lib';
   import { bgColor } from '../store';
 
-  let hex = "#f6f0dc";
-  let rgb;
-  let hsv;
-  let color;
-  let historyHex = [];
-  $: historyHex = historyHex.length > 8 ? ['...', ...historyHex.slice(Math.max(0, historyHex.length - 8))] : historyHex
+  let hex = $state("#f6f0dc");
+  let rgb = $state(null);
+  let hsv = $state(null);
+  let color = $state(null);
+  let historyHex = $state([]);
 
   function beautify(object, name) {
     return `<span class="token keyword">let</span> ${name}<span class="token operator"> = </span>` + (object ? JSON.stringify(object, null, 2)
@@ -17,7 +16,7 @@
     .replace(/":/g, '"<span class="token operator">:</span>') : `<span class="token keyword">undefined</span>;`);
   }
 
-  $: $bgColor = hex;
+  $effect(() => $bgColor = hex)
 </script>
 
 ## Examples
@@ -120,7 +119,9 @@ Note: set both attributes `resverse` and `bgHex` when you are chosing a transpar
 
 ### Nullable version
 
-<ColorPicker bind:hex bind:rgb bind:hsv nullable />
+<ColorPicker {hex} {rgb} {hsv} nullable />
+
+The color of this example is not bound to the background since it would make other color pickers to break.
 
 **Source code**
 
@@ -130,13 +131,7 @@ Note: set both attributes `resverse` and `bgHex` when you are chosing a transpar
 	import ColorPicker from 'svelte-awesome-color-picker';
 </script>
 
-<ColorPicker
-	bind:hex
-	bind:rgb
-	bind:hsv
-	bind:color
-	nullable
-/>
+<ColorPicker {hex} {rgb} {hsv} nullable />
 ```
 
 ### Always open version
@@ -168,15 +163,16 @@ Note: set both attributes `resverse` and `bgHex` when you are chosing a transpar
 </div>
 </div>
 
-### Bind event '`on:input`'
+### Bind event '`onInput`'
 
-<ColorPicker {rgb} on:input={event => {
-historyHex = [...historyHex, event.detail.hex]
+<ColorPicker {rgb} onInput={event => {
+historyHex = [...historyHex, event.hex]
+if(historyHex.length > 5) historyHex.shift()
 }} />
 
 In this example, the color is appended to the history at each event.
 
-<button on:click={() => historyHex = [hex]}>Reset history</button>
+<button onclick={() => historyHex = [hex]}>Reset history</button>
 
 <div class="example-wrapper">
 <div>
@@ -186,8 +182,9 @@ In this example, the color is appended to the history at each event.
 ```svelte
 <ColorPicker
 	{rgb}
-	on:input={(event) => {
-		historyHex = [...historyHex, event.detail.hex];
+	onInput={(event) => {
+		historyHex = [...historyHex, event.hex];
+		if (historyHex.length > 5) historyHex.shift();
 	}}
 />
 ```

@@ -1,12 +1,15 @@
 <script lang="ts">
-	/** indicator position in % */
-	export let pos: { x: number; y: number };
+	interface Props {
+		/** indicator position in % */
+		pos: { x: number; y: number };
+		/** indicator whether the selected color is light or dark */
+		isDark: boolean;
+	}
 
-	/** indicator whether the selected color is light or dark */
-	export let isDark: boolean;
+	let { pos, isDark }: Props = $props();
 </script>
 
-<div class="picker-indicator" class:is-dark={isDark} style:--pos-x={pos.x} style:--pos-y={pos.y} />
+<div class="picker-indicator" class:is-dark={isDark} style:--pos-x={pos.x} style:--pos-y={pos.y}></div>
 
 <style>
 	div {

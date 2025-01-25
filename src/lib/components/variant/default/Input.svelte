@@ -1,37 +1,36 @@
 <script lang="ts">
-	/** DOM element of the label wrapper */
-	export let labelElement: HTMLLabelElement;
+	interface Props {
+		/** DOM element of the label wrapper */
+		labelElement: HTMLLabelElement | undefined;
+		/** hex color */
+		hex: string | null;
+		/** input label */
+		label: string;
+		/** input name, useful in a native form */
+		name?: string | undefined;
+	}
 
-	/** hex color */
-	export let hex: string | undefined;
+	let { labelElement = $bindable(), hex, label, name = undefined }: Props = $props();
 
-	/** input label */
-	export let label: string;
-
-	/** input name, useful in a native form */
-	export let name: string | undefined = undefined;
-
-	/* svelte-ignore unused-export-let /** indicator of the popup state */
-	export let isOpen: boolean;
-
-	function noop() {
+	function preventDefault(e: MouseEvent) {
+		e.preventDefault();
 		/* prevent browser color picker from opening unless javascript is broken */
 	}
 </script>
 
-<!-- svelte-ignore a11y-no-noninteractive-element-interactions a11y-click-events-have-key-events -->
-<label bind:this={labelElement} on:click|preventDefault={noop} on:mousedown|preventDefault={noop}>
+<!-- svelte-ignore a11y_no_noninteractive_element_interactions, a11y_click_events_have_key_events -->
+<label bind:this={labelElement} onclick={preventDefault} onmousedown={preventDefault}>
 	<div class="container">
 		<input
 			type="color"
 			{name}
 			value={hex}
-			on:click|preventDefault={noop}
-			on:mousedown|preventDefault={noop}
+			onclick={preventDefault}
+			onmousedown={preventDefault}
 			aria-haspopup="dialog"
 		/>
-		<div class="alpha" />
-		<div class="color" style:background={hex} />
+		<div class="alpha"></div>
+		<div class="color" style:background={hex}></div>
 	</div>
 	{label}
 </label>
@@ -48,11 +47,10 @@ _N.A._
 _N.A._
 
 **Props**
-@prop labelElement: HTMLLabelElement — DOM element of the label wrapper
-@prop hex: string | undefined — hex color
+@prop labelElement: HTMLLabelElement | undefined — DOM element of the label wrapper
+@prop hex: string | null — hex color
 @prop label: string — input label
 @prop name: string | undefined = undefined — input name, useful in a native form
-@prop isOpen: boolean — indicator of the popup state
 -->
 <style>
 	label {

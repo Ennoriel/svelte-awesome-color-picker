@@ -1,50 +1,43 @@
 <script lang="ts">
 	import { colord } from 'colord';
-	import type { Components } from '$lib/type/types';
+	import type { Components } from '$lib/type/types.js';
 	import { Slider } from 'svelte-awesome-slider';
-	import { createEventDispatcher } from 'svelte';
-	import type { Texts } from '$lib/utils/texts';
+	import type { Texts } from '$lib/utils/texts.js';
 
-	const dispatch = createEventDispatcher<{
-		input: {
-			s: number;
-			v: number;
-		};
-	}>();
+	interface Props {
+		/** customize the ColorPicker component parts. Can be used to display a Chrome variant or an Accessibility Notice */
+		components: Components;
+		/** hue value */
+		h: number;
+		/** saturation value */
+		s: number;
+		/** vibrance value */
+		v: number;
+		/** indicator whether the selected color is light or dark */
+		isDark: boolean;
+		/** all translation tokens used in the library; can be partially overridden; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/utils/texts.ts) */
+		texts: Texts;
+		/** listener, dispatch an event when the user drags, clicks or tabs at the picker */
+		onInput: (color: { s: number; v: number }) => void;
+	}
 
-	/** customize the ColorPicker component parts. Can be used to display a Chrome variant or an Accessibility Notice */
-	export let components: Components;
+	let { components, h, s = $bindable(), v = $bindable(), isDark, texts, onInput }: Props = $props();
 
-	/** hue value */
-	export let h: number;
-
-	/** saturation value */
-	export let s: number;
-
-	/** vibrance value */
-	export let v: number;
-
-	/** indicator whether the selected color is light or dark */
-	export let isDark: boolean;
-
-	/** all translation tokens used in the library; can be partially overridden; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/utils/texts.ts) */
-	export let texts: Texts;
-
-	let picker: HTMLDivElement;
+	let picker: HTMLDivElement | undefined = $state();
 
 	let isMouseDown = false;
 	let focused = false;
 
-	let pickerColorBg: string;
-	let pos = { x: 100, y: 0 };
-
-	$: if (typeof h === 'number') pickerColorBg = colord({ h, s: 100, v: 100, a: 1 }).toHex();
+	let pos = $state({ x: 100, y: 0 });
+	let pickerColorBg = $derived(colord({ h, s: 100, v: 100, a: 1 }).toHex());
 
 	function clamp(value: number, min: number, max: number): number {
 		return Math.min(Math.max(min, value), max);
 	}
 
 	function onClick(e: { clientX: number; clientY: number }) {
+		if (!picker) return;
+
 		const { width, left, height, top } = picker.getBoundingClientRect();
 		const mouse = {
 			x: clamp(e.clientX - left, 0, width),
@@ -53,9 +46,12 @@
 
 		s = clamp(mouse.x / width, 0, 1) * 100;
 		v = clamp((height - mouse.y) / height, 0, 1) * 100;
+
+		updateColor();
 	}
 
 	function pickerMousedown(e: MouseEvent) {
+		e.preventDefault();
 		if (e.button === 0) {
 			isMouseDown = true;
 			onClick(e);
@@ -71,7 +67,7 @@
 	}
 
 	function mouseDown(e: MouseEvent) {
-		if (!(<HTMLElement>e.target).isSameNode(picker)) focused = false;
+		if (!picker || !(e.target as HTMLElement).isSameNode(picker)) focused = false;
 	}
 
 	function touch(e: TouchEvent) {
@@ -79,34 +75,45 @@
 		onClick(e.changedTouches[0]);
 	}
 
-	$: if (typeof s === 'number' && typeof v === 'number' && picker)
-		pos = {
-			x: s,
-			y: 100 - v
-		};
+	$effect(() => {
+		if (typeof s === 'number' && typeof v === 'number' && picker)
+			pos = {
+				x: s,
+				y: 100 - v
+			};
+	});
 
-	$: dispatch('input', { s, v });
+	function updateColor(color: { s?: number; v?: number } = {}) {
+		onInput({ s, v, ...color });
+	}
 </script>
 
-<svelte:window on:mouseup={mouseUp} on:mousedown={mouseDown} on:mousemove={mouseMove} />
+<svelte:window onmouseup={mouseUp} onmousedown={mouseDown} onmousemove={mouseMove} />
 
-<!-- svelte-ignore a11y-no-static-element-interactions -->
+<!-- svelte-ignore a11y_no_static_element_interactions -->
 <div
 	class="picker"
 	bind:this={picker}
-	on:mousedown|preventDefault={pickerMousedown}
-	on:touchstart|nonpassive={touch}
-	on:touchmove|nonpassive|preventDefault={touch}
-	on:touchend|nonpassive={touch}
+	onmousedown={pickerMousedown}
+	ontouchstart={touch}
+	ontouchmove={touch}
+	ontouchend={touch}
 	style:--picker-color-bg={pickerColorBg}
 >
-	<svelte:component this={components.pickerIndicator} {pos} {isDark} />
+	<components.pickerIndicator {pos} {isDark} />
 	<div class="s" style:--pos-y={pos.y}>
-		<Slider bind:value={s} keyboardOnly ariaValueText={(value) => `${value}%`} ariaLabel={texts.label.s} />
+		<Slider
+			value={s}
+			onInput={(s) => updateColor({ s })}
+			keyboardOnly
+			ariaValueText={(value) => `${value}%`}
+			ariaLabel={texts.label.s}
+		/>
 	</div>
 	<div class="v" style:--pos-x={pos.x}>
 		<Slider
-			bind:value={v}
+			value={v}
+			onInput={(v) => updateColor({ v })}
 			keyboardOnly
 			ariaValueText={(value) => `${value}%`}
 			direction="vertical"
@@ -131,6 +138,7 @@ N.A.
 @prop v: number — vibrance value
 @prop isDark: boolean — indicator whether the selected color is light or dark
 @prop texts: Texts — all translation tokens used in the library; can be partially overridden; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/utils/texts.ts)
+@prop onInput: (color: { s: number; v: number }) =&gt; void — listener, dispatch an event when the user drags, clicks or tabs at the picker
 -->
 <style>
 	.picker {

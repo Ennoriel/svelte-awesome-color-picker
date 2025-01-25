@@ -1,9 +1,9 @@
 <script lang="ts">
 	import ColorPicker, { A11yVariant, type RgbaColor, type HsvaColor } from '$lib';
 
-	let hex = '#f6f0dc';
-	let rgb: RgbaColor;
-	let hsv: HsvaColor;
+	let hex = $state('#f6f0dc');
+	let rgb = $state<RgbaColor | null>(null);
+	let hsv = $state<HsvaColor | null>(null);
 </script>
 
 <h1 style:margin-bottom="24px">color picker debug screen</h1>
@@ -14,6 +14,7 @@
 		bind:hex
 		bind:rgb
 		bind:hsv
+		nullable
 		isAlpha
 		isDialog={false}
 		a11yLevel="AAA"
