@@ -11,8 +11,11 @@ importers:
       colord:
         specifier: ^2.9.3
         version: 2.9.3
+      svelte-awesome-color-picker:
+        specifier: 'link:'
+        version: 'link:'
       svelte-awesome-slider:
-        specifier: ^2.0.0-beta.2
+        specifier: 2.0.0-beta.2
         version: 2.0.0-beta.2(svelte@5.15.0)
     devDependencies:
       '@changesets/cli':
