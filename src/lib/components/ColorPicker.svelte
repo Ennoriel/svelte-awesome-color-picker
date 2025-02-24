@@ -316,7 +316,7 @@
 		if (innerWidth && innerHeight && isOpen) wrapperBoundaryCheck();
 	});
 
-	const CCC = $derived(getComponents());
+	const CPComponents = $derived(getComponents());
 </script>
 
 <svelte:window
@@ -329,13 +329,13 @@
 
 <span bind:this={spanElement} class="color-picker {sliderDirection}">
 	{#if isDialog}
-		<CCC.input bind:labelElement {hex} {label} {name} />
+		<CPComponents.input bind:labelElement {hex} {label} {name} />
 	{:else if name}
 		<input type="hidden" value={hex} {name} />
 	{/if}
-	<CCC.wrapper bind:wrapper {isOpen} {isDialog}>
+	<CPComponents.wrapper bind:wrapper {isOpen} {isDialog}>
 		{#if nullable}
-			<CCC.nullabilityCheckbox bind:isUndefined texts={getTexts()} />
+			<CPComponents.nullabilityCheckbox bind:isUndefined texts={getTexts()} />
 		{/if}
 		<Picker
 			components={getComponents()}
@@ -373,7 +373,7 @@
 			</div>
 		{/if}
 		{#if isTextInput}
-			<CCC.textInput
+			<CPComponents.textInput
 				hex={hex ?? _hex}
 				rgb={rgb ?? _rgb}
 				hsv={hsv ?? _hsv}
@@ -392,9 +392,15 @@
 			/>
 		{/if}
 		{#if getComponents().a11yNotice}
-			<CCC.a11yNotice components={getComponents()} {a11yColors} hex={hex || '#00000000'} {a11yTexts} {a11yLevel} />
+			<CPComponents.a11yNotice
+				components={getComponents()}
+				{a11yColors}
+				hex={hex || '#00000000'}
+				{a11yTexts}
+				{a11yLevel}
+			/>
 		{/if}
-	</CCC.wrapper>
+	</CPComponents.wrapper>
 </span>
 
 <!-- 

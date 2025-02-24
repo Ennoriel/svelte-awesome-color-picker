@@ -19,14 +19,14 @@ The library exports 4 different things:
 | label                    | `string`                                                                                                                                             | `'Choose a color'`       | input label, hidden when the ColorPicker is always shown (prop `isDialog={false}`)                                                                                                                                                                                   |
 | name                     | `string &#124; undefined`                                                                                                                            | `undefined`              | input name, useful in a native form                                                                                                                                                                                                                                  |
 | nullable                 | `boolean`                                                                                                                                            | `false`                  | if set to true, the color picker becomes nullable (rgb, hsv and hex set to undefined)                                                                                                                                                                                |
-| rgb                      | `RgbaColor &#124; null`                                                                                                                              |                          | **bindable**<br>rgb color                                                                                                                                                                                                                                            |
-| hsv                      | `HsvaColor &#124; null`                                                                                                                              |                          | **bindable**<br>hsv color                                                                                                                                                                                                                                            |
-| hex                      | `string &#124; null`                                                                                                                                 |                          | **bindable**<br>hex color                                                                                                                                                                                                                                            |
-| color                    | `Colord &#124; null`                                                                                                                                 | `null`                   | **bindable**<br>Colord color                                                                                                                                                                                                                                         |
-| isDark                   | `boolean`                                                                                                                                            | `false`                  | **bindable**<br>indicator whether the selected color is light or dark                                                                                                                                                                                                |
+| rgb                      | `RgbaColor &#124; null`                                                                                                                              |                          | **bindable**<br/>rgb color                                                                                                                                                                                                                                           |
+| hsv                      | `HsvaColor &#124; null`                                                                                                                              |                          | **bindable**<br/>hsv color                                                                                                                                                                                                                                           |
+| hex                      | `string &#124; null`                                                                                                                                 |                          | **bindable**<br/>hex color                                                                                                                                                                                                                                           |
+| color                    | `Colord &#124; null`                                                                                                                                 | `null`                   | **bindable**<br/>Colord color                                                                                                                                                                                                                                        |
+| isDark                   | `boolean`                                                                                                                                            | `false`                  | **bindable**<br/>indicator whether the selected color is light or dark                                                                                                                                                                                               |
 | isAlpha                  | `boolean`                                                                                                                                            | `true`                   | if set to false, disables the alpha channel                                                                                                                                                                                                                          |
 | isDialog                 | `boolean`                                                                                                                                            | `true`                   | if set to false, the input and the label will not be displayed and the ColorPicker will always be visible                                                                                                                                                            |
-| isOpen                   | `boolean`                                                                                                                                            | `!isDialog`              | **bindable**<br>indicator of the popup state                                                                                                                                                                                                                         |
+| isOpen                   | `boolean`                                                                                                                                            | `!isDialog`              | **bindable**<br/>indicator of the popup state                                                                                                                                                                                                                        |
 | position                 | `'fixed' &#124; 'responsive' &#124; 'responsive-x' &#124; 'responsive-y'`                                                                            | `'fixed'`                | if set to "responsive", the popup will adjust its x and y position depending on the available window space, "responsive-x" and "responsive-y" limit the behavior to either the x or y axis. The value 'responsive' will become the default in the next major release |
 | isTextInput              | `boolean`                                                                                                                                            | `true`                   | if set to false, hide the hex, rgb and hsv text inputs                                                                                                                                                                                                               |
 | textInputModes           | `Array<'hex' &#124; 'rgb' &#124; 'hsv'>`                                                                                                             | `['hex', 'rgb', 'hsv']`  | configure which hex, rgb and hsv inputs will be visible and in which order. If overridden, it is necessary to provide at least one value                                                                                                                             |
@@ -36,7 +36,7 @@ The library exports 4 different things:
 | a11yLevel                | `'AA' &#124; 'AAA'`                                                                                                                                  | `'AA'`                   | required WCAG contrast level                                                                                                                                                                                                                                         |
 | texts                    | `TextsPartial &#124; undefined`                                                                                                                      | `undefined`              | all translation tokens used in the library; can be partially overridden; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/utils/texts.ts)                                                                          |
 | a11yTexts                | `A11yTextsPartial &#124; undefined`                                                                                                                  | `undefined`              | all a11y translation tokens used in the library; override with translations if necessary; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/utils/texts.ts)                                                         |
-| onInput                  | `((color: { hsv: HsvaColor &#124; null; rgb: RgbaColor &#124; null; hex: string &#124; null; color: Colord &#124; null }) => void) &#124; undefined` |                          | **event**<br>listener, dispatch an event when the color changes                                                                                                                                                                                                      |
+| onInput                  | `((color: { hsv: HsvaColor &#124; null; rgb: RgbaColor &#124; null; hex: string &#124; null; color: Colord &#124; null }) => void) &#124; undefined` |                          | **event**<br/>listener, dispatch an event when the color changes                                                                                                                                                                                                     |
 
 <!-- ~PROPS_ColorPicker.svelte -->
 
@@ -126,10 +126,10 @@ Props:
 
 <!-- PROPS_PickerIndicator.svelte -->
 
-| name   | type                       | default value | usage                                                                 |
-| :----- | -------------------------- | ------------- | --------------------------------------------------------------------- |
-| pos    | `{ x: number; y: number }` |               | **required**<br>indicator position in %                               |
-| isDark | `boolean`                  |               | **required**<br>indicator whether the selected color is light or dark |
+| name   | type                       | default value | usage                                                                  |
+| :----- | -------------------------- | ------------- | ---------------------------------------------------------------------- |
+| pos    | `{ x: number; y: number }` |               | **required**<br/>indicator position in %                               |
+| isDark | `boolean`                  |               | **required**<br/>indicator whether the selected color is light or dark |
 
 <!-- ~PROPS_PickerIndicator.svelte -->
 
@@ -141,15 +141,15 @@ Props:
 
 <!-- PROPS_TextInput.svelte -->
 
-| name           | type                                                                  | default value | usage                                                                                                                                                                                                       |
-| :------------- | --------------------------------------------------------------------- | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| isAlpha        | `boolean`                                                             |               | **required**<br>if set to false, disables the alpha channel                                                                                                                                                 |
-| rgb            | `RgbaColor`                                                           |               | **required**, **bindable**<br>rgb color                                                                                                                                                                     |
-| hsv            | `HsvaColor`                                                           |               | **required**, **bindable**<br>hsv color                                                                                                                                                                     |
-| hex            | `string`                                                              |               | **required**, **bindable**<br>hex color                                                                                                                                                                     |
-| textInputModes | `Array<'hex' &#124; 'rgb' &#124; 'hsv'>`                              |               | **required**<br>configure which hex, rgb and hsv inputs will be visible and in which order. If overridden, it is necessary to provide at least one value                                                    |
-| texts          | `Texts`                                                               |               | **required**<br>all translation tokens used in the library; can be partially overridden; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/utils/texts.ts) |
-| onInput        | `(color: { hsv?: HsvaColor; rgb?: RgbaColor; hex?: string }) => void` |               | **required**, **event**<br>listener, dispatch an event when one of the color changes                                                                                                                        |
+| name           | type                                                                  | default value | usage                                                                                                                                                                                                        |
+| :------------- | --------------------------------------------------------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| isAlpha        | `boolean`                                                             |               | **required**<br/>if set to false, disables the alpha channel                                                                                                                                                 |
+| rgb            | `RgbaColor`                                                           |               | **required**, **bindable**<br/>rgb color                                                                                                                                                                     |
+| hsv            | `HsvaColor`                                                           |               | **required**, **bindable**<br/>hsv color                                                                                                                                                                     |
+| hex            | `string`                                                              |               | **required**, **bindable**<br/>hex color                                                                                                                                                                     |
+| textInputModes | `Array<'hex' &#124; 'rgb' &#124; 'hsv'>`                              |               | **required**<br/>configure which hex, rgb and hsv inputs will be visible and in which order. If overridden, it is necessary to provide at least one value                                                    |
+| texts          | `Texts`                                                               |               | **required**<br/>all translation tokens used in the library; can be partially overridden; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/utils/texts.ts) |
+| onInput        | `(color: { hsv?: HsvaColor; rgb?: RgbaColor; hex?: string }) => void` |               | **required**, **event**<br/>listener, dispatch an event when one of the color changes                                                                                                                        |
 
 <!-- ~PROPS_TextInput.svelte -->
 
@@ -161,12 +161,12 @@ Props:
 
 <!-- PROPS_Input.svelte -->
 
-| name         | type                                | default value | usage                                                          |
-| :----------- | ----------------------------------- | ------------- | -------------------------------------------------------------- |
-| labelElement | `HTMLLabelElement &#124; undefined` |               | **required**, **bindable**<br>DOM element of the label wrapper |
-| hex          | `string &#124; null`                |               | **required**<br>hex color                                      |
-| label        | `string`                            |               | **required**<br>input label                                    |
-| name         | `string &#124; undefined`           | `undefined`   | input name, useful in a native form                            |
+| name         | type                                | default value | usage                                                           |
+| :----------- | ----------------------------------- | ------------- | --------------------------------------------------------------- |
+| labelElement | `HTMLLabelElement &#124; undefined` |               | **required**, **bindable**<br/>DOM element of the label wrapper |
+| hex          | `string &#124; null`                |               | **required**<br/>hex color                                      |
+| label        | `string`                            |               | **required**<br/>input label                                    |
+| name         | `string &#124; undefined`           | `undefined`   | input name, useful in a native form                             |
 
 <!-- ~PROPS_Input.svelte -->
 
@@ -178,12 +178,12 @@ Props:
 
 <!-- PROPS_Wrapper.svelte -->
 
-| name     | type                           | default value | usage                                                                                                                  |
-| :------- | ------------------------------ | ------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| wrapper  | `HTMLElement &#124; undefined` |               | **required**, **bindable**<br>DOM element of the wrapper element                                                       |
-| isOpen   | `boolean`                      |               | **required**<br>indicator of the popup state                                                                           |
-| isDialog | `boolean`                      |               | **required**<br>if set to true, the wrapper should have a dialog role and be absolute. It should be relative otherwise |
-| children | `import('svelte').Snippet`     |               | **required**<br>children                                                                                               |
+| name     | type                           | default value | usage                                                                                                                   |
+| :------- | ------------------------------ | ------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| wrapper  | `HTMLElement &#124; undefined` |               | **required**, **bindable**<br/>DOM element of the wrapper element                                                       |
+| isOpen   | `boolean`                      |               | **required**<br/>indicator of the popup state                                                                           |
+| isDialog | `boolean`                      |               | **required**<br/>if set to true, the wrapper should have a dialog role and be absolute. It should be relative otherwise |
+| children | `import('svelte').Snippet`     |               | **required**<br/>children                                                                                               |
 
 <!-- ~PROPS_Wrapper.svelte -->
 
@@ -195,10 +195,10 @@ Props:
 
 <!-- PROPS_NullabilityCheckbox.svelte -->
 
-| name        | type      | default value | usage                                                                                                                                                                                                       |
-| :---------- | --------- | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| isUndefined | `boolean` |               | **required**, **bindable**<br>whether the color picker is undefined                                                                                                                                         |
-| texts       | `Texts`   |               | **required**<br>all translation tokens used in the library; can be partially overridden; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/utils/texts.ts) |
+| name        | type      | default value | usage                                                                                                                                                                                                        |
+| :---------- | --------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| isUndefined | `boolean` |               | **required**, **bindable**<br/>whether the color picker is undefined                                                                                                                                         |
+| texts       | `Texts`   |               | **required**<br/>all translation tokens used in the library; can be partially overridden; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/utils/texts.ts) |
 
 <!-- ~PROPS_NullabilityCheckbox.svelte -->
 
@@ -212,10 +212,10 @@ Props:
 
 | name       | type                                | default value | usage                                                                                                                                                                                                        |
 | :--------- | ----------------------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| components | `Components`                        |               | **required**<br>customize the ColorPicker component parts. Can be used to display a Chrome variant or an Accessibility Notice                                                                                |
-| hex        | `string`                            |               | **required**<br>hex color                                                                                                                                                                                    |
-| a11yColors | `Array<A11yColor>`                  |               | **required**<br>define the accessibility examples in the color picker                                                                                                                                        |
-| a11yLevel  | `'AA' &#124; 'AAA'`                 |               | **required**<br>required WCAG contrast level                                                                                                                                                                 |
+| components | `Components`                        |               | **required**<br/>customize the ColorPicker component parts. Can be used to display a Chrome variant or an Accessibility Notice                                                                               |
+| hex        | `string`                            |               | **required**<br/>hex color                                                                                                                                                                                   |
+| a11yColors | `Array<A11yColor>`                  |               | **required**<br/>define the accessibility examples in the color picker                                                                                                                                       |
+| a11yLevel  | `'AA' &#124; 'AAA'`                 |               | **required**<br/>required WCAG contrast level                                                                                                                                                                |
 | a11yTexts  | `A11yTextsPartial &#124; undefined` | `undefined`   | all a11y translation tokens used in the library; override with translations if necessary; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/utils/texts.ts) |
 
 <!-- ~PROPS_A11yNotice.svelte -->
@@ -265,11 +265,11 @@ Props:
 | :----------- | ------------------------------------------ | ------------- | ------------------------------------------------------------------- |
 | placeholder  | `string &#124; undefined`                  | `undefined`   | placeholder, falls back to `Lorem Ipsum`                            |
 | size         | `'normal' &#124; 'large' &#124; undefined` | `undefined`   | size of the text                                                    |
-| a11yLevel    | `'AA' &#124; 'AAA'`                        |               | **required**<br>required WCAG contrast level                        |
-| textColor    | `string`                                   |               | **required**<br>placeholder text color                              |
-| bgColor      | `string`                                   |               | **required**<br>placeholder background color                        |
+| a11yLevel    | `'AA' &#124; 'AAA'`                        |               | **required**<br/>required WCAG contrast level                       |
+| textColor    | `string`                                   |               | **required**<br/>placeholder text color                             |
+| bgColor      | `string`                                   |               | **required**<br/>placeholder background color                       |
 | contrast     | `number`                                   | `1`           | RGAA contrast between the text and its background. Between 1 and 21 |
-| contrastText | `string`                                   |               | **required**<br>define the accessibility "contrast" text            |
+| contrastText | `string`                                   |               | **required**<br/>define the accessibility "contrast" text           |
 
 <!-- ~PROPS_A11ySingleNotice.svelte -->
 

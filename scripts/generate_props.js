@@ -51,7 +51,7 @@ export function getDestructuredPropsStr(scriptTagStr) {
 }
 
 export function extractMetadataFromInterface(interfacePropsStr) {
-	let metadata = interfacePropsStr.split(/;\n/);
+	let metadata = interfacePropsStr.split(/;\r?\n/);
 	return metadata.map((m) => {
 		const [description, rest] = m.split('*/');
 		const [name, ...type] = rest.split(':');
@@ -83,8 +83,8 @@ export function extractMetadataFromProps(destructuredPropsStr) {
 			isEvent,
 			defaultValue:
 				(isBindable ? defaultValue.match(/\$bindable\((?<result>.*)\)/s)?.groups?.result : defaultValue)
-					?.replace(/,?$/, '')
-					?.trim() ?? ''
+					?.trim()
+					?.replace(/,?$/, '') ?? ''
 		};
 	});
 }
@@ -142,7 +142,7 @@ function generateDocs(path, componentName, componentDocParsed) {
 				if (isBindable) kind.push('bindable');
 				if (isEvent) kind.push('event');
 				kind = kind.map((k) => `**${k}**`).join(', ');
-				const _description = kind ? `${kind}<br\\>${description}` : description;
+				const _description = kind ? `${kind}<br/>${description}` : description;
 				return `| ${name} | ${_type} | ${_defaultValue} | ${_description} |`;
 			})
 			.join('\n');
