@@ -137,11 +137,10 @@
 	}
 
 	function mousedown({ target }: MouseEvent) {
-		if (!labelElement || !wrapper) return;
 		if (isDialog) {
-			if (labelElement.contains(target as Node) || labelElement.isSameNode(target as Node)) {
+			if (labelElement?.contains(target as Node) || labelElement?.isSameNode(target as Node)) {
 				isOpen = !isOpen;
-			} else if (isOpen && !wrapper.contains(target as Node) && !disableCloseClickOutside) {
+			} else if (isOpen && !wrapper?.contains(target as Node) && !disableCloseClickOutside) {
 				isOpen = false;
 			}
 		}
