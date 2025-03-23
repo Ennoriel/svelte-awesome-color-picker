@@ -39,6 +39,8 @@
 		isOpen?: boolean;
 		/** if set to "responsive", the popup will adjust its x and y position depending on the available window space, "responsive-x" and "responsive-y" limit the behavior to either the x or y axis. The value 'responsive' will become the default in the next major release */
 		position?: 'fixed' | 'responsive' | 'responsive-x' | 'responsive-y';
+		/** directionality left to right, or right to left*/
+		dir?: 'ltr' | 'rtl';
 		/** if set to false, hide the hex, rgb and hsv text inputs */
 		isTextInput?: boolean;
 		/** configure which hex, rgb and hsv inputs will be visible and in which order. If overridden, it is necessary to provide at least one value */
@@ -75,6 +77,7 @@
 		isDialog = true,
 		isOpen = $bindable(!isDialog),
 		position = 'fixed',
+		dir = 'ltr',
 		isTextInput = true,
 		textInputModes = ['hex', 'rgb', 'hsv'],
 		sliderDirection = 'vertical',
@@ -289,23 +292,35 @@
 	async function wrapperBoundaryCheck() {
 		await tick();
 
-		if (position !== 'fixed' && isOpen && isDialog && labelElement && wrapper) {
-			const rect = wrapper.getBoundingClientRect();
-			const labelRect = labelElement.getBoundingClientRect();
+		if (position === 'fixed' || !isOpen || !isDialog || !labelElement || !wrapper) return;
 
-			if (position === 'responsive' || position === 'responsive-y') {
-				if (labelRect.top + rect.height + wrapperPadding > innerHeight) {
-					wrapper.style.top = `-${rect.height + wrapperPadding}px`;
-				} else {
-					wrapper.style.top = `${labelRect.height + wrapperPadding}px`;
-				}
+		const wrapperRect = wrapper.getBoundingClientRect();
+		const labelRect = labelElement.getBoundingClientRect();
+
+		if (position === 'responsive' || position === 'responsive-y') {
+			const isWrapperToLow = labelRect.top + wrapperRect.height + wrapperPadding > innerHeight;
+			if (isWrapperToLow) {
+				wrapper.style.top = `-${wrapperRect.height + wrapperPadding}px`;
+			} else {
+				wrapper.style.top = `${labelRect.height + wrapperPadding}px`;
 			}
+		}
 
-			if (position === 'responsive' || position === 'responsive-x') {
-				if (labelRect.left + rect.width + wrapperPadding > innerWidth) {
-					wrapper.style.left = `-${rect.width - labelRect.width + wrapperPadding}px`;
+		if (position === 'responsive' || position === 'responsive-x') {
+			if (dir === 'rtl') {
+				const isWrapperToLeft = labelRect.left + labelRect.width - wrapperRect.width < 0;
+				console.log(isWrapperToLeft, labelRect.left - wrapperRect.width, labelRect.left, wrapperRect.width);
+				if (isWrapperToLeft) {
+					wrapper.style.left = `0px`;
 				} else {
-					wrapper.style.left = `${wrapperPadding}px`;
+					wrapper.style.left = `${labelRect.width - wrapperRect.width}px`;
+				}
+			} else {
+				const isWrapperToRight = labelRect.left + wrapperRect.width > innerWidth;
+				if (isWrapperToRight) {
+					wrapper.style.left = `${labelRect.width - wrapperRect.width}px`;
+				} else {
+					wrapper.style.left = `0px`;
 				}
 			}
 		}
@@ -328,7 +343,7 @@
 
 <span bind:this={spanElement} class="color-picker {sliderDirection}">
 	{#if isDialog}
-		<CPComponents.input bind:labelElement {hex} {label} {name} />
+		<CPComponents.input bind:labelElement {hex} {label} {name} {dir} />
 	{:else if name}
 		<input type="hidden" value={hex} {name} />
 	{/if}
@@ -429,6 +444,7 @@ import ColorPicker from 'svelte-awesome-color-picker';
 @prop isDialog: boolean = true — if set to false, the input and the label will not be displayed and the ColorPicker will always be visible
 @prop isOpen: boolean = !isDialog — indicator of the popup state
 @prop position: 'fixed' | 'responsive' | 'responsive-x' | 'responsive-y' = 'fixed' — if set to "responsive", the popup will adjust its x and y position depending on the available window space, "responsive-x" and "responsive-y" limit the behavior to either the x or y axis. The value 'responsive' will become the default in the next major release
+@prop dir: 'ltr' | 'rtl' = 'ltr' — directionality left to right, or right to left
 @prop isTextInput: boolean = true — if set to false, hide the hex, rgb and hsv text inputs
 @prop textInputModes: Array&lt;'hex' | 'rgb' | 'hsv'&gt; = ['hex', 'rgb', 'hsv'] — configure which hex, rgb and hsv inputs will be visible and in which order. If overridden, it is necessary to provide at least one value
 @prop sliderDirection: 'horizontal' | 'vertical' = 'vertical' — If set to "horizontal", the hue and alpha sliders will be displayed horizontally. It is necessary to set this props to "horizontal" for the ChromeVariant

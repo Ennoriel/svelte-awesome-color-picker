@@ -8,9 +8,11 @@
 		label: string;
 		/** input name, useful in a native form */
 		name?: string | undefined;
+		/** directionality left to right, or right to left*/
+		dir: 'ltr' | 'rtl';
 	}
 
-	let { labelElement = $bindable(), hex, label, name = undefined }: Props = $props();
+	let { labelElement = $bindable(), hex, label, name = undefined, dir }: Props = $props();
 
 	function preventDefault(e: MouseEvent) {
 		e.preventDefault();
@@ -19,7 +21,7 @@
 </script>
 
 <!-- svelte-ignore a11y_no_noninteractive_element_interactions, a11y_click_events_have_key_events -->
-<label bind:this={labelElement} onclick={preventDefault} onmousedown={preventDefault}>
+<label bind:this={labelElement} onclick={preventDefault} onmousedown={preventDefault} {dir}>
 	<div class="container">
 		<input
 			type="color"
@@ -51,6 +53,7 @@ _N.A._
 @prop hex: string | null — hex color
 @prop label: string — input label
 @prop name: string | undefined = undefined — input name, useful in a native form
+@prop dir: 'ltr' | 'rtl' — directionality left to right, or right to left
 -->
 <style>
 	label {

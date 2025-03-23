@@ -134,6 +134,21 @@ The color of this example is not bound to the background since it would make oth
 <ColorPicker {hex} {rgb} {hsv} nullable />
 ```
 
+### right to left aligned version
+
+<ColorPicker {hex} {rgb} {hsv} position="responsive" dir="rtl" />
+
+**Source code**
+
+<!-- prettier-ignore -->
+```svelte
+<script>
+	import ColorPicker from 'svelte-awesome-color-picker';
+</script>
+
+<ColorPicker {hex} {rgb} {hsv} dir="rtl" />
+```
+
 ### Always open version
 
 <div class="example-wrapper">
