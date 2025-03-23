@@ -12,7 +12,7 @@
 
 ## v4
 
-The major version 4 has been released to work with Svelte 5 (see [issue #92(https://github.com/Ennoriel/svelte-awesome-color-picker/issues/92)). It has been rewritten in Svelte 5. This comes with [some breaking changes](https://svelte-awesome-color-picker.vercel.app/#update-from-v3-to-v4)
+The major version 4 has been released to work with Svelte 5. It has been rewritten in Svelte 5. This comes with [some breaking changes](https://svelte-awesome-color-picker.vercel.app/#update-from-v3-to-v4)
 
 ## Links
 
