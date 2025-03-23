@@ -127,10 +127,9 @@ Props:
 
 <!-- PROPS_PickerIndicator.svelte -->
 
-| name   | type                       | default value | usage                                                                  |
-| :----- | -------------------------- | ------------- | ---------------------------------------------------------------------- |
-| pos    | `{ x: number; y: number }` |               | **required**<br/>indicator position in %                               |
-| isDark | `boolean`                  |               | **required**<br/>indicator whether the selected color is light or dark |
+| name | type                       | default value | usage                                    |
+| :--- | -------------------------- | ------------- | ---------------------------------------- |
+| pos  | `{ x: number; y: number }` |               | **required**<br/>indicator position in % |
 
 <!-- ~PROPS_PickerIndicator.svelte -->
 

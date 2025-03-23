@@ -146,6 +146,7 @@ N.A.
 		border-radius: var(--picker-radius, 8px);
 		outline: none;
 		user-select: none;
+		cursor: pointer;
 	}
 
 	.s,
