@@ -1,5 +1,19 @@
 # svelte-awesome-color-picker
 
+## 4.0.0
+
+### Major Changes
+
+- 35c887c: set the position props default value to responsive instead of fixed
+- d384e21: revert picker indicator cursor position extrapolation to bound to the wrapper picker element ([issue #76](https://github.com/Ennoriel/svelte-awesome-color-picker/issues/76))
+- c275511: migrate codebase to svelte 5
+
+### Patch Changes
+
+- de2725f: fix alpha slider background in case of a portal wrapper (fix [issue #93](https://github.com/Ennoriel/svelte-awesome-color-picker/issues/93))
+- 0fd681f: up deps
+- 1c8f4d1: support rtl alignment ([issue #90](https://github.com/Ennoriel/svelte-awesome-color-picker/issues/90))
+
 ## 3.1.4
 
 ### Patch Changes
