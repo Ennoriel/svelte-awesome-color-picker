@@ -1,5 +1,5 @@
 <script lang="ts">
-	interface Props {
+	export interface Props {
 		/** DOM element of the wrapper element */
 		wrapper: HTMLElement;
 		/** indicator of the popup state */

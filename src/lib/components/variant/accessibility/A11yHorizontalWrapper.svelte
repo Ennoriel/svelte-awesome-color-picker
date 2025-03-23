@@ -1,5 +1,5 @@
 <script lang="ts">
-	interface Props {
+	export interface Props {
 		/** DOM element of the Color Picker popup wrapper */
 		wrapper: HTMLElement;
 		/** indicator of the popup state */

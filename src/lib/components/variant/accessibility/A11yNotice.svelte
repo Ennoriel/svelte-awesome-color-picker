@@ -6,7 +6,7 @@
 	import { getNumberOfGradeFailed } from './grades.js';
 	import { getContrast } from '$lib/utils/colors.js';
 
-	interface Props {
+	export interface Props {
 		/** customize the ColorPicker component parts. Can be used to display a Chrome variant or an Accessibility Notice */
 		components: Components;
 		/** hex color */

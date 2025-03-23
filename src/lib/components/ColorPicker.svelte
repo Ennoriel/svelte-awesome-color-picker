@@ -460,7 +460,8 @@ import ColorPicker from 'svelte-awesome-color-picker';
 		position: relative;
 		color: var(--cp-text-color, var(--cp-border-color));
 
-		--alpha-grid-bg: linear-gradient(45deg, #eee 25%, #0000 25%, #0000 75%, #eee 75%) 0 0 / 10px 10px,
+		--alpha-grid-bg:
+			linear-gradient(45deg, #eee 25%, #0000 25%, #0000 75%, #eee 75%) 0 0 / 10px 10px,
 			linear-gradient(45deg, #eee 25%, #0000 25%, #0000 75%, #eee 75%) 5px 5px / 10px 10px;
 	}
 
@@ -496,7 +497,8 @@ import ColorPicker from 'svelte-awesome-color-picker';
 	.h {
 		grid-area: hue;
 
-		--gradient-hue: #ff1500fb, #ffff00 17.2%, #ffff00 18.2%, #00ff00 33.3%, #00ffff 49.5%, #00ffff 51.5%, #0000ff 67.7%,
+		--gradient-hue:
+			#ff1500fb, #ffff00 17.2%, #ffff00 18.2%, #00ff00 33.3%, #00ffff 49.5%, #00ffff 51.5%, #0000ff 67.7%,
 			#ff00ff 83.3%, #ff0000;
 		--track-background: linear-gradient(var(--gradient-direction), var(--gradient-hue));
 	}
@@ -506,11 +508,12 @@ import ColorPicker from 'svelte-awesome-color-picker';
 		margin-top: 2px;
 
 		/* redefine css variable as it may not be available in case of a portal */
-		--alpha-grid-bg: linear-gradient(45deg, #eee 25%, #0000 25%, #0000 75%, #eee 75%) 0 0 / 10px 10px,
+		--alpha-grid-bg:
+			linear-gradient(45deg, #eee 25%, #0000 25%, #0000 75%, #eee 75%) 0 0 / 10px 10px,
 			linear-gradient(45deg, #eee 25%, #0000 25%, #0000 75%, #eee 75%) 5px 5px / 10px 10px;
 
-		--track-background: linear-gradient(var(--gradient-direction), rgba(0, 0, 0, 0), var(--alphaless-color)),
-			var(--alpha-grid-bg);
+		--track-background:
+			linear-gradient(var(--gradient-direction), rgba(0, 0, 0, 0), var(--alphaless-color)), var(--alpha-grid-bg);
 	}
 
 	span :global(.sr-only) {

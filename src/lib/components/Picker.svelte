@@ -141,8 +141,8 @@ N.A.
 		display: inline-block;
 		width: var(--picker-width, 200px);
 		height: var(--picker-height, 200px);
-		background: linear-gradient(#ffffff00, #000000ff), linear-gradient(0.25turn, #ffffffff, #00000000),
-			var(--picker-color-bg);
+		background:
+			linear-gradient(#ffffff00, #000000ff), linear-gradient(0.25turn, #ffffffff, #00000000), var(--picker-color-bg);
 		border-radius: var(--picker-radius, 8px);
 		outline: none;
 		user-select: none;
