@@ -1,5 +1,11 @@
 # svelte-awesome-color-picker
 
+## 4.0.1
+
+### Patch Changes
+
+- aeaa655: Fix "change to" mode not using custom texts - thanks to [Snazzah](https://github.com/Snazzah)
+
 ## 4.0.0
 
 ### Major Changes
