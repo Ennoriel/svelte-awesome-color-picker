@@ -211,13 +211,13 @@ Props:
 
 <!-- PROPS_A11yNotice.svelte -->
 
-| name       | type                                | default value | usage                                                                                                                                                                                                        |
-| :--------- | ----------------------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| components | `Components`                        |               | **required**<br/>customize the ColorPicker component parts. Can be used to display a Chrome variant or an Accessibility Notice                                                                               |
-| hex        | `string`                            |               | **required**<br/>hex color                                                                                                                                                                                   |
-| a11yColors | `Array<A11yColor>`                  |               | **required**<br/>define the accessibility examples in the color picker                                                                                                                                       |
-| a11yLevel  | `'AA' &#124; 'AAA'`                 |               | **required**<br/>required WCAG contrast level                                                                                                                                                                |
-| a11yTexts  | `A11yTextsPartial &#124; undefined` | `undefined`   | all a11y translation tokens used in the library; override with translations if necessary; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/utils/texts.ts) |
+| name       | type                                   | default value | usage                                                                                                                                                                                                        |
+| :--------- | -------------------------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| components | `Pick<Components, 'a11ySingleNotice'>` |               | **required**<br/>customize the ColorPicker component parts. Can be used to display a Chrome variant or an Accessibility Notice                                                                               |
+| hex        | `string`                               |               | **required**<br/>hex color                                                                                                                                                                                   |
+| a11yColors | `Array<A11yColor>`                     |               | **required**<br/>define the accessibility examples in the color picker                                                                                                                                       |
+| a11yLevel  | `'AA' &#124; 'AAA'`                    |               | **required**<br/>required WCAG contrast level                                                                                                                                                                |
+| a11yTexts  | `A11yTextsPartial &#124; undefined`    | `undefined`   | all a11y translation tokens used in the library; override with translations if necessary; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/utils/texts.ts) |
 
 <!-- ~PROPS_A11yNotice.svelte -->
 

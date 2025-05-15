@@ -1,7 +1,7 @@
 <script lang="ts">
 	export interface Props {
 		/** DOM element of the wrapper element */
-		wrapper: HTMLElement;
+		wrapper: HTMLElement | undefined;
 		/** indicator of the popup state */
 		isOpen: boolean;
 		/** if set to true, the wrapper should have a dialog role and be absolute. It should be relative otherwise */
@@ -37,7 +37,7 @@ import { ChromeVariant } from 'svelte-awesome-color-picker';
 ```
 
 **Props**
-@prop wrapper: HTMLElement — DOM element of the wrapper element
+@prop wrapper: HTMLElement | undefined — DOM element of the wrapper element
 @prop isOpen: boolean — indicator of the popup state
 @prop isDialog: boolean — if set to true, the wrapper should have a dialog role and be absolute. It should be relative otherwise
 @prop children: import('svelte').Snippet — children

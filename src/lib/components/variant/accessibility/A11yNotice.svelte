@@ -8,7 +8,7 @@
 
 	export interface Props {
 		/** customize the ColorPicker component parts. Can be used to display a Chrome variant or an Accessibility Notice */
-		components: Components;
+		components: Pick<Components, 'a11ySingleNotice'>;
 		/** hex color */
 		hex: string;
 		/** define the accessibility examples in the color picker */
@@ -77,7 +77,7 @@ import { A11yVariant } from 'svelte-awesome-color-picker';
 ```
 
 **Props**
-@prop components: Components — customize the ColorPicker component parts. Can be used to display a Chrome variant or an Accessibility Notice
+@prop components: Pick&lt;Components, 'a11ySingleNotice'&gt; — customize the ColorPicker component parts. Can be used to display a Chrome variant or an Accessibility Notice
 @prop hex: string — hex color
 @prop a11yColors: Array&lt;A11yColor&gt; — define the accessibility examples in the color picker
 @prop a11yLevel: 'AA' | 'AAA' — required WCAG contrast level
