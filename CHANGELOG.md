@@ -1,5 +1,11 @@
 # svelte-awesome-color-picker
 
+## 4.0.2
+
+### Patch Changes
+
+- e7d17f8: fix Typing issue when using ChromeVariant or A11yVariant ([issue #97](https://github.com/Ennoriel/svelte-awesome-color-picker/issues/97))
+
 ## 4.0.1
 
 ### Patch Changes
