@@ -96,8 +96,6 @@
 			<span class="disappear" aria-hidden="true">{texts.color[mode]}</span>
 			<span class="appear">{texts.changeTo} {texts.color[nextMode]}</span>
 		</button>
-	{:else}
-		<div class="button-like">{texts.color[mode]}</div>
 	{/if}
 </div>
 
