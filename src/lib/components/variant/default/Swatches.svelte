@@ -1,12 +1,20 @@
 <script lang="ts">
-	/** Function to call when a swatch is selected */
-	export let selectSwatch: (color: string) => void;
-	/** Optional array of color swatches to display */
-	export let swatches: string[] = [];
+	/**
+	 * Props for Swatches component
+	 */
+	interface Props {
+		/** Function to call when a swatch is selected */
+		selectSwatch: (color: string) => void;
+		/** Optional array of color swatches to display */
+		swatches?: string[];
+	}
+
+	// Destructure props using $props() for doc generator compatibility
+	let { selectSwatch, swatches = [] }: Props = $props();
 </script>
 
 <div class="swatches">
-	{#each swatches as color}
+	{#each swatches as color (color)}
 		<button
 			type="button"
 			class="swatch"

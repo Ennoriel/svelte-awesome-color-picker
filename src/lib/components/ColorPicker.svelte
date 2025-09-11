@@ -470,7 +470,9 @@ import ColorPicker from 'svelte-awesome-color-picker';
 @prop a11yLevel: 'AA' | 'AAA' = 'AA' — required WCAG contrast level
 @prop texts: TextsPartial | undefined = undefined — all translation tokens used in the library; can be partially overridden; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/utils/texts.ts)
 @prop a11yTexts: A11yTextsPartial | undefined = undefined — all a11y translation tokens used in the library; override with translations if necessary; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/utils/texts.ts)
-@prop onInput: ((color: { hsv: HsvaColor | null; rgb: RgbaColor | null; hex: string | null; color: Colord | null }) =&gt; void) | undefined — listener, dispatch an event when the color changes
+@prop onInput: ((color: { hsv: HsvaColor | null; rgb: RgbaColor | null; hex: string | null; color: Colord | null }) =&gt; void)
+ | undefined — listener, dispatch an event when the color changes
+@prop swatches: string[] = [] — Optional array of color swatches to display below the picker
 -->
 <style>
 	span {

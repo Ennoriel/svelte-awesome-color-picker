@@ -15,6 +15,7 @@
   - [Bind event '`onInput`'](#bind-event-oninput)
   - [Override the css variables](#override-the-css-variables)
   - [Dark theme](#dark-theme)
+  - [Color swatches example](#color-swatches-example)
   - [Translate the color picker](#translate-the-color-picker)
 - [Api](#api)
   - [Color picker](#color-picker)
