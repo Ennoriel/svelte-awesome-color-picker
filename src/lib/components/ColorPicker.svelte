@@ -5,6 +5,7 @@
 	import { Slider } from 'svelte-awesome-slider';
 	import PickerIndicator from './variant/default/PickerIndicator.svelte';
 	import TextInput from './variant/default/TextInput.svelte';
+	import Swatches from './variant/default/Swatches.svelte';
 	import Input from './variant/default/Input.svelte';
 	import Wrapper from './variant/default/Wrapper.svelte';
 	import type { A11yColor, Components } from '$lib/type/types.js';
@@ -61,6 +62,8 @@
 		onInput?:
 			| ((color: { hsv: HsvaColor | null; rgb: RgbaColor | null; hex: string | null; color: Colord | null }) => void)
 			| undefined;
+		/** Optional array of color swatches to display below the picker */
+		swatches: string[];
 	}
 
 	let {
@@ -86,7 +89,8 @@
 		a11yLevel = 'AA',
 		texts = undefined,
 		a11yTexts = undefined,
-		onInput
+		onInput,
+		swatches = []
 	}: Props = $props();
 
 	/**
@@ -123,6 +127,14 @@
 			...default_components,
 			...components
 		};
+	}
+
+	function selectSwatch(color: string) {
+		hex = color;
+		hsv = colord(color).toHsv();
+		rgb = colord(color).toRgb();
+		isUndefined = false;
+		updateColor();
 	}
 
 	function getTexts() {
@@ -386,6 +398,11 @@
 				/>
 			</div>
 		{/if}
+
+		{#if swatches && swatches.length > 0}
+			<Swatches {swatches} {selectSwatch} />
+		{/if}
+
 		{#if isTextInput}
 			<CPComponents.textInput
 				hex={hex ?? _hex}
