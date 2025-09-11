@@ -1,22 +1,3 @@
-### Color swatches example
-
-<ColorPicker
-bind:hex
-swatches={["#f44336", "#e91e63", "#9c27b0", "#2196f3", "#4caf50", "#ffeb3b", "#ff9800", "#795548"]}
-/>
-
-**Source code**
-
-```svelte
-<script>
-	import ColorPicker from 'svelte-awesome-color-picker';
-	let hex = '#f6f0dc';
-	let swatches = ['#f44336', '#e91e63', '#9c27b0', '#2196f3', '#4caf50', '#ffeb3b', '#ff9800', '#795548'];
-</script>
-
-<ColorPicker bind:hex {swatches} />
-```
-
 <script lang="ts">
   import ColorPicker, { ChromeVariant, A11yVariant } from '$lib';
   import { bgColor } from '../store';
@@ -307,6 +288,25 @@ In this example, the color is appended to the history at each event.
 
 </div>
 </div>
+
+### Color swatches example
+
+<ColorPicker
+bind:hex
+swatches={["#f44336", "#e91e63", "#9c27b0", "#2196f3", "#4caf50", "#ffeb3b", "#ff9800", "#795548"]}
+/>
+
+**Source code**
+
+```svelte
+<script>
+	import ColorPicker from 'svelte-awesome-color-picker';
+	let hex = '#f6f0dc';
+	let swatches = ['#f44336', '#e91e63', '#9c27b0', '#2196f3', '#4caf50', '#ffeb3b', '#ff9800', '#795548'];
+</script>
+
+<ColorPicker bind:hex {swatches} />
+```
 
 ### Translate the color picker
 
