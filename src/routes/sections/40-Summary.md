@@ -1,7 +1,6 @@
 ## Summary
 
 <!-- SUMMARY -->
-
 - [Install](#install)
 - [Links](#links)
 - [Summary](#summary)
@@ -40,4 +39,4 @@
 - [Migration](#migration)
   - [upgrade from v3 to v4](#upgrade-from-v3-to-v4)
   - [upgrade from v2 to v3](#upgrade-from-v2-to-v3)
-  <!-- ¤SUMMARY -->
+<!-- ¤SUMMARY -->
