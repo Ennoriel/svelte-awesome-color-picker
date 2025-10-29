@@ -52,14 +52,16 @@
 
 	function updateRgb(property: string) {
 		return function (e: InputEvent) {
-			rgb = { ...rgb, [property]: parseFloat((e.target as HTMLInputElement).value) };
+			let value = parseFloat((e.target as HTMLInputElement).value);
+			rgb = { ...rgb, [property]: isNaN(value) ? 0 : value };
 			onInput({ rgb });
 		};
 	}
 
 	function updateHsv(property: string) {
 		return function (e: InputEvent) {
-			hsv = { ...hsv, [property]: parseFloat((e.target as HTMLInputElement).value) };
+			let value = parseFloat((e.target as HTMLInputElement).value);
+			hsv = { ...hsv, [property]: isNaN(value) ? 0 : value };
 			onInput({ hsv });
 		};
 	}
