@@ -15,7 +15,11 @@ export const defaultTexts = {
 		hsv: 'hsv',
 		hex: 'hex'
 	},
-	changeTo: 'change to '
+	changeTo: 'change to ',
+	swatch: {
+		ariaTitle: 'saved colors',
+		ariaLabel: (color: string) => `select color: ${color}`
+	}
 };
 
 export const defaultA11yTexts = {

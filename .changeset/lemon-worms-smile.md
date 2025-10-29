@@ -2,4 +2,4 @@
 'svelte-awesome-color-picker': minor
 ---
 
-Added colour swatches
+Add color swatches (thanks to [BigWillie](https://github.com/BigWillie))

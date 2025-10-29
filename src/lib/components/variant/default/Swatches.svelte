@@ -1,34 +1,36 @@
 <script lang="ts">
-	/**
-	 * Props for Swatches component
-	 */
+	import type { Texts } from '$lib/utils/texts.js';
+
 	interface Props {
-		/** Function to call when a swatch is selected */
-		selectSwatch: (color: string) => void;
 		/** Optional array of color swatches to display */
 		swatches?: string[];
+		/** listener, dispatch an event when the user select a swatch color */
+		selectSwatch: (color: string) => void;
+		/** all translation tokens used in the library; can be partially overridden; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/utils/texts.ts) */
+		texts: Texts;
 	}
 
-	// Destructure props using $props() for doc generator compatibility
-	let { selectSwatch, swatches = [] }: Props = $props();
+	let { selectSwatch, swatches, texts }: Props = $props();
 </script>
 
-<div class="swatches">
-	{#each swatches as color (color)}
-		<button
-			type="button"
-			class="swatch"
-			style="background: {color}"
-			aria-label={`Select color ${color}`}
-			onclick={() => selectSwatch(color)}
-		></button>
-	{/each}
-</div>
+{#if swatches}
+	<div class="swatches" aria-label={texts.swatch.ariaTitle}>
+		{#each swatches as color (color)}
+			<button
+				type="button"
+				class="swatch"
+				style="background: {color}"
+				aria-label={texts.swatch.ariaLabel(color)}
+				onclick={() => selectSwatch(color)}
+			></button>
+		{/each}
+	</div>
+{/if}
 
 <style>
 	.swatches {
 		display: grid;
-		grid-template-columns: repeat(5, 1fr);
+		grid-template-columns: var(--cp-swatch-grid-template-columns, repeat(auto-fit, minmax(24px, 1fr)));
 		gap: 8px;
 		width: 100%;
 		height: 100%;
