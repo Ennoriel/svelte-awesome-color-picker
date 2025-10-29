@@ -1,16 +1,17 @@
 <script lang="ts">
-	import { tick } from 'svelte';
-	import { type RgbaColor, type HsvaColor, type Colord, colord } from 'colord';
-	import Picker from './Picker.svelte';
-	import { Slider } from 'svelte-awesome-slider';
-	import PickerIndicator from './variant/default/PickerIndicator.svelte';
-	import TextInput from './variant/default/TextInput.svelte';
-	import Input from './variant/default/Input.svelte';
-	import Wrapper from './variant/default/Wrapper.svelte';
 	import type { A11yColor, Components } from '$lib/type/types.js';
-	import { defaultTexts, type TextsPartial, type A11yTextsPartial } from '$lib/utils/texts.js';
+	import { defaultTexts, type A11yTextsPartial, type TextsPartial } from '$lib/utils/texts.js';
 	import { trapFocus, type Trap } from '$lib/utils/trapFocus.js';
+	import { colord, type Colord, type HsvaColor, type RgbaColor } from 'colord';
+	import { tick } from 'svelte';
+	import { Slider } from 'svelte-awesome-slider';
+	import Picker from './Picker.svelte';
+	import Input from './variant/default/Input.svelte';
 	import NullabilityCheckbox from './variant/default/NullabilityCheckbox.svelte';
+	import PickerIndicator from './variant/default/PickerIndicator.svelte';
+	import Swatches from './variant/default/Swatches.svelte';
+	import TextInput from './variant/default/TextInput.svelte';
+	import Wrapper from './variant/default/Wrapper.svelte';
 
 	interface Props {
 		/** customize the ColorPicker component parts. Can be used to display a Chrome variant or an Accessibility Notice */
@@ -61,6 +62,8 @@
 		onInput?:
 			| ((color: { hsv: HsvaColor | null; rgb: RgbaColor | null; hex: string | null; color: Colord | null }) => void)
 			| undefined;
+		/** Optional array of color swatches to display below the picker */
+		swatches?: string[];
 	}
 
 	let {
@@ -86,7 +89,8 @@
 		a11yLevel = 'AA',
 		texts = undefined,
 		a11yTexts = undefined,
-		onInput
+		onInput,
+		swatches
 	}: Props = $props();
 
 	/**
@@ -135,7 +139,11 @@
 				...defaultTexts.color,
 				...texts?.color
 			},
-			changeTo: texts?.changeTo ?? defaultTexts.changeTo
+			changeTo: texts?.changeTo ?? defaultTexts.changeTo,
+			swatch: {
+				...texts?.swatch,
+				...defaultTexts.swatch
+			}
 		};
 	}
 
@@ -164,6 +172,14 @@
 				trap?.destroy();
 			}
 		}
+	}
+
+	function selectSwatch(color: string) {
+		hex = color;
+		hsv = colord(color).toHsv();
+		rgb = colord(color).toRgb();
+		isUndefined = false;
+		updateColor();
 	}
 
 	function hasColorChanged() {
@@ -386,6 +402,11 @@
 				/>
 			</div>
 		{/if}
+
+		{#if swatches && swatches.length > 0}
+			<Swatches {swatches} {selectSwatch} texts={getTexts()} />
+		{/if}
+
 		{#if isTextInput}
 			<CPComponents.textInput
 				hex={hex ?? _hex}
@@ -454,6 +475,7 @@ import ColorPicker from 'svelte-awesome-color-picker';
 @prop texts: TextsPartial | undefined = undefined — all translation tokens used in the library; can be partially overridden; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/utils/texts.ts)
 @prop a11yTexts: A11yTextsPartial | undefined = undefined — all a11y translation tokens used in the library; override with translations if necessary; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/utils/texts.ts)
 @prop onInput: ((color: { hsv: HsvaColor | null; rgb: RgbaColor | null; hex: string | null; color: Colord | null }) =&gt; void) | undefined — listener, dispatch an event when the color changes
+@prop swatches: string[] — Optional array of color swatches to display below the picker
 -->
 <style>
 	span {

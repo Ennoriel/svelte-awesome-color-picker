@@ -38,6 +38,7 @@ The library exports 4 different things:
 | texts                    | `TextsPartial &#124; undefined`                                                                                                                      | `undefined`              | all translation tokens used in the library; can be partially overridden; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/utils/texts.ts)                  |
 | a11yTexts                | `A11yTextsPartial &#124; undefined`                                                                                                                  | `undefined`              | all a11y translation tokens used in the library; override with translations if necessary; see [full object type](https://github.com/Ennoriel/svelte-awesome-color-picker/blob/master/src/lib/utils/texts.ts) |
 | onInput                  | `((color: { hsv: HsvaColor &#124; null; rgb: RgbaColor &#124; null; hex: string &#124; null; color: Colord &#124; null }) => void) &#124; undefined` |                          | **event**<br/>listener, dispatch an event when the color changes                                                                                                                                             |
+| swatches                 | `string[]`                                                                                                                                           |                          | Optional array of color swatches to display below the picker                                                                                                                                                 |
 
 <!-- ~PROPS_ColorPicker.svelte -->
 
@@ -51,20 +52,21 @@ See the example [Bind event '`onInput`'](#bind-event-oninput).
 
 #### css variables
 
-| Props                   | Default Value                            | Usage                                  |
-| :---------------------- | ---------------------------------------- | -------------------------------------- |
-| --picker-height         | `200px`                                  | picker & sliders height                |
-| --picker-width          | `200px` (`260px` for the Chrome variant) | picker width                           |
-| --slider-width          | `30px`                                   | sliders width                          |
-| --picker-indicator-size | `10px`                                   | picker indicator size                  |
-| --picker-z-index        | `2`                                      | popup picker z-index                   |
-| --input-size            | `25px`                                   | color circle size                      |
-| --focus-color           | `red`                                    | focus color                            |
-| --cp-bg-color           | `white`                                  | background color                       |
-| --cp-border-color       | `black`                                  | border color                           |
-| --cp-text-color         | `--cp-border-color`                      | text color                             |
-| --cp-input-color        | `#eee`                                   | background color of the inputs         |
-| --cp-button-hover-color | `#ccc`                                   | background color of the hovered button |
+| Props                             | Default Value                            | Usage                                  |
+| :-------------------------------- | ---------------------------------------- | -------------------------------------- |
+| --picker-height                   | `200px`                                  | picker & sliders height                |
+| --picker-width                    | `200px` (`260px` for the Chrome variant) | picker width                           |
+| --slider-width                    | `30px`                                   | sliders width                          |
+| --picker-indicator-size           | `10px`                                   | picker indicator size                  |
+| --picker-z-index                  | `2`                                      | popup picker z-index                   |
+| --input-size                      | `25px`                                   | color circle size                      |
+| --focus-color                     | `red`                                    | focus color                            |
+| --cp-bg-color                     | `white`                                  | background color                       |
+| --cp-border-color                 | `black`                                  | border color                           |
+| --cp-text-color                   | `--cp-border-color`                      | text color                             |
+| --cp-input-color                  | `#eee`                                   | background color of the inputs         |
+| --cp-button-hover-color           | `#ccc`                                   | background color of the hovered button |
+| --cp-swatch-grid-template-columns | `repeat(auto-fit, minmax(24px, 1fr))`    | swatches default grid template columns |
 
 See the example [Override the css variables](#override-the-css-variables).
 

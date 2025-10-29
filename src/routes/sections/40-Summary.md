@@ -16,6 +16,7 @@
   - [Override the css variables](#override-the-css-variables)
   - [Override one of the components](#override-one-of-the-components)
   - [Dark theme](#dark-theme)
+  - [Color swatches example](#color-swatches-example)
   - [Translate the color picker](#translate-the-color-picker)
 - [Api](#api)
   - [Color picker](#color-picker)

@@ -312,6 +312,28 @@ The Color Picker comes with a default layout. A **Chrome** variant is provided w
 </div>
 </div>
 
+### Color swatches example
+
+<ColorPicker
+bind:hex
+swatches={["#f44336", "#e91e63", "#9c27b0", "#2196f3", "#4caf50", "#ffeb3b", "#ff9800"]}
+/>
+
+**Source code**
+
+<!-- prettier-ignore -->
+```svelte
+<script>
+	import ColorPicker from 'svelte-awesome-color-picker';
+	let hex = '#f6f0dc';
+	let swatches = ['#f44336', '#e91e63', '#9c27b0', '#2196f3', '#4caf50', '#ffeb3b', '#ff9800'];
+</script>
+
+<ColorPicker bind:hex {swatches} />
+```
+
+Note that you can override the column number with the `--cp-swatch-grid-template-columns` css variable. Learn more on the [css section of the Api section](/#css-variables)
+
 ### Translate the color picker
 
 Note: the `texts` props can be **partially** overridden. It's mostly used to translate the component. Most texts are used for accessibility aria-labels.
