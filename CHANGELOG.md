@@ -1,5 +1,12 @@
 # svelte-awesome-color-picker
 
+## 4.1.0
+
+### Minor Changes
+
+- 3195262: Fix effect_update_depth_exceeded error on clearing the values in rgb or hex (fix [issue #104](https://github.com/Ennoriel/svelte-awesome-color-picker/issues/104) - thanks to [achyutagupta](https://github.com/achyutagupta))
+- 6317d8f: Add color swatches (thanks to [BigWillie](https://github.com/BigWillie))
+
 ## 4.0.2
 
 ### Patch Changes
