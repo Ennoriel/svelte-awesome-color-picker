@@ -70,7 +70,7 @@ See the example [Override the css variables](#override-the-css-variables).
 
 ### components
 
-The color picker can be customized with components. The details and props are detailed below. It is easier to copy the library components and tweak them to your needs.
+The color picker can be customized with components. The details and props are detailed below. It is easier to start by copying the component you want to customise from the library and tweak it to your needs.
 
 A **Chrome** variant and an **accessibility** variant are available. **To use the Chrome variant you need to set the props** `sliderDirection` to `horizontal`. You can also partially overwrite the components:
 

@@ -134,7 +134,7 @@ The color of this example is not bound to the background since it would make oth
 <ColorPicker {hex} {rgb} {hsv} nullable />
 ```
 
-### right to left aligned version
+### Right to left aligned version
 
 <ColorPicker {hex} {rgb} {hsv} position="responsive" dir="rtl" />
 
@@ -253,6 +253,29 @@ In this example, the color is appended to the history at each event.
 
 </div>
 </div>
+
+### Override one of the components
+
+The Color Picker comes with a default layout. A **Chrome** variant is provided with this library. You can customise part of the Color Picker by overriding one of the components. Every single component props is documented in the [components section of the Api documentation](/#components).
+
+```svelte
+<script>
+	import ColorPicker, { ChromeVariant } from 'svelte-awesome-color-picker';
+	import CustomInput from '$lib/path/to/my/awesome/variant/Input.svelte';
+	import CustomWrapper from '$lib/path/to/my/awesome/variant/Wrapper.svelte';
+
+	let rgb;
+</script>
+
+<!-- example with the default display and a custom Input component -->
+<ColorPicker bind:rgb components={{ input: CustomInput }} />
+
+<!-- example with the ChromeVariant -->
+<ColorPicker bind:rgb components={ChromeVariant} sliderDirection="horizontal" />
+
+<!-- example with the Chrome variant and a custom Wrapper component -->
+<ColorPicker bind:rgb components={{ ...ChromeVariant, wrapper: CustomWrapper }} />
+```
 
 ### Dark theme
 
