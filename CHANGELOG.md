@@ -1,5 +1,12 @@
 # svelte-awesome-color-picker
 
+## 4.1.1
+
+### Patch Changes
+
+- 3bf232b: Update TextInput.svelte: use $derived() instead of $state() when dealing with $props() value since it's reactive, to avoid https://svelte.dev/e/state_referenced_locally warning
+- deab90c: update node to v24+ & multiple security improvements related to supply chain attacks
+
 ## 4.1.0
 
 ### Minor Changes
