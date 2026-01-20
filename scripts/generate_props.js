@@ -4,10 +4,12 @@ function read_files(path) {
 	const folderAndFiles = readdirSync(path, { withFileTypes: true });
 	const folders = folderAndFiles
 		.filter((fileOrFolder) => fileOrFolder.isDirectory())
-		.map((folder) => `${folder.path}/${folder.name}`);
+		.map((folder) => `${folder.parentPath}/${folder.name}`);
 	return [
 		...folders.map(read_files).flat(),
-		...folderAndFiles.filter((fileOrFolder) => fileOrFolder.isFile()).map((folder) => `${folder.path}/${folder.name}`)
+		...folderAndFiles
+			.filter((fileOrFolder) => fileOrFolder.isFile())
+			.map((folder) => `${folder.parentPath}/${folder.name}`)
 	];
 }
 
