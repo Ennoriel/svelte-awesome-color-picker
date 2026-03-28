@@ -8,6 +8,10 @@
   let color = $state(null);
   let historyHex = $state([]);
 
+  let nullableHex = $state(null);
+  let nullableRgb = $state(null);
+  let nullableHsv = $state(null);
+
   function beautify(object, name) {
     return `<span class="token keyword">let</span> ${name}<span class="token operator"> = </span>` + (object ? JSON.stringify(object, null, 2)
     .replace(/("#\w+")/g, '<span class="token string">$1</span>')
@@ -115,7 +119,7 @@ a11yColors={[
 />
 ```
 
-Note: set both attributes `resverse` and `bgHex` when you are chosing a transparency background color over a non white background.
+Note: set both attributes `resverse` and `bgHex` when you are choosing a transparency background color over a non white background.
 
 ### Nullable version
 
@@ -133,6 +137,21 @@ The color of this example is not bound to the background since it would make oth
 
 <ColorPicker {hex} {rgb} {hsv} nullable />
 ```
+
+### Nullable version with swatches
+
+***Source Code***
+
+<!-- prettier-ignore -->
+```svelte
+<script>
+	import ColorPicker from 'svelte-awesome-color-picker';
+</script>
+
+<ColorPicker {hex} {rgb} {hsv} nullable swatches={["#f44336", "#e91e63", "#9c27b0", "#2196f3", "#4caf50", "#ffeb3b", "#ff9800"]} />
+```
+
+<ColorPicker bind:hex={nullableHex} bind:rgb={nullableRgb} bind:hsv={nullableHsv} nullable swatches={["#f44336", "#e91e63", "#9c27b0", "#2196f3", "#4caf50", "#ffeb3b", "#ff9800"]} />
 
 ### Right to left aligned version
 
