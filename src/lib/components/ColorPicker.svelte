@@ -178,6 +178,12 @@
 		hex = color;
 		hsv = colord(color).toHsv();
 		rgb = colord(color).toRgb();
+
+		// update old colors to fix bug when using swatches and nullable at the same time: https://github.com/Ennoriel/svelte-awesome-color-picker/issues/111
+		_hex = color;
+		_hsv = hsv;
+		_rgb = rgb;
+		
 		isUndefined = false;
 		updateColor();
 	}
