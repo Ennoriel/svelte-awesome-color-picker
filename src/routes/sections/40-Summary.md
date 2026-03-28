@@ -10,6 +10,7 @@
   - [Chrome variant](#chrome-variant)
   - [Accessibility notice variant](#accessibility-notice-variant)
   - [Nullable version](#nullable-version)
+  - [Nullable version with swatches](#nullable-version-with-swatches)
   - [Right to left aligned version](#right-to-left-aligned-version)
   - [Always open version](#always-open-version)
   - [Bind event '`onInput`'](#bind-event-oninput)
