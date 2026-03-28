@@ -140,7 +140,7 @@ The color of this example is not bound to the background since it would make oth
 
 ### Nullable version with swatches
 
-**_Source Code_**
+**Source Code**
 
 <!-- prettier-ignore -->
 ```svelte
