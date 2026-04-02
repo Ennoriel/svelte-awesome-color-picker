@@ -178,6 +178,8 @@
 		hex = color;
 		hsv = colord(color).toHsv();
 		rgb = colord(color).toRgb();
+
+		_isUndefined = false;
 		isUndefined = false;
 		updateColor();
 	}
