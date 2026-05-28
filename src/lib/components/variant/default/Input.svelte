@@ -100,6 +100,11 @@ _N.A._
 		user-select: none;
 	}
 
+	.alpha {
+		width: calc(var(--input-size, 25px) - 2px);
+		height: calc(var(--input-size, 25px) - 2px);
+	}
+
 	input:focus-visible ~ .color {
 		outline: 2px solid var(--focus-color, red);
 		outline-offset: 2px;
