@@ -1,5 +1,11 @@
 # svelte-awesome-color-picker
 
+## 4.1.3
+
+### Patch Changes
+
+- 0989095: fix: alpha mask bleeds to foreground (fix #114 - thanks to [ElGauchooooo](https://github.com/ElGauchooooo))
+
 ## 4.1.2
 
 ### Patch Changes
