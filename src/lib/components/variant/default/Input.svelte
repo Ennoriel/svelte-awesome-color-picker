@@ -100,11 +100,6 @@ _N.A._
 		user-select: none;
 	}
 
-	/* Shrink the alpha grid by 1px on each side so the .color overlay's
-	 * anti-aliased edge fully covers it. Without this, the white alpha
-	 * grid bleeds out as a thin halo around darker selected colors on
-	 * dark page backgrounds (issue #114). The override comes after the
-	 * shared `.alpha, .color` rule above so it wins on specificity tie. */
 	.alpha {
 		width: calc(var(--input-size, 25px) - 2px);
 		height: calc(var(--input-size, 25px) - 2px);
